@@ -1,2 +1,7 @@
 alternatives --config java
 df -h
+Copy a Local File to a Remote Server:
+  scp localfile.txt username@remote_host:/path/to/destination/
+
+  scp username@remote_host:/path/to/remotefile.txt /local/path/
+for finding mvn location - sh which mvn - in pipe line
