@@ -1,1 +1,2 @@
 alternatives --config java
+df -h
