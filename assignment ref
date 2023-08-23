@@ -1,0 +1,52 @@
+Initialize Git Repository:
+You create a new directory named "git-demo" and navigate into it.
+
+You run git init to initialize a new Git repository in this directory.
+Create file1.java and file2.java:
+
+You create two empty Java source code files named "file1.java" and "file2.java" inside the "git-demo" directory.
+Add and Commit file1.java and file2.java:
+
+You use git add to stage the changes of "file1.java" and "file2.java," preparing them for commit.
+You use git commit to commit the staged changes with a commit message indicating that you added the two files.
+Create file3.java:
+
+You create another empty Java source code file named "file3.java" inside the "git-demo" directory.
+Create Stash for file3.java:
+
+You haven't committed "file3.java" yet, but you want to temporarily put aside your changes. You use git stash to stash (temporarily save) the uncommitted changes.
+Verify Stash List:
+
+You use git stash list to see the list of stashes you've created. You should see the stash you created in step 5.
+Apply Stash Back:
+
+You use git stash apply to apply the most recent stash you created (from step 5) back to your working directory. This restores the changes made in "file3.java."
+Clear the Stash:
+
+You use git stash clear to remove all stashes you've created. This clears the stash list.
+Add file3.java to Staging Area:
+
+You use git add to stage the changes in "file3.java," preparing it for commit.
+Commit file3.java:
+
+You use git commit to commit the staged changes in "file3.java" with a commit message indicating that you added the file.
+Do a Soft Reset to 1st Commit:
+
+You use git reset --soft HEAD~1 to move the branch pointer back to the previous commit, effectively "undoing" the commit but keeping the changes in your working directory and staging area.
+Revert the Reset by Doing a Commit:
+
+You mistakenly use git commit -c ORIG_HEAD to try to commit the changes you reset in step 11. This opens a text editor for a commit message, which wasn't the intended action.
+Do a Mixed Reset to 1st Commit:
+
+You use git reset --mixed HEAD~1 to move the branch pointer back to the previous commit, effectively "undoing" the commit and clearing the changes from the staging area but keeping the changes in your working directory.
+Revert the Reset by Adding Files to Staging Area and Commit:
+
+You use git add to stage the changes in all three files (file1.java, file2.java, file3.java).
+You use git commit to commit these staged changes, effectively bringing the files back to their state before the mixed reset.
+Do a Hard Reset:
+
+You use git reset --hard HEAD~1 to forcefully move the branch pointer back to the previous commit, discarding all changes in the working directory and staging area.
+Verify Changes Removed:
+
+You can run git status, git log, and inspect files to ensure that the changes you intended to remove are indeed no longer present.
+It's important to note that Git's behavior might vary based on the specific commands you use, especially when performing resets. Always double-check the results of each step to make sure you're achieving the desired outcome.
