@@ -5,3 +5,9 @@ Copy a Local File to a Remote Server:
 
   scp username@remote_host:/path/to/remotefile.txt /local/path/
 for finding mvn location - sh which mvn - in pipe line
+
+
+git 
+
+git log --graph --decorate
+
