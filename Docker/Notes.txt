@@ -1,1 +1,21 @@
 
+
+docker version > details
+docker ps 
+
+docker ps -a > list stoped docker too
+
+docker images > list images 
+
+Stop the container - Hit CTRL+C if you are on the container's terminal. Or else run docker stop <container-id>.
+
+To stop all the containers at once, run the command: docker stop $(docker ps -aq)
+
+To remove all the stopped containers at once, run the command: docker rm $(docker ps -aq)
+
+Run a container with the nginx:1.14-alpine image and name it webapp
+$ docker run -d  --name webapp nginx:1.14-alpine 
+
+Delete the Image.   docker rmi 
+
+ delete all the available images: docker rmi $(docker images -aq)
