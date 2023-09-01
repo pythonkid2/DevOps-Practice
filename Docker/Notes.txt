@@ -19,3 +19,19 @@ $ docker run -d  --name webapp nginx:1.14-alpine
 Delete the Image.   docker rmi 
 
  delete all the available images: docker rmi $(docker images -aq)
+
+
+     Here's the basic syntax for the docker build command, where you specify the Dockerfile's location and name using the -f or --file option:
+     
+docker build -t <your-image-name>:<your-tag> -f /path/to/your/Dockerfile .
+
+tag giving for seecting the version
+
+
+     <your-image-name> and <your-tag> are placeholders for the image name and tag you want to use.
+     -f /path/to/your/Dockerfile specifies the path to your Dockerfile. Replace /path/to/your/Dockerfile with the actual path to your Dockerfile.
+
+To forcefully remove this image, you can use the -f or --force option with the docker rmi command. Here's the modified command:
+docker rmi -f 01f29b872827
+
+
