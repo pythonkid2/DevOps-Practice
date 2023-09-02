@@ -1,0 +1,205 @@
+
+Install java on master and slave -
+
+sudo apt-get update
+
+sudo apt install openjdk-11-jdk
+
+Install jenkins on master -
+
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt-get update
+
+sudo apt-get install jenkins
+
+
+On the slave node
+-----------------
+
+install java
+sudo apt install openjdk-11-jdk
+
+
+# Create user 
+
+sudo adduser jenkins-slave-01
+give password - then enter *5 - Y
+
+Shifting to new user -
+
+sudo su - jenkins-slave-01
+
+# Create SSH Keys
+ssh-keygen
+
+enter enter --
+
+
+# The private and public keys will be created at these locations 
+`/home/jenkins-slave-01/.ssh/id_rsa` and `/home/jenkins-slave-01/.ssh/id_rsa.pub`
+
+cd .ssh
+cat id_rsa.pub > authorized_keys
+chmod 700 authorized_keys
+
+Configuration on Master
+-----------------------
+
+Copy the slave node's public key[id_rsa.pub] to Master Node's known_hosts file
+
+sudo su
+
+mkdir -p /var/lib/jenkins/.ssh
+
+cd /var/lib/jenkins
+chown jenkins:jenkins .ssh
+chmod 700 .ssh
+
+cd /var/lib/jenkins/.ssh 	
+
+sudo ssh-keyscan -H <SLAVE_NODE_PRIVATE_IP> >> /var/lib/jenkins/.ssh/known_hosts
+
+          The command ssh-keyscan -H SLAVE-NODE-PRIVATE-IP >>/var/lib/jenkins/.ssh/known_hosts is used to add the public key of a remote SSH server to the known_hosts file, allowing for secure connections without encountering security warnings.
+          However, you need to replace SLAVE-NODE-PRIVATE-IP with the actual private IP address of the slave node.
+          type (ip a) in slave machine to get the ip
+
+
+for the confirmation we are again 
+
+copy id_rsa.pub of slave content manually to /var/lib/jenkins/.ssh/known_hosts of master 
+
+in slave cat id_rsa.pub from .ssh folder -copy contents 
+
+in master from  /var/lib/jenkins/.ssh enter  vi known_hosts
+paste content down no need of removing anything
+for save and exit press Esc :wq
+
+
+chown jenkins:jenkins known_hosts
+chmod 700 known_hosts
+cd ../
+
+
+
+Configure the Slave using Manage Jenkins
+
+
+--------------------------------
+On the webUI
+------------
+go to Manage jenkins --> Tools 
+
+in Maven installation give 
+
+Give name example : M3
+choose version :anything here (3.9.4)   save
+
+Configure the node as shown here Manage Jenkins > Manage Nodes > New Node
+
+Node name: CentosSlave1
+
+# of executors: 1
+
+Remote home directory: /home/jenkins-slave-01
+Label: centos1
+Usage:Use this node as much as possible
+Launch method: Launch agents via SSH
+
+Host: Private IP address of slave node (ip a)
+credential press add  --> jenkins
+
+Configure credentials
+Click Add -> jenkins
+
+Domain : Global credentials (unrestricted)
+kind: SSH Username and private key
+Scope: Global
+ID: 1
+Description: jenkins slave
+Username: jenkins-slave-01
+
+private key -
+tick enter directly
+
+go to Private Key: On terminal - On the slave in .ssh directory –
+cat id_rsa on slave 
+copy paste the private key from beginning to end save it
+
+passphrase : leave empty 
+ADD
+
+Host Key Verification Strategy : Known hosts file Verification Strategy
+
+Availability : Keep this agent online as much as possible
+
+save
+
+select the credential created and click save
+
+check the log - 
+Agent successfully connected and online
+
+---------------------------------------------
+
+Create a new freestyle job
+
+Git hub project : give repo link
+
+	Select "Restrict where this project can be run"
+	Enter "centos1" as the Label
+	
+sourse code management - 
+give repo link
+
+Branches to build :change accordingly 
+	
+	Build steps -
+
+add build step --> invoke top level maven target   --> select previouse created maven (M3)
+
+In goals - clean compile test package
+
+save and build now  it should show success 
+
+for adding tomcat -
+go to slave and install tomcat9
+sudo su
+sudo apt install tomcat9
+
+go to cd /var/lib/tomcat9/conf
+
+vi server.xml
+
+ <Connector port="8081" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+change port to 8081 like showing above save and exit 
+restart tomcat and check status
+
+ 
+in slave -
+sudo visudo
+
+add under  # User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+jenkins-slave-01 ALL=(ALL:ALL) ALL
+
++++
+
+
+
+come back to master's web ui
+
+again come to configure and Add build step --> execute shell
+
+
+echo <your password> | sudo -S cp target/my-cicd-project-1.0-SNAPSHOT.war /var/lib/tomcat9/webapps/   #change file names according to your details
+
+
