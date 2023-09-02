@@ -104,10 +104,44 @@ Remove everything and add:
       SystemdCgroup = true
 
 
+Restart containerd:
+  sudo systemctl restart containerd
 
 
+Step 6: Initialize Kubernetes
 
+6.1. On Master Node: Initialize Kubernetes:
 
+  kubeadm init
 
+Copy the join command and token for worker nodes.
 
+6.2. On Worker Nodes: Run the copied join command.
 
+6.3. On Master Node: Copy and execute mkdir and sudo chown commands from the kubeadm init output.
+
+6.4. On Master Node: Verify nodes:
+
+  kubectl get nodes
+
+Step 7: Apply Network Plugins
+
+7.1. Apply Weave Network Plugin:
+
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+7.2. Alternatively: You can also try installing kubectl with sudo apt-get update and sudo apt-get install -y kubectl.
+
+Step 8: Troubleshoot (if needed)
+
+kubeadm reset
+
+8.2. Reinitialize Kubernetes:
+
+kubeadm init
+8.3. Check Pod Status:
+kubectl get pod -n kube-system -o wide
+
+8.4. Test Deployment:
+
+kubectl run nginx --image=nginx
