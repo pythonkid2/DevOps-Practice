@@ -1,3 +1,5 @@
+t3.small
+
 1. SSH into your EC2 instance:
    ssh -i your-key.pem ec2-user@your-ec2-instance-ip
 
@@ -99,3 +101,5 @@
 
     Identify the ClusterIP of the Nginx service and use it to access Nginx:
     curl http://<ClusterIP>
+
+
