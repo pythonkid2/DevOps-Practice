@@ -138,28 +138,13 @@ troubleshoot for join command -
 
 tocken format -
 
+
+kubeadm token create --print-join-command
+
+	When you run this command on your Kubernetes master node, it will generate a new token and provide you with the complete kubeadm join command, including the correct token and SHA-256 hash of the CA certificate. You can then use this command on your worker nodes to join them to the Kubernetes cluster.
+
+
 kubeadm join 172.31.31.177:6443 --token <valid_token> --discovery-token-ca-cert-hash <valid_sha256_hash>
-
-To create a new token for joining nodes to your Kubernetes cluster using kubeadm, you can use the kubeadm token create command on your master node. Here are the steps:
-
-Log in to your Kubernetes master node.
-
-Open a terminal or SSH session on the master node.
-
-Run the following command to create a new token:
-
-sudo kubeadm token create
-
-To get the correct SHA-256 hash of the CA certificate, you can retrieve it from the Kubernetes master node. Here's how you can obtain the correct SHA-256 hash:
-
-SSH into the Kubernetes master node: Log in to your Kubernetes master node, where you initially set up the cluster.
-
-List the contents of the directory: Navigate to the directory where Kubernetes stores its certificates. By default, this directory is /etc/kubernetes/pki/. You can use the ls command to list the contents of this directory:
-
-ls /etc/kubernetes/pki/
-
-openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
-
 
 ---
 
