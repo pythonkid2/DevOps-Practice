@@ -1,88 +1,149 @@
+Number of instances :3
+amazon linux 2 ami
+
 t3.small
 
 1. SSH into your EC2 instance:
    ssh -i your-key.pem ec2-user@your-ec2-instance-ip
 
 2. Set the hostname:
-   sudo su
-   hostnamectl set-hostname kmaster
+   
+sudo su
+
+hostnamectl set-hostname kmaster
+hostnamectl set-hostname kworker1
+hostnamectl set-hostname kworker2
+
+vi /etc/hosts
+
+ip a
+
+private-ip	kmaster 
+private-ip	kworker1 
+private-ip	kworker2
 
 3. Update the system:
-   sudo yum -y update
+
+sudo yum -y update
 
 4. Configure the Kubernetes Yum repository:
-   cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
-   [kubernetes]
-   name=Kubernetes
-   baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
-   enabled=1
-   gpgcheck=1
-   gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-   exclude=kubelet kubeadm kubectl
-   EOF
+
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
 
 5. Clean Yum cache:
-   sudo yum clean all
+
+sudo yum clean all
 
 6. Make Yum cache:
-   sudo yum -y makecache
+
+sudo yum -y makecache
 
 7. Install Kubernetes components:
-   sudo yum -y install kubelet-1.23* kubeadm-1.23* kubectl-1.23* --disableexcludes=kubernetes
+
+sudo yum -y install kubelet-1.23* kubeadm-1.23* kubectl-1.23* --disableexcludes=kubernetes
+
+kubeadm  version
 
 8. Disable SELinux:
-   sudo sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
-   sudo setenforce 0
+
+sudo sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
+sudo setenforce 0
+
+why?
+	By Disabling the SElinux all containers can easily access host filesystem
+	But in production it is recommended to work with selinux
+		that requires lot of system file updates
+		More details: https://dev.to/carminezacc/does-kubernetes-support-selinux-3oop
 
 9. Disable Swap:
-   sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
-   sudo swapoff -a
+
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo swapoff -a
+
 
 10. Load Kernel Modules:
-    sudo modprobe overlay
-    sudo modprobe br_netfilter
-
+ 
+sudo modprobe overlay
+sudo modprobe br_netfilter 
+ 
 11. Configure Kernel Parameters:
-    sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
-    net.bridge.bridge-nf-call-ip6tables = 1
-    net.bridge.bridge-nf-call-iptables = 1
-    net.ipv4.ip_forward = 1
-    EOF
-    sudo sysctl --system
+   
+sudo tee /etc/sysctl.d/kubernetes.conf<<EOF
+
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+
+
+sudo sysctl --system
+
 
 12. Install Docker:
-    sudo yum install docker -y
+
+sudo yum install docker -y
 
 13. Create Docker systemd directory and configuration:
-    sudo mkdir -p /etc/systemd/system/docker.service.d
-    sudo tee /etc/docker/daemon.json <<EOF
-    {
-      "exec-opts": ["native.cgroupdriver=systemd"],
-      "log-driver": "json-file",
-      "log-opts": {
-        "max-size": "100m"
-      },
-      "storage-driver": "overlay2"
-    }
-    EOF
+    
+sudo mkdir -p /etc/systemd/system/docker.service.d
+
+	
+sudo tee /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m" 
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+ 
+ 
 
 14. Restart Docker:
-    sudo systemctl restart docker
+
+sudo systemctl enable docker
+
 
 15. Enable Docker and Kubernetes services:
-    sudo systemctl enable docker
-    sudo systemctl enable kubelet
+
+sudo systemctl enable docker
+ 
+sudo systemctl enable kubelet
+
+
+
+ONly on master -
 
 16. Initialize Kubernetes cluster:
+
     sudo kubeadm init
 
+copy and paste join commands in both worker -
+
+
+master ----
+
+
 17. Set up kubectl for your user:
-    mkdir -p $HOME/.kube
+    
+	
+	mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 18. Install a CNI (Container Network Interface):
-    kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 
 19. Monitor pod creation in kube-system namespace:
     watch -n 1 kubectl get pod -n kube-system
