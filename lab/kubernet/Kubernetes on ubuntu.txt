@@ -1,3 +1,7 @@
+
+#not working properly
+
+
 Installing Kubernetes on Ubuntu
 
 Step 1: Prepare the Environment
