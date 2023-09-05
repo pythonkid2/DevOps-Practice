@@ -7,8 +7,7 @@ t3.small
    ssh -i your-key.pem ec2-user@your-ec2-instance-ip
 
 2. Set the hostname:
-   
-sudo su
+   sudo su
 
 hostnamectl set-hostname kmaster
 hostnamectl set-hostname kworker1
@@ -120,6 +119,7 @@ sudo systemctl enable docker
  
 sudo systemctl enable kubelet
 
+systemctl start docker.service
 
 
 ONly on master -
@@ -132,6 +132,37 @@ copy and paste join commands in both worker -
 
 
 master ----
+
+---
+troubleshoot for join command -
+
+tocken format -
+
+kubeadm join 172.31.31.177:6443 --token <valid_token> --discovery-token-ca-cert-hash <valid_sha256_hash>
+
+To create a new token for joining nodes to your Kubernetes cluster using kubeadm, you can use the kubeadm token create command on your master node. Here are the steps:
+
+Log in to your Kubernetes master node.
+
+Open a terminal or SSH session on the master node.
+
+Run the following command to create a new token:
+
+sudo kubeadm token create
+
+To get the correct SHA-256 hash of the CA certificate, you can retrieve it from the Kubernetes master node. Here's how you can obtain the correct SHA-256 hash:
+
+SSH into the Kubernetes master node: Log in to your Kubernetes master node, where you initially set up the cluster.
+
+List the contents of the directory: Navigate to the directory where Kubernetes stores its certificates. By default, this directory is /etc/kubernetes/pki/. You can use the ls command to list the contents of this directory:
+
+ls /etc/kubernetes/pki/
+
+openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+
+
+---
+
 
 
 17. Set up kubectl for your user:
@@ -153,6 +184,8 @@ kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/we
 
 21. Check the status of the Nginx pod:
     kubectl get pods
+
+kubectl get pods -o wide
 
 22. Access Kubernetes API server:
     curl http://10.96.0.1
