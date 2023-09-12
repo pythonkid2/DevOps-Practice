@@ -14,3 +14,7 @@ ansible -https://github.com/vilasvarghese/ansible/blob/master/installation/ssh-s
 Asible 
  https://www.learnlinux.tv/getting-started-with-ansible-14-roles/
 
+Prometheus
+
+https://github.com/vilasvarghese/dockerswarm/blob/master/Exercises/Prometheus/instructions.txt
+
