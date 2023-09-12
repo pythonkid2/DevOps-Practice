@@ -1,4 +1,4 @@
-
+ubuntu 20.04
 Install java on master and slave -
 
 sudo apt-get update
