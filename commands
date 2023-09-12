@@ -11,3 +11,7 @@ git
 
 git log --graph --decorate
 
+
+Kubernets
+
+kubectl run nginx --image=nginx
