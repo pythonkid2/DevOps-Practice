@@ -15,3 +15,23 @@ git log --graph --decorate
 Kubernets
 
 kubectl run nginx --image=nginx
+Run the command "kubectl get pods" and count the number of pods.
+pode details - kubectl describe pod podname
+
+Run the command kubectl describe pod newpods-<id> and look at the node field.
+Alternatively run "kubectl get pods -o wide" and check for the node the pod is placed on.
+
+to dlete kubectl delete pod "pod name"
+
+Use the kubectl edit command to update the image of the pod to redis.
+
+kubectl edit pod redis
+If you used a pod definition file then update the image from redis123 to redis in the definition file via Vi or Nano editor and then run kubectl apply command to update the image :-
+
+kubectl apply -f redis-definition.yaml 
+
+interview -
+
+https://intellipaat.com/blog/interview-question/kubernetes-interview-questions-answers/#1
+
+
