@@ -1,5 +1,10 @@
+Java
+
 alternatives --config java
 df -h
+
+SSH
+
 Copy a Local File to a Remote Server:
   scp localfile.txt username@remote_host:/path/to/destination/
 
@@ -8,6 +13,9 @@ for finding mvn location - sh which mvn - in pipe line
 
 
 git 
+
+In Git, you can stash changes from both the working directory and the staging area. Stashing is a way to temporarily set aside changes that you don't want to commit immediately. You have two options when stashing:
+
 
 git log --graph --decorate
 
@@ -29,6 +37,13 @@ kubectl edit pod redis
 If you used a pod definition file then update the image from redis123 to redis in the definition file via Vi or Nano editor and then run kubectl apply command to update the image :-
 
 kubectl apply -f redis-definition.yaml 
+
+
+TomcaT
+
+for tomcat - copy war to webapps then go to bin folder in terminal ./startup.sh
+to stop ./shutdown.sh
+
 
 interview -
 
