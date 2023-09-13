@@ -34,9 +34,17 @@ to dlete kubectl delete pod "pod name"
 Use the kubectl edit command to update the image of the pod to redis.
 
 kubectl edit pod redis
-If you used a pod definition file then update the image from redis123 to redis in the definition file via Vi or Nano editor and then run kubectl apply command to update the image :-
 
+If you used a pod definition file then update the image from redis123 to redis in the definition file via Vi or Nano editor and then run kubectl apply command to update the image :-
 kubectl apply -f redis-definition.yaml 
+
+creating pod from yml
+kubectl create -f .....yml
+
+repplication set 
+kubectl get replicationcontroller
+
+
 
 
 TomcaT
