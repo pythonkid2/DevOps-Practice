@@ -1,4 +1,0 @@
-In Git, you can stash changes from both the working directory and the staging area. Stashing is a way to temporarily set aside changes that you don't want to commit immediately. You have two options when stashing:
-
-for tomcat - copy war to webapps then go to bin folder in terminal ./startup.sh
-to stop ./shutdown.sh
