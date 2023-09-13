@@ -44,7 +44,7 @@ kubectl create -f .....yml
 repplication set 
 kubectl get replicationcontroller
 
-
+Run the command: kubectl get replicaset or kubectl get rs and count the number of ReplicaSets.
 
 
 TomcaT
