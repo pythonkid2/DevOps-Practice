@@ -14,6 +14,18 @@ for finding mvn location - sh which mvn - in pipe line
 
 git 
 
+Insatallation - Run sudo apt update and then sudo apt install git -y
+
+ branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+
+
 In Git, you can stash changes from both the working directory and the staging area. Stashing is a way to temporarily set aside changes that you don't want to commit immediately. You have two options when stashing:
 
 
