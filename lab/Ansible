@@ -1,0 +1,183 @@
+What is ansible?
+----------------
+	- Simple automation language 
+		perfectly describe and enable an IT application infrastructure 
+	- Ansible is powerful IT automation tool  
+	- Simple enough for everyone in your IT team to learn and use, 
+	- Powerful to meet enterprise class deployment complexity 
+		Complex things can be automated
+	- Handles repetitive tasks.
+			
+	
+Some Use cases
+	- Configuration management
+	  App deployment
+	  Provisioning
+	  Continous Delivery
+	  Security and Compliance
+	  Orchestration
+
+for e.g. 
+	Restart few m/c in certain orders
+	Powerdown web servers
+	Powerdown db 
+	Start db
+	Start web servers
+
+
+Create 2 ubuntu machines 20.04 
+---> SSH
+
+while having same user in both machine we can connect using ssh 
+    ssh <ip> 
+
+1, Create a user 
+    with same name and password
+    enable password based authentication
+    establish ssh connectivity 
+
+
+Do the following on all nodes.
+	sudo su
+	#create user called "vilas"
+	useradd -m -s /bin/bash vilas
+	#setup password
+	passwd vilas
+
+	#add to sudo groups
+
++++
+
+centos (on worker/slave nodes)
+
+	Without this user would be prompted for sudo user's access issue.
+	Making yourself a super user. Open /etc/sudoers. Make sure following two lines are uncommented:
+	## Allows people in group wheel to run all commands
+	%wheel ALL=(ALL)       ALL
+
+	## Same thing without a password
+	%wheel ALL=(ALL)       NOPASSWD: ALL
+	vilas ALL=(ALL)       NOPASSWD: ALL
+
+	Add yourself to wheel group.
+
+	usermod -aG wheel <yourname> 
+	usermod -aG wheel vilas
+
+
++++
+
+ubuntu (on worker/slave nodes)
+
+	usermod -aG sudo <yourname> 
+	usermod -aG sudo vilas
+	
+https://code-maven.com/enable-ansible-passwordless-sudo
+	
+visudo 
+
+		change 
+			%sudo   ALL=(ALL:ALL) ALL    comment it # in front
+		to 
+add the below 
+			%sudo   ALL=(ALL:ALL) NOPASSWD: ALL
+			
+under /etc/ssh/sshd_config
+		sudo vi /etc/ssh/sshd_config
+		#sudo is mandatory
+
+# To disable tunneled clear text passwords, change to no here!
+	PasswordAuthentication yes       
+save and exit 
+
+sudo systemctl restart sshd.service
+
+
+#Do the following on the client (destination)
+
+	#login as vilas
+	sudo su vilas
+	cd 
+	mkdir -p ~/.ssh
+	touch ~/.ssh/authorized_keys
+
+	chmod -R 700 ~/.ssh
+	chmod 600 ~/.ssh/*
+
+
+#Do the following on source (server)
+	sudo su - vilas 
+	ssh-keygen -t rsa
+
+ssh-copy-id vilas@<ip> 
+
+cat ~/.ssh/id_rsa.pub
+		Copy it to the remote ~/.ssh/authorized_keys
+
+
+on slave by using ssh ip
+
+sudo apt update 
+sudo apt upgrade
+sudo apt install python3 python3-pip
+sudo apt—get install software—properties—common
+sudo apt—add—repository --yes --update ppa:ansible/ansible
+
+#check pip presense if its not there install 
+#sudo apt install python3—pip
+pip3 install --user ansible
+
+export PATH=$PATH:/home/vilas/.local/bin
+
+
+
+
+++++++++
+🅣🅗🅔 🅔🅝🅓
+++++++
+
+	under /etc/ssh/sshd_config
+		sudo vi /etc/ssh/sshd_config
+		#sudo is mandatory
+
+
+
+	PermitRootLogin yes (PermitRootLogin prohibit-password for ubuntu)
+	ClientAliveInterval 1200
+	ClientAliveCountMax 3
+
+	#add hosts in /etc/hosts
+
+	sudo systemctl restart sshd.service
+	
+	
+
+
+#Do the following on source (server)
+	sudo su - vilas 
+	ssh-keygen -t rsa
+
+	ssh-copy-id vilas@<ip> 
+
+
+	cat ~/.ssh/id_rsa.pub
+		Copy it to the remote ~/.ssh/authorized_keys
+	
+	
+Reference
+	https://community.cloudera.com/t5/Support-Questions/how-to-create-password-less-ssh-between-two-AWS-EC2/td-p/109442
+	https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/
+	https://sectigostore.com/blog/what-is-passwordless-ssh-a-look-at-ssh-passwordless-authentication/
+	
+To permit root login	
+	https://docs.rackspace.com/support/how-to/enable-ssh-remote-root-login-on-centos-and-the-ubuntu-operating-system/
+	
+	
+	
+alternatively you can have ssh with pwd (local pwd for key)
+	add this pwd to ssd-agent
+
+This can be done executing the below commands.	
+	eval $(ssh-agent) 
+	ssh-add
+
