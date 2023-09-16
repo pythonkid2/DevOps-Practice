@@ -131,6 +131,77 @@ export PATH=$PATH:/home/vilas/.local/bin
 
 
 
+██╗███╗░░██╗██╗░░░██╗███████╗███╗░░██╗████████╗░█████╗░██████╗░██╗░░░██╗
+██║████╗░██║██║░░░██║██╔════╝████╗░██║╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝
+██║██╔██╗██║╚██╗░██╔╝█████╗░░██╔██╗██║░░░██║░░░██║░░██║██████╔╝░╚████╔╝░
+██║██║╚████║░╚████╔╝░██╔══╝░░██║╚████║░░░██║░░░██║░░██║██╔══██╗░░╚██╔╝░░
+██║██║░╚███║░░╚██╔╝░░███████╗██║░╚███║░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░
+╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░
+
+on master with ssh of salve -
+
+sudo mkdir -p /etc/ansible
+
+
+cd ..
+sudo chown vilas:vilas ansible
+cd ansible 
+chmod 777 .
+
+vi hosts 
+
+	# we can create groups on this 
+#in a group we can have multiple machines and machines can belong to multiple groups
+
+example		[frontend]
+		ip 1
+		ip 2
+		[backend]
+		ip 2
+		[machines in usa]
+		ip3 
+		ip1
+
+
+
+
+#file location /etc/ansible/hosts or /etc/ansible/ansible_hosts
+
+[web_servers]
+webserver1.example.com
+webserver2.example.com
+
+[db_servers]
+dbserver1.example.com
+
+
+ansible all -m setup
+		ping
+ansible all -m shell -a "mkdir test"
+
+
+adhoc commands -executing once 
+
+
+playbook-
+https://github.com/pythonkid2/ansible/tree/master/05playbook
+
+when we want to repeat some thing
+
+Run the playbook
+	ansible-playbook createfile.yaml -kK
+
+---
+- hosts: localhost  # Specify the target hosts or group here
+  become: yes      # Use become to execute tasks with elevated privileges (e.g., sudo)
+
+  tasks:
+    - name: Create file named Vilas.txt
+      file:
+        path: /tmp/Vilas.txt  # Specify the correct path and filename
+        state: touch          # Use "touch" state to create an empty file
+
+
 
 ++++++++
 🅣🅗🅔 🅔🅝🅓
