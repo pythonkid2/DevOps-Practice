@@ -1,29 +1,55 @@
-What is ansible?
-----------------
-	- Simple automation language 
-		perfectly describe and enable an IT application infrastructure 
-	- Ansible is powerful IT automation tool  
-	- Simple enough for everyone in your IT team to learn and use, 
-	- Powerful to meet enterprise class deployment complexity 
-		Complex things can be automated
-	- Handles repetitive tasks.
-			
-	
-Some Use cases
-	- Configuration management
-	  App deployment
-	  Provisioning
-	  Continous Delivery
-	  Security and Compliance
-	  Orchestration
+Ansible is a simple yet powerful IT automation tool that can be used to manage and automate a wide range of tasks, including:
 
-for e.g. 
-	Restart few m/c in certain orders
-	Powerdown web servers
-	Powerdown db 
-	Start db
-	Start web servers
+Configuration management
+Application deployment
+Provisioning
+Continuous delivery
+Security and compliance
+Orchestration
+Ansible is easy to learn and use, making it a great choice for teams of all sizes. It is also highly scalable and can be used to automate complex tasks with ease.
 
+Here is an example of how Ansible can be used to restart a few machines in a certain order, power down web servers, power down a database, start the database, and start the web servers:
+
+---
+- hosts: all
+  tasks:
+  - name: Restart machines in order
+    service:
+      name: reboot
+      state: restarted
+      delay: 60
+
+  - name: Power down web servers
+    service:
+      name: httpd
+      state: stopped
+
+  - name: Power down database
+    service:
+      name: mysql
+      state: stopped
+      delay: 60
+
+  - name: Start database
+    service:
+      name: mysql
+      state: started
+
+  - name: Start web servers
+    service:
+      name: httpd
+      state: started
+...
+This playbook would first restart all of the machines in the all group, with a 60-second delay between each restart. Then, it would power down all of the web servers in the all group. Next, it would power down the database server. After a 60-second delay, it would start the database server. Finally, it would start all of the web servers in the all group.
+
+This is just one example of how Ansible can be used to automate complex tasks. Ansible can be used to automate a wide range of other tasks, such as deploying applications, provisioning new servers, and configuring security settings.
+
+Ansible is a powerful tool that can help you to save time and improve the efficiency of your IT team.
+
+Sources
+github.com/xtophd/RHEL7-Workshop
+
++++++
 
 Create 2 ubuntu machines 20.04 
 ---> SSH
@@ -67,7 +93,7 @@ centos (on worker/slave nodes)
 
 +++
 
-ubuntu (on worker/slave nodes)
+ubuntu top
 
 	usermod -aG sudo <yourname> 
 	usermod -aG sudo vilas
@@ -81,8 +107,12 @@ visudo
 		to 
 add the below 
 			%sudo   ALL=(ALL:ALL) NOPASSWD: ALL
-			
-under /etc/ssh/sshd_config
+
+#check   sudo cat /etc/sudoers
+
+
+#under /etc/ssh/sshd_config
+
 		sudo vi /etc/ssh/sshd_config
 		#sudo is mandatory
 
@@ -90,10 +120,11 @@ under /etc/ssh/sshd_config
 	PasswordAuthentication yes       
 save and exit 
 
+#restart the ssh
 sudo systemctl restart sshd.service
 
 
-#Do the following on the client (destination)
+#Do the following on the client (worker)
 
 	#login as vilas
 	sudo su vilas
@@ -109,27 +140,32 @@ sudo systemctl restart sshd.service
 	sudo su - vilas 
 	ssh-keygen -t rsa
 
-ssh-copy-id vilas@<ip> 
+ssh-copy-id vilas@<ip>  #slave ip
 
-cat ~/.ssh/id_rsa.pub
-		Copy it to the remote ~/.ssh/authorized_keys
+#cat ~/.ssh/id_rsa.pub - Copy it to the remote ~/.ssh/authorized_keys  
 
+test connection with slave by using ssh ip 
 
-on slave by using ssh ip
+ssh@ip
+exit
+--
+
+installing ansible on master -
 
 sudo apt update 
 sudo apt upgrade
 sudo apt install python3 python3-pip
-sudo apt—get install software—properties—common
-sudo apt—add—repository --yes --update ppa:ansible/ansible
+sudo apt-get install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
 
 #check pip presense if its not there install 
 #sudo apt install python3—pip
+
 pip3 install --user ansible
 
 export PATH=$PATH:/home/vilas/.local/bin
 
-
++++
 
 ██╗███╗░░██╗██╗░░░██╗███████╗███╗░░██╗████████╗░█████╗░██████╗░██╗░░░██╗
 ██║████╗░██║██║░░░██║██╔════╝████╗░██║╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝
