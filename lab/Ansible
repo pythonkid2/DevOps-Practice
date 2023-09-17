@@ -178,7 +178,6 @@ on master
 
 sudo mkdir -p /etc/ansible
 
-
 cd ..
 sudo chown mathew:mathew ansible
 cd ansible 
@@ -220,6 +219,7 @@ adhoc commands -executing once
 
 
 playbook-
+
 https://github.com/pythonkid2/ansible/tree/master/05playbook
 
 when we want to repeat some thing
@@ -243,48 +243,5 @@ Run the playbook
 🅣🅗🅔 🅔🅝🅓
 ++++++
 
-	under /etc/ssh/sshd_config
-		sudo vi /etc/ssh/sshd_config
-		#sudo is mandatory
-
-
-
-	PermitRootLogin yes (PermitRootLogin prohibit-password for ubuntu)
-	ClientAliveInterval 1200
-	ClientAliveCountMax 3
-
-	#add hosts in /etc/hosts
-
-	sudo systemctl restart sshd.service
 	
-	
-
-
-#Do the following on source (server)
-	sudo su - mathew 
-	ssh-keygen -t rsa
-
-	ssh-copy-id mathew@<ip> 
-
-
-	cat ~/.ssh/id_rsa.pub
-		Copy it to the remote ~/.ssh/authorized_keys
-	
-	
-Reference
-	https://community.cloudera.com/t5/Support-Questions/how-to-create-password-less-ssh-between-two-AWS-EC2/td-p/109442
-	https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/
-	https://sectigostore.com/blog/what-is-passwordless-ssh-a-look-at-ssh-passwordless-authentication/
-	
-To permit root login	
-	https://docs.rackspace.com/support/how-to/enable-ssh-remote-root-login-on-centos-and-the-ubuntu-operating-system/
-	
-	
-	
-alternatively you can have ssh with pwd (local pwd for key)
-	add this pwd to ssd-agent
-
-This can be done executing the below commands.	
-	eval $(ssh-agent) 
-	ssh-add
 
