@@ -1,0 +1,161 @@
+Introduction to Ansible
+
+Ansible is a versatile IT automation tool that simplifies various tasks, including configuration management, application deployment, provisioning, continuous delivery, security, compliance, and orchestration. It is easy to learn, highly scalable, and a valuable tool for teams of all sizes. Below is an example playbook demonstrating how Ansible can restart machines and manage services:
+
+---
+- hosts: all
+  tasks:
+  - name: Restart machines in order
+    service:
+      name: reboot
+      state: restarted
+      delay: 60
+
+  - name: Power down web servers
+    service:
+      name: httpd
+      state: stopped
+
+  - name: Power down database
+    service:
+      name: mysql
+      state: stopped
+      delay: 60
+
+  - name: Start database
+    service:
+      name: mysql
+      state: started
+
+  - name: Start web servers
+    service:
+      name: httpd
+      state: started
+...
+
+This playbook demonstrates restarting machines, stopping web servers, stopping a database, starting the database, and starting web servers.
+
++++
+
+Setting Up SSH Connectivity Between Ubuntu Machines
+
+Create 2 Ubuntu Machines (20.04):
+
+Ensure that both machines have SSH installed and running.
+Create a User and Enable Password-based Authentication:
+
+On both machines, run the following commands as root:
+
+sudo su
+useradd -m -s /bin/bash mathew
+passwd mathew
+
+Add User to sudo Group (Ubuntu):
+
+usermod -aG sudo mathew
+
+Edit sudoers File for Passwordless sudo (Ubuntu):
+
+Use the visudo command to edit the sudoers file.
+Change %sudo ALL=(ALL:ALL) ALL to %sudo ALL=(ALL:ALL) NOPASSWD: ALL.
+Edit SSH Configuration (Ubuntu):
+
+Open /etc/ssh/sshd_config and ensure that PasswordAuthentication is set to yes.
+Restart SSH: sudo systemctl restart sshd.service
+On the Client (Worker):
+
+Log in as the mathew user:
+
+sudo su mathew
+cd
+mkdir -p ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod -R 700 ~/.ssh
+chmod 600 ~/.ssh/*
+
+On the Source (Server):
+
+Switch to the mathew user:
+
+sudo su - mathew
+ssh-keygen -t rsa
+ssh-copy-id mathew@<ip>  # Replace `<ip>` with the slave's IP
+
+Test SSH Connectivity:
+
+Verify the SSH connection by running: ssh mathew@<ip>
+
+Installing Ansible on the Master
+
+Update and Install Dependencies:
+
+Update package lists and install necessary dependencies:
+
+sudo apt update
+sudo apt upgrade
+sudo apt install python3 python3-pip
+sudo apt-get install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+
+
+Install Ansible with pip3:
+
+pip3 install --user ansible
+
+Add Ansible to PATH:
+
+export PATH=$PATH:/home/mathew/.local/bin
+
+Ansible Configuration and Usage
+
+Create an Ansible Configuration File:
+
+Create the directory and configuration file:
+
+sudo mkdir -p /etc/ansible
+cd /etc/ansible
+chmod 777 .
+
+
+Define Inventory (hosts) File:
+
+Create an inventory file, e.g., /etc/ansible/hosts, to list your target hosts and groups:
+
+[web_servers]
+webserver1.example.com
+webserver2.example.com
+
+[db_servers]
+dbserver1.example.com
+
+Verify Ansible Connectivity:
+
+Check Ansible connectivity to your hosts:
+
+
+ansible all -m ping
+
+
+Run Ansible Ad-hoc Commands:
+
+Execute one-off commands on target hosts:
+
+ansible all -m shell -a "mkdir test"
+
+Ansible Playbooks
+Create Playbooks for Reusable Tasks:
+
+Write Ansible playbooks to define and repeat tasks. For example, create a playbook to create a file named mathew.txt.
+
+---
+- hosts: localhost  # Specify the target hosts or group here
+  become: yes      # Use become to execute tasks with elevated privileges (e.g., sudo)
+
+  tasks:
+    - name: Create file named mathew.txt
+      file:
+        path: /tmp/mathew.txt  # Specify the correct path and filename
+        state: touch          # Use "touch" state to create an empty file
+Run Playbooks:
+
+ansible-playbook createfile.yaml -kK
