@@ -65,10 +65,10 @@ while having same user in both machine we can connect using ssh
 
 Do the following on all nodes.
 	sudo su
-	#create user called "vilas"
-	useradd -m -s /bin/bash vilas
+	#create user called "mathew"
+	useradd -m -s /bin/bash mathew
 	#setup password
-	passwd vilas
+	passwd mathew
 
 	#add to sudo groups
 
@@ -83,12 +83,12 @@ centos (on worker/slave nodes)
 
 	## Same thing without a password
 	%wheel ALL=(ALL)       NOPASSWD: ALL
-	vilas ALL=(ALL)       NOPASSWD: ALL
+	mathew ALL=(ALL)       NOPASSWD: ALL
 
 	Add yourself to wheel group.
 
 	usermod -aG wheel <yourname> 
-	usermod -aG wheel vilas
+	usermod -aG wheel mathew
 
 
 +++
@@ -96,7 +96,7 @@ centos (on worker/slave nodes)
 ubuntu top
 
 	usermod -aG sudo <yourname> 
-	usermod -aG sudo vilas
+	usermod -aG sudo mathew
 	
 https://code-maven.com/enable-ansible-passwordless-sudo
 	
@@ -126,8 +126,8 @@ sudo systemctl restart sshd.service
 
 #Do the following on the client (worker)
 
-	#login as vilas
-	sudo su vilas
+	#login as mathew
+	sudo su mathew
 	cd 
 	mkdir -p ~/.ssh
 	touch ~/.ssh/authorized_keys
@@ -137,10 +137,10 @@ sudo systemctl restart sshd.service
 
 
 #Do the following on source (server)
-	sudo su - vilas 
+	sudo su - mathew 
 	ssh-keygen -t rsa
 
-ssh-copy-id vilas@<ip>  #slave ip
+ssh-copy-id mathew@<ip>  #slave ip
 
 #cat ~/.ssh/id_rsa.pub - Copy it to the remote ~/.ssh/authorized_keys  
 
@@ -163,7 +163,7 @@ sudo apt-add-repository --yes --update ppa:ansible/ansible
 
 pip3 install --user ansible
 
-export PATH=$PATH:/home/vilas/.local/bin
+export PATH=$PATH:/home/mathew/.local/bin
 
 +++
 
@@ -174,13 +174,13 @@ export PATH=$PATH:/home/vilas/.local/bin
 ██║██║░╚███║░░╚██╔╝░░███████╗██║░╚███║░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░
 ╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░
 
-on master with ssh of salve -
+on master 
 
 sudo mkdir -p /etc/ansible
 
 
 cd ..
-sudo chown vilas:vilas ansible
+sudo chown mathew:mathew ansible
 cd ansible 
 chmod 777 .
 
@@ -232,9 +232,9 @@ Run the playbook
   become: yes      # Use become to execute tasks with elevated privileges (e.g., sudo)
 
   tasks:
-    - name: Create file named Vilas.txt
+    - name: Create file named mathew.txt
       file:
-        path: /tmp/Vilas.txt  # Specify the correct path and filename
+        path: /tmp/mathew.txt  # Specify the correct path and filename
         state: touch          # Use "touch" state to create an empty file
 
 
@@ -261,10 +261,10 @@ Run the playbook
 
 
 #Do the following on source (server)
-	sudo su - vilas 
+	sudo su - mathew 
 	ssh-keygen -t rsa
 
-	ssh-copy-id vilas@<ip> 
+	ssh-copy-id mathew@<ip> 
 
 
 	cat ~/.ssh/id_rsa.pub
