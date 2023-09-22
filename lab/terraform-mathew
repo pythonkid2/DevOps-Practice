@@ -1,5 +1,5 @@
 
-Infrastructure as Code (IaC)
+Infrastructure as Code (IaC) 
 
 	Infrastructure as Code (IaC) is a methodology and practice in which infrastructure resources, such as servers, networks, databases, and other components, are provisioned, configured, and managed using code and automation rather than manual processes. With IaC, infrastructure is treated as software, allowing it to be defined, versioned, and managed just like application code.	
 
