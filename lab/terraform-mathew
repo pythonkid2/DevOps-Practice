@@ -195,6 +195,6 @@ To destroy the EC2 instance when you're done, you can run:
 
 terraform destroy
 
-++++
++++++
 
 
