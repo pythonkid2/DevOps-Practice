@@ -1,0 +1,200 @@
+
+Infrastructure as Code (IaC)
+
+	Infrastructure as Code (IaC) is a methodology and practice in which infrastructure resources, such as servers, networks, databases, and other components, are provisioned, configured, and managed using code and automation rather than manual processes. With IaC, infrastructure is treated as software, allowing it to be defined, versioned, and managed just like application code.	
+
+		Key characteristics and principles of Infrastructure as Code include:
+
+			Code-Based Configuration: IaC relies on code (typically written in a domain-specific language or a scripting language) to describe infrastructure configurations. This code defines what resources should be created, their properties, relationships, and how they should be configured.
+
+			Version Control: IaC code is stored in version control systems (e.g., Git) to track changes, collaborate with team members, and maintain a history of infrastructure modifications. This enables rollbacks and collaboration on infrastructure changes.
+
+			Automation: IaC tools automate the provisioning and configuration of infrastructure based on the code-defined specifications. This automation reduces human error, accelerates deployments, and ensures consistency.
+
+			Reproducibility: IaC allows you to recreate entire infrastructure environments consistently. Whether it's for development, testing, or production, you can use the same code to create identical environments.
+
+			Scalability: IaC supports scaling infrastructure resources up or down based on demand by modifying the code, making it easy to adapt to changing requirements.
+
+			Documentation: The IaC code itself serves as documentation for the infrastructure, providing clear and up-to-date information on how the infrastructure is configured and managed.
+
+			Collaboration: Multiple team members can work together on IaC code, facilitating collaboration between development, operations, and other teams.
+
+			Security and Compliance: Security and compliance requirements can be incorporated into the IaC code, ensuring that infrastructure is provisioned and configured with security best practices in mind.
+
+			Testing: IaC code can be tested to validate its correctness and functionality before being applied to production environments, reducing the risk of errors.
+
+			Auditability: Changes to the infrastructure are traceable back to code commits, providing an audit trail for all modifications.
+
+Ansible vs Terraform
+
+	Ansible and Terraform are both infrastructure automation tools, but they serve different purposes and have distinct characteristics. Here are the key differences between Ansible and Terraform:
+
+	Purpose:
+
+		Ansible: Ansible is primarily a configuration management and automation tool. It is used for tasks such as software installation, configuration, and orchestration of tasks on existing infrastructure. Ansible focuses on ensuring that systems are in a desired state and can be used for continuous configuration management.
+
+		Terraform: Terraform, on the other hand, is specifically designed for infrastructure provisioning and management. It focuses on creating and managing cloud resources, virtual machines, networks, and other infrastructure components. Terraform's primary goal is to define and provision infrastructure as code.
+
+	Domain-Specific Language:
+
+		Ansible: Ansible uses YAML-based playbooks to define automation tasks and configurations. These playbooks describe the desired state of a system and how to achieve it using tasks and roles.
+
+		Terraform: Terraform uses its own declarative language called HashiCorp Configuration Language (HCL) or JSON. HCL is specifically designed for describing infrastructure resources and their relationships.
+
+	State Management:
+
+		Ansible: Ansible does not maintain a centralized state of infrastructure. It operates on the current state of the target systems. While you can use Ansible to modify configurations, it doesn't inherently track the state of your infrastructure like Terraform does.
+
+		Terraform: Terraform maintains a state file that tracks the state of your infrastructure resources. This state file is crucial for understanding the current state of the infrastructure and making incremental changes based on your configuration.
+
+	Idempotency:
+
+		Ansible: Ansible strives to ensure idempotent operations, meaning that running Ansible playbooks multiple times should have the same result as running them once, provided the desired state is already achieved.
+
+		Terraform: Terraform is inherently idempotent. It calculates the difference between the current state and the desired state and applies only the necessary changes, making it safe to apply configurations multiple times.
+
+Use Cases:
+
+	Ansible: Ansible is well-suited for tasks related to configuration management, application deployment, and automation of operational tasks on existing servers. It is often used in a post-provisioning phase for system configuration.
+
+	Terraform: Terraform is best suited for infrastructure provisioning, including creating and managing cloud resources, networks, storage, and virtual machines. It excels in the initial setup and management of infrastructure.
+
+Ecosystem:
+
+	Ansible: Ansible has a broad ecosystem of community-contributed roles and modules for various tasks and integrations with different technologies.
+
+	Terraform: Terraform has a wide range of providers for various cloud platforms and services, making it well-suited for multi-cloud and hybrid cloud environments.
+
+
+infrastructure provisioning tools -
+
+Terraform. AWS CloudFormation. Azure Resource Manager (ARM) Templates: Google Cloud Deployment Manager: OpenStack Heat: Packer: Vagrant: Ansible: Chef Provisioning: Pulumi: Cloudify: Rancher: Nomad:
+
+Terraform
+
+Terraform is an open-source infrastructure as code (IaC) tool developed by HashiCorp. It is used for defining and provisioning infrastructure resources in a declarative manner. With Terraform, you can describe your infrastructure as code using a domain-specific language called HashiCorp Configuration Language (HCL) or, alternatively, use JSON.
+
+Here's a breakdown of the key concepts and capabilities of Terraform:
+
+	Declarative Configuration: Terraform allows you to define your infrastructure in a declarative manner, specifying what resources you want (e.g., virtual machines, networks, databases) and their configurations, rather than writing scripts to provision and manage them.
+			
+			Declarative configuration is a way of specifying how a system or resource should behave or be configured without explicitly detailing the steps or procedures needed to achieve that configuration. Instead of specifying a sequence of actions to reach a desired state, you simply state what the desired state is, and the system or tool responsible for configuration management figures out how to make it happen.
+	
+	Providers: Terraform supports a wide range of cloud providers (e.g., AWS, Azure, Google Cloud), as well as on-premises and third-party services. Each provider has its set of resource types and data sources that can be managed using Terraform.
+
+	Resources: Resources are the building blocks of your infrastructure. These represent the actual cloud or infrastructure components you want to create or manage. For example, an AWS resource could be an EC2 instance, a VPC, or a security group.
+
+	Modules: Terraform allows you to create reusable modules to encapsulate and organize your infrastructure code. Modules can be shared and reused across different projects, making it easier to maintain and manage complex infrastructures.
+
+	State Management: Terraform maintains a state file that keeps track of the current state of your infrastructure. This state file is used to plan and apply changes, ensuring that Terraform understands the desired state of your infrastructure and can make incremental updates.
+
+	Execution Plan: Before making any changes to your infrastructure, Terraform generates an execution plan. This plan shows you what actions Terraform will take to achieve the desired state, allowing you to review and approve changes before they are applied.
+
+	Idempotent Operations: Terraform is idempotent, meaning you can apply your configuration multiple times without causing harm. If the infrastructure matches the desired state, Terraform won't make any changes. If there are differences, Terraform will make the necessary updates to converge to the desired state.
+
+	Version Control Integration: Terraform works well with version control systems (e.g., Git). You can version your infrastructure code and collaborate with team members effectively.
+
+	Extensibility: Terraform is extensible and has a growing ecosystem of third-party plugins and extensions, allowing you to integrate it with other tools and services.
+	
+benefits of Terraform 
+
+	Infrastructure as Code (IaC): Terraform allows you to define your infrastructure as code. This means you can use a human-readable configuration language (HCL) to describe your infrastructure resources and their configurations, making it easy to version, review, and collaborate on infrastructure changes.
+
+	Multi-Cloud and Hybrid Cloud Support: Terraform supports multiple cloud providers (e.g., AWS, Azure, Google Cloud) and can be used to manage resources across multiple clouds and on-premises environments. This enables you to build and manage complex, multi-cloud infrastructures.
+
+	Declarative Syntax: Terraform uses a declarative syntax, where you specify the desired state of your infrastructure, not the step-by-step instructions for achieving that state. This approach simplifies configuration management and allows Terraform to determine the necessary actions to bring the infrastructure to the desired state.
+
+	State Management: Terraform maintains a state file that records the current state of your infrastructure. This state file is used to plan and apply changes, ensuring that Terraform understands the current state of your infrastructure and can make incremental updates.
+
+	Idempotent Operations: Terraform is idempotent, meaning that applying the same configuration multiple times will not result in unexpected changes. Terraform calculates the difference between the current state and the desired state and applies only the necessary changes.
+
+	Execution Plans: Before applying changes, Terraform generates an execution plan that shows you what actions it will take to achieve the desired state. This allows you to review and approve changes before they are applied, enhancing safety and predictability.
+
+	Modularity: Terraform supports the creation of reusable modules, allowing you to encapsulate infrastructure configurations and share them across projects. This modularity promotes code reusability and maintainability.
+
+	Ecosystem: Terraform has a vast ecosystem of providers, which are plugins that extend its capabilities to interact with various cloud platforms and services. You can also find a rich set of community-contributed modules and resources for common use cases.
+
+	Integration with Version Control: Terraform integrates well with version control systems like Git, enabling you to track changes to your infrastructure code, collaborate with team members, and maintain a history of infrastructure changes.
+
+	Scalability and Automation: Terraform is designed to handle large and complex infrastructures. It can be integrated into continuous integration/continuous deployment (CI/CD) pipelines, enabling automated and consistent infrastructure deployments.
+
+	Community and Support: Terraform has a vibrant and active community, providing resources, forums, and documentation to help users troubleshoot issues and learn best practices. HashiCorp, the company behind Terraform, offers commercial support options for enterprises.
+
+	Cost Management: Terraform can be used to manage cloud resources cost-effectively by automating resource lifecycle management and implementing cost-saving strategies.
+	
+	
+
+██ ███    ██ ███████ ████████  █████  ██      ██       █████  ████████ ██  ██████  ███    ██ 
+██ ████   ██ ██         ██    ██   ██ ██      ██      ██   ██    ██    ██ ██    ██ ████   ██ 
+██ ██ ██  ██ ███████    ██    ███████ ██      ██      ███████    ██    ██ ██    ██ ██ ██  ██ 
+██ ██  ██ ██      ██    ██    ██   ██ ██      ██      ██   ██    ██    ██ ██    ██ ██  ██ ██ 
+██ ██   ████ ███████    ██    ██   ██ ███████ ███████ ██   ██    ██    ██  ██████  ██   ████ 
+                                                                                             
+                                                                                             
+
+Terraform information - 
+
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+
+Install aws cli
+
+https://linuxhint.com/install_aws_cli_ubuntu/
+
+sudo apt-get update
+
+sudo apt-get install awscli
+
+	in aws as rroot user -
+
+		click on the name -> security credentials -> go to access keys section -> click create access key -> copy both key codes and paste for the below command
+
+aws configure
+
+	Default region name [us-east-2]:
+	Default output format [json]:
+
+
+Create Ec2 -
+	To create an EC2 Ubuntu instance using Terraform, you'll need to have Terraform installed on your machine and access to your AWS credentials (AWS Access Key ID and Secret Access Key). Here's a simple example of how to create an EC2 instance running Ubuntu using Terraform:
+
+Create a directory for your Terraform configuration and navigate to it in your terminal.
+
+Create a Terraform configuration file (e.g., main.tf) with the following content:
+
+vi main.tf
+(paste the below)
+
+provider "aws" {
+  region = "us-east-2"  #region
+  shared_credentials_files = ["~/.aws/credentials"] # Optional if you want to specify a credentials file
+}
+
+resource "aws_instance" "app_server" {
+  instance_type = "t2.micro"
+  key_name      = "ohiokey"
+
+  ami           = "ami-0430580de6244e02e"
+
+  tags = {
+    Name = "ExampleAppServerInstance"
+  }
+}
+
+	
+Initialize the Terraform workspace by running the following command in your terminal:
+
+terraform init
+
+terraform plan # optional - command is used to create an execution plan in Terraform. This execution plan provides a preview of the changes that Terraform will make to your infrastructure based on the current configuration and the state of the existing resources. 
+
+To create the EC2 instance, run:
+
+terraform apply
+
+To destroy the EC2 instance when you're done, you can run:
+
+terraform destroy
+
+++++
+
+
