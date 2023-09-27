@@ -12,6 +12,7 @@ t3.small
 hostnamectl set-hostname kmaster
 hostnamectl set-hostname kworker1
 hostnamectl set-hostname kworker2
+go to security group and configure all trafic for he security group
 
 vi /etc/hosts
 
@@ -74,14 +75,15 @@ sudo modprobe overlay
 sudo modprobe br_netfilter 
  
 11. Configure Kernel Parameters:
-   
+
+---
 sudo tee /etc/sysctl.d/kubernetes.conf<<EOF
 
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 net.ipv4.ip_forward = 1
 EOF
-
+---
 
 sudo sysctl --system
 
@@ -91,10 +93,12 @@ sudo sysctl --system
 sudo yum install docker -y
 
 13. Create Docker systemd directory and configuration:
-    
+
+check - ls /etc/docker
+
 sudo mkdir -p /etc/systemd/system/docker.service.d
 
-	
+---
 sudo tee /etc/docker/daemon.json <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
@@ -105,28 +109,28 @@ sudo tee /etc/docker/daemon.json <<EOF
   "storage-driver": "overlay2"
 }
 EOF
- 
+--- 
  
 
 14. Restart Docker:
 
+sudo systemctl restart docker
 sudo systemctl enable docker
 
 
 15. Enable Docker and Kubernetes services:
 
-sudo systemctl enable docker
  
 sudo systemctl enable kubelet
 
-systemctl start docker.service
+#systemctl start docker.service
 
 
 ONly on master -
 
 16. Initialize Kubernetes cluster:
 
-    sudo kubeadm init
+sudo kubeadm init
 
 copy and paste join commands in both worker -
 
@@ -153,9 +157,9 @@ kubeadm join 172.31.31.177:6443 --token <valid_token> --discovery-token-ca-cert-
 17. Set up kubectl for your user:
     
 	
-	mkdir -p $HOME/.kube
-    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 18. Install a CNI (Container Network Interface):
 
@@ -172,7 +176,7 @@ kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/we
 
 kubectl get pods -o wide
 
-22. Access Kubernetes API server:
+22. Access Kubernetes API server: 
     curl http://10.96.0.1
 
 23. Access the Nginx pod:
@@ -181,4 +185,5 @@ kubectl get pods -o wide
     Identify the ClusterIP of the Nginx service and use it to access Nginx:
     curl http://<ClusterIP>
 
+ kubectl delete pod --all
 
