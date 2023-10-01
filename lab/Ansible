@@ -164,6 +164,8 @@ ansible all -m shell -a "mkdir test"
 
 adhoc commands -executing once 
 
+sudo apt install sshpass
+
 
 playbook-
 
