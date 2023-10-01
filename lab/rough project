@@ -10,3 +10,53 @@ git
 
  rm -rf .git
 
++++
+---
+- name: Install Git, Maven, and Docker
+  hosts: production_server  # Replace with your production server's hostname or IP
+  become: yes  # Run tasks as sudo/root
+
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes  # Update the package cache on Debian/Ubuntu systems
+      when: ansible_os_family == "Debian"  # Only execute on Debian/Ubuntu
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+      when: ansible_os_family == "Debian"  # Use 'yum' for Red Hat/CentOS systems
+
+    - name: Install Maven
+      apt:
+        name: maven
+        state: present
+      when: ansible_os_family == "Debian"  # Use 'yum' for Red Hat/CentOS systems
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+      when: ansible_os_family == "Debian"  # Use 'yum' for Red Hat/CentOS systems
+
+    # For Red Hat/CentOS systems, you can use 'yum' instead of 'apt':
+    # - name: Install Git
+    #   yum:
+    #     name: git
+    #     state: present
+    #   when: ansible_os_family == "RedHat"
+
+    # - name: Install Maven
+    #   yum:
+    #     name: maven
+    #     state: present
+    #   when: ansible_os_family == "RedHat"
+
+    # - name: Install Docker
+    #   yum:
+    #     name: docker
+    #     state: present
+    #   when: ansible_os_family == "RedHat"
+
+
