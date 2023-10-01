@@ -124,7 +124,7 @@ export PATH=$PATH:/home/mathew/.local/bin
 on master 
 
 sudo mkdir -p /etc/ansible
-
+cd /etc/ansible
 cd ..
 sudo chown mathew:mathew ansible
 cd ansible 
