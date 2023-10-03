@@ -203,3 +203,22 @@ again come to configure and Add build step --> execute shell
 echo <your password> | sudo -S cp target/my-cicd-project-1.0-SNAPSHOT.war /var/lib/tomcat9/webapps/   #change file names according to your details
 
 
+++++
+Free style 
+##########################################################################
+mvn clean install
+docker build -t java-web-app-cicd:latest .
+if (docker ps -a | grep 'java-web-app-cicd')
+then
+  docker stop java-web-app-cicd
+  docker rm -f java-web-app-cicd
+fi
+docker run -d -p 8888:8080 --name java-web-app-cicd java-web-app-cicd
+mvn test
+docker login -u <your docker user name> -p <your password>
+docker commit java-web-app-cicd <your docker user name>/java-web-app-cicd:latest
+docker push <your docker user name>/java-web-app-cicd:latest
+
+kubectl delete deploy --all
+kubectl create -f deploy-tomcat.yaml
+##########################################################################
