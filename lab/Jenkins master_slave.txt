@@ -222,3 +222,61 @@ docker push <your docker user name>/java-web-app-cicd:latest
 kubectl delete deploy --all
 kubectl create -f deploy-tomcat.yaml
 ##########################################################################
+
+pipeline
+
+pipeline {
+    agent {
+        label 'centos1'  // Run on a node with the label 'centos1'
+    }
+    
+    stages {
+        stage('Build and Docker Image') {
+            steps {
+                sh 'mvn clean install'
+                sh 'docker build -t java-web-app-cicd:latest .'
+            }
+        }
+
+        stage('Stop and Remove Container') {
+            steps {
+                script {
+                    def containerExists = sh(script: 'docker ps -a | grep java-web-app-cicd', returnStatus: true)
+                    if (containerExists == 0) {
+                        sh 'docker stop java-web-app-cicd'
+                        sh 'docker rm -f java-web-app-cicd'
+                    }
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker run -d -p 8888:8080 --name java-web-app-cicd java-web-app-cicd'
+            }
+        }
+
+        stage('Run Maven Tests') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Docker Login, Commit, and Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh "docker login -u $DOCKER_USER -p $DOCKER_PASSWORD"
+                    sh 'docker commit java-web-app-cicd <your docker user name>/java-web-app-cicd:latest'
+                    sh 'docker push <your docker user name>/java-web-app-cicd:latest'
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl delete deploy --all'
+                sh 'kubectl create -f deploy-tomcat.yaml'
+            }
+        }
+    }
+}
