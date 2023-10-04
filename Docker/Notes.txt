@@ -1,4 +1,7 @@
 
+Installation using convinience script in ubuntu 20.04
+
+https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
 
 docker version > details
 docker ps 
