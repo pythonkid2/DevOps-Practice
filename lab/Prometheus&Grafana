@@ -1,0 +1,64 @@
+
+INstallation:-
+
+https://serverspace.io/support/help/install-prometheus-ubuntu-20-04/
+    http://your-domain.com:9090 
+
+
+Docker monitoring:
+
+cd /etc/
+mkdir docker
+
+vi /etc/docker/daemon.json
+
+{
+  "metrics-addr" : "0.0.0.0:9323",
+  "experimental" : true
+}
+
+systemctl restart docker
+systemctl enable docker
+systemctl status docker
+
+now docker will push matrics data to http://ip:9323/metrics
+
+vi /etc/prometheus/prometheus.yml
+
+paste to the last-
+
+  - job_name: 'docker-metrics'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9323']	
+
++++
+#see status--> service discovery, target & configuration for the clarity
+#prometheus monitoring data from c groups 
+
+Grafana Installation:
+
+https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/
+
+restart
+enable
+sudo systemctl status grafana-server
+
+ip:3000
+
+admin/admin
+
+Add data sourse:-
+    prometheus
+    http://localhost:9090
+    save& test -Successfully queried the Prometheus API.
+home --> Dashboard  --> add visualization
+
+EXPORTERS AND INTEGRATIONS
+https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations
+
+
+
+
+
+
