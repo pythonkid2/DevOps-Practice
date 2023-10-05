@@ -57,6 +57,78 @@ home --> Dashboard  --> add visualization
 EXPORTERS AND INTEGRATIONS
 https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations
 
+Node/system metrics exporter (official) - it will read node matrix and push to prometheus
+https://github.com/prometheus/node_exporter
+
+For Docker compose:
+vi docker-compose.yml
+
+---
+version: '3.8'
+
+services:
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+
+
+Cadvisor
+
+cAdvisor, short for Container Advisor, is a daemon that tracks and reports resource usage and performance data for running containers. It monitors things like resource parameters, historical usage, and network statistics, providing insights for both individual containers and the entire system.
+
+VERSION=v0.36.0 # use the latest release version from https://github.com/google/cadvisor/releases
+sudo docker run -d \
+  --volume=/:/rootfs:ro \
+  --volume=/var/run:/var/run:ro \
+  --volume=/sys:/sys:ro \
+  --volume=/var/lib/docker/:/var/lib/docker:ro \
+  --volume=/dev/disk/:/dev/disk:ro \
+  --publish=8081:8080 \
+  --detach=true \
+  --name=cadvisor \
+  --privileged \
+  --device=/dev/kmsg \
+  gcr.io/cadvisor/cadvisor:$VERSION
+
+
+
+Add below config in prometheus.yml (/etc/prometheus/prometheus.yml)
+
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['localhost:9100']
+  - job_name: 'advisor'
+    static_configs:
+      - targets: ['localhost:8081']
+
+++++
+
+https://grafana.com/grafana/dashboards/
+
+To read the node metrics 
+	deploy nodeadvisor 
+	
+	Search for "node exporter full" 
+		Check "Get this dashboard" 
+			1860
+			
+	Back to "Grafana dashboard"
+		Search for "Import dashboard"
+
+
+
+
+
+
+
+
 
 
 
