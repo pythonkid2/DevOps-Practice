@@ -1,7 +1,7 @@
 Number of instances :3
 amazon linux 2 ami
 
-t3.small
+t3a.medium
 
 1. SSH into your EC2 instance:
    ssh -i your-key.pem ec2-user@your-ec2-instance-ip
