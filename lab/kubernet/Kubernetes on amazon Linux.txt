@@ -94,7 +94,8 @@ sudo yum install docker -y
 
 13. Create Docker systemd directory and configuration:
 
-check - ls /etc/docker
+check - 
+	ls /etc/docker
 
 sudo mkdir -p /etc/systemd/system/docker.service.d
 
