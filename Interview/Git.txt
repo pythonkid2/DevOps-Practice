@@ -113,3 +113,8 @@ Branching Best Practices:
 
 Merging Best Practices:
 	Test your changes locally before merging them into the main branch. Resolve any conflicts that arise during the merge process. Use merge commits or rebase to maintain a clean and linear project history. Communicate with your team before performing any significant merges to ensure a smooth integration of changes.
+
++++
+ref-
+
+https://www.simplilearn.com/tutorials/git-tutorial/git-interview-questions
