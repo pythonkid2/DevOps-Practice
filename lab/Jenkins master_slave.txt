@@ -157,6 +157,18 @@ select the credential created and click save
 check the log - 
 Agent successfully connected and online
 
+------------------------
+
+in slave -
+sudo visudo
+
+add under  # User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+jenkins-slave-01 ALL=(ALL:ALL) ALL
+
+
+
 ---------------------------------------------
 
 Create a new freestyle job
