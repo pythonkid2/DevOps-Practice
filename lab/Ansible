@@ -112,6 +112,12 @@ pip3 install --user ansible
 
 export PATH=$PATH:/home/mathew/.local/bin
 
+
+			linux
+				sudo amazon-linux-extras install epel
+				sudo yum install python3-pip
+				pip3 install --user ansible
+
 +++
 
 ██╗███╗░░██╗██╗░░░██╗███████╗███╗░░██╗████████╗░█████╗░██████╗░██╗░░░██╗
