@@ -29,6 +29,8 @@ sudo apt-get install jenkins
 			
 			# Install Jenkins
 			yum install jenkins -y 
+
+			#systemctl start & enable
 			                             ++++
 
 On the slave node
