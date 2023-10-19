@@ -17,6 +17,19 @@ sudo apt-get update
 
 sudo apt-get install jenkins
 
+			                    #for aws linux 2
+			# Jenkins repo is added to yum.repos.d
+			sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+			
+			# Import key from Jenkins
+			sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+			
+			# Install Java-11
+			sudo yum -y install java-11-amazon-corretto
+			
+			# Install Jenkins
+			yum install jenkins -y 
+			                             ++++
 
 On the slave node
 -----------------
