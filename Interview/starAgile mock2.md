@@ -5,7 +5,7 @@
 
       DevOps, which combines development and operations, aims to shorten the systems development life cycle and provide continuous delivery with high software quality. Some key advantages of implementing DevOps practices include:
       
-      **Faster delivery of features**: DevOps enables faster development and deployment of software, allowing for quicker adaptation to market changes and customer needs.
+      **Faster delivery of features** : DevOps enables faster development and deployment of software, allowing for quicker adaptation to market changes and customer needs.
       
       **Increased frequency of deployments**: By automating the software delivery process, DevOps facilitates frequent and reliable software releases, reducing the time between fixes and improving customer satisfaction.
       
