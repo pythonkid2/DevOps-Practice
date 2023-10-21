@@ -1,0 +1,24 @@
+Setting Webhook
+
+Install the necessary plugins: GitHub Integration
+
+Configure Jenkins Project:
+
+Open your Jenkins project.
+
+Click on "Configure" in the left-hand menu.
+
+Under the "Build Triggers" section, check the box for "GitHub hook trigger for GITScm polling" 
+
+ 
+
+Set Up Webhook in Version Control System (GitHub):
+
+Go to GitHub repository.
+Click on "Settings."
+Choose "Webhooks" from the menu on the left.
+Click "Add webhook" and provide the Jenkins server URL with the appropriate path (e.g., http://your-jenkins-server/github-webhook/).
+
+
+Select the events that should trigger the webhook.
+Add the webhook.
