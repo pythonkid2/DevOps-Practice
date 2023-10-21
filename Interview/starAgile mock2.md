@@ -3,28 +3,37 @@
 
 **advantages of devops**
 
-      DevOps, which combines development and operations, aims to shorten the systems development life cycle and provide continuous delivery with high software quality. Some key advantages of implementing DevOps practices include:
+DevOps, which combines development and operations, aims to shorten the systems development life cycle and provide continuous delivery with high software quality. Some key advantages of implementing DevOps practices include:
       
-      **Faster delivery of features** : DevOps enables faster development and deployment of software, allowing for quicker adaptation to market changes and customer needs.
+**Faster delivery of features** : DevOps enables faster development and deployment of software, allowing for quicker adaptation to market changes and customer needs.
       
-      **Increased frequency of deployments**: By automating the software delivery process, DevOps facilitates frequent and reliable software releases, reducing the time between fixes and improving customer satisfaction.
+**Increased frequency of deployments**: By automating the software delivery process, DevOps facilitates frequent and reliable software releases, reducing the time between fixes and improving customer satisfaction.
       
-      **Higher quality products**: Through continuous integration and testing, DevOps helps to identify and address issues earlier in the development process, resulting in higher quality software products.
+ **Higher quality products**: Through continuous integration and testing, DevOps helps to identify and address issues earlier in the development process, resulting in higher quality software products.
       
-      **Improved collaboration**: DevOps promotes collaboration between development, operations, and other teams, fostering a culture of shared responsibility and collective ownership.
+**Improved collaboration**: DevOps promotes collaboration between development, operations, and other teams, fostering a culture of shared responsibility and collective ownership.
       
-      **Greater efficiency and productivity**: Automation of manual tasks and streamlined processes lead to improved efficiency, enabling teams to focus on high-value tasks and innovation.
+**Greater efficiency and productivity**: Automation of manual tasks and streamlined processes lead to improved efficiency, enabling teams to focus on high-value tasks and innovation.
       
-      **Enhanced customer experience**: With faster delivery cycles and more reliable software, DevOps helps in delivering a better experience to end-users, ultimately increasing customer satisfaction and loyalty.
+**Enhanced customer experience**: With faster delivery cycles and more reliable software, DevOps helps in delivering a better experience to end-users, ultimately increasing customer satisfaction and loyalty.
       
-      **Reduced risk**: Continuous monitoring and feedback loops in the DevOps process help in identifying and addressing issues promptly, minimizing the risk of failures and reducing downtime.
+**Reduced risk**: Continuous monitoring and feedback loops in the DevOps process help in identifying and addressing issues promptly, minimizing the risk of failures and reducing downtime.
 
-CI (Continuous Integration): It's the practice of developers regularly merging their code changes into a central repository, which is then verified by automated build and tests to catch bugs early.
+**CI (Continuous Integration)**
+It's the practice of developers regularly merging their code changes into a central repository, which is then verified by automated build and tests to catch bugs early.
 
-Continuous Delivery: It's the practice of automatically preparing code changes for a release to production, ensuring that your software can be deployed at any time with minimal risk.'
+**Continuous Delivery** : It's the practice of automatically preparing code changes for a release to production, ensuring that your software can be deployed at any time with minimal risk.'
 
 
-git pull and git fetch
+# Git
+
+**what is version control system**
+A version control system (VCS) is a software tool that helps track and manage changes to files, especially in software development. It allows multiple developers to collaborate, maintaining a record of changes made, facilitating collaboration, enabling reversion to previous versions, and managing different versions of files. Examples include Git, Subversion (SVN), and Mercurial.
+
+**Source Code Management**
+Source Code Management (SCM) is a broader term encompassing the management of changes to any kind of information source, not just software source code. It involves tracking and controlling changes to documents, programs, and other information assets. 
+
+**git pull and git fetch**
 
 git pull: This command is used to fetch the changes from the remote repository and merge them into your local branch. It is essentially a combination of git fetch and git merge. When you run git pull, it automatically fetches the changes from the remote branch and merges them into your current local branch.
             
@@ -34,39 +43,47 @@ git fetch: This command only fetches the changes from the remote repository and 
             
             git fetch <remote>
 
-git log
-
+**git log**
 The git log command is used to display the commit history in the repository. It shows the commit logs starting from the latest commit, allowing you to view information such as commit hashes, author details, dates, and commit messages. Here's an example of how to use it: $ git log
 
 git log using various options. For example, you can use options like --oneline to display each commit on a single line or --graph to visualize the commit history as a graph.
 
-git status
-
+**git status**
 Use `git status` to list all new or modified files that haven't yet been committed.
 
-git commit command
-
+**git commit**
   In Git, the git commit command is used to save the changes to the local repository. When you run git commit, it takes the staged snapshot and commits it to the project history. 
 
+**To create a new branch in Git**	  
+    	git branch <branch_name>
 
-To create a new branch in Git
-	  
-    git branch <branch_name>
-
-    After creating the branch, you can switch to the newly created branch using the following command: git checkout <branch_name>
+After creating the branch, you can switch to the newly created branch using the following command: 
+	git checkout <branch_name>
 	
-	Alternatively, you can combine both commands into one using the -b flag to create and switch to the new branch in a single step: git checkout -b <branch_name>
+Alternatively, you can combine both commands into one using the -b flag to create and switch to the new branch in a single step: 
+	git checkout -b <branch_name>
 
-git merge 
+**git merge**
+The git merge command in Git is used to integrate changes from one branch into another. It combines multiple sequences of commits into one unified history. When you want to merge one branch into another, you typically use the following syntax:
 
-	The git merge command in Git is used to integrate changes from one branch into another. It combines multiple sequences of commits into one unified history. When you want to merge one branch into another, you typically use the following syntax:
+**git rebase**
+The git rebase command in Git is used to reapply a series of commits from one branch to another. Unlike git merge, which integrates the changes of one branch into another, git rebase moves the entire feature branch to a new base commit. This effectively changes the base of the branch, allowing for a cleaner, more linear project history.
 
-git rebase
-	
-	The git rebase command in Git is used to reapply a series of commits from one branch to another. Unlike git merge, which integrates the changes of one branch into another, git rebase moves the entire feature branch to a new base commit. This effectively changes the base of the branch, allowing for a cleaner, more linear project history.
+**git reset**
+The **git reset** command in Git is a powerful tool that is used to reset the current state of the repository. **It can be used to undo changes or move the current branch to a different state**. Here are the key options with the git reset command:
+
+git reset --soft: Moves the HEAD to the specified commit, but leaves the changes in the staging area. It does not affect the working directory.
+
+git reset --mixed: This is the default option if no mode is specified. It moves the HEAD to the specified commit and updates the staging area but does not affect the working directory. This is useful when you want to unstage changes.
+
+git reset --hard: Moves the HEAD to the specified commit and updates both the staging area and the working directory. Be cautious when using this option as it discards all changes since the specified commit.
+
+Here is an example of how to use the git reset command:
+		git reset --soft HEAD~3
 
 
-🅼🅰🆅🅴🅽
+
+# Maven
 
 maven commands
 
