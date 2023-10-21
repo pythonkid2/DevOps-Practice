@@ -1,7 +1,7 @@
 
 # Devops
 
-1, advantages of devops
+**advantages of devops**
 
       DevOps, which combines development and operations, aims to shorten the systems development life cycle and provide continuous delivery with high software quality. Some key advantages of implementing DevOps practices include:
       
@@ -18,37 +18,6 @@
       **Enhanced customer experience**: With faster delivery cycles and more reliable software, DevOps helps in delivering a better experience to end-users, ultimately increasing customer satisfaction and loyalty.
       
       **Reduced risk**: Continuous monitoring and feedback loops in the DevOps process help in identifying and addressing issues promptly, minimizing the risk of failures and reducing downtime.
-
-rebase
-create branch in git hub
-reset and revert
-sourse code management
-
-artifact vs package
-what is artifact
-
-how to add custom plugin
-master slave connection
-
-test ng frame work
-
-docker build
-docker create
-docker hub
-Dockernetwork
-
-
-why test is choosing over selenium  - mailable reports
-
-post build actions in jenkins
-what is plugins in jenkins
-pole scm in jenkin
-advantages of maven
-
-
-available anotations in jenkins
-freestyle project vs pipe line
-
 
 CI (Continuous Integration): It's the practice of developers regularly merging their code changes into a central repository, which is then verified by automated build and tests to catch bugs early.
 
@@ -70,6 +39,10 @@ git log
 The git log command is used to display the commit history in the repository. It shows the commit logs starting from the latest commit, allowing you to view information such as commit hashes, author details, dates, and commit messages. Here's an example of how to use it: $ git log
 
 git log using various options. For example, you can use options like --oneline to display each commit on a single line or --graph to visualize the commit history as a graph.
+
+git status
+
+Use `git status` to list all new or modified files that haven't yet been committed.
 
 git commit command
 
@@ -94,6 +67,40 @@ git rebase
 
 
 🅼🅰🆅🅴🅽
+
+maven commands
+
+	
+Maven is a powerful build automation tool used primarily for Java projects. It simplifies and standardizes the build process, managing project dependencies, and providing a uniform build system. Here are some commonly used Maven commands:
+
+	mvn clean: This command cleans the project by deleting the target directory and removing all compiled class files and resources.
+
+	mvn compile: It compiles the source code of the project.
+
+	mvn test: This command runs the unit tests for the project.
+
+	mvn package: It packages the compiled code of the project into a distributable format, such as a JAR, WAR, or EAR file.
+
+	mvn install: This command installs the project's package into the local repository, making it available for other projects that need to use it as a dependency.
+
+	mvn deploy: It deploys the built artifact to the remote repository for sharing with other developers and projects.
+
+	mvn site: This command generates the project's website documentation.
+
+	mvn archetype:generate: It generates a new project from an existing template, known as an archetype.
+
+	mvn dependency:tree: This command displays the project's dependency tree.
+
+	mvn help: It displays help information on Maven commands and options.
+
+
+mvn buid and mvn package
+
+	mvn compile: This command compiles the source code of the project and generates the .class files, placing them in the target/classes directory. It verifies whether the code is syntactically correct and can be converted into bytecode.
+
+	mvn package: This command takes the compiled code and packages it into a distributable format, such as a JAR, WAR, or EAR file, based on the project's packaging configuration in the POM (Project Object Model) file. The package phase includes compiling the source code, running the unit tests, and putting the compiled code and resources into an archive format suitable for distribution and deployment.
+
+	The main difference between the two is that mvn compile stops after compiling the source code and checking for errors, while mvn package goes further to create a deployable package with the compiled code, resources, and necessary metadata, which can be distributed and deployed to a runtime environment.
 
 The POM (Project Object Model) file
 
@@ -343,40 +350,14 @@ what is docker hub
 
 	Official Images: Docker Hub hosts a collection of official images that are curated and maintained by Docker, ensuring that users have access to trusted and reliable base images for their containers.
 
-
-maven commands
-
-	
-Maven is a powerful build automation tool used primarily for Java projects. It simplifies and standardizes the build process, managing project dependencies, and providing a uniform build system. Here are some commonly used Maven commands:
-
-	mvn clean: This command cleans the project by deleting the target directory and removing all compiled class files and resources.
-
-	mvn compile: It compiles the source code of the project.
-
-	mvn test: This command runs the unit tests for the project.
-
-	mvn package: It packages the compiled code of the project into a distributable format, such as a JAR, WAR, or EAR file.
-
-	mvn install: This command installs the project's package into the local repository, making it available for other projects that need to use it as a dependency.
-
-	mvn deploy: It deploys the built artifact to the remote repository for sharing with other developers and projects.
-
-	mvn site: This command generates the project's website documentation.
-
-	mvn archetype:generate: It generates a new project from an existing template, known as an archetype.
-
-	mvn dependency:tree: This command displays the project's dependency tree.
-
-	mvn help: It displays help information on Maven commands and options.
+post build actions in jenkins
+what is plugins in jenkins
+pole scm in jenkin
+available anotations in jenkins
+freestyle project vs pipe line
 
 
-mvn buid and mvn package
 
-	mvn compile: This command compiles the source code of the project and generates the .class files, placing them in the target/classes directory. It verifies whether the code is syntactically correct and can be converted into bytecode.
-
-	mvn package: This command takes the compiled code and packages it into a distributable format, such as a JAR, WAR, or EAR file, based on the project's packaging configuration in the POM (Project Object Model) file. The package phase includes compiling the source code, running the unit tests, and putting the compiled code and resources into an archive format suitable for distribution and deployment.
-
-	The main difference between the two is that mvn compile stops after compiling the source code and checking for errors, while mvn package goes further to create a deployable package with the compiled code, resources, and necessary metadata, which can be distributed and deployed to a runtime environment.
 
 
 advantages of selenium
@@ -426,5 +407,25 @@ Virtualization:
 	In summary, while virtualization and containerization have some similarities in terms of providing isolation and enabling resource efficiency, they serve different purposes and have different architectures.
 	
 	
+rebase
+create branch in git hub
+reset and revert
+sourse code management
+
+artifact vs package
+what is artifact
+advantages of maven
+
+how to add custom plugin
+master slave connection
+
+test ng frame work
+
+why test is choosing over selenium  - mailable reports
 
 
+
+docker build
+docker create
+docker hub
+Dockernetwork
