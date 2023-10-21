@@ -17,7 +17,7 @@ Set Up Webhook in Version Control System (GitHub):
 Go to GitHub repository.
 Click on "Settings."
 Choose "Webhooks" from the menu on the left.
-Click "Add webhook" and provide the Jenkins server URL with the appropriate path (e.g., http://your-jenkins-server/github-webhook/).
+Click "Add webhook" and provide the Jenkins server URL with the appropriate path (e.g., http://your-jenkins-server//github-webhook/). #// important
 
 
 Select the events that should trigger the webhook.
