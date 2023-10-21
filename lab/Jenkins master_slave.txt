@@ -220,6 +220,12 @@ jenkins-slave-01 ALL=(ALL:ALL) ALL
 
 +++
 
+For docker permission
+
+sudo usermod -aG docker jenkins
+
+
+++++
 
 
 come back to master's web ui
