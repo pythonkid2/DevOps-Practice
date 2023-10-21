@@ -1,5 +1,6 @@
 
-#Devops
+# Devops
+
 1, advantages of devops
 
       DevOps, which combines development and operations, aims to shorten the systems development life cycle and provide continuous delivery with high software quality. Some key advantages of implementing DevOps practices include:
