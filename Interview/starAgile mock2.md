@@ -80,7 +80,9 @@ git reset --hard: Moves the HEAD to the specified commit and updates both the st
 
 Here is an example of how to use the git reset command:
 		git reset --soft HEAD~3
-
+**git revert**
+used to create a new commit that undoes the changes from a previous commit. This is useful if you want to create a new commit that effectively reverses the changes introduced by an earlier commit, while keeping a record of the reversion. Here's how you can use it:
+	git revert <commit-hash>
 
 
 # Maven
@@ -110,68 +112,52 @@ Maven is a powerful build automation tool used primarily for Java projects. It s
 
 	mvn help: It displays help information on Maven commands and options.
 
+**mvn package** : This is a Maven build lifecycle phase, specifically the package phase. When you run mvn package, Maven will execute all phases up to and including the package phase. In this phase, Maven will create the JAR or WAR file of your project based on the configuration in the project's POM (Project Object Model) file. This does not include the installation of the artifact into the local repository or a remote repository.
 
-mvn buid and mvn package
-
-	mvn compile: This command compiles the source code of the project and generates the .class files, placing them in the target/classes directory. It verifies whether the code is syntactically correct and can be converted into bytecode.
-
-	mvn package: This command takes the compiled code and packages it into a distributable format, such as a JAR, WAR, or EAR file, based on the project's packaging configuration in the POM (Project Object Model) file. The package phase includes compiling the source code, running the unit tests, and putting the compiled code and resources into an archive format suitable for distribution and deployment.
-
-	The main difference between the two is that mvn compile stops after compiling the source code and checking for errors, while mvn package goes further to create a deployable package with the compiled code, resources, and necessary metadata, which can be distributed and deployed to a runtime environment.
-
-The POM (Project Object Model) file
-
+**The POM (Project Object Model)** file
 Essential configuration file used in Apache Maven-based projects. It is an XML file that contains information about the project and configuration details to build the project. The POM file provides details about the project's structure, dependencies, build settings, and other essential information required for Maven to build the project correctly.
 
 key components of POM.xml
 
-	Project information: This includes the project's group ID, artifact ID, version, and other descriptive information.
-	Dependencies: These are the external libraries or modules required by the project.
-	Build settings: This includes information about plugins, goals, and other configurations for building the project.
-	Repositories: These are the locations where Maven can look for dependencies needed to build the project.
+**Project information** : This includes the project's group ID, artifact ID, version, and other descriptive information.
+**Dependencies** : These are the external libraries or modules required by the project.
+**Build settings** : This includes information about plugins, goals, and other configurations for building the project.
+**Repositories** : These are the locations where Maven can look for dependencies needed to build the project.
 
-The Maven build and Maven package 
-
-	The Maven build and Maven package commands are both used in the context of building and packaging a Maven project, but they serve different purposes:
-
-	Maven Build Command: The mvn build command is a generic command that is used to build the project. It triggers the default lifecycle up to the package phase. This means it will compile the source code, run any tests, and package the compiled code into a JAR, WAR, or any other format defined in the project configuration.
-
-	Maven Package Command: The mvn package command is specifically used to execute the package phase of the Maven build lifecycle. This phase is responsible for taking the compiled code and packaging it into its distributable format, such as a JAR, WAR, or EAR file, depending on the type of the project.
-
-	The package phase is part of the default Maven lifecycle and is usually executed after the compile and test phases. It collects all the compiled classes, resources, and other necessary files and packages them according to the project's packaging type. For example, for a JAR project, it creates a JAR file containing the compiled classes and resources.
-
-	In summary, while the mvn build command is more generic and triggers the build process up to the package phase, the mvn package command specifically executes the package phase to create the distributable package as defined by the project configuration.
+**The Maven build and Maven package**
 	
-TestNG
+ The Maven build and Maven package commands are both used in the context of building and packaging a Maven project, but they serve different purposes:
 
-	TestNG is a testing framework inspired by JUnit and NUnit but introducing new functionalities that make it more powerful and easier to use, especially for complex and integrated test scenarios. It is designed to cover all categories of tests: unit, functional, end-to-end, integration, etc., and it is suitable for all types of applications.
+**Maven Build** Command: The mvn build command is a generic command that is used to build the project. It triggers the default lifecycle up to the package phase. This means it will compile the source code, run any tests, and package the compiled code into a JAR, WAR, or any other format defined in the project configuration.
+
+**Maven Package** Command: The mvn package command is specifically used to execute the package phase of the Maven build lifecycle. This phase is responsible for taking the compiled code and packaging it into its distributable format, such as a JAR, WAR, or EAR file, depending on the type of the project.
+
+**In summary, while the mvn build command is more generic and triggers the build process up to the package phase, the mvn package command specifically executes the package phase to create the distributable package as defined by the project configuration.**	
+
+# Selenium
+
+**TestNG**
+
+TestNG is a testing framework inspired by JUnit and NUnit but introducing new functionalities that make it more powerful and easier to use, especially for complex and integrated test scenarios. It is designed to cover all categories of tests: unit, functional, end-to-end, integration, etc., and it is suitable for all types of applications.
 
 	Here are some key features and components of the TestNG framework:
 
-	Annotations: TestNG provides various annotations like @Test, @BeforeMethod, @AfterMethod, @BeforeClass, @AfterClass, etc., to facilitate the creation of test cases and the execution of setup and teardown operations.
+**Annotations**: TestNG provides various annotations like @Test, @BeforeMethod, @AfterMethod, @BeforeClass, @AfterClass, etc., to facilitate the creation of test cases and the execution of setup and teardown operations.
+**Assertions**: TestNG provides a rich set of assertion methods for verifying the expected behavior of the application during the test execution.
+**Grouping and Prioritizing**: TestNG allows you to group test methods and prioritize the execution order, which is particularly useful when dealing with multiple test cases.
+**Parameterization** : TestNG supports data-driven testing, allowing you to run the same test method with different sets of data.
+**Listeners**: TestNG provides a way to implement custom listeners that can perform actions based on the events that occur during the test execution.
+**Test Configuration**: TestNG allows the configuration of test suites and provides flexibility in defining suite parameters, test dependencies, parallel execution, and more.
 
-	Assertions: TestNG provides a rich set of assertion methods for verifying the expected behavior of the application during the test execution.
+**launch a browser using Selenium in Java**
+To launch a browser using Selenium in Java, you need to have the appropriate **Selenium WebDriver** libraries and the corresponding driver executable for the browser you intend to automate. Here's a basic example using the Chrome browser:
 
-	Grouping and Prioritizing: TestNG allows you to group test methods and prioritize the execution order, which is particularly useful when dealing with multiple test cases.
+**Download the Selenium WebDriver** for Java from the Selenium website and add it to your Java project's build path.
 
-	Parameterization: TestNG supports data-driven testing, allowing you to run the same test method with different sets of data.
-
-	Listeners: TestNG provides a way to implement custom listeners that can perform actions based on the events that occur during the test execution.
-
-	Test Configuration: TestNG allows the configuration of test suites and provides flexibility in defining suite parameters, test dependencies, parallel execution, and more.
-
-	TestNG is widely used in the Java ecosystem for testing applications and has gained popularity due to its flexibility and advanced features, making it a preferred choice for developers and testers when implementing test automation for complex projects.
-
-To launch a browser using Selenium in Java
-	
-	To launch a browser using Selenium in Java, you need to have the appropriate Selenium WebDriver libraries and the corresponding driver executable for the browser you intend to automate. Here's a basic example using the Chrome browser:
-
-	Download the Selenium WebDriver for Java from the Selenium website and add it to your Java project's build path.
-
-	Download the ChromeDriver executable from the ChromeDriver website and place it in a location accessible by your Java project.
+**Download the ChromeDriver executable from the ChromeDriver website** and place it in a location accessible by your Java project.
 
 	Here's a basic code snippet for launching the Chrome browser using Selenium WebDriver in Java:
-	
+---	
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -190,22 +176,23 @@ public class SeleniumExample {
 
         // Close the browser
         driver.quit();
-    }
+	}
 }
 
-WebDriver driver = new ChromeDriver();
-	By using this line of code, you can create a new instance of the ChromeDriver, which then allows you to control the Chrome browser through your Java code using Selenium WebDriver.
+---
 
-why driver in selenium
+**WebDriver driver = new ChromeDriver();**
+By using this line of code, you can create a new instance of the ChromeDriver, which then allows you to control the Chrome browser through your Java code using Selenium WebDriver.
+**why driver in selenium** 
+In Selenium, the term "driver" refers to the software component that facilitates the communication between your test script and the browser. It acts as a bridge between the automation script and the browser's native support for automation (such as Chrome, Firefox, or others). The driver is a crucial part of the Selenium framework as it enables you to control the browser, navigate to URLs, and interact with web elements.	
 
-	In Selenium, the term "driver" refers to the software component that facilitates the communication between your test script and the browser. It acts as a bridge between the automation script and the browser's native support for automation (such as Chrome, Firefox, or others). The driver is a crucial part of the Selenium framework as it enables you to control the browser, navigate to URLs, and interact with web elements.	
+# Jenkins
 
-Jenkins
+**Polling the SCM in jenkins**	
 
-Polling the SCM in jenkins
-	Polling the SCM (Software Configuration Management) in Jenkins refers to the process of periodically checking the source code repository for any changes. Jenkins can be configured to check the repository at a specified interval, and if changes are detected, it triggers a build process.
+Polling the SCM (Software Configuration Management) in Jenkins refers to the process of periodically checking the source code repository for any changes. Jenkins can be configured to check the repository at a specified interval, and if changes are detected, it triggers a build process.
 
-	To enable polling the SCM in Jenkins, follow these steps:
+To enable polling the SCM in Jenkins, follow these steps:
 
 	Go to your Jenkins dashboard and select the desired project.
 	Click on "Configure" to access the project configuration.
@@ -213,18 +200,17 @@ Polling the SCM in jenkins
 	Check the option that allows polling the SCM. You may need to specify the frequency of the polling.
 	Save the configuration.
 	
-	Once enabled, Jenkins will check the source code repository at the specified interval. If it detects any changes, it will trigger a build process automatically. This can be an effective way to ensure that your project is continuously built and tested whenever there are updates in the source code repository.
+Once enabled, Jenkins will check the source code repository at the specified interval. If it detects any changes, it will trigger a build process automatically. This can be an effective way to ensure that your project is continuously built and tested whenever there are updates in the source code repository.
 
-
-How to add slave connection in jenkins
-
-	Set up the Slave Node:
+**How to add slave connection in jenkins**
+	
+ Set up the Slave Node:
 
 	Ensure that the slave machine is reachable from the Jenkins master.
 	Install Java and the necessary tools on the slave machine if they are not already installed.
 	Ensure that the slave machine has the required network access to the Jenkins master.
 	
-	Configure Jenkins Master:
+Configure Jenkins Master:
 
 	Log in to your Jenkins dashboard as an administrator.
 	Click on "Manage Jenkins" on the left-hand side.
@@ -243,13 +229,11 @@ How to add slave connection in jenkins
 	Once the connection is established, the slave node should appear in the Jenkins dashboard under "Nodes" or "Agents."
 	You can then use this slave node to distribute build and test jobs from the Jenkins master.
 
-how to add custom plugin in jenkin
-
+**how to add custom plugin in jenkin**
 Download the Plugin:
+Locate the plugin you wish to install from the Jenkins Plugin Index or from a reliable source. Ensure that the plugin is compatible with your Jenkins version.
 
-	Locate the plugin you wish to install from the Jenkins Plugin Index or from a reliable source. Ensure that the plugin is compatible with your Jenkins version.
-	Install the Plugin:
-
+Install the Plugin:
 	Log in to your Jenkins dashboard as an administrator.
 	Click on "Jenkins" at the top left to go to the dashboard.
 	In the left sidebar, select "Manage Jenkins."
@@ -257,17 +241,12 @@ Download the Plugin:
 	Navigate to the "Available" tab.
 	Find the plugin you want to install, select the checkbox next to its name, and click "Install without restart" or "Download now and install after restart."
 	Restart Jenkins (If Required):
-
-	If the plugin installation requires a Jenkins restart, a notification will appear. Follow the instructions to restart Jenkins.
+        If the plugin installation requires a Jenkins restart, a notification will appear. Follow the instructions to restart Jenkins.
 	Configure the Plugin:
-
 	Once the plugin is installed, you may need to configure it based on your requirements. Check the plugin documentation or the Jenkins wiki for instructions on how to configure the specific plugin you have installed.
-	Verify the Installation:
-
-	After the plugin is successfully installed and configured, you can verify its presence and functionality by navigating to the appropriate section of Jenkins where the plugin's features or options should appear.
-	Keep in mind that the steps might vary slightly depending on the version of Jenkins you are using and the specific plugin you want to install.
-
-cmd , entry point in docker file
+	
+# Docker
+**cmd , entry point** in docker file
 
 	In a Dockerfile, the CMD instruction is used to specify the command that should be executed when the Docker container starts. It defines the default command for the container, which can be overridden by providing a command at the end of the docker run command.
 	
@@ -275,70 +254,43 @@ cmd , entry point in docker file
 
 Other commands 
 
-	FROM: Specifies the base image for subsequent instructions. It is usually the first instruction in a Dockerfile.
+**FROM** : Specifies the base image for subsequent instructions. It is usually the first instruction in a Dockerfile.
+**RUN**: Executes commands in a new layer and creates a new image. This is used to install packages, run scripts, or perform any other actions during the build process.
+**COPY**: Copies files or directories from the build context into the container's own filesystem at a specified location.
+**ADD**: Similar to COPY, but it also supports URLs and automatically unpacks local tar files.
+**WORKDIR**: Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD instructions that follow it in the Dockerfile.
+**EXPOSE**: Informs Docker that the container listens on the specified network ports at runtime.
+**ENV**: Sets the environment variable to a specific value inside the container.
+**ARG**: Defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg flag.
+**VOLUME**: Creates a mount point with the specified name and marks it as holding externally mounted volumes from the native host or other containers.
+**USER**: Sets the user name or UID to use when running the image.
+**HEALTHCHECK**: Tells Docker how to test a container to check that it is still working.
 
-	RUN: Executes commands in a new layer and creates a new image. This is used to install packages, run scripts, or perform any other actions during the build process.
+Difference between **container and image**
+**Image**:
+An image is a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, system tools, system libraries, and settings. It is essentially a snapshot of a Docker container.
 
-	COPY: Copies files or directories from the build context into the container's own filesystem at a specified location.
+Images are read-only templates used to create Docker containers. They can be built from a Dockerfile using the docker build command or pulled from a registry using the docker pull command.
 
-	ADD: Similar to COPY, but it also supports URLs and automatically unpacks local tar files.
+Images are used as the basis for creating containers. They can be versioned and distributed to other systems or users.
 
-	WORKDIR: Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD instructions that follow it in the Dockerfile.
-
-	EXPOSE: Informs Docker that the container listens on the specified network ports at runtime.
-
-	ENV: Sets the environment variable to a specific value inside the container.
-
-	ARG: Defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg flag.
-
-	VOLUME: Creates a mount point with the specified name and marks it as holding externally mounted volumes from the native host or other containers.
-	
-	USER: Sets the user name or UID to use when running the image.
-
-	HEALTHCHECK: Tells Docker how to test a container to check that it is still working.
-
-
-Difference between container and image
-
-
-Image:
-
-	An image is a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, system tools, system libraries, and settings. It is essentially a snapshot of a Docker container.
-	
-	Images are read-only templates used to create Docker containers. They can be built from a Dockerfile using the docker build command or pulled from a registry using the docker pull command.
-	
-	Images are used as the basis for creating containers. They can be versioned and distributed to other systems or users.
-
-Container:
-
-	A container is a runtime instance of an image—basically, a running process isolated from the host and other containers.
-	Containers are lightweight, portable, and self-sufficient, allowing applications to be easily deployed and run consistently in various environments.
-	Each container is created from a specific image and represents a running instance of that application, providing an isolated environment for running the application.
+**Container:**
+A container is a runtime instance of an image—basically, a running process isolated from the host and other containers. Containers are lightweight, portable, and self-sufficient, allowing applications to be easily deployed and run consistently in various environments. Each container is created from a specific image and represents a running instance of that application, providing an isolated environment for running the application. 
 
 In summary, images are the blueprints used to create containers, while containers are the actual runtime instances of those images. Containers provide a consistent environment for running applications, and images provide a way to package and distribute software with all its dependencies.
 
+**Types of docker networks ?**
+Docker provides several types of networks to facilitate communication between containers and between containers and the outside world. These networks offer different features and functionalities to meet various use cases. Here are some of the types of Docker networks:
 
+**Bridge network**: This is the default network that enables communication between containers on the same Docker daemon host. Containers connected to the same bridge network can communicate with each other via IP addresses. It also allows the containers to communicate with external networks using NAT (Network Address Translation).
+**Host network**: With the host network mode, a container shares the network namespace with the Docker host. This means the container does not have network isolation from the host and can use the host's network directly. This can be beneficial for performance-critical applications that require full access to the host's network stack.
+**Overlay network**: This type of network allows containers to communicate across multiple Docker daemons. It facilitates communication between containers running on different Docker hosts or even different cloud providers. It is particularly useful for container orchestration and clustering systems, enabling seamless communication between containers across the cluster.
+**Macvlan network**: Macvlan allows you to assign a MAC address to a container, making it appear as a physical device on the network. This is useful when you need to connect containers directly to external networks, giving them direct access to the physical network without any encapsulation.
+**None network**: Containers attached to the none network have no access to external networks and can only communicate with the Docker host. This can be useful in scenarios where you want to completely isolate a container from the network.
+**Custom networks**: Docker also allows you to create your custom networks with specific configurations, enabling you to define your network's behavior, IP address range, and other properties according to your application's requirements. Custom networks provide flexibility and control over the networking environment for your containers.
 
-Types of docker networks ?
-
-	Docker provides several types of networks to facilitate communication between containers and between containers and the outside world. These networks offer different features and functionalities to meet various use cases. Here are some of the types of Docker networks:
-
-	Bridge network: This is the default network that enables communication between containers on the same Docker daemon host. Containers connected to the same bridge network can communicate with each other via IP addresses. It also allows the containers to communicate with external networks using NAT (Network Address Translation).
-
-	Host network: With the host network mode, a container shares the network namespace with the Docker host. This means the container does not have network isolation from the host and can use the host's network directly. This can be beneficial for performance-critical applications that require full access to the host's network stack.
-
-	Overlay network: This type of network allows containers to communicate across multiple Docker daemons. It facilitates communication between containers running on different Docker hosts or even different cloud providers. It is particularly useful for container orchestration and clustering systems, enabling seamless communication between containers across the cluster.
-
-	Macvlan network: Macvlan allows you to assign a MAC address to a container, making it appear as a physical device on the network. This is useful when you need to connect containers directly to external networks, giving them direct access to the physical network without any encapsulation.
-
-	None network: Containers attached to the none network have no access to external networks and can only communicate with the Docker host. This can be useful in scenarios where you want to completely isolate a container from the network.
-
-	Custom networks: Docker also allows you to create your custom networks with specific configurations, enabling you to define your network's behavior, IP address range, and other properties according to your application's requirements. Custom networks provide flexibility and control over the networking environment for your containers.
-
-
-what does docker buid command do & build vs run command
-
-	The docker build command is used to build Docker images from a Dockerfile. When you run docker build, it looks for a file named Dockerfile in the current directory and uses the instructions defined in the Dockerfile to create a new Docker image. This process involves executing each instruction in the Dockerfile and creating a new layer for each instruction, ultimately producing a final image. The resulting image can be tagged and used to create containers.
+**what does docker buid command do & build vs run command**
+The docker build command is used to build Docker images from a Dockerfile. This process involves executing each instruction in the Dockerfile and creating a new layer for each instruction, ultimately producing a final image. The resulting image can be tagged and used to create containers.
 
 	The docker run command, on the other hand, is used to create and start a new container from a Docker image. When you run docker run, Docker takes the specified image and starts a container based on it. You can also provide additional options and configurations to the docker run command, such as exposing ports, setting environment variables, or specifying volumes to be mounted.
 
