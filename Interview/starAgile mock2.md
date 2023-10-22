@@ -292,40 +292,69 @@ Docker provides several types of networks to facilitate communication between co
 **what does docker buid command do & build vs run command**
 The docker build command is used to build Docker images from a Dockerfile. This process involves executing each instruction in the Dockerfile and creating a new layer for each instruction, ultimately producing a final image. The resulting image can be tagged and used to create containers.
 
-	The docker run command, on the other hand, is used to create and start a new container from a Docker image. When you run docker run, Docker takes the specified image and starts a container based on it. You can also provide additional options and configurations to the docker run command, such as exposing ports, setting environment variables, or specifying volumes to be mounted.
+The **docker run** command, on the other hand, is used to create and start a new container from a Docker image. When you run docker run, Docker takes the specified image and starts a container based on it. You can also provide additional options and configurations to the docker run command, such as exposing ports, setting environment variables, or specifying volumes to be mounted.
 
-	In summary, the main difference between docker build and docker run is that docker build is used to create a Docker image based on the instructions defined in a Dockerfile, while docker run is used to create and start a container from an existing Docker image. docker build is used during the image creation process, while docker run is used when you want to run a container based on an existing image.
-
-docker create
-
-	The docker create command is used to create a new container but does not start it. It returns a container ID that can be used in conjunction with other commands. This command is particularly useful when you want to set up a container without starting it immediately.
+**docker create**
+The docker create command is used to create a new container but does not start it. It returns a container ID that can be used in conjunction with other commands. This command is particularly useful when you want to set up a container without starting it immediately.
 	
 	docker create [OPTIONS] IMAGE [COMMAND] [ARG...]
+**what is docker hub**
+Docker Hub is a cloud-based registry service provided by Docker that allows you to store and manage Docker images. It provides a centralized resource for container image discovery, distribution, and change management. Docker Hub offers the following key features:
 
+**Image Repositories**: It enables you to store and manage your Docker images, either publicly or privately.
+**Collaboration and Sharing**: Docker Hub facilitates collaboration by allowing users to share Docker images with their team members or the broader community.
+**Automated Builds**: It provides the functionality to automatically build Docker images from source code repositories, making it easier to manage the continuous integration and deployment process.
+**Webhooks and APIs**: Docker Hub offers webhooks and APIs that can be integrated with other tools and services, enabling you to automate various processes related to your Docker images.
+**User Access Control**: It allows you to manage user access and permissions for private repositories, ensuring that only authorized users can access sensitive images.
+**Official Images**: Docker Hub hosts a collection of official images that are curated and maintained by Docker, ensuring that users have access to trusted and reliable base images for their containers.
 
-what is docker hub
+**Post build actions in jenkins** 
+In Jenkins, post-build actions are the additional operations or tasks that you can configure to be executed after the main build step has completed. 
+Some common post-build actions in Jenkins include:
+**Archive the artifacts: Publish JUnit test result report: Triggering other projects: Sending email notifications: Post to Slack or other communication platforms: 
+Publishing build reports and metrics:Executing shell scripts or batch commands**
 
-	Docker Hub is a cloud-based registry service provided by Docker that allows you to store and manage Docker images. It provides a centralized resource for container image discovery, distribution, and change management. Docker Hub offers the following key features:
+**Plugins in Jenkins**
+**Plugins in Jenkins** are software components that extend the functionality of the Jenkins automation server. They allow you to integrate additional features and tools into your Jenkins environment, enabling you to customize and enhance your CI/CD (Continuous Integration/Continuous Deployment) pipelines.
 
-	Image Repositories: It enables you to store and manage your Docker images, either publicly or privately.
+**Poll scm in jenkin** it is a feature that enables Jenkins to periodically check your version control system (VCS) for changes. When using the "Poll SCM" feature, Jenkins will check the configured source code repository at regular intervals to determine if any new changes have been made. If it detects changes, it triggers a build of the associated job or pipeline.
+ 
+**available anotations in jenkins**
+Jenkins supports various annotations and directives that can be used within Jenkinsfiles, which are used to define Jenkins pipelines. These annotations and directives provide instructions to Jenkins on how to execute the pipeline stages and steps. Some of the commonly used annotations in Jenkins are as follows:
 
-	Collaboration and Sharing: Docker Hub facilitates collaboration by allowing users to share Docker images with their team members or the broader community.
+agent: Specifies the agent to use for running the pipeline. For example, agent any indicates that the pipeline can be run on any available agent.
+options: Provides various configuration options for the pipeline, such as timeouts, build discard policies, and more.
+parameters: Defines input parameters that can be used to trigger the pipeline manually or to provide user-specified values during the pipeline execution.
+stages: Defines the different stages of the pipeline, allowing you to organize the pipeline steps into logical groups.
+steps: Represents the individual steps to be executed within a stage, such as building, testing, or deploying the application.
+environment: Defines the environment variables that should be available to the steps within the pipeline.
+post: Specifies actions that should be performed after the stages have been executed, such as sending notifications, archiving artifacts, or triggering other pipelines.
+when: Allows conditional execution of certain stages or steps based on specific conditions, such as the result of a previous step or a predefined variable.
 
-	Automated Builds: It provides the functionality to automatically build Docker images from source code repositories, making it easier to manage the continuous integration and deployment process.
-
-	Webhooks and APIs: Docker Hub offers webhooks and APIs that can be integrated with other tools and services, enabling you to automate various processes related to your Docker images.
-
-	User Access Control: It allows you to manage user access and permissions for private repositories, ensuring that only authorized users can access sensitive images.
-
-	Official Images: Docker Hub hosts a collection of official images that are curated and maintained by Docker, ensuring that users have access to trusted and reliable base images for their containers.
-
-post build actions in jenkins
-what is plugins in jenkins
-pole scm in jenkin
-available anotations in jenkins
 freestyle project vs pipe line
 
+<table border="0">
+ <tr>
+    <td><b style="font-size:30px">Free style</b></td>
+    <td><b style="font-size:30px">Pipeline</b></td>
+ </tr>
+ <tr>
+    <td>Simple Configuration: Freestyle projects in Jenkins are simple and easy to set up. They allow users to configure build steps, post-build actions, and triggers through an intuitive user interface.
 
+Limited Flexibility: Freestyle projects have limited flexibility compared to Pipeline projects. They are suitable for straightforward build and deployment tasks but may not be suitable for complex or advanced workflows.
+
+Graphical User Interface (GUI) Configuration: Freestyle projects are configured primarily through the Jenkins web interface, making them more accessible to users who are not familiar with scripting or coding.
+
+Plugin-based Customization: Freestyle projects allow users to incorporate various Jenkins plugins to extend functionality, such as source code management, build triggers, and post-build actions.</td>
+    <td>Scripted or Declarative Pipeline: Pipeline projects in Jenkins allow for the creation of continuous delivery pipelines using a domain-specific language (DSL). They can be written in either Scripted or Declarative syntax, providing more advanced control and customization options.
+
+Advanced Workflows: Pipelines support complex and advanced workflows, allowing users to define continuous integration and continuous deployment (CI/CD) pipelines as code. This enables the automation of complex tasks and the integration of various tools and services.
+
+Version Control Integration: Pipeline projects can be stored in source control repositories, making it easier to manage and version the pipeline code alongside the application source code.
+
+Better Visualization and Error Handling: Pipelines offer better visualization of the entire build process, including detailed logs, stage views, and error handling capabilities, which help in identifying and resolving issues more effectively.</td>
+ </tr>
+</table>
 
 
 
