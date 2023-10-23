@@ -263,6 +263,18 @@ Configure Jenkins Master:
 	Once the connection is established, the slave node should appear in the Jenkins dashboard under "Nodes" or "Agents."
 	You can then use this slave node to distribute build and test jobs from the Jenkins master.
 
+
+**A multi-branch pipeline**
+
+**A multi-branch pipeline** project in Jenkins is a type of project that allows you to implement different Jenkins pipelines for multiple branches of your source code repository. It automatically detects branches in the repository and creates a pipeline for each branch. This feature is particularly useful for managing and automating the build and test process for projects with multiple branches, such as feature branches, release branches, and hotfix branches.
+
+With a multi-branch pipeline project, you can:
+
+Automatically detect new branches in your repository and create corresponding pipelines.
+Build, test, and deploy each branch separately, enabling isolated development and testing environments.
+Track the build and test status of each branch independently.
+Merge changes back to the main branch (e.g., master) once the development on a branch is complete and tested.
+
 **how to add custom plugin in jenkin**
 Download the Plugin:
 Locate the plugin you wish to install from the Jenkins Plugin Index or from a reliable source. Ensure that the plugin is compatible with your Jenkins version.
