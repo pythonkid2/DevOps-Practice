@@ -105,9 +105,17 @@ In summary, revert creates a new commit to undo changes, rebase integrates chang
 
 # Maven
 
-maven commands
+Advantages of Maven:
 
-	
+- Simplified dependency management
+- Consistent and automated build process
+- Standardization of project structure
+- Extensive plugin ecosystem
+- Facilitation of reproducible builds
+- Seamless integration with CI/CD tools
+- Customization and extensibility opportunities
+
+**Maven commands**	
 Maven is a powerful build automation tool used primarily for Java projects. It simplifies and standardizes the build process, managing project dependencies, and providing a uniform build system. Here are some commonly used Maven commands:
 
 	mvn clean: This command cleans the project by deleting the target directory and removing all compiled class files and resources.
@@ -153,6 +161,14 @@ key components of POM.xml
 **In summary, while the mvn build command is more generic and triggers the build process up to the package phase, the mvn package command specifically executes the package phase to create the distributable package as defined by the project configuration.**	
 
 # Selenium
+
+**Reasons for choosing TestNG over Selenium:**
+- TestNG offers more advanced test configuration and grouping features.
+- TestNG provides better reporting capabilities and allows for parallel test execution.
+- TestNG supports the creation of data-driven tests and the use of different data sources.
+- TestNG facilitates easier test management and enables the setup of dependencies between tests.
+- TestNG supports the creation of flexible and customizable test suites.
+
 
 **advantages of selenium**
 
@@ -215,6 +231,7 @@ public class SeleniumExample {
 By using this line of code, you can create a new instance of the ChromeDriver, which then allows you to control the Chrome browser through your Java code using Selenium WebDriver.
 **why driver in selenium** 
 In Selenium, the term "driver" refers to the software component that facilitates the communication between your test script and the browser. It acts as a bridge between the automation script and the browser's native support for automation (such as Chrome, Firefox, or others). The driver is a crucial part of the Selenium framework as it enables you to control the browser, navigate to URLs, and interact with web elements.	
+
 
 # Jenkins
 
@@ -395,52 +412,28 @@ Docker Hub is a cloud-based registry service provided by Docker that allows you 
 **Official Images**: Docker Hub hosts a collection of official images that are curated and maintained by Docker, ensuring that users have access to trusted and reliable base images for their containers.
 
 
-
-
-
-
-
-virtualization and docker containerasation
-
-	
-	Virtualization and containerization are two distinct technologies that serve different purposes, though there are some similarities between them.
+**Virtualization and Docker Containerization**
 
 Virtualization:
 
-	Virtualization is the process of creating a virtual version of something, such as a hardware platform, operating system, storage device, or network resources.
-	It allows you to run multiple operating systems on a single physical machine, making it possible to run different applications on different operating systems.
-	Each virtual machine runs its own operating system and is logically isolated from other virtual machines on the same physical server.
-	Docker Containerization:
+- Creation of virtual versions of hardware, operating systems, and network resources.
+- Enables running multiple operating systems on a single physical machine.
+- Each virtual machine runs its own operating system, isolated from others.
 
-	Docker is a platform for developing, shipping, and running applications using containerization. It allows you to package an application and its dependencies into a container that can run on any Linux server.
-	Containers are lightweight, standalone, executable software packages that include everything needed to run a piece of software, including the code, runtime, system tools, system libraries, and settings.
-	Unlike virtual machines, containers share the host system's operating system kernel, which makes them more lightweight and faster to start up.
-	Differences:
+Docker Containerization:
 
-	Virtualization involves creating multiple virtual machines on a single hardware platform, while containerization involves isolating applications into discrete units that can run within a single operating system.
-	Virtual machines emulate full-fledged computers, while containers share the operating system kernel of the host machine.
-	Virtual machines are generally slower to start and consume more resources compared to containers, which can start quickly and have lower overhead.
-	Similarities:
+- Platform for developing, shipping, and running applications in containers.
+- Containers package applications and their dependencies, running on any Linux server.
+- Containers share the host system's operating system kernel, making them lightweight and fast.
 
-	Both virtualization and containerization provide isolation, allowing applications to run in a contained environment.
-	They both contribute to efficient resource utilization, allowing multiple applications to run on a single physical machine.
-	In summary, while virtualization and containerization have some similarities in terms of providing isolation and enabling resource efficiency, they serve different purposes and have different architectures.
-	
-	
+Differences:
 
+- Virtualization creates multiple virtual machines, while containerization isolates applications within a single operating system.
+- Virtual machines emulate full-fledged computers, while containers share the host's operating system kernel.
+- Virtual machines consume more resources and have slower start times compared to containers.
 
-advantages of maven
+Similarities:
 
-how to add custom plugin
-master slave connection
+- Both provide isolation for running applications in contained environments.
+- Both contribute to efficient resource utilization by enabling multiple applications to run on one physical machine.
 
-test ng frame work
-
-why test is choosing over selenium  - mailable reports
-
-
-
-docker build
-docker create
-docker hub
-Dockernetwork
