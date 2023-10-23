@@ -382,13 +382,19 @@ A container is a runtime instance of an image—basically, a running process iso
 In summary, images are the blueprints used to create containers, while containers are the actual runtime instances of those images. Containers provide a consistent environment for running applications, and images provide a way to package and distribute software with all its dependencies.
 
 **Types of docker networks ?**
+
 Docker provides several types of networks to facilitate communication between containers and between containers and the outside world. These networks offer different features and functionalities to meet various use cases. Here are some of the types of Docker networks:
 
 **Bridge network**: This is the default network that enables communication between containers on the same Docker daemon host. Containers connected to the same bridge network can communicate with each other via IP addresses. It also allows the containers to communicate with external networks using NAT (Network Address Translation).
+
 **Host network**: With the host network mode, a container shares the network namespace with the Docker host. This means the container does not have network isolation from the host and can use the host's network directly. This can be beneficial for performance-critical applications that require full access to the host's network stack.
+
 **Overlay network**: This type of network allows containers to communicate across multiple Docker daemons. It facilitates communication between containers running on different Docker hosts or even different cloud providers. It is particularly useful for container orchestration and clustering systems, enabling seamless communication between containers across the cluster.
+
 **Macvlan network**: Macvlan allows you to assign a MAC address to a container, making it appear as a physical device on the network. This is useful when you need to connect containers directly to external networks, giving them direct access to the physical network without any encapsulation.
+
 **None network**: Containers attached to the none network have no access to external networks and can only communicate with the Docker host. This can be useful in scenarios where you want to completely isolate a container from the network.
+
 **Custom networks**: Docker also allows you to create your custom networks with specific configurations, enabling you to define your network's behavior, IP address range, and other properties according to your application's requirements. Custom networks provide flexibility and control over the networking environment for your containers.
 
 **what does docker buid command do & build vs run command**
@@ -400,14 +406,20 @@ The **docker run** command, on the other hand, is used to create and start a new
 The docker create command is used to create a new container but does not start it. It returns a container ID that can be used in conjunction with other commands. This command is particularly useful when you want to set up a container without starting it immediately.
 	
 	docker create [OPTIONS] IMAGE [COMMAND] [ARG...]
+
 **what is docker hub**
 Docker Hub is a cloud-based registry service provided by Docker that allows you to store and manage Docker images. It provides a centralized resource for container image discovery, distribution, and change management. Docker Hub offers the following key features:
 
 **Image Repositories**: It enables you to store and manage your Docker images, either publicly or privately.
+
 **Collaboration and Sharing**: Docker Hub facilitates collaboration by allowing users to share Docker images with their team members or the broader community.
+
 **Automated Builds**: It provides the functionality to automatically build Docker images from source code repositories, making it easier to manage the continuous integration and deployment process.
+
 **Webhooks and APIs**: Docker Hub offers webhooks and APIs that can be integrated with other tools and services, enabling you to automate various processes related to your Docker images.
+
 **User Access Control**: It allows you to manage user access and permissions for private repositories, ensuring that only authorized users can access sensitive images.
+
 **Official Images**: Docker Hub hosts a collection of official images that are curated and maintained by Docker, ensuring that users have access to trusted and reliable base images for their containers.
 
 
