@@ -19,6 +19,7 @@ What is **CI (Continuous Integration)**?
 It's the practice of developers regularly merging their code changes into a central repository, which is then verified by automated build and tests to catch bugs early.
 
 **Continuous Delivery**
+
 **Continuous Delivery** : It's the practice of automatically preparing code changes for a release to production, ensuring that your software can be deployed at any time with minimal risk.'
 
 
