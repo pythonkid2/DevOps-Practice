@@ -321,6 +321,15 @@ Better Visualization and Error Handling: Pipelines offer better visualization of
  </tr>
 </table>
 
+**"artifact" and "package"** refer to different concepts:
+
+**Artifact**: In Maven, an artifact refers to a uniquely identifiable component, such as a JAR, WAR, or ZIP file that is produced as a result of the build process. It is essentially a file, usually a JAR file, which gets installed into a Maven repository. Each artifact has a specific coordinate that uniquely identifies it, consisting of a group ID, artifact ID, version, and packaging type. Maven artifacts are identified and managed using these coordinates, allowing for easy dependency management and build automation.
+
+**Package**: The term "package" in Maven refers to the type of artifact that is being produced during the build process. It indicates the format in which the project is being packaged. Maven supports various packaging types, such as JAR, WAR, EAR, and others. The packaging type is specified in the project's configuration file (pom.xml) using the <packaging> element. Maven plugins use this information to generate the appropriate artifact during the build process. For example, if the packaging type is set to "jar," Maven will create a JAR artifact as the output.
+
+In summary, "artifact" in Maven refers to the produced file or component that is managed and identified based on its coordinates, while "package" refers to the type of artifact that is being generated during the build process, which determines the format of the resulting file, such as JAR, WAR, or others.
+
+
 # Docker
 
 **cmd , entry point** in docker file
@@ -418,13 +427,8 @@ Virtualization:
 	In summary, while virtualization and containerization have some similarities in terms of providing isolation and enabling resource efficiency, they serve different purposes and have different architectures.
 	
 	
-rebase
-create branch in git hub
-reset and revert
-sourse code management
 
-artifact vs package
-what is artifact
+
 advantages of maven
 
 how to add custom plugin
