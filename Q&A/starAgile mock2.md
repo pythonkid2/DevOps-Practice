@@ -19,9 +19,12 @@ DevOps, which combines development and operations, aims to shorten the systems d
       
 **Reduced risk**: Continuous monitoring and feedback loops in the DevOps process help in identifying and addressing issues promptly, minimizing the risk of failures and reducing downtime.
 
+What is **CI (Continuous Integration)**?
+
 **CI (Continuous Integration)**
 It's the practice of developers regularly merging their code changes into a central repository, which is then verified by automated build and tests to catch bugs early.
 
+**Continuous Delivery**
 **Continuous Delivery** : It's the practice of automatically preparing code changes for a release to production, ensuring that your software can be deployed at any time with minimal risk.'
 
 
