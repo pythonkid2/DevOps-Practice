@@ -88,6 +88,20 @@ Here is an example of how to use the git reset command:
 used to create a new commit that undoes the changes from a previous commit. This is useful if you want to create a new commit that effectively reverses the changes introduced by an earlier commit, while keeping a record of the reversion. Here's how you can use it:
 	git revert <commit-hash>
 
+**Difference between Revert, Rebase, and Reset:**
+
+**Git Revert** : It creates a new commit that undoes the changes from a specific previous commit. It is a safe way to undo changes on a public branch since it does not alter the existing commit history. Reverting is typically used to fix a mistake in a commit without altering the commit history.
+
+**Git Rebase** : Rebase is a way to integrate the changes from one branch onto another. It works by moving the starting point of the branch to a different commit, applying the commits from one branch to another, and then reapplying the commits from the original branch on top of the new base. This can be used to maintain a linear project history. Rebase should be used carefully, especially when working with shared branches, as it rewrites commit history and can cause conflicts for other users.
+
+**Git Reset** : Reset is used to reset the current HEAD to a specified state. It can be used to undo changes or move the current branch to a different commit. There are three types of resets: soft, mixed, and hard.
+
+	Soft reset keeps the changes in the working directory.
+	Mixed reset keeps the changes in the working directory but resets the staging area to the specified commit.
+	Hard reset discards all changes in the working directory and staging area, reverting the repository to the specified commit.
+
+In summary, revert creates a new commit to undo changes, rebase integrates changes from one branch onto another, and reset is used to move the current branch to a different commit or undo changes with various degrees of aggressiveness. Each command serves a different purpose and should be used according to the specific requirements of the Git workflow.
+
 
 # Maven
 
