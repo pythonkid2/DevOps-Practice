@@ -215,102 +215,125 @@ public class SeleniumExample {
 }
 ```
 **WebDriver driver = new ChromeDriver();**
+
 By using this line of code, you can create a new instance of the ChromeDriver, which then allows you to control the Chrome browser through your Java code using Selenium WebDriver.
+
 **why driver in selenium** 
+
 In Selenium, the term "driver" refers to the software component that facilitates the communication between your test script and the browser. It acts as a bridge between the automation script and the browser's native support for automation (such as Chrome, Firefox, or others). The driver is a crucial part of the Selenium framework as it enables you to control the browser, navigate to URLs, and interact with web elements.	
 
 
 # Jenkins
 
-**Polling the SCM in jenkins**	
+## Polling the SCM in Jenkins
 
 Polling the SCM (Software Configuration Management) in Jenkins refers to the process of periodically checking the source code repository for any changes. Jenkins can be configured to check the repository at a specified interval, and if changes are detected, it triggers a build process.
 
 To enable polling the SCM in Jenkins, follow these steps:
 
-	Go to your Jenkins dashboard and select the desired project.
-	Click on "Configure" to access the project configuration.
-	Look for the "Build Triggers" section.
-	Check the option that allows polling the SCM. You may need to specify the frequency of the polling.
-	Save the configuration.
-	
+1. Go to your Jenkins dashboard and select the desired project.
+2. Click on "Configure" to access the project configuration.
+3. Look for the "Build Triggers" section.
+4. Check the option that allows polling the SCM. You may need to specify the frequency of the polling.
+5. Save the configuration.
+
 Once enabled, Jenkins will check the source code repository at the specified interval. If it detects any changes, it will trigger a build process automatically. This can be an effective way to ensure that your project is continuously built and tested whenever there are updates in the source code repository.
 
-**How to add slave connection in jenkins**
-	
- Set up the Slave Node:
+## How to Add Slave Connection in Jenkins
 
-	Ensure that the slave machine is reachable from the Jenkins master.
-	Install Java and the necessary tools on the slave machine if they are not already installed.
-	Ensure that the slave machine has the required network access to the Jenkins master.
-	
-Configure Jenkins Master:
+### Set up the Slave Node:
 
-	Log in to your Jenkins dashboard as an administrator.
-	Click on "Manage Jenkins" on the left-hand side.
-	Select "Manage Nodes and Clouds."
-	Click on "New Node" or "New Agent" to create a new node.
-	Provide a node name and select the option for a permanent agent.
-	Enter the necessary details such as the number of executors, remote root directory, labels, and usage.
-	Choose the appropriate launch method, such as via Java Web Start or SSH.
-	Enter the specific details required for the selected launch method.
-	Save Configuration and Connect:
+- Ensure that the slave machine is reachable from the Jenkins master.
+- Install Java and the necessary tools on the slave machine if they are not already installed.
+- Ensure that the slave machine has the required network access to the Jenkins master.
 
-	Save the configuration of the node.
-	Jenkins will provide you with a command or instructions on how to launch the agent on the slave machine. Execute this command on the slave machine to connect it to the Jenkins master.
-	Verify the Connection:
+### Configure Jenkins Master:
 
-	Once the connection is established, the slave node should appear in the Jenkins dashboard under "Nodes" or "Agents."
-	You can then use this slave node to distribute build and test jobs from the Jenkins master.
+1. Log in to your Jenkins dashboard as an administrator.
+2. Click on "Manage Jenkins" on the left-hand side.
+3. Select "Manage Nodes and Clouds."
+4. Click on "New Node" or "New Agent" to create a new node.
+5. Provide a node name and select the option for a permanent agent.
+6. Enter the necessary details such as the number of executors, remote root directory, labels, and usage.
+7. Choose the appropriate launch method, such as via Java Web Start or SSH.
+8. Enter the specific details required for the selected launch method.
+
+### Save Configuration and Connect:
+
+- Save the configuration of the node.
+- Jenkins will provide you with a command or instructions on how to launch the agent on the slave machine. Execute this command on the slave machine to connect it to the Jenkins master.
+
+### Verify the Connection:
+
+- Once the connection is established, the slave node should appear in the Jenkins dashboard under "Nodes" or "Agents."
+- You can then use this slave node to distribute build and test jobs from the Jenkins master.
 
 
-**A multi-branch pipeline**
+## A Multi-Branch Pipeline
 
-**A multi-branch pipeline** project in Jenkins is a type of project that allows you to implement different Jenkins pipelines for multiple branches of your source code repository. It automatically detects branches in the repository and creates a pipeline for each branch. This feature is particularly useful for managing and automating the build and test process for projects with multiple branches, such as feature branches, release branches, and hotfix branches.
+A **multi-branch pipeline** project in Jenkins is a type of project that allows you to implement different Jenkins pipelines for multiple branches of your source code repository. It automatically detects branches in the repository and creates a pipeline for each branch. This feature is particularly useful for managing and automating the build and test process for projects with multiple branches, such as feature branches, release branches, and hotfix branches.
 
 With a multi-branch pipeline project, you can:
 
-Automatically detect new branches in your repository and create corresponding pipelines.
-Build, test, and deploy each branch separately, enabling isolated development and testing environments.
-Track the build and test status of each branch independently.
-Merge changes back to the main branch (e.g., master) once the development on a branch is complete and tested.
+- Automatically detect new branches in your repository and create corresponding pipelines.
+- Build, test, and deploy each branch separately, enabling isolated development and testing environments.
+- Track the build and test status of each branch independently.
+- Merge changes back to the main branch (e.g., master) once the development on a branch is complete and tested.
 
-**how to add custom plugin in jenkin**
-Download the Plugin:
-Locate the plugin you wish to install from the Jenkins Plugin Index or from a reliable source. Ensure that the plugin is compatible with your Jenkins version.
 
-Install the Plugin:
-	Log in to your Jenkins dashboard as an administrator.
-	Click on "Jenkins" at the top left to go to the dashboard.
-	In the left sidebar, select "Manage Jenkins."
-	Click on "Manage Plugins."
-	Navigate to the "Available" tab.
-	Find the plugin you want to install, select the checkbox next to its name, and click "Install without restart" or "Download now and install after restart."
-	Restart Jenkins (If Required):
-        If the plugin installation requires a Jenkins restart, a notification will appear. Follow the instructions to restart Jenkins.
-	Configure the Plugin:
-	Once the plugin is installed, you may need to configure it based on your requirements. Check the plugin documentation or the Jenkins wiki for instructions on how to configure the specific plugin you have installed.
+## How to Add Custom Plugin in Jenkins
 
-**Post build actions in jenkins** 
-In Jenkins, post-build actions are the additional operations or tasks that you can configure to be executed after the main build step has completed. 
-Some common post-build actions in Jenkins include:
-**Archive the artifacts: Publish JUnit test result report: Triggering other projects: Sending email notifications: Post to Slack or other communication platforms: 
-Publishing build reports and metrics:Executing shell scripts or batch commands**
+### Download the Plugin:
 
-**Plugins in Jenkins**
+1. Locate the plugin you wish to install from the Jenkins Plugin Index or from a reliable source. Ensure that the plugin is compatible with your Jenkins version.
+
+### Install the Plugin:
+
+1. Log in to your Jenkins dashboard as an administrator.
+2. Click on "Jenkins" at the top left to go to the dashboard.
+3. In the left sidebar, select "Manage Jenkins."
+4. Click on "Manage Plugins."
+5. Navigate to the "Available" tab.
+6. Find the plugin you want to install, select the checkbox next to its name, and click "Install without restart" or "Download now and install after restart."
+
+### Restart Jenkins (If Required):
+
+If the plugin installation requires a Jenkins restart, a notification will appear. Follow the instructions to restart Jenkins.
+
+### Configure the Plugin:
+
+Once the plugin is installed, you may need to configure it based on your requirements. Check the plugin documentation or the Jenkins wiki for instructions on how to configure the specific plugin you have installed.
+
+## Post-Build Actions in Jenkins
+
+In Jenkins, post-build actions are the additional operations or tasks that you can configure to be executed after the main build step has completed. Some common post-build actions in Jenkins include:
+
+- **Archive the artifacts**
+- **Publish JUnit test result report**
+- **Triggering other projects**
+- **Sending email notifications**
+- **Post to Slack or other communication platforms**
+- **Publishing build reports and metrics**
+- **Executing shell scripts or batch commands**
+
+
+## Plugins in Jenkins
+
 **Plugins in Jenkins** are software components that extend the functionality of the Jenkins automation server. They allow you to integrate additional features and tools into your Jenkins environment, enabling you to customize and enhance your CI/CD (Continuous Integration/Continuous Deployment) pipelines.
- 
-**available anotations in jenkins**
+
+## Available Annotations in Jenkins
+
 Jenkins supports various annotations and directives that can be used within Jenkinsfiles, which are used to define Jenkins pipelines. These annotations and directives provide instructions to Jenkins on how to execute the pipeline stages and steps. Some of the commonly used annotations in Jenkins are as follows:
 
-agent: Specifies the agent to use for running the pipeline. For example, agent any indicates that the pipeline can be run on any available agent.
-options: Provides various configuration options for the pipeline, such as timeouts, build discard policies, and more.
-parameters: Defines input parameters that can be used to trigger the pipeline manually or to provide user-specified values during the pipeline execution.
-stages: Defines the different stages of the pipeline, allowing you to organize the pipeline steps into logical groups.
-steps: Represents the individual steps to be executed within a stage, such as building, testing, or deploying the application.
-environment: Defines the environment variables that should be available to the steps within the pipeline.
-post: Specifies actions that should be performed after the stages have been executed, such as sending notifications, archiving artifacts, or triggering other pipelines.
-when: Allows conditional execution of certain stages or steps based on specific conditions, such as the result of a previous step or a predefined variable.
+- **agent:** Specifies the agent to use for running the pipeline. For example, `agent any` indicates that the pipeline can be run on any available agent.
+- **options:** Provides various configuration options for the pipeline, such as timeouts, build discard policies, and more.
+- **parameters:** Defines input parameters that can be used to trigger the pipeline manually or to provide user-specified values during the pipeline execution.
+- **stages:** Defines the different stages of the pipeline, allowing you to organize the pipeline steps into logical groups.
+- **steps:** Represents the individual steps to be executed within a stage, such as building, testing, or deploying the application.
+- **environment:** Defines the environment variables that should be available to the steps within the pipeline.
+- **post:** Specifies actions that should be performed after the stages have been executed, such as sending notifications, archiving artifacts, or triggering other pipelines.
+- **when:** Allows conditional execution of certain stages or steps based on specific conditions, such as the result of a previous step or a predefined variable.
+
 
 freestyle project vs pipe line
 
@@ -336,14 +359,6 @@ Version Control Integration: Pipeline projects can be stored in source control r
 Better Visualization and Error Handling: Pipelines offer better visualization of the entire build process, including detailed logs, stage views, and error handling capabilities, which help in identifying and resolving issues more effectively.</td>
  </tr>
 </table>
-
-**"artifact" and "package"** refer to different concepts:
-
-**Artifact**: In Maven, an artifact refers to a uniquely identifiable component, such as a JAR, WAR, or ZIP file that is produced as a result of the build process. It is essentially a file, usually a JAR file, which gets installed into a Maven repository. Each artifact has a specific coordinate that uniquely identifies it, consisting of a group ID, artifact ID, version, and packaging type. Maven artifacts are identified and managed using these coordinates, allowing for easy dependency management and build automation.
-
-**Package**: The term "package" in Maven refers to the type of artifact that is being produced during the build process. It indicates the format in which the project is being packaged. Maven supports various packaging types, such as JAR, WAR, EAR, and others. The packaging type is specified in the project's configuration file (pom.xml) using the <packaging> element. Maven plugins use this information to generate the appropriate artifact during the build process. For example, if the packaging type is set to "jar," Maven will create a JAR artifact as the output.
-
-In summary, "artifact" in Maven refers to the produced file or component that is managed and identified based on its coordinates, while "package" refers to the type of artifact that is being generated during the build process, which determines the format of the resulting file, such as JAR, WAR, or others.
 
 
 # Docker
