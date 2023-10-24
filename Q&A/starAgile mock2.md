@@ -383,6 +383,8 @@ In summary, images are the blueprints used to create containers, while container
 
 **Types of docker networks ?**
 
+ref: https://www.youtube.com/watch?v=bKFMS5C4CG0
+
 Docker provides several types of networks to facilitate communication between containers and between containers and the outside world. These networks offer different features and functionalities to meet various use cases. Here are some of the types of Docker networks:
 
 **Bridge network**: This is the default network that enables communication between containers on the same Docker daemon host. Containers connected to the same bridge network can communicate with each other via IP addresses. It also allows the containers to communicate with external networks using NAT (Network Address Translation).
