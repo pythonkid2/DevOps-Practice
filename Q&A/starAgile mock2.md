@@ -381,23 +381,27 @@ A container is a runtime instance of an image—basically, a running process iso
 
 In summary, images are the blueprints used to create containers, while containers are the actual runtime instances of those images. Containers provide a consistent environment for running applications, and images provide a way to package and distribute software with all its dependencies.
 
-**Types of docker networks ?**
+**Types of Docker Networks**
 
-ref: https://www.youtube.com/watch?v=bKFMS5C4CG0
+Reference: [YouTube - Types of Docker Networks](https://www.youtube.com/watch?v=bKFMS5C4CG0)
 
-Docker provides several types of networks to facilitate communication between containers and between containers and the outside world. These networks offer different features and functionalities to meet various use cases. Here are some of the types of Docker networks:
+Docker provides several types of networks to facilitate communication between containers and the outside world, each catering to different use cases. Here's an overview of the various types of Docker networks:
 
-**Bridge network**: This is the default network that enables communication between containers on the same Docker daemon host. Containers connected to the same bridge network can communicate with each other via IP addresses. It also allows the containers to communicate with external networks using NAT (Network Address Translation).
+1. **Bridge Network**: This default network enables communication between containers on the same Docker daemon host. Containers on this network communicate via IP addresses and can connect to external networks using NAT (Network Address Translation).
 
-**Host network**: With the host network mode, a container shares the network namespace with the Docker host. This means the container does not have network isolation from the host and can use the host's network directly. This can be beneficial for performance-critical applications that require full access to the host's network stack.
+2. **Host Network**: Containers using the host network mode share the network namespace with the Docker host. This eliminates network isolation from the host and allows the container to use the host's network directly, beneficial for performance-critical applications.
 
-**Overlay network**: This type of network allows containers to communicate across multiple Docker daemons. It facilitates communication between containers running on different Docker hosts or even different cloud providers. It is particularly useful for container orchestration and clustering systems, enabling seamless communication between containers across the cluster.
+3. **Overlay Network**: This network type facilitates communication between containers across multiple Docker daemons. It's particularly useful for container orchestration, enabling seamless communication between containers across different hosts or cloud providers.
 
-**Macvlan network**: Macvlan allows you to assign a MAC address to a container, making it appear as a physical device on the network. This is useful when you need to connect containers directly to external networks, giving them direct access to the physical network without any encapsulation.
+4. **Macvlan Network**: Macvlan assigns a MAC address to a container, making it appear as a physical device on the network. This allows containers direct access to external networks without encapsulation.
 
-**None network**: Containers attached to the none network have no access to external networks and can only communicate with the Docker host. This can be useful in scenarios where you want to completely isolate a container from the network.
+5. **None Network**: Containers on the none network have no access to external networks, only communicating with the Docker host. It's ideal for scenarios requiring complete container isolation from the network.
 
-**Custom networks**: Docker also allows you to create your custom networks with specific configurations, enabling you to define your network's behavior, IP address range, and other properties according to your application's requirements. Custom networks provide flexibility and control over the networking environment for your containers.
+6. **Custom Networks**: Docker allows the creation of custom networks with specific configurations, providing flexibility and control over the networking environment for containers.
+
+7. **IPvlan**: This Docker network driver creates multiple virtual network interfaces within a parent interface, enabling containers to have unique MAC and IP addresses while sharing the underlying physical network. It ensures network isolation and efficient resource utilization among containers.
+
+
 
 **what does docker buid command do & build vs run command**
 The docker build command is used to build Docker images from a Dockerfile. This process involves executing each instruction in the Dockerfile and creating a new layer for each instruction, ultimately producing a final image. The resulting image can be tagged and used to create containers.
