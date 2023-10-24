@@ -348,25 +348,24 @@ In summary, "artifact" in Maven refers to the produced file or component that is
 
 # Docker
 
-**cmd , entry point** in docker file
+In a Dockerfile, the **CMD** instruction is used to specify the command that should be executed when the Docker container starts. It defines the default command for the container, which can be overridden by providing a command at the end of the `docker run` command.
 
-	In a Dockerfile, the CMD instruction is used to specify the command that should be executed when the Docker container starts. It defines the default command for the container, which can be overridden by providing a command at the end of the docker run command.
-	
-	The ENTRYPOINT instruction, on the other hand, is used to set the main command that is always executed when the container starts. Unlike CMD, the parameters are not ignored when providing a command to the docker run command.
+The **ENTRYPOINT** instruction, on the other hand, is used to set the main command that is always executed when the container starts. Unlike `CMD`, the parameters are not ignored when providing a command to the `docker run` command.
 
-Other commands 
+Other important commands in a Dockerfile include:
 
-**FROM** : Specifies the base image for subsequent instructions. It is usually the first instruction in a Dockerfile.
-**RUN**: Executes commands in a new layer and creates a new image. This is used to install packages, run scripts, or perform any other actions during the build process.
-**COPY**: Copies files or directories from the build context into the container's own filesystem at a specified location.
-**ADD**: Similar to COPY, but it also supports URLs and automatically unpacks local tar files.
-**WORKDIR**: Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD instructions that follow it in the Dockerfile.
-**EXPOSE**: Informs Docker that the container listens on the specified network ports at runtime.
-**ENV**: Sets the environment variable to a specific value inside the container.
-**ARG**: Defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg flag.
-**VOLUME**: Creates a mount point with the specified name and marks it as holding externally mounted volumes from the native host or other containers.
-**USER**: Sets the user name or UID to use when running the image.
-**HEALTHCHECK**: Tells Docker how to test a container to check that it is still working.
+- **FROM**: Specifies the base image for subsequent instructions. It is usually the first instruction in a Dockerfile.
+- **RUN**: Executes commands in a new layer and creates a new image. This is used to install packages, run scripts, or perform any other actions during the build process.
+- **COPY**: Copies files or directories from the build context into the container's own filesystem at a specified location.
+- **ADD**: Similar to COPY, but it also supports URLs and automatically unpacks local tar files.
+- **WORKDIR**: Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD instructions that follow it in the Dockerfile.
+- **EXPOSE**: Informs Docker that the container listens on the specified network ports at runtime.
+- **ENV**: Sets the environment variable to a specific value inside the container.
+- **ARG**: Defines a variable that users can pass at build-time to the builder with the `docker build` command using the `--build-arg` flag.
+- **VOLUME**: Creates a mount point with the specified name and marks it as holding externally mounted volumes from the native host or other containers.
+- **USER**: Sets the user name or UID to use when running the image.
+- **HEALTHCHECK**: Tells Docker how to test a container to check that it is still working.
+
 
 Difference between **container and image**
 **Image**:
