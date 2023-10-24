@@ -157,18 +157,19 @@ key components of POM.xml
 - TestNG supports the creation of flexible and customizable test suites.
 
 
-**advantages of selenium**
+## Advantages of Selenium
 
 Selenium is a widely used open-source testing tool for web applications. Some of its advantages include:
 
-**Cross-Browser Compatibility**: Selenium supports various browsers like Chrome, Firefox, Internet Explorer, Safari, and Opera. This cross-browser compatibility ensures that the web application works consistently across different browsers.
-**Language Support**: Selenium provides support for multiple programming languages such as Java, Python, C#, Ruby, and more. This flexibility allows developers and testers to write test scripts in their preferred language.
-**Open-Source Nature**: Selenium is an open-source tool, making it cost-effective and easily accessible. The community support and regular updates ensure that it stays relevant and competitive in the dynamic software testing landscape.
-**Platform Compatibility**: Selenium can run on different operating systems like Windows, macOS, and Linux. This platform independence makes it a versatile tool for testing web applications developed on various platforms.
-**Integration with CI/CD**: Selenium can be seamlessly integrated with Continuous Integration/Continuous Deployment (CI/CD) tools like Jenkins, Bamboo, and TeamCity, enabling automated testing in the deployment pipeline.
-**Extensibility**: Selenium provides the flexibility to extend its functionalities through custom plugins and extensions. This extensibility allows users to incorporate additional features and integrate Selenium with other tools or frameworks.
-**Support for Parallel Testing**: Selenium supports parallel testing, enabling the execution of multiple test cases simultaneously. This feature helps to speed up the testing process and provides faster feedback on the application's behavior.
-**Large Community Support**: Selenium has a large and active user community that contributes to its development and shares best practices, tips, and solutions. This extensive community support ensures that users can find solutions to common issues and challenges while using Selenium.
+- **Cross-Browser Compatibility**: Selenium supports various browsers like Chrome, Firefox, Internet Explorer, Safari, and Opera. This cross-browser compatibility ensures that the web application works consistently across different browsers.
+- **Language Support**: Selenium provides support for multiple programming languages such as Java, Python, C#, Ruby, and more. This flexibility allows developers and testers to write test scripts in their preferred language.
+- **Open-Source Nature**: Selenium is an open-source tool, making it cost-effective and easily accessible. The community support and regular updates ensure that it stays relevant and competitive in the dynamic software testing landscape.
+- **Platform Compatibility**: Selenium can run on different operating systems like Windows, macOS, and Linux. This platform independence makes it a versatile tool for testing web applications developed on various platforms.
+- **Integration with CI/CD**: Selenium can be seamlessly integrated with Continuous Integration/Continuous Deployment (CI/CD) tools like Jenkins, Bamboo, and TeamCity, enabling automated testing in the deployment pipeline.
+- **Extensibility**: Selenium provides the flexibility to extend its functionalities through custom plugins and extensions. This extensibility allows users to incorporate additional features and integrate Selenium with other tools or frameworks.
+- **Support for Parallel Testing**: Selenium supports parallel testing, enabling the execution of multiple test cases simultaneously. This feature helps to speed up the testing process and provides faster feedback on the application's behavior.
+- **Large Community Support**: Selenium has a large and active user community that contributes to its development and shares best practices, tips, and solutions. This extensive community support ensures that users can find solutions to common issues and challenges while using Selenium.
+
 
 **TestNG**
 
