@@ -44,7 +44,19 @@ git fetch: This command only fetches the changes from the remote repository and 
 **git log**
 The git log command is used to display the commit history in the repository. It shows the commit logs starting from the latest commit, allowing you to view information such as commit hashes, author details, dates, and commit messages. Here's an example of how to use it: $ git log
 
-git log using various options. For example, you can use options like --oneline to display each commit on a single line or --graph to visualize the commit history as a graph.
+git log using various options. For example, you can use options like **--oneline** to display each commit on a single line or --graph to visualize the commit history as a graph.
+
+**Git stash**
+
+`Git stash` is a command in Git that allows you to temporarily store your changes without committing them. This can be particularly useful when you need to switch branches or if you want to save changes for later without committing them to your repository.
+
+Here's how it works:
+
+- When you run `git stash`, Git will stash away your changes and revert your working directory to match the HEAD commit.
+- You can later reapply your changes by using `git stash apply` or `git stash pop`.
+  - `git stash apply` will reapply the most recent stash, leaving it in the stash list for potential later use.
+  - `git stash pop` will reapply the most recent stash and then remove it from the stash list.
+
 
 **git status**
 Use `git status` to list all new or modified files that haven't yet been committed.
