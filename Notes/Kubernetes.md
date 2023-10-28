@@ -41,7 +41,7 @@ spec:
 
 - `apiVersion: v1`: This specifies the Kubernetes API version being used, with "v1" representing the core version of the Kubernetes API.
 
-- `kind: Pod`: This indicates that the YAML defines a Kubernetes pod. Pods are the smallest deployable units in Kubernetes and can contain one or more containers.
+- `kind: Pod`: This indicates that the YAML defines a Kubernetes pod. **Pods are the smallest deployable units in Kubernetes and can contain one or more containers**.
 
 - `metadata`: This section contains metadata about the pod, including its name. In this case, the name of the pod is set as "nginx".
 
@@ -58,6 +58,96 @@ spec:
 - `containerPort: 80`: This sets the container's port to 80, which is the default port for the HTTP protocol.
 
 - `name: http`: This provides a name for the port, which is set as "http" to specify that it is for handling HTTP traffic.
+
+
+## Important Kubernetes Commands
+
+### Managing Resources
+
+* To create or update resources based on a configuration file:
+    ```
+    kubectl apply -f <filename>
+    ```
+* To view Kubernetes resources such as pods, services, and deployments:
+    ```
+    kubectl get <resource>
+    ```
+* To view detailed information about a specific resource:
+    ```
+    kubectl describe <resource> <resource-name>
+    ```
+* To delete resources by filename or resource type and name:
+    ```
+    kubectl delete -f <filename>
+    kubectl delete <resource> <resource-name>
+    ```
+
+### Inspecting and Managing Pods and Containers
+
+* To execute a command on a container within a pod:
+    ```
+    kubectl exec -it <pod-name> -- <command>
+    ```
+* To access logs from a container within a pod:
+    ```
+    kubectl logs <pod-name>
+    ```
+
+### Scaling Deployments
+
+* To scale the number of replicas in a deployment:
+    ```
+    kubectl scale --replicas=<number> deployment/<deployment-name>
+    ```
+
+### Exposing Resources
+
+* To expose a deployment, service, or pod as a new Kubernetes service:
+    ```
+    kubectl expose <resource> <name> --type=NodePort --port=<port>
+    ```
+
+### Creating and Updating Deployments
+
+* To create a Kubernetes deployment:
+    ```
+    kubectl create deployment <name> --image=<image-name>
+    ```
+* To update the image of a container in a deployment:
+    ```
+    kubectl set image deployment/<deployment-name> <container-name> = <new-image>
+    ```
+
+### Checking the Cluster Status
+
+* To check the status of the cluster and its components:
+    ```
+    kubectl cluster-info
+    kubectl get componentstatuses
+    ```
+
+### Managing Nodes
+
+* **kubectl get nodes** - List all of the nodes in the cluster.
+* **kubectl describe node <node-name>** - Get detailed information about a specific node.
+* **kubectl delete node <node-name>** - Delete a node from the cluster.
+
+### Managing Services
+
+* **kubectl create service <service-name> --type=LoadBalancer --port=<port>** - Create a new LoadBalancer service.
+
+### Port Forwarding
+
+* **kubectl port-forward <pod-name> <local-port>:<container-port>** - Forward a local port to a container port on a pod.
+
+### Monitoring
+
+* **kubectl top pod** - Display the resource usage of all pods in the cluster.
+* **kubectl top node** - Display the resource usage of all nodes in the cluster.
+
+### Resource Documentation
+
+* **kubectl explain <resource-type>** - Get a detailed explanation of a Kubernetes resource type.
 
 
 
