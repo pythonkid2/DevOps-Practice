@@ -23,6 +23,8 @@
 
 In Kubernetes, a "pause container" is a small, behind-the-scenes container that helps other containers in the same group communicate and share resources easily.
 
+**Kubernetes YAML configuration that defines a basic pod**
+
 ```
 apiVersion: v1
 kind: Pod
