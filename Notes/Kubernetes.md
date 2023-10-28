@@ -1,20 +1,24 @@
 
 29/8
 
-**Load Balancing** – Is the capability to distribute the traffic among the multiple instances according to some algorithms (example round robin)
+**Load Balancing** - Is the capability to distribute the traffic among multiple instances according to some algorithms (e.g., round robin).
 
-**Service Discovery** – Whenever a new instance comes up, system should know and connect to it 
-			  Whenever an existing system crash system should know and stop forwarding request to it
+**Service Discovery** - 
+- Whenever a new instance comes up, the system should be aware of it and connect to it.
+- Whenever an existing system crashes, the system should be informed to stop forwarding requests to it.
 
-**Kubernetes**
 
-- Automatic Failover
-- Communicate between two containers (on diff machine too)
-	- Service discovery
-	- Load balancing
-- Automatic Bin packing and scheduling
-- Automatic scaling
-- scale out/scale in
+# Kubernetes
+
+- Automatic Failover: Kubernetes provides automated failover mechanisms to ensure high availability and minimize downtime in case of node failures.
+
+- Communication between two containers (across different machines):
+  - Service Discovery, Load Balancing: 
+- Automatic Bin Packing and Scheduling: Kubernetes automatically schedules containers based on resource requirements and constraints, ensuring efficient resource utilization and optimal performance.
+
+- Automatic Scaling:
+  - Scale-out/Scale-in: Kubernetes enables automatic scaling of applications based on predefined metrics, allowing for seamless horizontal scaling by adding or removing instances to meet the demands of the workload dynamically.
+
 - 
 
 
