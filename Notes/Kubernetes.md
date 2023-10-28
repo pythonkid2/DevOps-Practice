@@ -59,6 +59,53 @@ spec:
 
 - `name: http`: This provides a name for the port, which is set as "http" to specify that it is for handling HTTP traffic.
 
+## Kubernetes Architechure
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0ba7a510-a2d8-4300-8f98-636c2ee00e02)
+
+
+### Master Node:
+
+- **API Server:**
+  - Acts as the front-end for the Kubernetes control plane.
+  - Responsible for:
+    - Authentication
+    - Authorization
+    - Validation
+    - Communicates with etcd
+
+- **Scheduler:** Assigns workloads to nodes based on resource availability and constraints.
+- **Controller Manager:** Manages different types of controllers.
+- **etcd:** A distributed key-value store that stores the cluster's configuration data.(nosql database)
+  - Stores the infrastructure configuration.
+  - Used for persisting Kubernetes cluster state, including Pod status.
+
+### Worker Nodes:
+
+- **Kubelet:** Acts as the primary node agent that communicates with the master node.
+- **Kube-Proxy:** Manages network communication between different services and components.
+- **Container Runtime:** Responsible for running containers, such as Docker or containerd.
+
+### Pods:
+
+- A Pod is the basic building block of Kubernetes representing a single instance of a running process.
+
+### Labels and Selectors:
+
+- **Labels:** Key-value pairs attached to objects for logical groupings.
+- **Selectors:** Identify a set of objects sharing common labels.
+
+### Services:
+
+- Provide a way to abstract and expose an application running on a set of Pods as a network service.
+
+### Volumes:
+
+- Provide a way for containers to store and access data.
+
+### Namespaces:
+
+- Virtual clusters within a physical cluster used to divide resources between multiple users or projects.
 
 ## Important Kubernetes Commands
 
@@ -148,54 +195,6 @@ spec:
 **Resource Documentation**
 
 * **kubectl explain <resource-type>** - Get a detailed explanation of a Kubernetes resource type. 
-
-## Kubernetes Architechure
-
-![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0ba7a510-a2d8-4300-8f98-636c2ee00e02)
-
-
-### Master Node:
-
-- **API Server:**
-  - Acts as the front-end for the Kubernetes control plane.
-  - Responsible for:
-    - Authentication
-    - Authorization
-    - Validation
-    - Communicates with etcd
-
-- **Scheduler:** Assigns workloads to nodes based on resource availability and constraints.
-- **Controller Manager:** Manages different types of controllers.
-- **etcd:** A distributed key-value store that stores the cluster's configuration data.(nosql database)
-  - Stores the infrastructure configuration.
-  - Used for persisting Kubernetes cluster state, including Pod status.
-
-### Worker Nodes:
-
-- **Kubelet:** Acts as the primary node agent that communicates with the master node.
-- **Kube-Proxy:** Manages network communication between different services and components.
-- **Container Runtime:** Responsible for running containers, such as Docker or containerd.
-
-### Pods:
-
-- A Pod is the basic building block of Kubernetes representing a single instance of a running process.
-
-### Labels and Selectors:
-
-- **Labels:** Key-value pairs attached to objects for logical groupings.
-- **Selectors:** Identify a set of objects sharing common labels.
-
-### Services:
-
-- Provide a way to abstract and expose an application running on a set of Pods as a network service.
-
-### Volumes:
-
-- Provide a way for containers to store and access data.
-
-### Namespaces:
-
-- Virtual clusters within a physical cluster used to divide resources between multiple users or projects.
 
 ### Ingress:
 
