@@ -116,20 +116,68 @@ Replicas in Kubernetes refer to the copies of a pod that ensure high availabilit
 **Deployment**
 Deployment is an object that helps manage the rollout and updates of application instances. Deployments allow you to declaratively define the desired state of your application and handle updates seamlessly, ensuring that the application remains available during the update process. They enable features such as rolling updates, rollbacks, and scaling, making them a crucial tool for managing the lifecycle of applications in a Kubernetes cluster.
     -internally create replica set
-  
--rolling update
--roll back
--load balancing (clisterip)
--nodeport - talk to the ip of node machine
--labels
-- get pod ---show-labels
--service
--Load balancer  
 
-**Kubernetes Service**
+**Rolling Update**
+A rolling update is a process of updating a deployment by gradually replacing the old pods with new pods. This allows you to update your application without downtime.
 
+To perform a rolling update, you can use the following command:
+```
+kubectl rollout update deployment/<deployment-name> --image=<new-container-image>
+```
+**Rollback**
 
+A rollback is the process of reverting a deployment to a previous version. This can be useful if you encounter problems with a new deployment.
 
+To perform a rollback, you can use the following command:
+```
+kubectl rollout undo deployment/<deployment-name>
+```
+Kubernetes will revert the deployment to the previous version, and your application will be restored to its previous state.
+
+**Load Balancing (ClusterIP)**
+
+ClusterIP is the default load balancing service type in Kubernetes. It assigns the service a virtual IP address, which is used to route traffic to the pods that match the service's selector.
+
+To create a ClusterIP service, you can use the following command:
+
+```
+kubectl create service clusterip <service-name> --selector=<selector>
+```
+**NodePort**
+NodePort is a service type that exposes the service on a port on each node in the cluster. This can be useful for exposing services to external clients.
+
+To create a NodePort service, you can use the following command:
+```
+kubectl create service nodeport <service-name> --selector=<selector> --node-port=<node-port>
+```
+The node-port parameter specifies the port on which the service will be exposed on each node in the cluster.
+
+**Labels**
+
+Labels are key-value pairs that can be used to identify and select objects in Kubernetes. Labels can be attached to Pods, Deployments, Services, and other Kubernetes objects.
+
+To get the labels for a Pod, you can use the following command:
+```
+kubectl get pod <pod-name> --show-labels
+```
+**Service**
+
+A Service is an object that exposes a set of Pods to other objects in the cluster. Services provide a way to abstract away the details of individual Pods and provide a stable address for clients to connect to.
+
+To create a Service, you can use the following command:
+```
+kubectl create service <service-type> <service-name> --selector=<selector>
+```
+The service-type parameter specifies the type of Service to create. The service-name parameter specifies the name of the Service. The selector parameter specifies the Pods that the Service will expose.
+
+**Load Balancer**
+A Load Balancer is a type of Service that exposes the Service to external clients. Load Balancers can be used to expose web applications, databases, and other services to the outside world.
+
+To create a Load Balancer, you can use the following command:
+```
+kubectl create service loadbalancer <service-name> --selector=<selector>
+```
+Kubernetes will create a Load Balancer for the Service and assign it an external IP address. You can then use this IP address to access the Service from outside the cluster.
 
 ***
 ### Important Kubernetes Commands
