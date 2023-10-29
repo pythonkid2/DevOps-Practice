@@ -1,3 +1,8 @@
+
+**Infrastructure as Code**
+
+Infrastructure as Code (IaC) is the practice of managing and provisioning computing infrastructure through machine-readable scripts. It treats infrastructure as software, enabling automation and ensuring consistency. IaC facilitates scalability, faster deployment, and reduced errors. Popular tools include Ansible, Terraform, Puppet, and Chef.
+
 # Ansible
 
 ## Overview of Configuration Automation
