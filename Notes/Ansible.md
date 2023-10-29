@@ -14,7 +14,7 @@ Types of configuration management:
 - Change Management
 - Database Configuration Management
 - Component Configuration Management
-
+ 
 Different approaches for applying configuration changes to target systems:
 
 - **Push Configuration Management:** The central server pushes changes to target systems simultaneously. Ansible and SaltStack utilize this approach for orchestrated configuration management across multiple nodes without requiring dedicated agents.
