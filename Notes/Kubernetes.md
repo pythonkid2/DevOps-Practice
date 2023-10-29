@@ -120,10 +120,11 @@ Deployment is an object that helps manage the rollout and updates of application
 -rolling update
 -roll back
 -load balancing (clisterip)
--node port - talk to the ip of node machine
+-nodeport - talk to the ip of node machine
 -labels
 - get pod ---show-labels
-- 
+-service
+-Load balancer  
 
 **Kubernetes Service**
 
