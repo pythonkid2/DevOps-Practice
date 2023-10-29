@@ -3,6 +3,26 @@
 
 Infrastructure as Code (IaC) is the practice of managing and provisioning computing infrastructure through machine-readable scripts. It treats infrastructure as software, enabling automation and ensuring consistency. IaC facilitates scalability, faster deployment, and reduced errors. Popular tools include Ansible, Terraform, Puppet, and Chef.
 
+**Configuration management**
+
+Configuration management is a crucial aspect of IT operations that involves systematically managing changes to a system's configuration. It ensures that the performance, functionality, and other attributes of the system remain consistent over time.
+
+Types of configuration management:
+
+- Software Configuration Management (SCM)
+- Infrastructure Configuration Management
+- Change Management
+- Database Configuration Management
+- Component Configuration Management
+
+Different approaches for applying configuration changes to target systems:
+
+- **Push Configuration Management:** The central server pushes changes to target systems simultaneously. Ansible and SaltStack utilize this approach for orchestrated configuration management across multiple nodes without requiring dedicated agents.
+
+- **Pull Configuration Management:** Target systems actively retrieve configurations from a central server. Tools like Puppet and Chef commonly use this method, with target nodes periodically checking for and applying available updates.
+
+- **Agentless Approach:** Ansible adopts an agentless methodology, allowing management and execution of tasks on remote systems without the need for dedicated agent installations. This approach simplifies deployment and reduces overhead.
+
 # Ansible
 
 ## Overview of Configuration Automation
