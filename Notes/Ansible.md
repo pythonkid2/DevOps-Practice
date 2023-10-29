@@ -25,6 +25,44 @@ Different approaches for applying configuration changes to target systems:
 
 # Ansible
 
+Ansible is agentless, utilizing **SSH** for Linux and **PowerShell remoting** for Windows, enabling seamless management without the need for additional software on the target machines.
+- If the **inventory file** is not specified, Ansible looks for the default file located at **/etc/ansible/hosts**. This file contains data about the target machines, allowing Ansible to manage them seamlessly.
+ - ini
+
+
+We can set ansible_connection inventory parameter value to localhost to tell Ansible to make a local connection instead of ssh.
+qinrm for windows
+
+alias adding 
+web3 ansible_host=server3.company.com
+```
+# Sample Inventory File
+  
+# Web Servers
+web1 ansible_host=server1.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+web2 ansible_host=server2.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+web3 ansible_host=server3.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+
+# Database Servers
+db1 ansible_host=server4.company.com ansible_connection=winrm ansible_user=administrator ansible_password=Password123!
+
+
+[web_servers]
+web1
+web2
+web3
+
+[db_servers]
+db1
+
+#group of groups
+
+[all_servers:children]
+web_servers
+db_servers
+```
+****
+
 ## Overview of Configuration Automation
 - Definition and importance of configuration automation in IT infrastructure management.
 - Understanding how configuration automation streamlines and simplifies repetitive tasks.
