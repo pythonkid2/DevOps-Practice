@@ -22,7 +22,7 @@
 **pause container**
 
 In Kubernetes, a "pause container" is a small, behind-the-scenes container that helps other containers in the same group communicate and share resources easily.
-
+***
 **Kubernetes YAML configuration that defines a basic pod**
 
 ```
@@ -115,12 +115,17 @@ Replicas in Kubernetes refer to the copies of a pod that ensure high availabilit
 
 **Deployment**
 Deployment is an object that helps manage the rollout and updates of application instances. Deployments allow you to declaratively define the desired state of your application and handle updates seamlessly, ensuring that the application remains available during the update process. They enable features such as rolling updates, rollbacks, and scaling, making them a crucial tool for managing the lifecycle of applications in a Kubernetes cluster.
-
-
+    -internally create replica set
+  
 -rolling update
 -roll back
+-load balancing (clisterip)
+-node port - talk to the ip of node machine
+-
 
 **Kubernetes Service**
+
+
 
 
 ***
