@@ -64,7 +64,7 @@ spec:
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0ba7a510-a2d8-4300-8f98-636c2ee00e02)
 
 
-### Master Node:
+#### Master Node:
 
 - **API Server:**
   - Acts as the front-end for the Kubernetes control plane.
@@ -80,34 +80,51 @@ spec:
   - Stores the infrastructure configuration.
   - Used for persisting Kubernetes cluster state, including Pod status.
 
-### Worker Nodes:
+#### Worker Nodes:
 
 - **Kubelet:** Acts as the primary node agent that communicates with the master node.
 - **Kube-Proxy:** Manages network communication between different services and components.
 - **Container Runtime:** Responsible for running containers, such as Docker or containerd.
 
-### Pods:
+#### Pods:
 
 - A Pod is the basic building block of Kubernetes representing a single instance of a running process.
 
-### Labels and Selectors:
+#### Labels and Selectors:
 
 - **Labels:** Key-value pairs attached to objects for logical groupings.
 - **Selectors:** Identify a set of objects sharing common labels.
 
-### Services:
+#### Services:
 
 - Provide a way to abstract and expose an application running on a set of Pods as a network service.
 
-### Volumes:
+#### Volumes:
 
 - Provide a way for containers to store and access data.
 
-### Namespaces:
+#### Namespaces:
 
 - Virtual clusters within a physical cluster used to divide resources between multiple users or projects.
 
-## Important Kubernetes Commands
+***
+**Replica Set**
+
+Replicas in Kubernetes refer to the copies of a pod that ensure high availability. ReplicaSets manage these copies, ensuring a specified number of replicas run continuously. They help maintain application reliability and facilitate easy scaling. They work alongside Deployments for advanced deployment strategies like rolling updates and rollbacks.
+  -cant do update and roll back
+
+**Deployment**
+Deployment is an object that helps manage the rollout and updates of application instances. Deployments allow you to declaratively define the desired state of your application and handle updates seamlessly, ensuring that the application remains available during the update process. They enable features such as rolling updates, rollbacks, and scaling, making them a crucial tool for managing the lifecycle of applications in a Kubernetes cluster.
+
+
+-rolling update
+-roll back
+
+**Kubernetes Service**
+
+
+***
+### Important Kubernetes Commands
 
 **Managing Resources**
 
