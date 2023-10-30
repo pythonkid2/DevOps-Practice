@@ -26,3 +26,5 @@ Key points about exporters:
 - Exporters enable Prometheus to provide comprehensive visibility into the performance and health of various components within an infrastructure.
 
 By utilizing exporters, organizations can effectively monitor a wide array of systems and services in a standardized and consistent manner, facilitating data-driven decision-making and proactive issue resolution.
+
+url- ip:9090
