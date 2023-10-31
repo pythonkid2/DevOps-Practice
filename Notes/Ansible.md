@@ -114,6 +114,40 @@ To operate the Ansible playbooks and ensure smooth execution, consider the follo
 
 ***
 
+## Ansible Modules
+
+Ansible modules are discrete units of code that can be used from the command line or in Ansible playbooks. They are responsible for executing tasks in Ansible. These modules can control system resources, like services, packages, or files, or handle executing system commands. Some of the common types of Ansible modules include:
+
+- **System Modules:** These modules manage system services, packages, and other resources. Examples include `yum`, `apt`, `systemd`, and `service` modules.
+
+- **Commands Modules:** They execute commands on target nodes. Examples include the `command` and `shell` modules.
+
+- **Files Modules:** These modules deal with file operations like copying, moving, and managing file permissions. Examples include the `copy`, `fetch`, and `file` modules.
+
+- **Database Modules:** These modules manage database operations. Examples include the `mysql_db` and `postgresql_db` modules.
+
+- **Network Modules:** They are used for managing network devices. Examples include the `ios_command` and `nxos_command` modules.
+
+- **Cloud Modules:** These modules handle cloud-related operations, allowing the management of cloud resources. Examples include the `ec2` and `azure` modules.
+
+- **Security Modules:** These modules manage security-related tasks. Examples include the `user` and `acl` modules.
+
+- **Windows Modules:** They are used to manage Windows-based systems. Examples include the `win_command` and `win_shell` modules.
+
+- **Web Infrastructure Modules:** These modules manage web-related tasks. Examples include the `uri` and `get_url` modules.
+
+- **Container Modules:** These modules handle container-related operations. Examples include the `docker_container` and `docker_image` modules.
+
+- **Messaging Modules:** They are used for messaging tasks. Examples include the `rabbitmq_vhost` and `rabbitmq_user` modules.
+
+- **Monitoring Modules:** These modules manage monitoring tasks. Examples include the `zabbix_host` and `zabbix_user` modules.
+
+These modules provide a wide range of functionalities, enabling users to automate various tasks efficiently in their IT infrastructure.
+
+
+
+***
+
 ## Overview of Configuration Automation
 - Definition and importance of configuration automation in IT infrastructure management.
 - Understanding how configuration automation streamlines and simplifies repetitive tasks.
