@@ -1,0 +1,18 @@
+maven install
+	https://phoenixnap.com/kb/how-to-install-apache-maven-on-centos-7
+	curl -L -o /tmp/maven.tar.gz http://mirrors.ibiblio.org/apache/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+<<<<<<< HEAD
+	cd /tmp/
+	
+	sudo tar xvfz /tmp/maven.tar.gz 
+	sudo mv /tmp/apache-maven-3.6.0 /opt/
+=======
+	sudo tar xvfz /tmp/maven.tar.gz 
+	sudo ln –s /opt/apache-maven-3.6.0 /opt/maven
+>>>>>>> a36adf7b0a6133ee646a203d1f59798ac92220d5
+	sudo vi /etc/profile.d/javamaven.sh
+export JAVA_HOME=/root/graalvm-ce-java17-22.2.0
+export M3_HOME=/opt/apache-maven-3.8.6
+export MAVEN_HOME=/opt/apache-maven-3.8.6
+export PATH=${M3_HOME}/bin:${JAVA_HOME}/bin:${PATH}
+	sudo chmod +x /etc/profile.d/javamaven.sh
