@@ -1,3 +1,9 @@
+what the tool
+how to implement 
+basic commands
+how its using in corporate companies /real world scenario
+trouble shootoing 
+
 
 **Infrastructure as Code**
 
