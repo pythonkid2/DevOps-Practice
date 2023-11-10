@@ -25,6 +25,12 @@ Cloudformation need template and permission to run
 <img width="463" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/5dbe0987-d8d2-4cd3-8ba4-bc45f3efac9d">
 
 
+<img width="878" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/36e231d1-405d-4480-b8e7-61ad9d20e3cb">
+
+ec2--->vpc
+
+<img width="350" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/7e1ac8c7-7da6-4364-aab9-99177bcbee71">
+
 
 
 
