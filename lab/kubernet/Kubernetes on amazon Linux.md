@@ -11,17 +11,22 @@ t3a.medium
    ssh -i your-key.pem ec2-user@your-ec2-instance-ip
 
 2. Set the hostname:
-   sudo su
-
+```
+sudo su
+```
+```
 hostnamectl set-hostname kmaster
+```
 hostnamectl set-hostname kworker1
 hostnamectl set-hostname kworker2
-go to security group and configure all trafic for he security group
 
+go to security group and configure **all trafic** for he security group
+```
 vi /etc/hosts
-
+```
+```
 ip a
-
+```
 private-ip	kmaster 
 private-ip	kworker1 
 private-ip	kworker2
