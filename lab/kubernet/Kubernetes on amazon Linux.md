@@ -36,7 +36,7 @@ private-ip	kworker2
 sudo yum -y update
 
 4. Configure the Kubernetes Yum repository:
-
+```
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
@@ -46,26 +46,26 @@ gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 exclude=kubelet kubeadm kubectl
 EOF
-
+```
 5. Clean Yum cache:
-
+```
 sudo yum clean all
-
+```
 6. Make Yum cache:
-
+```
 sudo yum -y makecache
-
+```
 7. Install Kubernetes components:
-
+```
 sudo yum -y install kubelet-1.23* kubeadm-1.23* kubectl-1.23* --disableexcludes=kubernetes
-
+```
 kubeadm  version
 
 8. Disable SELinux:
-
+```
 sudo sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
 sudo setenforce 0
-
+```
 why?
 	By Disabling the SElinux all containers can easily access host filesystem
 	But in production it is recommended to work with selinux
@@ -73,42 +73,43 @@ why?
 		More details: https://dev.to/carminezacc/does-kubernetes-support-selinux-3oop
 
 9. Disable Swap:
-
+```
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 sudo swapoff -a
-
+```
 
 10. Load Kernel Modules:
- 
+ ```
 sudo modprobe overlay
 sudo modprobe br_netfilter 
- 
+ ```
 11. Configure Kernel Parameters:
 
----
+```
 sudo tee /etc/sysctl.d/kubernetes.conf<<EOF
 
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 net.ipv4.ip_forward = 1
 EOF
----
-
+```
+```
 sudo sysctl --system
 
+```
 
 12. Install Docker:
-
+```
 sudo yum install docker -y
-
+```
 13. Create Docker systemd directory and configuration:
 
 check - 
 	ls /etc/docker
-
+```
 sudo mkdir -p /etc/systemd/system/docker.service.d
-
----
+```
+```
 sudo tee /etc/docker/daemon.json <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
@@ -119,28 +120,29 @@ sudo tee /etc/docker/daemon.json <<EOF
   "storage-driver": "overlay2"
 }
 EOF
---- 
+``` 
  
 
 14. Restart Docker:
-
+```
 sudo systemctl restart docker
 sudo systemctl enable docker
-
+```
 
 15. Enable Docker and Kubernetes services:
 
- 
+ ```
 sudo systemctl enable kubelet
-
+```
 #systemctl start docker.service
 
 
-ONly on master -
+**Only on master -**
 
 16. Initialize Kubernetes cluster:
-
+```
 sudo kubeadm init
+```
 
 copy and paste join commands in both worker -
 
