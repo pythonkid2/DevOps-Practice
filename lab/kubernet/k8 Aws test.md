@@ -155,5 +155,94 @@ sudo kubeadm init
 Copy and paste the join commands in the worker nodes.
 
 ```
+Certainly, I'll format the instructions for troubleshooting the join command and the remaining steps in a markdown file:
 
-Feel free to adjust the formatting or provide more details if needed.
+```markdown
+# Troubleshoot Join Command and Complete Kubernetes Setup
+
+### Troubleshoot Join Command
+
+#### Generate Join Command on Master Node
+
+Run the following command on your Kubernetes master node to generate a new token and obtain the complete kubeadm join command:
+
+```bash
+kubeadm token create --print-join-command
+```
+
+Copy the output, as it will include the correct token and SHA-256 hash of the CA certificate.
+
+#### Join Worker Nodes
+
+On each worker node, execute the following command with the token and CA certificate hash obtained from the master:
+
+```bash
+kubeadm join 172.31.31.177:6443 --token <valid_token> --discovery-token-ca-cert-hash <valid_sha256_hash>
+```
+
+---
+
+### Continue Setup on Master Node
+
+17. **Set Up kubectl for Your User:**
+
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+18. **Install a CNI (Container Network Interface):**
+
+```bash
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+```
+
+19. **Monitor Pod Creation in kube-system Namespace:**
+
+```bash
+watch -n 1 kubectl get pod -n kube-system
+```
+
+20. **Run an Nginx Pod:**
+
+```bash
+kubectl run nginx --image=nginx
+```
+
+21. **Check the Status of the Nginx Pod:**
+
+```bash
+kubectl get pods
+kubectl get pods -o wide
+```
+
+22. **Access Kubernetes API Server:**
+
+```bash
+curl http://10.96.0.1
+```
+
+23. **Access the Nginx Pod:**
+
+```bash
+kubectl get svc
+```
+
+Identify the ClusterIP of the Nginx service and use it to access Nginx:
+
+```bash
+curl http://<ClusterIP>
+```
+
+### Additional Command:
+
+- **Delete All Pods:**
+
+```bash
+kubectl delete pod --all
+```
+
+
+
+
