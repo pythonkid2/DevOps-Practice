@@ -94,6 +94,8 @@ ssh-copy-id mathew@<ip>  #slave ip
 test connection with slave by using ssh ip 
 
 ssh@ip
+ssh 172.32.39.48
+
 exit
 --
 
