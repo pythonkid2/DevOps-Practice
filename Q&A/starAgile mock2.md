@@ -396,6 +396,7 @@ Other important commands in a Dockerfile include:
 
 
 Difference between **container and image**
+
 **Image**:
 An image is a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, system tools, system libraries, and settings. It is essentially a snapshot of a Docker container.
 
