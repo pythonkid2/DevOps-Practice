@@ -1,4 +1,8 @@
 
+path adding 
+
+export PATH=$PATH:/usr/local/bin
++++
 Install DOCKER  using the convenience script
 
 https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
