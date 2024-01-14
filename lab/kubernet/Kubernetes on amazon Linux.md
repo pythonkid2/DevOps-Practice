@@ -1,14 +1,4 @@
 
-We use kubectl run command with --dry-run=client -o yaml option to create a manifest file :-
-```
-kubectl run redis --image=redis123 --dry-run=client -o yaml > redis-definition.yaml
-```
-
-+++
-https://github.com/vilasvarghese/docker-k8s/blob/master/cicd/centos-instruction.txt
-
-++++
-
 # Installation 
 
 Number of instances :3
@@ -221,4 +211,19 @@ kubectl get pods -o wide
 ```
 
 
++++
+
+We use kubectl run command with --dry-run=client -o yaml option to create a manifest file :-
+```
+kubectl run redis --image=redis123 --dry-run=client -o yaml > redis-definition.yaml
+```
+
+If you used a pod definition file then update the image from redis123 to redis in the definition file via Vi or Nano editor and then run kubectl apply command to update the image :-
+
+kubectl apply -f redis-definition.yaml 
+
++++
+https://github.com/vilasvarghese/docker-k8s/blob/master/cicd/centos-instruction.txt
+
+++++
 
