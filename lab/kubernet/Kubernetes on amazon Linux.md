@@ -226,5 +226,9 @@ kubectl apply -f redis-definition.yaml
 https://github.com/vilasvarghese/docker-k8s/blob/master/cicd/centos-instruction.txt
 
 ++++
+# replicaset
 
 <img width="311" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/f9c92436-d2a5-4d27-aac1-6939f905da71">
+
+# scale
+Run the command: kubectl edit replicaset new-replica-set, modify the replicas and then save the file OR run: kubectl scale rs new-replica-set --replicas=2 to scale down to 2 PODs.
