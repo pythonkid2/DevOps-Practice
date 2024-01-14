@@ -1,7 +1,16 @@
 
+We use kubectl run command with --dry-run=client -o yaml option to create a manifest file :-
+```
+kubectl run redis --image=redis123 --dry-run=client -o yaml > redis-definition.yaml
+```
+
++++
 https://github.com/vilasvarghese/docker-k8s/blob/master/cicd/centos-instruction.txt
 
 ++++
+
+# Installation 
+
 Number of instances :3
 amazon linux 2 ami
 
