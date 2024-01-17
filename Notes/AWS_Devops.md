@@ -39,3 +39,9 @@ The following is a simplified representation of an AWS CI/CD pipeline:
 The workflow typically involves fetching code from Git repositories in CodeCommit, triggering a build process using CodeBuild, and deploying the built artifacts with CodeDeploy. CodePipeline orchestrates and integrates these steps, creating an end-to-end delivery process from source code to deployment.
 
 ***
+
+**IAM**
+
+<img width="843" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/f929ffc1-67d8-4934-a8ad-79e954d23357">
+
+
