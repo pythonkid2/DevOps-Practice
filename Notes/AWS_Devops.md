@@ -44,4 +44,6 @@ The workflow typically involves fetching code from Git repositories in CodeCommi
 
 <img width="843" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/f929ffc1-67d8-4934-a8ad-79e954d23357">
 
+**Security**
+<img width="563" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/dc498d25-f6e3-45db-9b31-aacfe52a6376">
 
