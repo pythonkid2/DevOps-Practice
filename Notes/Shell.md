@@ -21,3 +21,9 @@ user group alluser
 
 <img width="386" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/396b5384-b1f9-422c-b59f-19bf7eddad62">
 
+# pipe
+```
+ps -ef | grep top 
+```
+sends output of first command to second command
+
