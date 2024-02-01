@@ -37,3 +37,8 @@ for i in $(seq 1 100); do
         echo "i love INDIA"; done
 
 
+## awk
+```
+ps -ef | awk -F" " '{print $2}'
+```
+
