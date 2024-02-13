@@ -41,4 +41,6 @@ for i in $(seq 1 100); do
 ```
 ps -ef | awk -F" " '{print $2}'
 ```
-
+4 -read 
+2- write
+1- execute
