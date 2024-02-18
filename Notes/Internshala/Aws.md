@@ -21,3 +21,8 @@ IAM is a web service that helps you securely control access to AWS accounts and 
 You can provide secure access to multiple users to AWS resources with IAM. An AWS account is created with a single identity that gives you full access to the AWS account and its resources.
 
 This identity is called the AWS account root user, and you use the email address and password you used to create the account.
+
+# S3
+
+<img width="604" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/218b2357-06d5-40b3-9096-e4a9bfbedeee">
+
