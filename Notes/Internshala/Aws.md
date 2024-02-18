@@ -15,3 +15,9 @@ What is Identity and Access Management?
 
 Identity and Access Management is a framework to ensure that the right people in your organization can access the right service or
 as per their job.
+
+IAM is a web service that helps you securely control access to AWS accounts and resources. The purpose of IAM is to control who is authenticated (signed in) and authorized (has permission) to use resources.
+
+You can provide secure access to multiple users to AWS resources with IAM. An AWS account is created with a single identity that gives you full access to the AWS account and its resources.
+
+This identity is called the AWS account root user, and you use the email address and password you used to create the account.
