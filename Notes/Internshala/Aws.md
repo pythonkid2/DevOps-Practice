@@ -8,3 +8,10 @@ The AWS infrastructure is built around Regions and Availability Zones (AZs). An 
 
 
 Edge locations that are separate from Regions and are located at other locations. These Edge locations allow you to push your content near to your customers to give them a better experience on your platform.
+
+# IAM
+
+What is Identity and Access Management?
+
+Identity and Access Management is a framework to ensure that the right people in your organization can access the right service or
+as per their job.
