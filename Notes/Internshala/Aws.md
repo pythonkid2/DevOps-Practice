@@ -46,6 +46,7 @@ This identity is called the AWS account root user, and you use the email address
 
 <img width="329" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0a05c663-e200-4d79-a2aa-b1fa454dc8a7">
 
+<img width="613" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/756ae999-2832-4f87-8056-8ffc51872a04">
 
 
 
