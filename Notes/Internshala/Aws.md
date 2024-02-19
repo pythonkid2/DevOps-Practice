@@ -26,3 +26,38 @@ This identity is called the AWS account root user, and you use the email address
 
 <img width="604" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/218b2357-06d5-40b3-9096-e4a9bfbedeee">
 
+## Storage Class 
+
+<img width="335" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b107a582-e83e-4eb7-a9ee-9cb0ab11f5d2">
+
+<img width="568" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/f498bdf1-a22b-4b1b-ad17-730474fbe9d4">
+
+<img width="310" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/488badb9-2366-49c0-b9c4-be3f0fb5e808">
+
+<img width="368" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/a2f4c865-bead-44b1-ba85-e29de46d9a9d">
+
+<img width="379" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/7e0a32e3-396a-496a-b052-0902a17efd72">
+
+<img width="607" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/05119b28-4885-4ce2-adfe-8dac33796659">
+
+<img width="613" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/3470aaa5-f436-4b30-a7bf-2ab5769ff398">
+
+<img width="357" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/15c9a922-1315-4801-8cbc-9cc323343e9d">
+
+<img width="329" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0a05c663-e200-4d79-a2aa-b1fa454dc8a7">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
