@@ -147,6 +147,10 @@ D<img width="541" alt="image" src="https://github.com/pythonkid2/DevOps-Practice
 
 <img width="560" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/3ff2d2b4-0776-4612-9aaa-fcdda59fec19">
 
+<img width="569" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/cdfe62a5-1c12-49e7-8e86-1ed6c824b5cc">
+
+
+<img width="495" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b43236d9-ee02-43de-9067-528daa151ffc">
 
 
 
