@@ -140,6 +140,12 @@ Use AWS's instance type comparison tool and cost calculator to help choose the m
 
 Monitor your application's performance and resource utilization and adjust instance types as needed.
 
+<img width="355" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/e1affc73-0823-4748-90c2-05af77ed93a8">
+
+
+D<img width="541" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/833be449-d577-4172-a3cd-03f70eed1245">
+
+<img width="560" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/3ff2d2b4-0776-4612-9aaa-fcdda59fec19">
 
 
 
