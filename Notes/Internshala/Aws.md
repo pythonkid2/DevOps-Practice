@@ -93,7 +93,52 @@ A Virtual Private Cloud (VPC) is a dedicated virtual network environment within 
 * Consider adding code blocks for the CIDR block example.
 * For further details, explore the official AWS VPC documentation.
 
+# EC2
 
+<img width="559" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/33a0ca70-683c-4398-a9c2-f6ecbfd7149a">
+
+<img width="310" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/36ed27f9-28ab-4463-ba59-150f9b26480b">
+
+https://aws.amazon.com/products/compute/
+
+<img width="555" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/2fac1edd-9739-4e1e-b0a5-0efb105b925c">
+
+<img width="353" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/d22bd307-23d0-4b3d-ab8a-2fd9c34f6f1c">
+
+
+General Purpose: Suitable for small to medium-sized databases, web servers, and development environments that require a balance of resources.
+
+Compute Optimized: Ideal for applications that require high compute power, such as scientific simulations, rendering, and high-performance computing (HPC).
+
+Memory Optimized: Well-suited for memory-intensive workloads like in-memory databases, big data processing, and analytics.
+
+Storage Optimized: Best for data-intensive tasks like NoSQL databases, data warehousing, and high-capacity file servers.
+
+Accelerated Computing: Designed for AI, machine learning, deep learning, and GPU-intensive workloads like video encoding and rendering.
+2. Instance Naming Components:
+
+
+
+Instance Family: The broad category indicating the general purpose of the instance, like "t2" or "m5".
+
+Instance Type: The specific instance type within the family, often reflecting the resource balance or specialization, like "micro" or "large".
+
+Generation: A version identifier for the instance type, denoted by a number (e.g., "2" in "m5.2xlarge").
+
+Size: Refers to the size within the family and type, such as "2xlarge" or "4xlarge".
+
+GPU or CPU Type: In instances with specialized hardware, the GPU or CPU model might be specified, like "g4" for GPU or "c5" for CPU.
+3. The Right Instance:
+
+
+
+Understand your workload's resource requirements (CPU, memory, storage, network) and identify any specialized needs (GPU, instance store, etc.).
+
+Consider whether your workload is bursty, consistent, memory-intensive, compute-intensive, etc.
+
+Use AWS's instance type comparison tool and cost calculator to help choose the most cost-effective option.
+
+Monitor your application's performance and resource utilization and adjust instance types as needed.
 
 
 
