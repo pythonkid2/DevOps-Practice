@@ -80,6 +80,7 @@ db_servers
 - Roles: Organizes related tasks and files into a reusable and distributable component.
 
 ```
+---
 - hosts: webservers
   become: yes
   tasks:
