@@ -153,6 +153,7 @@ D<img width="541" alt="image" src="https://github.com/pythonkid2/DevOps-Practice
 <img width="495" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b43236d9-ee02-43de-9067-528daa151ffc">
 
 
++++
 
 
 
