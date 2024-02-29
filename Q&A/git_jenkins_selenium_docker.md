@@ -48,18 +48,17 @@ Source Code Management (SCM) is a broader term encompassing the management of ch
 
 **git pull and git fetch**
 
-git pull: This command is used to fetch the changes from the remote repository and merge them into your local branch. It is essentially a combination of git fetch and git merge. When you run git pull, it automatically fetches the changes from the remote branch and merges them into your current local branch.
+**git pull**: This command is used to fetch the changes from the remote repository and merge them into your local branch. It is essentially a combination of git fetch and git merge. When you run git pull, it automatically fetches the changes from the remote branch and merges them into your current local branch.
             
-            git pull <remote>
+            git pull <remote>        git fetch <remote>
 
-git fetch: This command only fetches the changes from the remote repository and stores them in your local repository, without automatically merging them into your current branch. It allows you to see what changes are present in the remote branch and gives you the opportunity to decide how to integrate those changes into your local branch.
+**git fetch**: This command only fetches the changes from the remote repository and stores them in your local repository, without automatically merging them into your current branch. It allows you to see what changes are present in the remote branch and gives you the opportunity to decide how to integrate those changes into your local branch.
             
-            git fetch <remote>
-
 **git log**
-The git log command is used to display the commit history in the repository. It shows the commit logs starting from the latest commit, allowing you to view information such as commit hashes, author details, dates, and commit messages. Here's an example of how to use it: $ git log
 
-git log using various options. For example, you can use options like **--oneline** to display each commit on a single line or --graph to visualize the commit history as a graph.
+The git log command is used to display the commit history in the repository. It shows the commit logs starting from the latest commit, allowing you to view information such as commit hashes, author details, dates, and commit messages. Here's an example of how to use it: $ **git log**
+
+git log using various options. For example, you can use options like **--oneline** to display each commit on a single line or **--graph** to visualize the commit history as a graph.
 
 **Git stash**
 
@@ -72,41 +71,52 @@ Here's how it works:
   - `git stash apply` will reapply the most recent stash, leaving it in the stash list for potential later use.
   - `git stash pop` will reapply the most recent stash and then remove it from the stash list.
 
-
 **git status**
+
 Use `git status` to list all new or modified files that haven't yet been committed.
 
 **git commit**
-  In Git, the git commit command is used to save the changes to the local repository. When you run git commit, it takes the staged snapshot and commits it to the project history. 
 
-**To create a new branch in Git**	  
+In Git, the git commit command is used to save the changes to the local repository. When you run git commit, it takes the staged snapshot and commits it to the project history. 
+
+**To create a new branch in Git**
+```
     	git branch <branch_name>
-
+```
 After creating the branch, you can switch to the newly created branch using the following command: 
+```
 	git checkout <branch_name>
-	
+```	
 Alternatively, you can combine both commands into one using the -b flag to create and switch to the new branch in a single step: 
-	git checkout -b <branch_name>
+```
+ git checkout -b <branch_name>
+```
 
 **git merge**
+
 The git merge command in Git is used to integrate changes from one branch into another. It combines multiple sequences of commits into one unified history. When you want to merge one branch into another, you typically use the following syntax:
 
 **git rebase**
+
 The git rebase command in Git is used to reapply a series of commits from one branch to another. Unlike git merge, which integrates the changes of one branch into another, git rebase moves the entire feature branch to a new base commit. This effectively changes the base of the branch, allowing for a cleaner, more linear project history.
 
 **git reset**
+
 The **git reset** command in Git is a powerful tool that is used to reset the current state of the repository. **It can be used to undo changes or move the current branch to a different state**. Here are the key options with the git reset command:
 
-git reset --soft: Moves the HEAD to the specified commit, but leaves the changes in the staging area. It does not affect the working directory.
-
-git reset --mixed: This is the default option if no mode is specified. It moves the HEAD to the specified commit and updates the staging area but does not affect the working directory. This is useful when you want to unstage changes.
-
-git reset --hard: Moves the HEAD to the specified commit and updates both the staging area and the working directory. Be cautious when using this option as it discards all changes since the specified commit.
+**git reset --soft**: Moves the HEAD to the specified commit, but leaves the changes in the staging area. It does not affect the working directory.
+**git reset --mixed**: This is the default option if no mode is specified. It moves the HEAD to the specified commit and updates the staging area but does not affect the working directory. This is useful when you want to unstage changes.
+**git reset --hard**: Moves the HEAD to the specified commit and updates both the staging area and the working directory. Be cautious when using this option as it discards all changes since the specified commit.
 
 Here is an example of how to use the git reset command:
-		git reset --soft HEAD~3
+---
+git reset --soft HEAD~3
+---
+
 **git revert**
+
 used to create a new commit that undoes the changes from a previous commit. This is useful if you want to create a new commit that effectively reverses the changes introduced by an earlier commit, while keeping a record of the reversion. Here's how you can use it:
+
 	git revert <commit-hash>
 
 **Difference between Revert, Rebase, and Reset:**
