@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [Devops](#Devops)
-- [Section 1](#section-1)
+- [Git](#Git)
 - [Section 2](#section-2)
 - [Conclusion](#conclusion)
 
@@ -38,18 +38,7 @@ Explain what the major components of DevOps are?
 - Measurement: Collecting and analyzing data to measure performance and identify areas for improvement.
 - Sharing: Sharing knowledge and best practices to improve efficiency and reduce errors.
 
-## Section 1
-...
-## Section 2
-...
-## Conclusion
-...
-
-
-- [Devops](# Devops)
-
-
-# Git
+## Git
 
 **what is version control system**
 A version control system (VCS) is a software tool that helps track and manage changes to files, especially in software development. It allows multiple developers to collaborate, maintaining a record of changes made, facilitating collaboration, enabling reversion to previous versions, and managing different versions of files. Examples include Git, Subversion (SVN), and Mercurial.
@@ -133,6 +122,20 @@ used to create a new commit that undoes the changes from a previous commit. This
 	Hard reset discards all changes in the working directory and staging area, reverting the repository to the specified commit.
 
 In summary, revert creates a new commit to undo changes, rebase integrates changes from one branch onto another, and reset is used to move the current branch to a different commit or undo changes with various degrees of aggressiveness. Each command serves a different purpose and should be used according to the specific requirements of the Git workflow.
+
+
+## Section 2
+...
+## Conclusion
+...
+
+
+- [Devops](# Devops)
+
+
+# Git
+
+
 
 
 # Maven
