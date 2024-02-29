@@ -1,6 +1,8 @@
-- [devops](# Devops)
+- [Devops](# Devops)
 
 ## Devops
+
+DevOps is a set of practices that combines software development and IT operations, aiming to automate and streamline the software development process. It emphasizes continuous integration, continuous delivery, infrastructure as code, monitoring, and collaboration. 
 
 **Advantages of DevOps**
 
