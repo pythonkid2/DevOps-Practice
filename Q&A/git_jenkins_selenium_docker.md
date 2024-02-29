@@ -1,21 +1,9 @@
 # Table of Contents
 
-- [Introduction] (#introduction)
+- [Devops](#Devops)
 - [Section 1](#section-1)
 - [Section 2](#section-2)
 - [Conclusion](#conclusion)
-
-## Introduction
-...
-## Section 1
-...
-## Section 2
-...
-## Conclusion
-...
-
-
-- [Devops](# Devops)
 
 ## Devops
 
@@ -42,6 +30,18 @@ It's the practice of automatically preparing code changes for a release to produ
 **Continuous Deployment**
 
 It's the practice of automatically deploying code changes to production or a staging environment after passing through the stages of continuous integration and continuous delivery.
+
+
+## Section 1
+...
+## Section 2
+...
+## Conclusion
+...
+
+
+- [Devops](# Devops)
+
 
 # Git
 
