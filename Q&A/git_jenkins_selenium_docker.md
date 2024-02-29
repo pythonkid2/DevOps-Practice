@@ -33,10 +33,10 @@ It's the practice of automatically deploying code changes to production or a sta
 
 Explain what the major components of DevOps are?
 
--Culture: Encouraging collaboration, communication, and shared responsibility between development and operations teams.
--Automation: Using tools and scripts to automate processes such as building, testing, and deployment.
--Measurement: Collecting and analyzing data to measure performance and identify areas for improvement.
--Sharing: Sharing knowledge and best practices to improve efficiency and reduce errors.
+- Culture: Encouraging collaboration, communication, and shared responsibility between development and operations teams.
+- Automation: Using tools and scripts to automate processes such as building, testing, and deployment.
+- Measurement: Collecting and analyzing data to measure performance and identify areas for improvement.
+- Sharing: Sharing knowledge and best practices to improve efficiency and reduce errors.
 
 ## Section 1
 ...
