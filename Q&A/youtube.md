@@ -3,6 +3,7 @@
 - [Docker](#Docker)
 - [Ansible](#Ansible)
 - [Section 2](#section-2)
+- [Section 3](#section-3)
 - [Conclusion](#conclusion)
 
 ## Docker
@@ -65,9 +66,25 @@ The Ansible Galaxy command, ansible-galaxy, is your tool for managing roles and 
 
 Think of it as an app store for Ansible, where you can find pre-built tools (roles and collections) to automate various tasks, saving you time and effort.
 
-6, 
+6, What are handlers in Ansible and why are they used ?
+
+Ansible handlers are special tasks that only run when specifically triggered by other tasks in your playbook. They are commonly used for actions that should only happen when a change is made, such as:
+
+- Restarting a service after its configuration file is updated.
+- Notifying administrators about successful or failed tasks.
+
+### Why use handlers?
+- Efficiency: They prevent unnecessary actions from running if no changes occur, improving performance.
+- Idempotency: They ensure tasks only run when needed, maintaining a consistent state across multiple runs.
+
+7, Ansible Protocol?
+
+ssh for linux
+winrm for windows
 
 ## Section 2
+
+## Section 3
 ...
 ## Conclusion
 ...
