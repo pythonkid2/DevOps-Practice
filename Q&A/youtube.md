@@ -9,6 +9,11 @@
 - [Conclusion](#conclusion)
 
 ## Docker
+
+Q, Difference between expose & Publish
+
+- EXPOSE is used in the Dockerfile to document the intended ports that the container should expose, while the -p or --publish option is used during runtime to map those container ports to specific ports on the host machine. The EXPOSE instruction alone doesn't make the container's ports accessible from the host; it's more like a hint to users or developers about the expected ports.
+
 <img width="852" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/9228624d-3088-4e0b-89c5-4111755d72cb">
 <img width="873" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/da6388c2-d018-46de-bd8d-cac4c5d4e3a6">
 <img width="881" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/269046fb-e082-4c87-9ca6-a9b508e909ac">
