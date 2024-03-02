@@ -2,8 +2,10 @@
 
 - [Docker](#Docker)
 - [Ansible](#Ansible)
-- [Section 2](#section-2)
-- [Section 3](#section-3)
+- [Terraform](#Terraform)
+- [Kubernetes](#Kubernetes)
+- [Section 4](#section-4)
+- [Section 5](#section-5)
 - [Conclusion](#conclusion)
 
 ## Docker
@@ -82,9 +84,11 @@ Ansible handlers are special tasks that only run when specifically triggered by 
 ssh for linux
 winrm for windows
 
-## Section 2
+## Terraform
 
-## Section 3
+## Kubernetes
+## Section 4
+## Section 5
 ...
 ## Conclusion
 ...
