@@ -137,6 +137,8 @@ In summary, revert creates a new commit to undo changes, rebase integrates chang
 
 ## Jenkins
 
+https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero/blob/main/Interview_Questions.md
+
 ## Polling the SCM in Jenkins
 
 Polling the SCM (Software Configuration Management) in Jenkins refers to the process of periodically checking the source code repository for any changes. Jenkins can be configured to check the repository at a specified interval, and if changes are detected, it triggers a build process.
