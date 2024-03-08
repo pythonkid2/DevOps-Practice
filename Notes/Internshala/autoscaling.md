@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [Autoscaling](#Autoscaling)
-- [Section 1](#section-1)
+- [EC2 Auto Scaling Group](#EC2 Auto Scaling Group)
 - [Section 2](#section-2)
 - [Section 3](#section-3)
 - [Section 4](#section-4)
@@ -14,8 +14,8 @@
 <img width="458" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/ab97cf50-a366-4ed0-bf5b-c943730bb96a">
 
 
-## Section 1
-This is section 1. You can provide detailed content related to this section here.
+## EC2 Auto Scaling Group
+
 
 ## Section 2
 This is section 2. You can provide detailed content related to this section here.
