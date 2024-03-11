@@ -16,6 +16,13 @@
 
 ## EC2 Auto Scaling Group
 
+<img width="519" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b512ca2a-c700-4db7-b648-a57fd4901ece">
+
+**Auto scaling policies** 
+
+<img width="571" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b433f6ce-ef6f-461f-870d-1c33491ea659">
+
+
 
 ## Section 2
 This is section 2. You can provide detailed content related to this section here.
