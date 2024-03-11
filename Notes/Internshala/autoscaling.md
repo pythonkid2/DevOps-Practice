@@ -2,7 +2,7 @@
 
 - [Autoscaling](#Autoscaling)
 - [EC2 Auto Scaling Group](#EC2-Auto-Scaling-Group)
-- [Section 2](#section-2)
+- [Amazon Elastic Load Balancer](#Amazon-Elastic-Load-Balancer)
 - [Section 3](#section-3)
 - [Section 4](#section-4)
 - [Section 5](#section-5)
@@ -40,8 +40,8 @@
 
 <img width="600" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/255c20a9-8098-4bb8-a772-811907a11f47">
 
-## Section 2
-This is section 2. You can provide detailed content related to this section here.
+## Amazon Elastic Load Balancer
+
 
 ## Section 3
 This is section 3. You can provide detailed content related to this section here.
