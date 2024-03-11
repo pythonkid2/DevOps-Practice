@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [Autoscaling](#Autoscaling)
-- [EC2 Auto Scaling Group](#EC2)
+- [EC2 Auto Scaling Group](#EC2-Auto-Scaling-Group)
 - [Section 2](#section-2)
 - [Section 3](#section-3)
 - [Section 4](#section-4)
