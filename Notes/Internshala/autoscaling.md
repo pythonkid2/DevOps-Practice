@@ -42,6 +42,13 @@
 
 ## Amazon Elastic Load Balancer
 
+<img width="498" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/960625c7-3259-468c-9f75-ec770606131a">
+<img width="533" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/8a36b316-b611-4746-bd16-22eee97362ce">
+
+<img width="255" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/bf4fcb24-9d60-4264-b70c-44d869fe5dc3">
+
+<img width="605" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/29f20322-b48d-4b09-9a4d-1357dcc3e258">
+
 
 ## Section 3
 This is section 3. You can provide detailed content related to this section here.
