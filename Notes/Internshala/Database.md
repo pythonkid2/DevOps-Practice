@@ -3,7 +3,7 @@
 - [Data Types](#Data-Types)
 - [Relational databases](#Relational-Databases)
 - [NoSQL Databases](#NoSQL-Databases)
-- [Section 3](#section-3)
+- [Introduction to Amazon RDS & DynamoDB](#Introduction-to-Amazon-RDS-&-DynamoDB)
 - [Section 4](#section-4)
 - [Section 5](#section-5)
 - [Conclusion](#conclusion)
@@ -27,10 +27,17 @@
 
 ## NoSQL Databases
 
+NoSQL databases are non-relational databases that offer flexibility in data modeling, scalability, and high performance. They do not require a fixed schema, support various data models, and are designed for distributed environments. NoSQL databases are well-suited for applications with dynamic data structures and high data volumes.
+
+## Introduction to Amazon RDS & DynamoDB
+
+<img width="524" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/e4dc1581-d7f2-43f6-aa4c-60bd55932115">
+
+<img width="527" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0bee1707-9997-45b9-9845-6df808fdf8f4">
+
+<img width="520" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/414ccbf0-df80-4549-b65f-55d1470f7cd5">
 
 
-## Section 3
-This is section 3. You can provide detailed content related to this section here.
 
 ## Section 4
 This is section 4. You can provide detailed content related to this section here.
