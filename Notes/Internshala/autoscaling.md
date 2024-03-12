@@ -9,6 +9,17 @@
 - [Conclusion](#conclusion)
 
 ## Autoscaling
+
+- Autoscaling is a feature of cloud computing that automatically adjusts compute resources based on demand
+- EC2 Autoscaling group is a collection of EC2 instances managed for scaling policies and health checks
+- Autoscaling policies include manual scaling, dynamic scaling, simple/step scaling, target tracking scaling, schedule scaling, and predictive scaling
+- Autoscaling depends on events, metrics, and thresholds for scaling decisions
+- Launch Configuration is the template for EC2 instances used by Autoscaling
+- Launch template is an enhanced version of Launch Configuration
+- Elastic Load Balancer distributes traffic to EC2 instances automatically
+- Different types of AWS Elastic Load Balancers exist
+- Autoscaling and Elastic Load Balancer can be used together for efficient resource management
+
 <img width="543" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/fbc3d859-6f35-4f25-8bcf-c5cbed121964">
 <img width="527" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/c4cc23ee-cf00-46be-af90-97e7a10bb06a">
 <img width="458" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/ab97cf50-a366-4ed0-bf5b-c943730bb96a">
