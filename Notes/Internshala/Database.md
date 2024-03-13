@@ -23,6 +23,8 @@
 
 <img width="524" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/efa05e87-26c8-41df-9354-c3a9c2b12ad8">
 
+<img width="523" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/cb8ed30e-dc35-4805-86d6-48811a1e4eab">
+
 
 
 ## NoSQL Databases
@@ -36,6 +38,14 @@ NoSQL databases are non-relational databases that offer flexibility in data mode
 <img width="527" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0bee1707-9997-45b9-9845-6df808fdf8f4">
 
 <img width="520" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/414ccbf0-df80-4549-b65f-55d1470f7cd5">
+
+<img width="547" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/ebb670ff-048f-416a-8b7b-10fd800be28a">
+
+<img width="566" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/317c9c8a-b795-456a-a67e-63be286c1946">
+
+<img width="602" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/98468f64-bd0c-46f7-a5a6-e78ea515f8ee">
+
+<img width="594" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/6fed0bcf-9cf9-4377-8991-37c7d4d33bed">
 
 
 
