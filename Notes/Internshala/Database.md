@@ -4,8 +4,6 @@
 - [Relational databases](#Relational-Databases)
 - [NoSQL Databases](#NoSQL-Databases)
 - [Introduction to Amazon RDS & DynamoDB](#Introduction-to-Amazon-RDS-&-DynamoDB)
-- [Section 4](#section-4)
-- [Section 5](#section-5)
 - [Conclusion](#conclusion)
 
 ## Data Types
@@ -47,12 +45,36 @@ NoSQL databases are non-relational databases that offer flexibility in data mode
 
 <img width="594" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/6fed0bcf-9cf9-4377-8991-37c7d4d33bed">
 
+<img width="562" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/62dc9363-0086-4dea-8658-171f3c9f0cb6">
 
+<img width="596" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/c0e804f6-076c-47d1-9c3f-172ce334529b">
+<img width="577" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/cc4b7f29-027e-4ebe-ab4e-dbf5d925f18a">
 
-## Section 4
-This is section 4. You can provide detailed content related to this section here.
+<img width="575" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/038071d4-9bd7-4f07-be37-43b827968b4c">
 
-## Section 5
-This is section 5. You can provide detailed content related to this section here.
 
 ## Conclusion
+
+Amazon RDS is a web service that makes it easier to set up, operate, and scale a relational database in the AWS Cloud. It
+provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database
+administration tasks.
+
+##  Database Types
+
+* **Database Types Covered:**
+    * Amazon RDS (Relational Database Service) - stores structured data
+    * DynamoDB (NoSQL Database) - stores semi-structured data
+* **Data Types:**
+    * Structured data: Fits neatly in rows and columns (e.g., excel sheets)
+    * Unstructured data: Lacks a defined format (e.g., text, images)
+    * Semi-structured data: Has some organization but not as rigid as structured data (e.g., JSON)
+* **Database Management:**
+    * On-premises databases: Complex and time-consuming to manage
+    * Cloud databases (like Amazon RDS): Easier to manage with features like automated backups and patching
+* **Benefits of Cloud Databases (Amazon RDS example):**
+    * Reduced administrative burden
+    * Automatic tasks: provisioning, setup, patching, backups, etc.
+* **Benefits of DynamoDB (NoSQL Database):**
+    * Efficient storage for semi-structured data
+    * Fully managed service: No need to worry about hardware, setup, configuration, scaling, etc.
+
