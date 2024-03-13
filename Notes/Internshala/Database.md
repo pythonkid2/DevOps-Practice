@@ -78,3 +78,13 @@ administration tasks.
     * Efficient storage for semi-structured data
     * Fully managed service: No need to worry about hardware, setup, configuration, scaling, etc.
 
+<img width="497" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/ab160fd1-9376-4e7d-8fe2-d6046d62ce5f">
+
+
+<img width="482" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/7d1086c0-818b-4528-b43a-91201ed63645">
+<img width="503" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0d309542-5b62-422a-8722-6cfefaf8d0a3">
+<img width="480" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/f892b27f-5c75-479c-b76d-39872e84d749">
+<img width="474" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/db2ec5a0-9f25-41d9-aa83-8af988362ec3">
+<img width="495" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/fe40044b-31cc-4519-9dea-72f7cea376c0">
+<img width="515" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/1aa54213-559b-440b-9820-22874990d16e">
+<img width="526" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/193cf971-dc0e-420d-8eab-3b8d4748c14e">
