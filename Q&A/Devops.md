@@ -320,6 +320,77 @@ Ansible offers several significant benefits for automating infrastructure and ap
 
 By understanding the concepts of inventory, handlers, roles, and their appropriate use, you can effectively design and implement automation tasks for various infrastructure and application management scenarios using Ansible.
 
+
+### Role example
+
+To create an Ansible role for managing a simple Nginx configuration, you can follow the example below. Ansible roles are typically used to organize and manage tasks, handlers, variables, and other resources related to a specific component or application.
+
+Here is an example of an Ansible role structure for managing Nginx configuration:
+
+1. Create the role directory structure:
+```bash
+ansible-galaxy init nginx_role
+```
+
+2. Update the directory structure:
+```
+nginx_role/
+├── defaults
+│   └── main.yml
+├── tasks
+│   └── main.yml
+├── files
+│   └── nginx.conf
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+└── README.md
+```
+
+3. Update the `tasks/main.yml` file with the tasks to configure Nginx:
+```yaml
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Copy Nginx configuration file
+  copy:
+    src: files/nginx.conf
+    dest: /etc/nginx/nginx.conf
+  notify: Restart Nginx
+```
+
+4. Update the `files/nginx.conf` file with your Nginx configuration.
+
+5. Update the `handlers/main.yml` file with the handler to restart Nginx:
+```yaml
+---
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
+```
+
+6. Update the `meta/main.yml` file with the role metadata:
+```yaml
+---
+dependencies: []
+```
+
+7. Use the role in your playbook by including it in the `roles` section:
+```yaml
+---
+- name: Playbook with Nginx role
+  hosts: your_target_hosts
+  roles:
+    - nginx_role
+```
+
+By organizing tasks, files, and handlers related to Nginx configuration into a role, you can easily reuse and maintain this configuration across multiple playbooks. Roles provide a structured way to manage the configuration of specific components or applications in Ansible.
+
 - [Table of Contents](#Table-of-Contents)
 
 ## Terraform
