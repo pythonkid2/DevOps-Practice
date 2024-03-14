@@ -46,6 +46,8 @@ Explain what the major components of DevOps are?
 - Measurement: Collecting and analyzing data to measure performance and identify areas for improvement.
 - Sharing: Sharing knowledge and best practices to improve efficiency and reduce errors.
 
+- [Table of Contents](#Table-of-Contents)
+
 ## Docker
 
 Q, Difference between expose & Publish
@@ -164,7 +166,8 @@ Similarities:
 - Both provide isolation for running applications in contained environments.
 - Both contribute to efficient resource utilization by enabling multiple applications to run on one physical machine.
 
-
+- [Table of Contents](#Table-of-Contents)
+- 
 ## Ansible
 1, What is configuration Mangement
 
@@ -283,8 +286,10 @@ Ansible offers several significant benefits for automating infrastructure and ap
 
 By understanding the concepts of inventory, handlers, roles, and their appropriate use, you can effectively design and implement automation tasks for various infrastructure and application management scenarios using Ansible.
 
+- [Table of Contents](#Table-of-Contents)
 
 ## Terraform
+
 #### Use of Terraform Plan and Apply Command
 - `terraform plan` is used to create an execution plan, while `terraform apply` is used to apply the changes.
 
@@ -357,7 +362,7 @@ The lock file is important because it ensures that everyone who is working on a 
 
 You should use the lock.hcl file whenever possible, especially if you are collaborating with other people on a Terraform configuration. The lock file will help to ensure that everyone is on the same page and that your configuration is consistent and reproducible.
 
-
+- [Table of Contents](#Table-of-Contents)
 
 ## Git
 
@@ -410,7 +415,7 @@ After creating the branch, you can switch to the newly created branch using the 
 Alternatively, you can combine both commands into one using the -b flag to create and switch to the new branch in a single step: 
 ```
  git checkout -b <branch_name>
-
+```
 
 ### Collaboration with Git and GitHub
 
@@ -517,6 +522,9 @@ Merging Best Practices:
 ref-
 
 https://www.simplilearn.com/tutorials/git-tutorial/git-interview-questions
+
+- [Table of Contents](#Table-of-Contents)
+
 ## Jenkins
 
 https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero/blob/main/Interview_Questions.md
@@ -563,7 +571,6 @@ Once enabled, Jenkins will check the source code repository at the specified int
 
 - Once the connection is established, the slave node should appear in the Jenkins dashboard under "Nodes" or "Agents."
 - You can then use this slave node to distribute build and test jobs from the Jenkins master.
-
 
 ## A Multi-Branch Pipeline
 
@@ -656,7 +663,7 @@ Better Visualization and Error Handling: Pipelines offer better visualization of
  </tr>
 </table>
 
-
+- [Table of Contents](#Table-of-Contents)
 
 ## Maven
 
@@ -708,6 +715,8 @@ key components of POM.xml
 
 **In summary, while the mvn build command is more generic and triggers the build process up to the package phase, the mvn package command specifically executes the package phase to create the distributable package as defined by the project configuration.**
 
+- [Table of Contents](#Table-of-Contents)
+
 ## Selenium
 
 **Reasons for choosing TestNG over Selenium:**
@@ -754,7 +763,7 @@ To launch a browser using Selenium in Java, you need to have the appropriate **S
 
 	Here's a basic code snippet for launching the Chrome browser using Selenium WebDriver in Java:
 
-```markdown
+```
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -776,6 +785,7 @@ public class SeleniumExample {
 	}
 }
 ```
+
 **WebDriver driver = new ChromeDriver();**
 
 By using this line of code, you can create a new instance of the ChromeDriver, which then allows you to control the Chrome browser through your Java code using Selenium WebDriver.
@@ -783,6 +793,8 @@ By using this line of code, you can create a new instance of the ChromeDriver, w
 **why driver in selenium** 
 
 In Selenium, the term "driver" refers to the software component that facilitates the communication between your test script and the browser. It acts as a bridge between the automation script and the browser's native support for automation (such as Chrome, Firefox, or others). The driver is a crucial part of the Selenium framework as it enables you to control the browser, navigate to URLs, and interact with web elements.
+
+- [Table of Contents](#Table-of-Contents)
 
 ## Kubernetes
 
@@ -1040,7 +1052,8 @@ Scale your applications up or down based on demand. If your application experien
 Improve the reliability of your applications. Kubernetes automatically detects and replaces failed containers. This means that your applications can continue to run even if there are problems with the underlying infrastructure.
 Reduce the cost of running your applications. Kubernetes can help you to reduce the cost of running your applications by optimizing resource utilization. Kubernetes will automatically allocate resources to containers based on their needs. This means that you are not wasting resources on idle containers.
 _
-
+- [Table of Contents](#Table-of-Contents)
+  
 ## Prometheus & Grafana
 
 #### Types of Metrics in Prometheus
