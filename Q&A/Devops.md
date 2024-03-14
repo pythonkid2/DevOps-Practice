@@ -50,6 +50,8 @@ Explain what the major components of DevOps are?
 
 ## Docker
 
+Docker is a platform designed to make it easier to create , deploy and run application using container
+
 Q, Difference between expose & Publish
 
 - EXPOSE is used in the Dockerfile to document the intended ports that the container should expose, while the -p or --publish option is used during runtime to map those container ports to specific ports on the host machine. The EXPOSE instruction alone doesn't make the container's ports accessible from the host; it's more like a hint to users or developers about the expected ports.
@@ -111,7 +113,7 @@ We copy the rest of the application code to the working directory.
 We expose port 3000 (you can adjust this based on your application).
 We define the command to run the Node.js application (node app.js).
 
-Difference between **container and image**
+What is the Difference between **container** and **image**
 
 **Image**:
 An image is a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, system tools, system libraries, and settings. It is essentially a snapshot of a Docker container.
