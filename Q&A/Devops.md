@@ -1,4 +1,4 @@
-# Table of Contents
+## Table of Contents
 
 - [Devops](#Devops)
 - [Docker](#Docker)
@@ -1077,6 +1077,8 @@ Gauge charts
 Table visualizations
 Custom graph types (using the panel editor)
 
+- [Table of Contents](#Table-of-Contents)
+
 ## AWS
 
 In the context of AWS DevOps, CloudWatch and CloudTrail play critical roles in monitoring and logging AWS resources, enabling better management, security, and troubleshooting capabilities. Here's a brief overview of each:
@@ -1127,3 +1129,4 @@ Integrating CloudWatch and CloudTrail in an AWS DevOps setup allows for comprehe
 Amazon Route 53 is a highly available and scalable cloud domain name system (DNS) service. Enables to customize DNS routing policies to reduce latency.
 
 ***
+- [Table of Contents](#Table-of-Contents)
