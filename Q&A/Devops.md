@@ -78,6 +78,38 @@ Other important commands in a Dockerfile include:
 - **USER**: Sets the user name or UID to use when running the image.
 - **HEALTHCHECK**: Tells Docker how to test a container to check that it is still working.
 
+```
+# Use an official Node.js image as the base image
+FROM node:14
+
+# Set the working directory in the container
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application code to the working directory
+COPY . .
+
+# Expose a port (if your app listens on a specific port)
+EXPOSE 3000
+
+# Define the command to run your Node.js application
+CMD ["node", "app.js"]
+
+```
+
+In this example:
+
+We use the official Node.js 14 image as the base image.
+We set the working directory to /usr/src/app in the container.
+We copy package.json and package-lock.json to the working directory and install dependencies.
+We copy the rest of the application code to the working directory.
+We expose port 3000 (you can adjust this based on your application).
+We define the command to run the Node.js application (node app.js).
 
 Difference between **container and image**
 
