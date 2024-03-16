@@ -1246,5 +1246,21 @@ Integrating CloudWatch and CloudTrail in an AWS DevOps setup allows for comprehe
 
 Amazon Route 53 is a highly available and scalable cloud domain name system (DNS) service. Enables to customize DNS routing policies to reduce latency.
 
+**Q1** why an AWS instance's IP address changes after you stop and restart it:
+
+There are two main reasons why an AWS instance's IP address changes after you stop and restart it:
+
+* **Ephemeral Public IPs:** By default, EC2 instances are assigned public IP addresses from a pool whenever they are launched. When you stop an instance, the public IP is released back to the pool and becomes available for other instances. When you restart the instance, it's essentially treated as a new launch, so it gets a new public IP address assigned from the available pool.
+
+* **Instance Stopping vs. Rebooting:** It's important to distinguish between stopping and rebooting an instance. Stopping an instance completely powers it down, while rebooting performs a software restart. When you reboot an instance, it retains its existing public and private IP addresses.
+
+Here's how to address this depending on your needs:
+
+* **Fixed Public IP:** If you require a consistent public IP address for your instance, you can use an Elastic IP address. Elastic IPs are static IP addresses that you can allocate to your instances. You can associate an Elastic IP with your instance and it will remain attached even when the instance is stopped and restarted. There is a small fee for using Elastic IPs.
+
+* **Private IPs within VPC:** If you only need a consistent private IP address for your instance within a VPC (Virtual Private Cloud), the private IP typically remains the same even after stopping and starting the instance. However, this behavior can vary depending on specific configurations within your VPC.
+
+
+
 ***
 - [Table of Contents](#Table-of-Contents)
