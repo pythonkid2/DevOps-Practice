@@ -517,15 +517,41 @@ By organizing tasks, files, and handlers related to Nginx configuration into a r
 
 ## Terraform
 
-#### Use of Terraform Plan and Apply Command
+
+The key differences between Ansible and Terraform lie in their primary focus and approach to infrastructure management:
+
+
+| Feature                 | Ansible                                         | Terraform                                              |
+|--------------------------|-------------------------------------------------|---------------------------------------------------------|
+| **Focus**                | Configuration Management                         | Infrastructure Orchestration (IaC)                        |
+| **Purpose**               | Automates configuration tasks                     | Defines & provisions infrastructure resources              |
+| **Approach**             | Imperative (defines steps to take)               | Declarative (defines desired state)                        |
+| **Management Style**     | Agent-based (push model) or agentless           | Provider-based (uses cloud provider APIs)                |
+| **Configuration format** | YAML playbooks with modules                      | HCL (Hashicorp Configuration Language)                     |
+| **Strengths**            | Agentless mode, playbooks, rich module library    | Declarative configuration, state management, multi-cloud |
+
+**Choosing the Right Tool:**
+
+* Use **Ansible** for tasks like:
+    * Configuring servers (software installation, configuration files, service management)
+    * Deploying applications
+    * Orchestrating configuration workflows across multiple machines
+* Use **Terraform** for tasks like:
+    * Provisioning cloud infrastructure resources (VMs, networks, storage)
+    * Defining infrastructure as code in a reusable and maintainable way
+    * Managing infrastructure across multiple cloud providers and on-premises environments
+
+
+
+### Use of Terraform Plan and Apply Command
 - `terraform plan` is used to create an execution plan, while `terraform apply` is used to apply the changes.
 
-#### Terraform
+### Terraform
 - Infrastructure as Code (IaC) tool used to build, change, and version infrastructure efficiently and safely.
   
 <img width="562" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/d4c76687-ddc3-4827-8961-c45974864bfa">
 
-**Terraform state file**
+### Terraform state file
 
 A Terraform state file is a file that stores information about the resources that Terraform manages. It is used by Terraform to track which resources exist, their attributes, and their relationships to other resources.
 
