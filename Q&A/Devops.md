@@ -81,6 +81,22 @@ Other important commands in a Dockerfile include:
 - **USER**: Sets the user name or UID to use when running the image.
 - **HEALTHCHECK**: Tells Docker how to test a container to check that it is still working.
 
+++++
+**Dockerfile for deploying a Tomcat application**
+
+```
+FROM tomcat:9.0-jre11-alpine  # Use Tomcat 9 with OpenJDK 11 and Alpine Linux base
+
+WORKDIR /usr/local/tomcat/webapps  # Set working directory to Tomcat's webapps directory
+
+COPY your-app.war ROOT.war  # Copy your WAR file to the root context
+
+EXPOSE 8080  # Expose port 8080 (default Tomcat port)
+
+ENTRYPOINT ["catalina.sh", "run"]  # Start Tomcat on container startup
+```
+
+
 ```
 # Use an official Node.js image as the base image
 FROM node:14
