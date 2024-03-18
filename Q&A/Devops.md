@@ -1553,7 +1553,65 @@ No, directly hosting a dynamic website on S3 isn't possible because S3 itself do
 
 ### Q17
 
+
+- [Table of Contents](#Table-of-Contents)
+
 ## Linux
+
+### Q1 Find, grep & diff
+
+Here's a breakdown of the key differences between `find`, `grep`, and `diff` in Linux:
+
+**find:**
+
+* Used for searching for files and directories based on various criteria like name, modification time, permissions, etc.
+* Doesn't search the content within files.
+* Outputs a list of file paths that match the search criteria.
+
+**grep:**
+
+* Used for searching text patterns within files.
+* Can search for specific words, phrases, or regular expressions.
+* Outputs lines containing the matching pattern from each searched file.
+
+**diff:**
+
+* Used for comparing the differences between two files or directories.
+* Highlights the lines that are added, removed, or modified between the files.
+* Useful for identifying changes made to code, configuration files, or documents.
+
+Here's a table summarizing the key differences:
+
+| Command | Purpose | Input | Output |
+|---|---|---|---|
+| `find` | Locate files/directories | Search criteria | List of file paths |
+| `grep` | Search content within files | Text patterns | Lines containing the pattern |
+| `diff` | Compare files/directories | Two files or directories | Lines with differences highlighted |
+
+### Q2 add a 6th line to a file in Linux without opening it for editing. 
+
+**1. Using echo and redirection (>>):**
+
+```
+echo "This is the new 6th line" >> filename.txt
+```
+* `>>`: This redirection operator appends the output of the `echo` command to the end of the file `filename.txt`.
+
+**2. Using printf and redirection (>>):**
+
+```
+printf "%s\n" "This is the new 6th line" >> filename.txt
+```
+
+* `printf`: This command is similar to `echo` but offers more formatting options.
+* `%s`: This format specifier indicates a string argument.
+* `\n`: This adds a newline character, ensuring the new line is added correctly.
+
+### Q3 The whoami command 
+
+The whoami command simply prints the username of the user who is currently running the terminal session.
+
+### Q4
 
 
 
