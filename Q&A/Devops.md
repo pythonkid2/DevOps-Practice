@@ -1611,7 +1611,39 @@ printf "%s\n" "This is the new 6th line" >> filename.txt
 
 The whoami command simply prints the username of the user who is currently running the terminal session.
 
-### Q4
+### Q4 How to delete all files in the current directory with a single command in Linux
+
+Be cautious while using the following command as it will permanently delete all files. Make sure you are in the correct directory and have a backup if necessary.
+
+Here's a command you can use to delete all files in the current directory with a single command in Linux:
+
+```
+rm -rf *
+```
+
+**Explanation:**
+
+* `rm`: This is the command used for deleting files.
+* `-r`: This option tells `rm` to recursively delete files. This means it will also delete any subdirectories and files within them.
+* `*`: The asterisk acts as a wildcard, matching all files in the current directory.
+
+**Warning:**
+
+* This command is very powerful and can lead to permanent data loss if used incorrectly.
+* **Double-check** that you are in the intended directory before running this command.
+* It's strongly recommended to **back up** your data before using this command.
+
+**Alternative (safer):**
+
+If you're unsure about using `rm -rf`, here's a safer alternative that only deletes regular files (not directories):
+
+```
+rm *
+```
+
+This command will only delete files without the directory structure. However, it won't remove any subdirectories or files within them.
+
+
 
 
 
