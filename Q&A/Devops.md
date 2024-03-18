@@ -1768,6 +1768,65 @@ Gauge charts
 Table visualizations
 Custom graph types (using the panel editor)
 
+### Node Exporter and cAdvisor
+
+Node Exporter and cAdvisor are both essential tools for monitoring your infrastructure in containerized environments, particularly those using Kubernetes. They complement each other by providing different but valuable sets of metrics:
+
+**Node Exporter:**
+
+* **Focus:** System and Hardware Metrics
+* **Function:** Node Exporter is a lightweight process that runs on each node in your Kubernetes cluster. It scrapes various metrics related to the underlying operating system (OS) and hardware resources, such as:
+    * CPU usage
+    * Memory usage
+    * Disk I/O
+    * Network traffic
+    * File system health
+    * System uptime
+    * Kernel information
+    * And more
+
+**Benefits:**
+
+* **Provides insights into the overall health and performance of your nodes.**
+* **Helps identify potential bottlenecks at the OS and hardware level.**
+* **Can be used to monitor bare-metal machines (not just containers) in addition to Kubernetes environments.**
+
+**cAdvisor:**
+
+* **Focus:** Container Metrics
+* **Function:** cAdvisor is a container monitoring tool that runs as a daemon set or deployed as a sidecar container alongside your application containers. It collects and exposes detailed metrics about individual containers running on the nodes, including:
+    * CPU usage (per-core)
+    * Memory usage (resident memory, working set)
+    * Network traffic (ingress and egress)
+    * Block I/O (disk reads and writes)
+    * Container health information
+    * Resource limits and requests
+    * And more
+
+**Benefits:**
+
+* **Provides granular insights into the resource utilization of individual containers.**
+* **Helps identify resource-intensive containers that might be impacting overall node performance.**
+* **Offers detailed historical data for container resource usage trends.**
+
+**How They Work Together:**
+
+* Both Node Exporter and cAdvisor expose their metrics in a Prometheus-friendly format.
+* **Prometheus:** A monitoring system like Prometheus can scrape metrics from both tools and store them in a time-series database.
+* **Grafana:** A visualization tool like Grafana can then be used to create dashboards that display and analyze these metrics, providing a comprehensive view of your infrastructure health.
+
+**Choosing the Right Tool:**
+
+* Use **Node Exporter** for monitoring the underlying system and hardware resources on your nodes.
+* Use **cAdvisor** for monitoring the resource consumption of individual containers running on your nodes.
+* **Combine both:** For a complete picture of your infrastructure health, use both Node Exporter and cAdvisor in conjunction with a monitoring system like Prometheus and a visualization tool like Grafana.
+
+**In Summary:**
+
+* **Node Exporter:** Focuses on the OS and hardware health of your nodes.
+* **cAdvisor:** Focuses on the resource utilization of individual containers.
+* **Together they provide a comprehensive view of your infrastructure's health and performance.**
+
 - [Table of Contents](#Table-of-Contents)
 
 ## AWS
@@ -2123,6 +2182,55 @@ No, directly hosting a dynamic website on S3 isn't possible because S3 itself do
 * Both approaches require additional configuration and development effort compared to simply hosting a static website.
 * Choose the approach that best suits your technical expertise, budget, and project complexity.
 
+###  AMIs (Amazon Machine Images) and snapshots
+
+Both AMIs (Amazon Machine Images) and snapshots are essential components for managing virtual machines (VMs) in AWS, but they serve different purposes:
+
+**AMI (Amazon Machine Image):**
+
+* **Function:** An AMI is a template for launching new EC2 (Elastic Compute Cloud) instances. It captures the entire state of a machine, including the operating system, configuration settings, applications, and data volumes attached at the time the AMI was created.
+* **Use Cases:**
+    * Launching new instances with a pre-configured environment (OS, apps, settings).
+    * Standardizing deployments across multiple instances.
+    * Backing up and restoring entire machine configurations.
+* **Benefits:**
+    * Consistent and repeatable deployments.
+    * Faster instance launches compared to starting from scratch.
+    * Easier disaster recovery with pre-configured AMIs.
+
+**Snapshot (EBS Snapshot):**
+
+* **Function:** A snapshot is an incremental backup of an EBS (Elastic Block Store) volume at a specific point in time. It captures the data on the volume and allows you to restore the volume to a previous state if needed.
+* **Use Cases:**
+    * Backing up individual data volumes for disaster recovery.
+    * Creating new volumes from existing snapshots for scaling deployments.
+    * Taking periodic backups of important data volumes.
+* **Benefits:**
+    * Granular backup and recovery of data volumes.
+    * Efficiently create new volumes based on existing snapshots.
+    * Point-in-time recovery for data loss prevention.
+
+**Key Differences:**
+
+| Feature        | AMI                                      | Snapshot                                                  |
+|----------------|-------------------------------------------|------------------------------------------------------------|
+| Scope           | Entire EC2 instance (OS, config, apps, data) | Individual EBS volume data                                 |
+| Use Case       | Launching new instances, backups, recovery | Backing up data volumes, creating new volumes, recovery       |
+| Launch Option  | Used to launch new EC2 instances           | Cannot be used directly to launch instances                |
+| Data Persistence | Data persists across instance launches       | Data persists across volume creation/attachment            |
+| Scalability     | Useful for creating multiple instances        | Useful for scaling data volumes                               |
+
+**Analogy:**
+
+* Think of an AMI as a complete computer blueprint (operating system, software, files) used to build identical new computers (EC2 instances).
+* Imagine a snapshot as a backup copy of your computer's hard drive at a specific moment. You can use it to restore your data if something goes wrong.
+
+**In Summary:**
+
+* Use AMIs for capturing and replicating entire machine configurations.
+* Use snapshots for backing up and restoring individual data volumes.
+
+
 ### Q17
 
 
@@ -2218,7 +2326,6 @@ This command will only delete files without the directory structure. However, it
 ### Q5 package managers for different Linux flavors
 
 <img width="271" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b11fe62e-cc57-4c1b-82b7-a3c141e2f03d">
-
 
 
 
