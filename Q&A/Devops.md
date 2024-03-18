@@ -1459,6 +1459,17 @@ A bastion host is a server whose purpose is to provide access to a private netwo
 
 ### Q13. Difference between Reserved Instances (RIs) and On-Demand Instances (ODIs) in AWS 
 
+* **Reserved Instances (RIs):**
+    * Like renting an apartment for a year vs. daily hotel stays.
+    * You pay a fixed fee upfront for a specific instance type and region for a commitment term (1 or 3 years).
+    * Significantly cheaper than On-Demand Instances (up to 72% savings).
+    * Well-suited for predictable workloads where you know your instance usage in advance.
+
+* **On-Demand Instances (ODIs):**
+    * Like paying for a hotel room each night.
+    * No upfront commitment, pay per hour (or second) for what you use.
+    * More expensive than Reserved Instances.
+    * Ideal for unpredictable workloads or short-term needs.
 
 
 - [Table of Contents](#Table-of-Contents)
