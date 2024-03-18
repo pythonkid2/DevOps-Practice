@@ -1643,6 +1643,9 @@ rm *
 
 This command will only delete files without the directory structure. However, it won't remove any subdirectories or files within them.
 
+### Q5 package managers for different Linux flavors
+
+<img width="271" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b11fe62e-cc57-4c1b-82b7-a3c141e2f03d">
 
 
 
