@@ -12,6 +12,7 @@
 - [Kubernetes](#Kubernetes)
 - [Prometheus & Grafana](#Prometheus-&-Grafana)
 - [AWS](#AWS)
+- [Linux](#Linux)
 
 ## Devops
 
@@ -1551,6 +1552,9 @@ No, directly hosting a dynamic website on S3 isn't possible because S3 itself do
 * Choose the approach that best suits your technical expertise, budget, and project complexity.
 
 ### Q17
+
+## Linux
+
 
 
 - [Table of Contents](#Table-of-Contents)
