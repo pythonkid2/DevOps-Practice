@@ -1,5 +1,6 @@
 ## Table of Contents
 
+- [Basics](#Basics)
 - [Devops](#Devops)
 - [Docker](#Docker)
 - [Ansible](#Ansible)
@@ -13,6 +14,100 @@
 - [Prometheus & Grafana](#Prometheus-&-Grafana)
 - [AWS](#AWS)
 - [Linux](#Linux)
+
+## Basics
+
+### Monolithic vs. Microservices architectures different?
+
+**Monolithic Architecture:**
+
+* **Think of it as:** A single, self-contained unit, like a giant apartment building housing everything under one roof.
+* **Pros:**
+    * Simpler to develop initially, especially for smaller teams.
+    * Easier to manage and reason about as all the code resides in one place.
+    * Can be faster to deploy changes since everything is integrated.
+* **Cons:**
+    * Difficult to scale as the application grows. Adding features or functionality becomes complex and can impact the entire system.
+    * Tight coupling between different parts of the application. A change in one area might require changes in other seemingly unrelated areas.
+    * Troubleshooting issues can be time-consuming due to the interconnected nature of the codebase.
+
+**Microservices Architecture:**
+
+* **Imagine it as:** A collection of smaller, independent services, like individual apartments in a complex, working together to achieve a common goal.
+* **Pros:**
+    * Easier to scale individual services based on their specific needs.
+    * Faster development cycles as teams can work on different services independently.
+    * More resilient as failures in one service are less likely to bring down the entire system.
+    * Promotes loose coupling, allowing changes in one service to have minimal impact on others.
+* **Cons:**
+    * Requires more planning and coordination upfront to design and manage multiple services.
+    * Increased complexity due to the distributed nature of the system.
+    * Communication overhead between services can add latency to the overall system.
+
+**Choosing the Right Architecture:**
+
+* **Monolithic:** A good choice for small, well-defined applications where rapid initial development is a priority.
+* **Microservices:** Ideal for complex, large-scale applications that require independent development, scalability, and resilience.
+
+Here's a table summarizing the key differences:
+
+| Feature                 | Monolithic Architecture | Microservices Architecture |
+|-------------------------|-------------------------|----------------------------|
+| Structure                | Single codebase          | Collection of independent services |
+| Scalability              | Difficult                | Easier to scale individual services |
+| Development Speed      | Faster initially        | Faster for ongoing development |
+| Maintainability         | Easier for small teams   | More complex due to distributed nature |
+| Deployment               | Simpler deployments     | Independent deployments possible |
+| Fault Tolerance         | Issues can impact entire system | Failures in one service less disruptive |
+
+Ultimately, the best architecture for your project depends on your specific needs and priorities. Consider factors like the size and complexity of your application, development team size, and desired level of scalability.
+
+
+### What are the key differences between Waterfall and Agile methodologies in software development:
+
+**Waterfall Model:**
+
+* **Imagine it as:** A sequential, linear progression, like a waterfall flowing down a series of cliffs.
+* **Process:**
+    * Requirements are clearly defined upfront and frozen before development begins.
+    * Development progresses through distinct phases: requirement gathering, design, development, testing, deployment, and maintenance.
+    * Each phase must be completed entirely before moving on to the next.
+* **Pros:**
+    * Well-structured and easy to manage for simple projects with stable requirements.
+    * Clear documentation at each stage.
+* **Cons:**
+    * Inflexible and struggles to adapt to changing requirements.
+    * High risk of late-stage defects if requirements are not well-defined initially.
+    * Less responsive to user feedback during development.
+
+**Agile Methodology:**
+
+* **Imagine it as:** An iterative and incremental approach, like a winding river constantly adapting to its terrain. 
+* **Process:**
+    * Focuses on delivering working software in short iterations (sprints) typically lasting 1-4 weeks.
+    * Requirements are prioritized and continuously refined throughout the development process.
+    * Close collaboration between developers, testers, and stakeholders with frequent feedback loops.
+* **Pros:**
+    * Adaptable to changing requirements and embraces flexibility.
+    * Faster feedback loop allows for early detection and correction of defects.
+    * Better suited for complex projects with evolving requirements.
+* **Cons:**
+    * Requires a high level of communication and collaboration within the team.
+    * Can be challenging for projects with strict deadlines or fixed-scope requirements due to the iterative nature.
+    * More documentation overhead compared to Waterfall.
+
+Here's a table summarizing the key points:
+
+| Feature                 | Waterfall Model        | Agile Methodology        |
+|-------------------------|-------------------------|----------------------------|
+| Structure                | Sequential, linear phases | Iterative, incremental cycles |
+| Requirements             | Defined upfront, frozen  | Evolving, prioritized backlog |
+| Development Process     | Phased, one after another | Sprints with continuous feedback |
+| Flexibility              | Low, difficult to adapt   | High, embraces change |
+| Feedback                 | Limited during development | Continuous throughout iterations |
+| Project Suitability      | Simple, stable requirements | Complex, evolving requirements |
+
+Choosing the right methodology depends on your project's specific needs. Waterfall can be suitable for well-defined projects with clear requirements, while Agile shines in dynamic environments where flexibility and adaptation are crucial.
 
 ## Devops
 
@@ -192,7 +287,7 @@ Docker Hub is a cloud-based registry service provided by Docker that allows you 
 **Official Images**: Docker Hub hosts a collection of official images that are curated and maintained by Docker, ensuring that users have access to trusted and reliable base images for their containers.
 
 
-**Virtualization and Docker Containerization**
+### **Virtualization and Docker Containerization**
 
 Virtualization:
 
@@ -217,9 +312,19 @@ Similarities:
 - Both provide isolation for running applications in contained environments.
 - Both contribute to efficient resource utilization by enabling multiple applications to run on one physical machine.
 
+
+### Q. Deployment vs Release
+
+* **Deployment:** Moving software between environments (e.g., dev to staging).
+* **Release:** Making deployed software usable for end users (e.g., enabling features).
+
+Think of deployment like packing boxes (software) to move, and release like unpacking and arranging them (making features usable) in your new home (environment).
+
+
 - [Table of Contents](#Table-of-Contents)
-- 
+ 
 ## Ansible
+
 1, What is configuration Mangement
 
 Configuration management (CM) is essentially a practice for keeping computer systems, including servers, applications, and network devices, in a desired state. 
@@ -651,9 +756,36 @@ https://www.simplilearn.com/tutorials/git-tutorial/git-interview-questions
 
 https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero/blob/main/Interview_Questions.md
 
-## Polling the SCM in Jenkins
+### Poll SCM and webhook
 
-Polling the SCM (Software Configuration Management) in Jenkins refers to the process of periodically checking the source code repository for any changes. Jenkins can be configured to check the repository at a specified interval, and if changes are detected, it triggers a build process.
+In Jenkins, both Poll SCM and webhook are used to trigger builds based on changes in your source code management (SCM) system (e.g., Git, GitHub). However, they differ in how they achieve this:
+
+**Poll SCM:**
+
+* **Action:**  Jenkins **actively checks** your SCM server at regular intervals (defined by polling frequency) for changes.
+* **Efficiency:** Less efficient, as Jenkins constantly checks the server even if there haven't been any updates. This can consume resources on both Jenkins and the SCM server.
+* **Real-time Updates:** Not truly real-time. Builds are triggered only after the polling interval has elapsed, leading to a delay between a code push and the corresponding build.
+* **Configuration:** Simpler to set up initially in Jenkins. 
+* **Use Case:** Might be suitable for simple projects with infrequent code changes and limited resources.
+
+**Webhook:**
+
+* **Action:** Utilizes a **push model**. Your SCM server **notifies Jenkins** whenever a relevant event occurs (e.g., code push, pull request merge).
+* **Efficiency:** More efficient. Jenkins is only notified when there's a change, reducing resource usage on both sides.
+* **Real-time Updates:** Near real-time updates. Builds are triggered almost immediately after a code push or relevant event.
+* **Configuration:** Requires some configuration on the SCM server to set up a webhook that points to your Jenkins instance.
+* **Use Case:** Generally preferred for most Jenkins setups due to its efficiency, faster build triggers, and better scalability.
+
+**Here's an analogy:**
+
+* **Poll SCM:** Imagine constantly checking your mailbox (SCM server) for new deliveries (code updates) at fixed intervals.
+* **Webhook:** Imagine the mail carrier (SCM server) bringing your mail (notification) directly to your door (Jenkins) when there's a delivery (code update).
+
+**Choosing the Right Option:**
+
+* For most Jenkins setups, **webhook is the recommended approach** due to its efficiency and faster build triggers.
+* **Poll SCM** might be an option for very simple projects with infrequent updates or limited resources on the Jenkins server. However, even in these cases, consider switching to webhooks as your project grows.
+
 
 To enable polling the SCM in Jenkins, follow these steps:
 
@@ -705,6 +837,19 @@ With a multi-branch pipeline project, you can:
 - Track the build and test status of each branch independently.
 - Merge changes back to the main branch (e.g., master) once the development on a branch is complete and tested.
 
+### How to Store AWS credentials in Jenkins?
+
+Store AWS credentials in Jenkins securely using Credentials Plugin:
+
+* Install Credentials Plugin (usually pre-installed).
+* Go to Jenkins Credentials and create credentials (e.g., AWS Credentials).
+* Provide your AWS access key ID and secret access key.
+
+Less secure option (avoid if possible):
+
+* Install Amazon Web Services plugin (if needed).
+* Add credentials to your AWS config file (e.g., ~/.aws/credentials).
+* Configure Jenkins job to use that specific profile.
 
 ## How to Add Custom Plugin in Jenkins
 
