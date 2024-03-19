@@ -123,19 +123,19 @@ DevOps is a set of practices that aims to bridge the gap between development (De
 - **Enhanced customer experience**: Leads to faster delivery cycles and more reliable software, increasing customer satisfaction and loyalty.
 - **Reduced risk**: Continuous monitoring and feedback loops help in identifying and addressing issues promptly, minimizing the risk of failures and reducing downtime.
 
-What is **CI (Continuous Integration)**
+### What is **CI (Continuous Integration)**
 
 It's the practice of developers regularly merging their code changes into a central repository, which is then verified by automated build and tests to catch bugs early.
 
-What is **Continuous Delivery**?
+### What is **Continuous Delivery**?
 
 It's the practice of automatically preparing code changes for a release to production, ensuring that your software can be deployed at any time with minimal risk.
 
-What is **Continuous Deployment** ?
+### What is **Continuous Deployment** ?
 
 It's the practice of automatically deploying code changes to production or a staging environment after passing through the stages of continuous integration and continuous delivery.
 
-Explain what the major components of DevOps are?
+### Explain what the major components of DevOps are?
 
 - Culture: Encouraging collaboration, communication, and shared responsibility between development and operations teams.
 - Automation: Using tools and scripts to automate processes such as building, testing, and deployment.
