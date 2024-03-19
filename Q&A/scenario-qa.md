@@ -263,3 +263,74 @@ Here's a rough estimate:
 * Consider automation tools like Ansible or Chef to automate the deployment of monitoring agents on your VMs for faster and more consistent configuration.
 
 By using a centralized monitoring approach, you can efficiently monitor the health and performance of all your 20 VMs from a single platform.
+
+
+## Example: Routing Traffic with Ingress in Kubernetes
+
+**Scenario:**
+
+Let's say you have two web applications deployed as services in your Kubernetes cluster:
+
+* **Service A:** Exposes a frontend application at port 8080.
+* **Service B:** Exposes a backend API at port 9000.
+
+You want to access these services through a single external IP address with proper routing:
+
+* Requests to `/` should be routed to Service A (frontend).
+* Requests to `/api/*` should be directed to Service B (backend API).
+
+**Here's how you can achieve this using Ingress:**
+
+**1. Define the Ingress Resource (ingress.yaml):**
+
+```yaml
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 8080
+      - path: /api/*
+        backend:
+          service:
+            name: backend-api
+            port:
+              number: 9000
+```
+
+**Explanation:**
+
+* This YAML file defines an Ingress named `my-ingress`.
+* The `spec` section defines the desired routing rules.
+* There's a single HTTP rule with two paths:
+    * `/`: This path is routed to `frontend-service` on port 8080 (your frontend application).
+    * `/api/*`: This path pattern (any path starting with `/api/`) is directed to `backend-api` on port 9000 (your backend API).
+
+**2. Deploy the Ingress Resource:**
+
+Use `kubectl apply -f ingress.yaml` to create the Ingress resource in your Kubernetes cluster.
+
+**3. Ingress Controller Configuration (**Assumed, not required in YAML)
+
+An Ingress controller running in your cluster will automatically pick up this Ingress resource and configure itself accordingly. The specific configuration depends on the chosen controller (e.g., Nginx Ingress Controller, Traefik).
+
+**4. Accessing the Services:**
+
+Assuming your Ingress controller assigns an external IP address (e.g., 10.10.0.1), you can now access your services through this IP:
+
+* http://10.10.0.1/ will display the frontend application (Service A).
+* http://10.10.0.1/api/your-api-endpoint will reach your backend API (Service B).
+
+**Remember:**
+
+* You'll need an Ingress controller deployed and configured in your cluster for this to work.
+* This is a basic example. Ingress offers more advanced features like SSL termination and virtual hosting.
+
