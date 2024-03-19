@@ -158,11 +158,13 @@ Q, Difference between expose & Publish
 <img width="866" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/28e4b2d0-46f1-4c67-8ed0-80d4cbaf67a7">
 <img width="861" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/48e7ff22-c3a1-4771-9cae-810539af8140">
 
+### CMD vs ENTRYPOINT
+
 In a Dockerfile, the **CMD** instruction is used to specify the command that should be executed when the Docker container starts. It defines the default command for the container, which can be overridden by providing a command at the end of the `docker run` command.
 
 The **ENTRYPOINT** instruction, on the other hand, is used to set the main command that is always executed when the container starts. Unlike `CMD`, the parameters are not ignored when providing a command to the `docker run` command.
 
-Other important commands in a Dockerfile include:
+### Other important commands in a Dockerfile include:
 
 - **FROM**: Specifies the base image for subsequent instructions. It is usually the first instruction in a Dockerfile.
 - **RUN**: Executes commands in a new layer and creates a new image. This is used to install packages, run scripts, or perform any other actions during the build process.
@@ -176,8 +178,7 @@ Other important commands in a Dockerfile include:
 - **USER**: Sets the user name or UID to use when running the image.
 - **HEALTHCHECK**: Tells Docker how to test a container to check that it is still working.
 
-++++
-**Dockerfile for deploying a Tomcat application**
+### **Dockerfile for deploying a Tomcat application**
 
 ```
 FROM tomcat:9.0-jre11-alpine  # Use Tomcat 9 with OpenJDK 11 and Alpine Linux base
@@ -191,6 +192,7 @@ EXPOSE 8080  # Expose port 8080 (default Tomcat port)
 ENTRYPOINT ["catalina.sh", "run"]  # Start Tomcat on container startup
 ```
 
+### another example
 
 ```
 # Use an official Node.js image as the base image
@@ -225,81 +227,73 @@ We copy the rest of the application code to the working directory.
 We expose port 3000 (you can adjust this based on your application).
 We define the command to run the Node.js application (node app.js).
 
-What is the Difference between **container** and **image**
+### What is the Difference between **container** and **image**
 
 **Image**:
+
 An image is a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, system tools, system libraries, and settings. It is essentially a snapshot of a Docker container.
 
-Images are read-only templates used to create Docker containers. They can be built from a Dockerfile using the docker build command or pulled from a registry using the docker pull command.
-
-Images are used as the basis for creating containers. They can be versioned and distributed to other systems or users.
+Images are **read-only templates** used to create Docker containers. They can be built from a Dockerfile using the docker build command or pulled from a registry using the docker pull command. Images are used as the basis for creating containers. They can be versioned and distributed to other systems or users.
 
 **Container:**
-A container is a runtime instance of an image—basically, a running process isolated from the host and other containers. Containers are lightweight, portable, and self-sufficient, allowing applications to be easily deployed and run consistently in various environments. Each container is created from a specific image and represents a running instance of that application, providing an isolated environment for running the application. 
 
-In summary, images are the blueprints used to create containers, while containers are the actual runtime instances of those images. Containers provide a consistent environment for running applications, and images provide a way to package and distribute software with all its dependencies.
+A container is a **runtime instance of an image**—basically, a running process **isolated** from the host and other containers. Containers are lightweight, portable, and self-sufficient, allowing applications to be easily deployed and run consistently in various environments. Each container is created from a specific image and represents a running instance of that application, providing an isolated environment for running the application. 
 
-**Types of Docker Networks**
+In summary, **images are the blueprints used to create containers**, while **containers are the actual runtime instances of those images**. Containers provide a consistent environment for running applications, and images provide a way to package and distribute software with all its dependencies.
+
+### **Types of Docker Networks**
 
 Reference: [YouTube - Types of Docker Networks](https://www.youtube.com/watch?v=bKFMS5C4CG0)
 
 Docker provides several types of networks to facilitate communication between containers and the outside world, each catering to different use cases. Here's an overview of the various types of Docker networks:
 
 1. **Bridge Network**: This default network enables communication between containers on the same Docker daemon host. Containers on this network communicate via IP addresses and can connect to external networks using NAT (Network Address Translation).
-
 2. **Host Network**: Containers using the host network mode share the network namespace with the Docker host. This eliminates network isolation from the host and allows the container to use the host's network directly, beneficial for performance-critical applications.
-
 3. **Overlay Network**: This network type facilitates communication between containers across multiple Docker daemons. It's particularly useful for container orchestration, enabling seamless communication between containers across different hosts or cloud providers.
-
 4. **Macvlan Network**: Macvlan assigns a MAC address to a container, making it appear as a physical device on the network. This allows containers direct access to external networks without encapsulation.
-
 5. **None Network**: Containers on the none network have no access to external networks, only communicating with the Docker host. It's ideal for scenarios requiring complete container isolation from the network.
-
 6. **Custom Networks**: Docker allows the creation of custom networks with specific configurations, providing flexibility and control over the networking environment for containers.
-
 7. **IPvlan**: This Docker network driver creates multiple virtual network interfaces within a parent interface, enabling containers to have unique MAC and IP addresses while sharing the underlying physical network. It ensures network isolation and efficient resource utilization among containers.
 
+### **what does docker buid command do & build vs run command**
 
-
-**what does docker buid command do & build vs run command**
 The docker build command is used to build Docker images from a Dockerfile. This process involves executing each instruction in the Dockerfile and creating a new layer for each instruction, ultimately producing a final image. The resulting image can be tagged and used to create containers.
 
 The **docker run** command, on the other hand, is used to create and start a new container from a Docker image. When you run docker run, Docker takes the specified image and starts a container based on it. You can also provide additional options and configurations to the docker run command, such as exposing ports, setting environment variables, or specifying volumes to be mounted.
 
-**docker create**
+### **docker create**
+
 The docker create command is used to create a new container but does not start it. It returns a container ID that can be used in conjunction with other commands. This command is particularly useful when you want to set up a container without starting it immediately.
 	
 	docker create [OPTIONS] IMAGE [COMMAND] [ARG...]
 
-**what is docker hub**
+### **what is docker hub**
+
 Docker Hub is a cloud-based registry service provided by Docker that allows you to store and manage Docker images. It provides a centralized resource for container image discovery, distribution, and change management. Docker Hub offers the following key features:
 
-**Image Repositories**: It enables you to store and manage your Docker images, either publicly or privately.
+   **Image Repositories**: It enables you to store and manage your Docker images, either publicly or privately.
 
-**Collaboration and Sharing**: Docker Hub facilitates collaboration by allowing users to share Docker images with their team members or the broader community.
+   **Collaboration and Sharing**: Docker Hub facilitates collaboration by allowing users to share Docker images with their team members or the broader community.
 
-**Automated Builds**: It provides the functionality to automatically build Docker images from source code repositories, making it easier to manage the continuous integration and deployment process.
+   **Automated Builds**: It provides the functionality to automatically build Docker images from source code repositories, making it easier to manage the continuous integration and deployment process.
 
-**Webhooks and APIs**: Docker Hub offers webhooks and APIs that can be integrated with other tools and services, enabling you to automate various processes related to your Docker images.
+   **Webhooks and APIs**: Docker Hub offers webhooks and APIs that can be integrated with other tools and services, enabling you to automate various processes related to your Docker images.
 
-**User Access Control**: It allows you to manage user access and permissions for private repositories, ensuring that only authorized users can access sensitive images.
+   **User Access Control**: It allows you to manage user access and permissions for private repositories, ensuring that only authorized users can access sensitive images.
 
-**Official Images**: Docker Hub hosts a collection of official images that are curated and maintained by Docker, ensuring that users have access to trusted and reliable base images for their containers.
+   **Official Images**: Docker Hub hosts a collection of official images that are curated and maintained by Docker, ensuring that users have access to trusted and reliable base images for their containers.
 
 
 ### **Virtualization and Docker Containerization**
 
-Virtualization:
 
-- Creation of virtual versions of hardware, operating systems, and network resources.
-- Enables running multiple operating systems on a single physical machine.
-- Each virtual machine runs its own operating system, isolated from others.
+| Feature | Virtualization | Docker Containerization |
+|---|---|---|
+| Purpose | Create virtual versions of hardware, OS, and network resources | Develop, ship, and run applications in containers |
+| Isolation | Each VM runs its own isolated OS | Containers share the host's OS kernel |
+| Resource Usage | High resource usage (full OS) | Lightweight and fast (shares kernel) |
+| Use Case | Running multiple OSes on a single machine | Deploying and scaling microservices applications |
 
-Docker Containerization:
-
-- Platform for developing, shipping, and running applications in containers.
-- Containers package applications and their dependencies, running on any Linux server.
-- Containers share the host system's operating system kernel, making them lightweight and fast.
 
 Differences:
 
@@ -312,7 +306,6 @@ Similarities:
 - Both provide isolation for running applications in contained environments.
 - Both contribute to efficient resource utilization by enabling multiple applications to run on one physical machine.
 
-
 ### Q. Deployment vs Release
 
 * **Deployment:** Moving software between environments (e.g., dev to staging).
@@ -320,23 +313,22 @@ Similarities:
 
 Think of deployment like packing boxes (software) to move, and release like unpacking and arranging them (making features usable) in your new home (environment).
 
-
 - [Table of Contents](#Table-of-Contents)
  
 ## Ansible
 
-1, What is configuration Mangement
+### 1, What is configuration Mangement
 
 Configuration management (CM) is essentially a practice for keeping computer systems, including servers, applications, and network devices, in a desired state. 
 
-2, Ansible is a strong choice for configuration management due to its:
-written in python, strong comminity, yamal is the  script language 
+### 2, Ansible is a strong choice for configuration management due to its:
 
-  Simplicity: Easy-to-learn YAML language.
-  Agentless: No need to install software on managed systems.
+written in python, **strong comminity**, **yamal** is the  script language 
 
-3, Can you write an Ansible Playbook to install httpd service
-and get it running ?
+  **Simplicity**: Easy-to-learn YAML language.
+  **Agentless**: No need to install software on managed systems.
+
+### 3, Can you write an Ansible Playbook to install httpd service and get it running ?
 
 ```
 ---
@@ -360,13 +352,13 @@ and get it running ?
         state: started
 ```
 
-4, What is Ansible Dynamic Inventory ?
+### 4, What is Ansible Dynamic Inventory ?
 
 Ansible dynamic inventory automatically grabs your managed host list from external sources (cloud, CMDB) in real-time. This means no more manual updates, keeping your playbooks running on the latest and most accurate infrastructure.
 
 It's like having a self-updating shopping list for your Ansible playbooks!
 
-5, What is Ansible Galaxy command and why is it used
+### 5, What is Ansible Galaxy command and why is it used
 
 The Ansible Galaxy command, ansible-galaxy, is your tool for managing roles and collections in Ansible. It lets you:
 
@@ -377,7 +369,7 @@ The Ansible Galaxy command, ansible-galaxy, is your tool for managing roles and 
 
 Think of it as an app store for Ansible, where you can find pre-built tools (roles and collections) to automate various tasks, saving you time and effort.
 
-6, What are handlers in Ansible and why are they used ?
+### 6, What are handlers in Ansible and why are they used ?
 
 Ansible handlers are special tasks that only run when specifically triggered by other tasks in your playbook. They are commonly used for actions that should only happen when a change is made, such as:
 
@@ -385,15 +377,15 @@ Ansible handlers are special tasks that only run when specifically triggered by 
 - Notifying administrators about successful or failed tasks.
 
 ### Why use handlers?
-- Efficiency: They prevent unnecessary actions from running if no changes occur, improving performance.
-- Idempotency: They ensure tasks only run when needed, maintaining a consistent state across multiple runs.
+- **Efficiency**: They prevent unnecessary actions from running if no changes occur, improving performance.
+- **Idempotency**: They ensure tasks only run when needed, maintaining a consistent state across multiple runs.
 
-7, Ansible Protocol?
+### 7, Ansible Protocol?
 
 ssh for linux
 winrm for windows
 
-## Advantages of Ansible
+### Advantages of Ansible
 
 Ansible offers several significant benefits for automating infrastructure and application management:
 
@@ -412,7 +404,7 @@ Ansible offers several significant benefits for automating infrastructure and ap
 * **Task and Role-based Automation:** Ansible allows users to organize automation tasks into reusable roles. This promotes modularity and scalability by enabling the creation of well-defined and reusable automation workflows.
 * **Cost-effective Solution:** As an open-source project, Ansible offers a cost-effective solution for automation tasks. Users can avoid significant financial investments associated with proprietary automation tools.
 
-## Ansible Inventory and Playbooks
+### Ansible Inventory and Playbooks
 
 **Q: What is an inventory in Ansible, and how does it work?**
 
@@ -421,11 +413,11 @@ Ansible offers several significant benefits for automating infrastructure and ap
 * **Hosts File:** Within the inventory file, individual entries for each host are specified with their details, such as hostname, IP address, and any additional variables.
 * **Print Total Number of Hosts:** To view the total number of hosts in your inventory, you can use the `ansible-inventory --list` command or simply examine the contents of the inventory file.
 
-**Q: What are handlers in Ansible?**
+### **Q: What are handlers in Ansible?**
 
 **A:** A handler represents a named list of tasks in Ansible. These tasks are triggered automatically when specific conditions are met or events occur within other tasks in a playbook.
 
-**Q: What are Ansible roles, and why are they useful?**
+#### **Q: What are Ansible roles, and why are they useful?**
 
 **A:** Roles are a core concept in Ansible that enable users to group related tasks and configurations into reusable modules. These modules can then be included and referenced across different playbooks, promoting:
 
@@ -433,15 +425,12 @@ Ansible offers several significant benefits for automating infrastructure and ap
 * **Modularity:** Roles enable the decomposition of complex automation tasks into well-defined and independent modules, improving overall organization and maintainability.
 * **Scalability:** By using roles, users can easily manage and scale their automation workflows by modifying or adding new roles without affecting other parts of the codebase.
 
-**Q: When should I use playbooks and when should I use roles?**
+### **Q: When should I use playbooks and when should I use roles?**
 
 **A:** Playbooks are the primary unit of automation in Ansible. They define specific tasks and configurations that need to be executed on targeted systems.
 
 * **Playbooks:** Use playbooks when you have a set of instructions or configurations specific to a particular environment or deployment scenario. They are ideal for defining and executing complete automation workflows for tasks like provisioning a new server, installing specific software, or configuring cloud resources.
 * **Roles:** Use roles to create reusable and modular components containing common automation tasks or configurations. These roles can then be referenced and included within various playbooks, promoting code reusability and facilitating the construction of larger, more complex automation workflows.
-
-By understanding the concepts of inventory, handlers, roles, and their appropriate use, you can effectively design and implement automation tasks for various infrastructure and application management scenarios using Ansible.
-
 
 ### Role example
 
@@ -450,7 +439,7 @@ To create an Ansible role for managing a simple Nginx configuration, you can fol
 Here is an example of an Ansible role structure for managing Nginx configuration:
 
 1. Create the role directory structure:
-```bash
+```
 ansible-galaxy init nginx_role
 ```
 
@@ -471,7 +460,8 @@ nginx_role/
 ```
 
 3. Update the `tasks/main.yml` file with the tasks to configure Nginx:
-```yaml
+
+```
 ---
 - name: Install Nginx
   apt:
@@ -488,7 +478,7 @@ nginx_role/
 4. Update the `files/nginx.conf` file with your Nginx configuration.
 
 5. Update the `handlers/main.yml` file with the handler to restart Nginx:
-```yaml
+```
 ---
 - name: Restart Nginx
   service:
@@ -497,13 +487,13 @@ nginx_role/
 ```
 
 6. Update the `meta/main.yml` file with the role metadata:
-```yaml
+```
 ---
 dependencies: []
 ```
 
 7. Use the role in your playbook by including it in the `roles` section:
-```yaml
+```
 ---
 - name: Playbook with Nginx role
   hosts: your_target_hosts
@@ -517,9 +507,7 @@ By organizing tasks, files, and handlers related to Nginx configuration into a r
 
 ## Terraform
 
-
 The key differences between Ansible and Terraform lie in their primary focus and approach to infrastructure management:
-
 
 | Feature                 | Ansible                                         | Terraform                                              |
 |--------------------------|-------------------------------------------------|---------------------------------------------------------|
