@@ -7,25 +7,25 @@
 - [Conclusion](#conclusion)
 
 
+a
+a
+a
+a
+a
 
+a
+a
+a
 
+a
+a
+a
+a
+a
+aaa
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+a
+a
+a
                  
 ## Shared responsibility model
