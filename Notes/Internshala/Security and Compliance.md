@@ -6,4 +6,26 @@
 - [Section 5](#section-5)
 - [Conclusion](#conclusion)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 
 ## Shared responsibility model
