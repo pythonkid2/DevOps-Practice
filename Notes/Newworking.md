@@ -57,6 +57,9 @@ To divide the /16 range into 3 subnets, you can use the following subnet mask ca
 Number of bits needed for 3 subnets = $ \lceil \log_{2}(3) \rceil = 2 $
  bits (as 2^2 = 4 > 3)
 
+<img width="100" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/ec97cc2c-f7d5-4f69-ad03-65ae35b64e39">
+
+
 Therefore, the subnet mask for each subnet would be /16 + 2 = /18 (16 + 2 = 18)
 
 Subnet 1: 192.168.0.0/18 (192.168.0.0 to 192.168.63.255)
