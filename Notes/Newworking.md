@@ -15,6 +15,7 @@
 
 <img width="780" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/e622fa10-3410-462a-af49-af4526faeee8">
 
+<img width="864" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0b2a3a01-5444-465b-b874-721be07b3b51">
 
 
 
