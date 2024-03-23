@@ -54,7 +54,8 @@ Since you need to create 3 subnets, you can divide the available IP range into s
 
 To divide the /16 range into 3 subnets, you can use the following subnet mask calculation:
 
-Number of bits needed for 3 subnets = ceil(log2(3)) = 2 bits (as 2^2 = 4 > 3)
+Number of bits needed for 3 subnets = $ \lceil \log_{2}(3) \rceil = 2 $
+ bits (as 2^2 = 4 > 3)
 
 Therefore, the subnet mask for each subnet would be /16 + 2 = /18 (16 + 2 = 18)
 
