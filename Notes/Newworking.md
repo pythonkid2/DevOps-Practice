@@ -18,6 +18,8 @@
 <img width="864" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0b2a3a01-5444-465b-b874-721be07b3b51">
 
 
+## OSI Model
+
 
 
 
