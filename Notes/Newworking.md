@@ -1,4 +1,28 @@
 
+-[ip address](#ip-address)
+
+
+
+## IP address
+
+<img width="852" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0a4a34b6-767e-4dfd-a74c-04118666c87e">
+
+<img width="761" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/5888773d-49ff-4623-b2c4-e465ffe4d17d">
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/1449ed48-840b-4cfc-af4d-398c81892d43)
+
+<img width="900" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/fe236890-6719-40cc-b893-5180140996fa">
+
+<img width="780" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/e622fa10-3410-462a-af49-af4526faeee8">
+
+
+
+
+
+
++++
+
+
 <img width="539" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/81969360-c58f-49bb-893c-363987ec7ac2">
 
 <img width="926" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/776d2fab-4b81-4d96-8ade-187a6f8f5c48">
