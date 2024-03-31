@@ -65,5 +65,6 @@ Check the console output of the Jenkins job to see if the test passed or failed 
 
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0199442d-4c21-4f51-bb2d-6c6251ab689c)
 
+# [video](https://screenrec.com/share/iJLwu8C5qm)
 
 # Thank you! - Mathew Joseph 
