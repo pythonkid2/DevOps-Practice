@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/pythonkid2/DevOps-Practice'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh '/usr/bin/python3 Projects/Unit_test/test_script.py' 
+            }
+        }
+    }
+}
