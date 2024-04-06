@@ -10,6 +10,29 @@
 
 **[Click here](https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/setting-up-eksctl.html)**
 
+```
+eksctl version
+```
 
+## Install and Set Up kubectl on Linux
 
+**[Click here](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)**
+
+```
+kubectl version --client
+```
+## Install or update to the latest version of the AWS CLI
+
+**[Click here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)**
+
+aws configure
+
+(go to IAM --> Security credentials)
+
+Default region name [None]: us-east-2
+Default output format [None]: JSON
+
+```
+eksctl create cluster --name eks-cluster --region us-east-2 --nodegroup-name linux-nodes --node-type t2.micro --nodes 2
+```
 
