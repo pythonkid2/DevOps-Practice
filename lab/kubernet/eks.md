@@ -36,3 +36,8 @@ Default output format [None]: JSON
 eksctl create cluster --name eks-cluster --region us-east-2 --nodegroup-name linux-nodes --node-type t2.micro --nodes 2
 ```
 
+**for restart** -
+
+```
+aws eks update-kubeconfig --name eks-cluster
+```
