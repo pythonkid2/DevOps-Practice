@@ -34,10 +34,14 @@ private-ip	kmaster
 private-ip	kworker1 
 private-ip	kworker2
 ```
+```
+ping kmaster
+```
 3. Update the system:
 
+```
 sudo yum -y update
-
+```
 4. Configure the Kubernetes Yum repository:
 ```
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
