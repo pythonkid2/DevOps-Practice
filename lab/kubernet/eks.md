@@ -33,7 +33,7 @@ Default region name [None]: us-east-2
 Default output format [None]: JSON
 
 ```
-eksctl create cluster --name eks-cluster --region us-east-2 --nodegroup-name linux-nodes --node-type t2.micro --nodes 2
+eksctl create cluster --name eks-cluster --region us-east-2 --nodegroup-name linux-nodes --node-type t2.medium --nodes 1 --ssh-access --ssh-public-key ohiokey
 ```
 
 **for restart** -
