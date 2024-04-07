@@ -36,6 +36,18 @@ Default output format [None]: JSON
 eksctl create cluster --name eks-cluster --region us-east-2 --nodegroup-name linux-nodes --node-type t2.medium --nodes 1 --ssh-access --ssh-public-key ohiokey
 ```
 
+**To temporarily stop and restart an Amazon EKS cluster**, you can use the following commands:
+
+1. To stop the cluster:
+   ```
+   eksctl delete cluster --name eks-cluster
+   ```
+
+2. To restart the cluster:
+   ```
+   eksctl create cluster --name eks-cluster --region us-east-2 --nodegroup-name linux-nodes --node-type t2.medium --nodes 1 --ssh-access --ssh-public-key ohiokey
+   ```
+
 **for restart** -
 
 ```
