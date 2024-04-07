@@ -41,3 +41,9 @@ eksctl create cluster --name eks-cluster --region us-east-2 --nodegroup-name lin
 ```
 aws eks update-kubeconfig --name eks-cluster
 ```
+
+**To remove** 
+
+```
+eksctl delete cluster --name eks-cluster --region us-east-2
+```
