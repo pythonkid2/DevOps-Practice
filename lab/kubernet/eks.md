@@ -24,9 +24,9 @@ kubectl version --client
 ## Install or update to the latest version of the AWS CLI
 
 **[Click here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)**
-
+```
 aws configure
-
+```
 (go to IAM --> Security credentials)
 
 Default region name [None]: us-east-2
