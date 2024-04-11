@@ -24,3 +24,111 @@ eksctl create cluster --name demo-cluster-three-tier-1 --region us-east-1
 ```
 eksctl delete cluster --name demo-cluster-three-tier-1 --region us-east-1
 ```
+
+IAM OIDC (OpenID Connect) provider in AWS (Amazon Web Services) Identity and Access Management (IAM) is a service that allows you to integrate IAM with identity providers supporting the OpenID Connect protocol. With IAM OIDC provider, you can establish a trust relationship between your AWS account and an external identity provider, enabling you to use IAM roles to manage permissions for users authenticated by that identity provider.
+
+Here's how it works:
+
+1. **Configuration**: You configure an IAM OIDC provider in your AWS account by specifying the issuer URL provided by the identity provider. This establishes trust between AWS IAM and the external identity provider.
+
+2. **Authentication**: When a user tries to access AWS resources, they authenticate with the external identity provider. Upon successful authentication, the identity provider issues an ID token to the user.
+
+3. **Authorization**: The user presents the ID token to AWS. IAM OIDC provider validates the token with the identity provider to ensure its authenticity.
+
+4. **Role Mapping**: IAM roles are configured with trust policies that specify the IAM OIDC provider as a trusted entity. When the token is validated, IAM retrieves the associated IAM role based on the attributes provided in the token, such as groups or roles.
+
+5. **Temporary Credentials**: If the authentication and authorization process succeeds, IAM issues temporary security credentials to the user. These credentials grant access to AWS resources according to the permissions defined in the IAM roles mapped to the user.
+
+By using IAM OIDC provider, you can manage access to AWS resources centrally, streamline authentication with external identity providers, and enforce fine-grained access controls using IAM roles and policies.
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/a9098c56-3697-4642-91b8-d882cdc7c59f)
+
+# commands to configure IAM OIDC provider 
+
+```
+export cluster_name=<CLUSTER-NAME>
+```
+```
+export cluster_name=demo-cluster-three-tier-1
+```
+
+```
+oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5) 
+```
+
+## Check if there is an IAM OIDC provider configured already
+
+```
+aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4
+```
+
+If not, run the below command
+
+```
+eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
+```
++++
+
+# How to setup alb add on
+
+Download IAM policy
+
+```
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
+```
+
+Create IAM Policy
+
+```
+aws iam create-policy \
+    --policy-name AWSLoadBalancerControllerIAMPolicy \
+    --policy-document file://iam_policy.json
+```
+
+Create IAM Role
+
+```
+eksctl create iamserviceaccount \
+  --cluster=<your-cluster-name> \
+  --namespace=kube-system \
+  --name=aws-load-balancer-controller \
+  --role-name AmazonEKSLoadBalancerControllerRole \
+  --attach-policy-arn=arn:aws:iam::<your-aws-account-id>:policy/AWSLoadBalancerControllerIAMPolicy \
+  --approve
+```
+
+## Deploy ALB controller
+
+Add helm repo
+
+```
+helm repo add eks https://aws.github.io/eks-charts
+```
+
+Update the repo
+
+```
+helm repo update eks
+```
+
+Install
+
+```
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \            
+  -n kube-system \
+  --set clusterName=<your-cluster-name> \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=aws-load-balancer-controller \
+  --set region=<region> \
+  --set vpcId=<your-vpc-id>
+```
+
+Verify that the deployments are running.
+
+```
+kubectl get deployment -n kube-system aws-load-balancer-controller
+```
+
+
+
+
