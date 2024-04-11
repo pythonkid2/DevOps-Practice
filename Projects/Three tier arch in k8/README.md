@@ -176,3 +176,7 @@ kubectl get pods -n robot-shop
 kubectl apply -f ingress.yaml
 
 kubectl get ingress -n robot-shop
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/a5b925d0-31cf-457c-a69e-c1fbea77eeec)
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/72674676-7d36-481d-8efc-66a59d483f9f)
+
+
