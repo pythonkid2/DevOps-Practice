@@ -168,3 +168,11 @@ eksctl create addon --name aws-ebs-csi-driver --cluster <YOUR-CLUSTER-NAME> --se
 **References**:
 https://repost.aws/knowledge-center/eks-persistent-storage
 
+
++++
+go to helm and deploy 
+
+kubectl get pods -n robot-shop
+kubectl apply -f ingress.yaml
+
+kubectl get ingress -n robot-shop
