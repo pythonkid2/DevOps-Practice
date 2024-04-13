@@ -109,6 +109,7 @@ apt install unzip
 ```
 ```
 adduser sonarqube
+su sonarqube
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.4.1.88267.zip
 unzip *
 chmod -R 755 /home/sonarqube/sonarqube-10.4.1.88267
@@ -122,4 +123,11 @@ Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000
 
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/202ea4d1-3c8c-443f-9137-0b9c9efde7a9)
 
+
+## sonarqube --> my account--> security -->Generate Tokens
+
+## jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
+      kind: Secret text
+      scope: global
+      id: sonarqube
 
