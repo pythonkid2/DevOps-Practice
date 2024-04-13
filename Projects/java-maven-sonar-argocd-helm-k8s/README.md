@@ -131,3 +131,21 @@ Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000
       scope: global
       id: sonarqube
 
+
+## Grant Jenkins user and Ubuntu user permission to docker deamon.
+```
+sudo su - 
+usermod -aG docker jenkins
+usermod -aG docker ubuntu
+systemctl restart docker
+```
+Once you are done with the above steps, it is better to **restart Jenkins**.
+
+http://<ec2-instance-public-ip>:8080/restart
+
+The docker agent configuration is now successful.
+
+
+# [EKS-instalation](https://github.com/pythonkid2/DevOps-Practice/blob/main/lab/kubernet/eks.md)
+
+
