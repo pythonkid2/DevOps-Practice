@@ -148,4 +148,6 @@ The docker agent configuration is now successful.
 
 # [EKS-instalation](https://github.com/pythonkid2/DevOps-Practice/blob/main/lab/kubernet/eks.md)
 
+# Argo CD
 
+go to OperatorHub.io
