@@ -124,21 +124,23 @@ Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/202ea4d1-3c8c-443f-9137-0b9c9efde7a9)
 
 
-## sonarqube --> my account--> security -->Generate Tokens
+### sonarqube --> my account--> security -->Generate Tokens
 
-## jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
+### jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
       kind: Secret text
       scope: global
       id: sonarqube
 
-## jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
+### jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
  kind: usename and pass
       scope: global
       
       username: dockerhub user name
 
+### jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
 
-github-->settings--> dev settings--> geberate tocken --> name --> 
+kind secret text 
+# github-->settings--> dev settings--> geberate tocken --> name --> 
 
 ## Grant Jenkins user and Ubuntu user permission to docker deamon.
 ```
