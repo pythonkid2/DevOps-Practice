@@ -131,6 +131,14 @@ Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000
       scope: global
       id: sonarqube
 
+## jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
+ kind: usename and pass
+      scope: global
+      
+      username: dockerhub user name
+
+
+github-->settings--> dev settings--> geberate tocken --> name --> 
 
 ## Grant Jenkins user and Ubuntu user permission to docker deamon.
 ```
