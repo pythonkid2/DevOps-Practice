@@ -1,8 +1,5 @@
 # CICD Corporate DevOps Pipeline Project
 
-
-# CICD Corporate DevOps Pipeline Project
-
 ### [Link to the project]()
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/7bfbef79-1a3c-4813-942e-c6644dd60506)
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/8b4b744d-92b1-4e39-93fc-f2f30ca7e4da)
@@ -55,7 +52,47 @@ install docker
 git repo creaed
 
 # phase 3
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/fafd9d2e-4d62-45a2-9257-3e2cc91c3c1f)
 
+jenkins required plugins
+
+Eclipse Temurin installerVersion
+1.5
+Provides an installer for the JDK tool that downloads the JDK from https://adoptium.net
+
+Config File ProviderVersion
+968.ve1ca_eb_913f8c
+
+
+Pipeline Maven IntegrationVersion
+1396.veb_f07b_2fc1d8
+
+SonarQube ScannerVersion   - tool which is analysing and publsh report in server
+2.17.2
+External Site/Tool Integrations 
+
+DockerVersion
+1.6
+
+Docker PipelineVersion
+572.v950f58993843
+
+KubernetesVersion
+4203.v1dd44f5b_1cf9
+
+Kubernetes CLIVersion
+1.12.1
+kubernetes
+
+Kubernetes CredentialsVersion
+0.11
+
+	
+Kubernetes Client APIVersion
+6.10.0-240.v57880ce8b_0b_2
+
+Maven IntegrationVersion
+3.23
 
 #### [Link to the video](https://www.youtube.com/watch?v=NnkUGzaqqOc&t=75s)
 
