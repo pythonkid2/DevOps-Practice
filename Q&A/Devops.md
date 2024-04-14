@@ -109,19 +109,18 @@ Here's a table summarizing the key points:
 
 Choosing the right methodology depends on your project's specific needs. Waterfall can be suitable for well-defined projects with clear requirements, while Agile shines in dynamic environments where flexibility and adaptation are crucial.
 
-## comparison of Agile and DevOps in a table format:
+## comparison of Agile, waterfall and DevOps in a table format:
 
-| Aspect          | Agile                                       | DevOps                                              |
-|-----------------|---------------------------------------------|-----------------------------------------------------|
-| Focus           | Iterative development, collaboration       | Integration of development and operations processes|
-| Key Principles  | Adaptability, collaboration, early delivery| Automation, continuous delivery, collaboration     |
-| Methodologies   | Scrum, Kanban, XP                          | No specific methodology, complements Agile         |
-| Iterative Process | Sprints or iterations                     | Continuous delivery, deployment pipelines          |
-| Customer Focus  | Customer satisfaction through early delivery| Continuous delivery of value to customers           |
-| Key Practices   | Iterative planning, incremental delivery,  | Continuous integration, continuous delivery,       |
-|                 | collaboration                               | automated testing, infrastructure as code         |
-| Culture         | Collaboration, flexibility, feedback       | Collaboration, shared responsibility, automation   |
-
+| Aspect          | Agile                                       | DevOps                                              | Waterfall                                       |
+|-----------------|---------------------------------------------|-----------------------------------------------------|-------------------------------------------------|
+| Focus           | Iterative development, collaboration       | Integration of development and operations processes| Sequential development with distinct phases      |
+| Key Principles  | Adaptability, collaboration, early delivery| Automation, continuous delivery, collaboration     | Sequential phases, documentation, rigid planning |
+| Methodologies   | Scrum, Kanban, XP                          | No specific methodology, complements Agile         | Traditional waterfall model                     |
+| Iterative Process | Sprints or iterations                     | Continuous delivery, deployment pipelines          | Sequential phases                                |
+| Customer Focus  | Customer satisfaction through early delivery| Continuous delivery of value to customers           | Defined requirements, final product delivery     |
+| Key Practices   | Iterative planning, incremental delivery,  | Continuous integration, continuous delivery,       | Requirements gathering, design, development,     |
+|                 | collaboration                               | automated testing, infrastructure as code         | testing, deployment                             |
+| Culture         | Collaboration, flexibility, feedback       | Collaboration, shared responsibility, automation   | Formal processes, documentation, less flexible   |
 
 ## Devops
 
