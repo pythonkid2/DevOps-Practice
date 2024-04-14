@@ -94,5 +94,24 @@ Kubernetes Client APIVersion
 Maven IntegrationVersion
 3.23
 
+
+confugure tools 
+
+#### install trivy 
+
+https://aquasecurity.github.io/trivy/v0.18.3/installation/
+
+
+
+##
+set sonar on jenkins
+
+http://3.17.12.123:8080/manage/configure
+Dashboard  -> Manage Jenkins -> System
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/f101ba9d-3024-444e-a0c6-d10bae5b37ba)
+
+
+
 #### [Link to the video](https://www.youtube.com/watch?v=NnkUGzaqqOc&t=75s)
 
