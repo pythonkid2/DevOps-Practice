@@ -511,6 +511,49 @@ dependencies: []
 
 By organizing tasks, files, and handlers related to Nginx configuration into a role, you can easily reuse and maintain this configuration across multiple playbooks. Roles provide a structured way to manage the configuration of specific components or applications in Ansible.
 
+
+### What is ansible modules?
+
+Ansible modules are small programs that Ansible executes on managed hosts to perform specific tasks. They are the building blocks of Ansible automation. Modules can be written in any language that can return JSON (Python, Perl, Ruby, shell scripts, etc.). There are two types of modules in Ansible:
+
+1. **Core Modules:** These are included with Ansible by default and cover a wide range of functionalities, including system administration tasks, cloud management, network management, and more.
+
+2. **Custom Modules:** These are user-defined modules created to address specific use cases that aren't covered by the core modules. They are written by users to extend Ansible's capabilities.
+
+Here are some examples of core modules:
+
+- **File modules:** `copy`, `file`, `find`, `lineinfile`, `template`, `replace`, etc. These modules manage files on remote hosts.
+
+- **Package modules:** `apt`, `yum`, `dnf`, `pkgng`, etc. These modules manage packages on various operating systems.
+
+- **Service modules:** `service`, `systemd`, `win_service`, etc. These modules manage services on remote hosts.
+
+- **Command modules:** `command`, `shell`, `raw`, etc. These modules execute commands on remote hosts.
+
+- **Cloud modules:** `ec2`, `azure_rm`, `gcp`, etc. These modules interact with cloud providers to provision and manage resources.
+
+- **Database modules:** `mysql_db`, `postgresql_db`, etc. These modules manage databases and database users.
+
+And many more covering a wide range of tasks.
+
+To use a module, you include it in your Ansible playbook tasks, providing the necessary parameters. Ansible then executes the module on the target hosts to accomplish the specified tasks. For example:
+
+```
+- name: Ensure Apache is installed
+  package:
+    name: apache2
+    state: present
+
+- name: Ensure Apache service is running and enabled
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+```
+
+In this example, the `package` module is used to ensure that Apache is installed (`state: present`), and the `service` module ensures that the Apache service is started and enabled.
+
+
 - [Table of Contents](#Table-of-Contents)
 
 ## Terraform
