@@ -121,6 +121,8 @@ Choosing the right methodology depends on your project's specific needs. Waterfa
 |                 | collaboration                               | automated testing, infrastructure as code         | testing, deployment                             |
 | Culture         | Collaboration, flexibility, feedback       | Collaboration, shared responsibility, automation   | Formal processes, documentation, less flexible   |
 
+- [Table of Contents](#Table-of-Contents)
+
 ## Devops
 
 DevOps is a set of practices that aims to bridge the gap between development (Dev) and operations (Ops) teams. Its primary goal is to accelerate software delivery, enhance quality, and improve collaboration across the entire software development lifecycle.
