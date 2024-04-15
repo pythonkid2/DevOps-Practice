@@ -1159,17 +1159,13 @@ public class SeleniumExample {
 
 By using this line of code, you can create a new instance of the ChromeDriver, which then allows you to control the Chrome browser through your Java code using Selenium WebDriver.
 
-**why driver in selenium** 
+### **why driver in selenium** 
 
 In Selenium, the term "driver" refers to the software component that facilitates the communication between your test script and the browser. It acts as a bridge between the automation script and the browser's native support for automation (such as Chrome, Firefox, or others). The driver is a crucial part of the Selenium framework as it enables you to control the browser, navigate to URLs, and interact with web elements.
 
 - [Table of Contents](#Table-of-Contents)
 
 ## Kubernetes
-
-## Kubernetes Services: Types and More
-
-This document covers various aspects of Kubernetes, including service types, etcd, kubectl, and key concepts like Kube-proxy, Ingress, Kubelet, and Control Plane components.
 
 ### Services in Kubernetes
 
