@@ -425,10 +425,6 @@ Ansible offers several significant benefits for automating infrastructure and ap
 * **Hosts File:** Within the inventory file, individual entries for each host are specified with their details, such as hostname, IP address, and any additional variables.
 * **Print Total Number of Hosts:** To view the total number of hosts in your inventory, you can use the `ansible-inventory --list` command or simply examine the contents of the inventory file.
 
-### **Q: What are handlers in Ansible?**
-
-**A:** A handler represents a named list of tasks in Ansible. These tasks are triggered automatically when specific conditions are met or events occur within other tasks in a playbook.
-
 #### **Q: What are Ansible roles, and why are they useful?**
 
 **A:** Roles are a core concept in Ansible that enable users to group related tasks and configurations into reusable modules. These modules can then be included and referenced across different playbooks, promoting:
