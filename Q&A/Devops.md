@@ -10,7 +10,6 @@
 - [Jenkins](#Jenkins)
 - [Maven](#Maven)
 - [Selenium](#Selenium)
-- [Kubernetes](#Kubernetes)
 - [Prometheus & Grafana](#Prometheus-&-Grafana)
 - [AWS](#AWS)
 - [Linux](#Linux)
