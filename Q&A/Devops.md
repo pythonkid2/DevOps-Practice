@@ -1257,7 +1257,7 @@ These are just some of the core concepts and functionalities of Kubernetes. Its 
 
 ## Persistent Volumes (PV) and Persistent Volume Claims (PVC) in Kubernetes
 
-This document explains the concepts of Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) in Kubernetes, their roles, and how they differ.
+In Kubernetes, a Persistent Volume (PV) is a piece of storage in the cluster that has been provisioned by an administrator. Persistent Volume Claims (PVCs) are used by pods to request a specific amount of storage from a PV. The relationship between PVs and PVCs is one-to-one, meaning a single PVC can only be bound to one PV, and vice versa. This ensures data consistency and prevents conflicting access from multiple pods.
 
 ### Understanding PVs and PVCs
 
