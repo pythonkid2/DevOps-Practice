@@ -2333,6 +2333,9 @@ Both AMIs (Amazon Machine Images) and snapshots are essential components for man
 * Use AMIs for capturing and replicating entire machine configurations.
 * Use snapshots for backing up and restoring individual data volumes.
 
+### EFS (Elastic File System):
+
+EFS is a scalable, fully managed, cloud-native file storage service provided by AWS. It allows you to create scalable file storage that can be mounted to multiple EC2 instances concurrently.
 
 ### Q17
 
@@ -2430,6 +2433,28 @@ This command will only delete files without the directory structure. However, it
 
 <img width="271" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b11fe62e-cc57-4c1b-82b7-a3c141e2f03d">
 
+### How can you remove 1000 files whose extension starts with .text out of 1500 files present
+
+```
+find /path/to/files -maxdepth 1 -type f -name "*.text*" | head -n 1000 | xargs rm
+```
+
+Explanation of the command:
+
+- `find /path/to/files`: Searches for files in the specified directory.
+- `-maxdepth 1`: Limits the search to only the specified directory and not its subdirectories.
+- `-type f`: Specifies that only regular files should be considered.
+- `-name "*.text*"`: Matches files with extensions starting with `.text`.
+- `head -n 1000`: Selects the first 1000 files found by `find`.
+- `xargs rm`: Executes the `rm` command on each of the selected files.
+
+### To check the last 2 lines of a file in Linux
+```
+tail -n 2 filename
+```
+
+### To check the block storage volumes in Linux
+lsblk
 
 
 - [Table of Contents](#Table-of-Contents)
