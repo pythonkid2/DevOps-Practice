@@ -37,3 +37,22 @@ login to server
 
 take private ip and ssh
 
+create index.html
+
+run using 
+```
+python3 -m http.server 8000
+```
+
+### EC2 --> Load balancers --> Create Application Load Balancer -->
+
+load balacer shuld be in public subnet and should have access to ig
+
+
+Listeners and routing Info - A listener is a process that checks for connection requests using the port and protocol you configure. The rules that you define for a listener determine how the load balancer routes requests to its registered targets.
+
+include as pending -
+
+
+
+
