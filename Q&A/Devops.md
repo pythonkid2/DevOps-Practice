@@ -1773,6 +1773,65 @@ spec:
 
 By understanding these approaches, you can achieve your goal of (partially) controlling pod placement for development or testing scenarios while being aware of the limitations and best practices for production deployments in Kubernetes.
 
+### RBAC in k8
+
+RBAC stands for 'Role-Based Access Control'. It's a method of regulating access to computer or network resources based on the roles of individual users within your organization. RBAC is implemented to enforce the principle of least privilege, ensuring that each user only has access to the resources necessary for their role.
+
+In Kubernetes, RBAC allows administrators to define roles (sets of permissions) and bind them to specific users, groups, or service accounts within the Kubernetes cluster. This allows fine-grained control over who can perform various actions within the cluster, such as creating, updating, or deleting resources like pods, services, or deployments.
+
+### role binding
+
+A role binding is a way to link a role (which defines a set of permissions) with one or more subjects (such as users, groups, or service accounts). This association determines who has access to perform certain actions within the cluster.
+
+By creating role bindings, administrators can control access to Kubernetes resources based on the principle of least privilege, ensuring that users and applications have only the permissions they need to perform their tasks.
+
+### service account
+
+In Kubernetes, a service account is like an identity for pods. It defines what actions a pod can take within the cluster. It's used for authentication and authorization, ensuring secure access to resources like secrets and config maps. Service accounts work with RBAC to manage permissions, keeping Kubernetes environments secure.
+
+### "headless" service
+
+In Kubernetes, a "headless" service is a type of service that does not have an associated cluster IP address. Unlike a regular service, which typically routes traffic to a set of pods using a load balancer, a headless service allows direct communication with individual pods by returning DNS records for each pod's IP address.
+
+Headless services are often used for stateful applications, such as databases or messaging queues, where each pod needs to have a unique identity and clients need to communicate with specific pods directly. They provide a way to discover and connect to pods without the need for a load balancer, enabling more direct and controlled communication within the Kubernetes cluster.
+
+### kubeconfig file
+
+A kubeconfig file is a configuration file used by the Kubernetes command-line tool, kubectl, to authenticate and communicate with a Kubernetes cluster. It contains information about the cluster, such as the cluster's API server address, authentication details (like client certificates or tokens), and other settings like the default namespace.
+
+### Kubernetes specialized container types
+
+1. **Init Containers**: For setup tasks before main containers.
+2. **Sidecar Containers**: Provide support services alongside the main app.
+3. **Ambassador Containers (Proxy)**: Handle networking between app and external services.
+4. **Adapter Containers**: Transform data between different formats or protocols within a pod.
+
+These container types enhance modularity, scalability, and flexibility in Kubernetes deployments.
+
+### Static pods
+
+Static pods are pods whose configuration files are manually placed on a node's filesystem rather than being managed by the Kubernetes API server. These pods are not part of the Kubernetes control plane and are directly created and managed by the kubelet running on the node.
+
+Here's a brief overview:
+
+1. **Manual Configuration**: Static pod manifests are typically YAML or JSON files that describe the pod's specifications, including its containers, volumes, and other attributes.
+
+2. **Node Affinity**: Static pods are associated with a specific node, and they are bound to that node throughout their lifecycle. If the node goes down, the pods are also terminated, and they won't be rescheduled automatically by Kubernetes.
+
+3. **kubelet Management**: The kubelet continuously monitors a predefined directory (usually `/etc/kubernetes/manifests` or a directory specified in the kubelet's configuration) for static pod manifests. When it detects a new manifest, it creates and manages the corresponding pod on the node.
+
+Static pods are useful for running system-level services or critical components that need to be started before the kubelet itself is running or as part of the node's bootstrapping process. They provide a simple and straightforward way to run pods directly on Kubernetes nodes without relying on the Kubernetes API server. However, they lack some of the features and capabilities provided by regular pods managed by the Kubernetes control plane.
+
+ ### **DaemonSet**:
+   - A DaemonSet ensures that all (or some) nodes in a Kubernetes cluster run a copy of a specific pod template. It's typically used for system-level agents or daemons that need to run on every node, such as log collectors, monitoring agents, or networking services.
+
+### **Jobs and CronJobs**:
+   - **Jobs**: Kubernetes Jobs are used to run short-lived, non-repeating tasks to completion. Once a Job completes its task, the pod terminates, and the Job is considered finished.
+   - **CronJobs**: CronJobs are used to schedule Jobs to run periodically at specified times or intervals, similar to cron jobs in Unix-like operating systems. They provide a way to automate recurring tasks in Kubernetes, such as backups, batch processing, or data clean-up.
+
+### **Ingress and Egress**:
+   - **Ingress**: In Kubernetes, an Ingress is an API object that manages external access to services within a cluster. It allows you to define rules for routing HTTP and HTTPS traffic from outside the cluster to services within the cluster based on hostnames, paths, or other criteria. Ingress typically works with an external load balancer or reverse proxy to route traffic to the appropriate services.
+   - **Egress**: Egress in Kubernetes refers to outbound network traffic from pods to destinations outside the cluster. Egress rules can be defined to control and secure outgoing connections from pods, such as restricting access to specific IP ranges or enforcing network policies.
 
 - [Table of Contents](#Table-of-Contents)
   
