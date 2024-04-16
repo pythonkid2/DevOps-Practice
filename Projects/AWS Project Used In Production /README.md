@@ -16,6 +16,24 @@ VPC --> Your VPCs --> Create VPC -->
 
 ### Auto scaling groups 
 
+EC2 --> Launch templates --> Create launch template
+
+EC2 --> Auto Scaling groups --> Create Auto Scaling group
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/66c99847-9bb9-4e92-816f-0681e9eea13a)
 
 
+These instance has no public ip so need to use jumphost/bastion server 
+
+jump server on same vpc, security grp should have ssh accessabiliy 
+
+scp and copy paste pem key tothe jump server 
+
+```
+scp -i "x.pem" x.pem  ubuntu@ec2-18-191-237-225.us-east-2.compute.amazonaws.com:/home/ubuntu
+```
+
+login to server 
+
+take private ip and ssh
 
