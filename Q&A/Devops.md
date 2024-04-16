@@ -10,7 +10,7 @@
 - [Maven](#Maven)
 - [Selenium](#Selenium)
 - [Kubernetes](#Kubernetes)
-- [Prometheus & Grafana](#Prometheus-&-Grafana)
+- [Prometheus and Grafana](#Prometheus-and-Grafana)
 - [AWS](#AWS)
 - [Linux](#Linux)
 
@@ -1835,7 +1835,7 @@ Static pods are useful for running system-level services or critical components 
 
 - [Table of Contents](#Table-of-Contents)
   
-## Prometheus & Grafana
+## Prometheus and Grafana
 
 ### Types of Metrics in Prometheus
 - Counters, Gauges, Histograms, and Summaries.
