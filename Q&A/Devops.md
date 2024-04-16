@@ -2026,13 +2026,13 @@ An internet gateway acts as a critical component for enabling internet access wi
 In summary, an internet gateway acts as a gateway or entry/exit point for internet traffic flow within your VPC, providing controlled access to the internet for your resources.
 
 
-Q3 ,**Port for HTTP, SSH and HTTPS**
+### **Port for HTTP, SSH and HTTPS**
 
 SSH - 22
 HTTP - 80
 HTTPS - 443
 
-Q4 - **Types of volume in AWS?**
+ ### - **Types of volume in AWS?**
 
 AWS EBS comes in two main flavors: SSD and HDD.
 
@@ -2152,7 +2152,6 @@ Here's a table summarizing the different types of load balancers:
 
 The best type of load balancer for your application depends on your specific needs. Consider factors like traffic volume, application type, budget, and desired features when making your choice.
 
-
 ### Q10. What is cloud watch in AWS ?
 
 AWS CloudWatch is a monitoring and observability service that lets you track the health and performance of your AWS resources and applications. It provides a unified platform to collect and analyze data from various sources, including:
@@ -2229,6 +2228,9 @@ VPC peering in AWS allows you to connect two Virtual Private Clouds (VPCs) with 
 
 Overall, VPC peering is a powerful tool for building secure and scalable network architectures in AWS.
 
+### What is CloudFront and how does it work?
+
+Answer: Amazon CloudFront is a content delivery network (CDN) service that delivers data, videos, applications, and APIs to users globally with low latency and high transfer speeds. It caches content at edge locations around the world, reducing the latency of accessing content.
 
 ### Q15, is it possible to host a website in s3? what kind of website can we host?
 
@@ -2337,8 +2339,13 @@ Both AMIs (Amazon Machine Images) and snapshots are essential components for man
 
 EFS is a scalable, fully managed, cloud-native file storage service provided by AWS. It allows you to create scalable file storage that can be mounted to multiple EC2 instances concurrently.
 
-### Q17
+### What is Amazon RDS and what databases does it support?
 
+Amazon RDS (Relational Database Service) is a managed relational database service that makes it easy to set up, operate, and scale a relational database in the cloud. It supports various database engines such as MySQL, PostgreSQL, Oracle, SQL Server, and MariaDB.
+
+### Explain AWS Lambda and its use cases.
+
+AWS Lambda is a serverless computing service that runs your code in response to events and automatically manages the underlying compute resources. It is commonly used for event-driven architectures, data processing, and automation tasks.
 
 - [Table of Contents](#Table-of-Contents)
 
