@@ -18,7 +18,12 @@ VPC --> Your VPCs --> Create VPC -->
 
 EC2 --> Launch templates --> Create launch template
 
+in security grp open the ports which are required 22, 8000
+
 EC2 --> Auto Scaling groups --> Create Auto Scaling group
+
+instance on private subnet
+give desired numbers
 
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/66c99847-9bb9-4e92-816f-0681e9eea13a)
 
