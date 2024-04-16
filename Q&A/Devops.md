@@ -2347,6 +2347,10 @@ Amazon RDS (Relational Database Service) is a managed relational database servic
 
 AWS Lambda is a serverless computing service that runs your code in response to events and automatically manages the underlying compute resources. It is commonly used for event-driven architectures, data processing, and automation tasks.
 
+### NAT Gateway
+
+mask ip and download things from internet
+
 - [Table of Contents](#Table-of-Contents)
 
 ## Linux
