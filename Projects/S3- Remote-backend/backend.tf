@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "abhishek-s3-demo-xyz" # change this
-    key            = "abhi/terraform.tfstate"
-    region         = "us-east-1"
+    bucket         = "mathewdemo" # change this
+    key            = "mathew/terraform.tfstate"
+    region         = "us-east-2"
     encrypt        = true
     dynamodb_table = "terraform-lock"
   }
