@@ -2351,6 +2351,33 @@ AWS Lambda is a serverless computing service that runs your code in response to 
 
 mask ip and download things from internet
 
+### S3 lifecycle 
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b722fcbb-bb0b-4ac8-97da-07e78ea03a06)
+
+S3 lifecycle rules enable you to automate the management of objects stored in your S3 buckets. Here's an overview of typical lifecycle rules you can define:
+
+```
+- **Transition**: Move objects to different storage classes based on their age. For example, transition objects from Standard to Standard-IA (Infrequent Access) after 30 days, and then to Glacier after 60 days.
+
+- **Expiration**: Define when objects should expire and be automatically deleted from the bucket. For example, delete objects after 365 days.
+
+- **Abort Incomplete Multipart Uploads**: Automatically abort multipart uploads that are not completed within a specified timeframe to avoid incurring additional storage charges.
+
+- **Replication**: Replicate objects to another bucket in a different region or within the same region but with different storage classes. This can be useful for disaster recovery or compliance purposes.
+
+- **Object Tagging**: Apply lifecycle rules based on object tags. You can specify rules that apply only to objects with specific tags.
+
+- **S3 Batch Operations**: Perform bulk actions on objects in the bucket, such as copying, tagging, or deleting multiple objects.
+
+- **Object Locking**: Set retention periods or legal holds on objects to enforce compliance requirements.
+
+- **Event Notifications**: Trigger events when lifecycle transitions occur. For example, send a notification to an SNS topic or SQS queue when an object transitions to the Glacier storage class.
+```
+
+These lifecycle rules help you optimize storage costs, automate data management tasks, and ensure compliance with regulatory requirements. You can configure lifecycle rules using the AWS Management Console, AWS CLI, or SDKs.
+
+
 - [Table of Contents](#Table-of-Contents)
 
 ## Linux
