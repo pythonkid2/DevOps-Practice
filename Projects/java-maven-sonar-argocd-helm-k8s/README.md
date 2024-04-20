@@ -61,6 +61,16 @@ Find the project repository [here](https://github.com/pythonkid2/Jenkins-Zero-To
   java -jar target/spring-boot-web.jar
   ```
 
+#### Jenkins setup
+
+adding docker as agent, lesser configuration 
+
+add docker pipeline plugin
+add SonarQube Scanner
+
+
+
+
 - **Run as Docker Container**:
 
   Build Docker Image:
@@ -85,6 +95,21 @@ Find the project repository [here](https://github.com/pythonkid2/Jenkins-Zero-To
      ```
    Access SonarQube at `http://<ip-address>:9000`.
 
+```
+apt install unzip
+```
+```
+adduser sonarqube
+su sonarqube
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.4.1.88267.zip
+unzip *
+chmod -R 755 /home/sonarqube/sonarqube-10.5.0.89998
+chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-10.5.0.89998
+cd sonarqube-10.5.0.89998/bin/linux-x86-64/
+./sonar.sh start
+```
+
+
 2. **Generate SonarQube Token**:
    - Go to `My Account` > `Security` > `Generate Tokens`.
 
@@ -102,6 +127,14 @@ Find the project repository [here](https://github.com/pythonkid2/Jenkins-Zero-To
 5. **Restart Jenkins**:
    Access Jenkins at `http://<ec2-instance-public-ip>:8080/restart`.
 
+## Argo cd
+
+install k8 controlllers with operators, so operators makes intallation and conf easy 
+
+
+
+
+
+
 ---
 
-These instructions aim to be clear and sequential, guiding users through setting up the Spring Boot application and its dependencies effectively. Let me know if you need further clarification or adjustments!
