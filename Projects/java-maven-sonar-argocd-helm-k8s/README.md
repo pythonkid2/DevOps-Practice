@@ -1,44 +1,34 @@
-# [Link to the project](https://github.com/pythonkid2/Jenkins-Zero-To-Hero/tree/main/java-maven-sonar-argocd-helm-k8s)
-
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/66eb0f88-a4e3-4448-af7f-726a390477a7)
 
-# Spring Boot based Java web application
- 
-This is a simple Sprint Boot based Java application that can be built using Maven. Sprint Boot dependencies are handled using the pom.xml 
-at the root directory of the repository.
+## Spring Boot Java Web Application Setup Guide
 
-This is a MVC architecture based application where controller returns a page with title and message attributes to the view.
+### Introduction
+This guide walks you through setting up and running a simple Spring Boot Java web application locally. 
 
-## Execute the application locally and access it using your browser
+### Project Repository
+Find the project repository [here](https://github.com/pythonkid2/Jenkins-Zero-To-Hero/tree/main/java-maven-sonar-argocd-helm-k8s).
 
-Checkout the repo and move to the directory
+### Prerequisites
+- Git installed on your system.
+- Java Development Kit (JDK) 11 or later.
+- Apache Maven for building the application.
+- Docker (optional).
 
-```
-git clone https://github.com/pythonkid2/Jenkins-Zero-To-Hero
-```
-```
-cd Jenkins-Zero-To-Hero/java-maven-sonar-argocd-helm-k8s/spring-boot-app
-```
+### Step-by-Step Setup
 
+1. **Clone the Repository**:
+   
+   ```
+   git clone https://github.com/pythonkid2/Jenkins-Zero-To-Hero
+   cd Jenkins-Zero-To-Hero/java-maven-sonar-argocd-helm-k8s/spring-boot-app
+   ```
 
-1. **Download Apache Maven**:
+2. **Download and Install Apache Maven**:
+
    ```
    wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.zip
-   ```
-
-2. **Install unzip** (if not already installed), and extract the ZIP file:
-   ```
    sudo apt install unzip -y && unzip apache-maven-3.9.6-bin.zip
-   ```
-
-3. **Move Apache Maven to a suitable directory** (e.g., /opt):
-   ```
    sudo mv apache-maven-3.9.6 /opt
-   ```
-
-4. **Set up environment variables**:
-   Open the `.bashrc` file for editing:
-   ```
    nano ~/.bashrc
    ```
    Add the following lines to the end of the file:
@@ -46,119 +36,72 @@ cd Jenkins-Zero-To-Hero/java-maven-sonar-argocd-helm-k8s/spring-boot-app
    export M2_HOME=/opt/apache-maven-3.9.6
    export PATH=$PATH:$M2_HOME/bin
    ```
-
-5. **Apply the changes**:
-   After adding the lines to `.bashrc`, save and close the file (in Nano, press `Ctrl + X`, then `Y`, and then `Enter`). Then, apply the changes to your current session:
+   Then, apply the changes:
    ```
    source ~/.bashrc
    ```
 
-6. **Verify the installation**:
+3. **Verify Maven Installation**:
+
    ```
    mvn -version
    ```
 
-This should display the Maven version, confirming that it's installed correctly.
+4. **Build the Application**:
 
+   ```
+   mvn clean package
+   ```
 
-Execute the Maven targets to generate the artifacts
+### Running Locally
 
-```
-mvn clean package
-```
+- **Execute with Java** (Java 11 needed):
 
-The above maven target stroes the artifacts to the `target` directory. You can either execute the artifact on your local machine
-(or) run it as a Docker container.
+  ```
+  java -jar target/spring-boot-web.jar
+  ```
 
-** Note: To avoid issues with local setup, Java versions and other dependencies, I would recommend the docker way. **
+- **Run as Docker Container**:
 
+  Build Docker Image:
+  ```
+  docker build -t ultimate-cicd-pipeline:v1 .
+  ```
+  Run Docker Container:
+  ```
+  docker run -d -p 8010:8080 -t ultimate-cicd-pipeline:v1
+  ```
+  Access the application at `http://<ip-address>:8010`.
 
-### Execute locally (Java 11 needed) and access the application on http://localhost:8080
+### Next Steps
 
-```
-java -jar target/spring-boot-web.jar
-```
+1. **Set Up SonarQube Locally**:
 
-### Install Docker
+   - Download the latest version from [here](https://www.sonarsource.com/products/sonarqube/downloads/).
+   - Extract and set permissions.
+   - Start SonarQube server:
+     ```
+     ./sonar.sh start
+     ```
+   Access SonarQube at `http://<ip-address>:9000`.
 
-https://docs.docker.com/engine/install/ubuntu/
+2. **Generate SonarQube Token**:
+   - Go to `My Account` > `Security` > `Generate Tokens`.
 
+3. **Configure Credentials in Jenkins**:
+   - Go to `Manage Jenkins` > `Credentials`.
+   - Add SonarQube token and DockerHub credentials.
 
-### The Docker way
+4. **Grant Docker Daemon Permissions**:
+   ```
+   sudo usermod -aG docker jenkins
+   sudo usermod -aG docker ubuntu
+   systemctl restart docker
+   ```
 
-Build the Docker Image
+5. **Restart Jenkins**:
+   Access Jenkins at `http://<ec2-instance-public-ip>:8080/restart`.
 
-```
-docker build -t ultimate-cicd-pipeline:v1 .
-```
+---
 
-```
-docker run -d -p 8010:8080 -t ultimate-cicd-pipeline:v1
-```
-
-Hurray !! Access the application on `http://<ip-address>:8010`
-
-
-## Next Steps
-
-### Configure a Sonar Server locally
-
-https://www.sonarsource.com/products/sonarqube/downloads/ - find the latest version 
-
-```
-apt install unzip
-```
-```
-adduser sonarqube
-su sonarqube
-wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.4.1.88267.zip
-unzip *
-chmod -R 755 /home/sonarqube/sonarqube-10.4.1.88267
-chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-10.4.1.88267
-cd sonarqube-10.4.1.88267/bin/linux-x86-64/
-./sonar.sh start
-```
-
-Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000` 
-
-
-![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/202ea4d1-3c8c-443f-9137-0b9c9efde7a9)
-
-
-### sonarqube --> my account--> security -->Generate Tokens
-
-### jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
-      kind: Secret text
-      scope: global
-      id: sonarqube
-
-### jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
- kind: usename and pass
-      scope: global
-      
-      username: dockerhub user name
-
-### jenkins --> Manage jenkins --> credentials --> system --> global --> add -->
-
-kind secret text 
-# github-->settings--> dev settings--> geberate tocken --> name --> 
-
-## Grant Jenkins user and Ubuntu user permission to docker deamon.
-```
-sudo su - 
-usermod -aG docker jenkins
-usermod -aG docker ubuntu
-systemctl restart docker
-```
-Once you are done with the above steps, it is better to **restart Jenkins**.
-
-http://<ec2-instance-public-ip>:8080/restart
-
-The docker agent configuration is now successful.
-
-
-# [EKS-instalation](https://github.com/pythonkid2/DevOps-Practice/blob/main/lab/kubernet/eks.md)
-
-# Argo CD
-
-go to OperatorHub.io
+These instructions aim to be clear and sequential, guiding users through setting up the Spring Boot application and its dependencies effectively. Let me know if you need further clarification or adjustments!
