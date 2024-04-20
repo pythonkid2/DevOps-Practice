@@ -20,7 +20,6 @@ git clone https://github.com/pythonkid2/Jenkins-Zero-To-Hero
 cd Jenkins-Zero-To-Hero/java-maven-sonar-argocd-helm-k8s/spring-boot-app
 ```
 
-Certainly! Here's the properly formatted installation process for Apache Maven 3.9.6 on Ubuntu:
 
 1. **Download Apache Maven**:
    ```
