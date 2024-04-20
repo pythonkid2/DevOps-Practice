@@ -1,5 +1,7 @@
 # [Link to the project](https://github.com/pythonkid2/Jenkins-Zero-To-Hero/tree/main/java-maven-sonar-argocd-helm-k8s)
 
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/66eb0f88-a4e3-4448-af7f-726a390477a7)
+
 # Spring Boot based Java web application
  
 This is a simple Sprint Boot based Java application that can be built using Maven. Sprint Boot dependencies are handled using the pom.xml 
