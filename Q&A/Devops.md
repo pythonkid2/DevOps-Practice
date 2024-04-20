@@ -2351,6 +2351,10 @@ AWS Lambda is a serverless computing service that runs your code in response to 
 
 mask ip and download things from internet
 
+### What is Keypair?
+
+In AWS, a key pair refers to a set of cryptographic keys that are used to authenticate access to instances in Amazon EC2 (Elastic Compute Cloud). It consists of a public key, which is placed on the EC2 instance during its launch, and a private key, which is securely stored and used to decrypt login information.
+
 ### S3 lifecycle 
 
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/b722fcbb-bb0b-4ac8-97da-07e78ea03a06)
