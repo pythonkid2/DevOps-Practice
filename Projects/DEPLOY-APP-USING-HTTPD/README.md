@@ -17,7 +17,16 @@ To deploy the app using Apache HTTP Server (`httpd`), follow these steps:
     sudo cp -r * /var/www/html/
     ```
 
-4. Optionally, if you need to clone a specific branch:
+4.Start HTTPD
+
+```
+sudo systemctl start httpd
+sudo systemctl enable httpd
+```
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/fb956e72-7072-4c97-9281-6b993a53a4dc)
+
+  Optionally, if you need to clone a specific branch:
     ```
     git clone -b branch_name https://github.com/pythonkid2/DevOps-Practice
     ```
