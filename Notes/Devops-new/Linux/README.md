@@ -5,3 +5,13 @@ linux gives complee access
 
 bin -contain binary files
 boot - initial booting files
+etc - contain configuration of dif tools and services which are installed on the machine
+home-
+lib - libraies for bootig and repair 
+usr-
+var - variable data such as log files 
+root- home directory of super user
+dev- 
+proc - process id and status
+tmp - temporry files which may auto delete upon reboot
+mnt - 
