@@ -2031,6 +2031,9 @@ In summary, an internet gateway acts as a gateway or entry/exit point for intern
 SSH - 22
 HTTP - 80
 HTTPS - 443
+mogodb - 27017
+SMTPS - 465
+k8 api - 6443
 
  ### - **Types of volume in AWS?**
 
