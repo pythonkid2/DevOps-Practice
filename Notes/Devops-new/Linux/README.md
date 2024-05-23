@@ -52,6 +52,21 @@ adduser and useradd
 
 
 
+sudo deluser name - removing user
+
+
+## VIM/VI editor
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/be55bd0a-d57d-4d4f-baee-f66de91a916e)
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/cebdaa78-2108-48ad-a6c7-a80335f76454)
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0b404176-9a8f-4ec0-88dc-46c37f79ee79)
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/e8e990bd-f9bd-4ddf-8c5a-6dc22d64d5a1)
+
+
+
+
+
 
 
 
