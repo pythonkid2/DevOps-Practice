@@ -72,6 +72,17 @@ sudo apt install --- , sudo remove ...
 nslookup 
 dig
 
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/3df64cee-7f4a-4809-84da-4ac3b4bf002c)
+
+
+sudo chmod -R o+wrx folder - regressively addimg permission 
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/3ab6c755-b6f7-43be-8ece-71d63c08df63)
+
+
+Change ownership
+
+sudo chown mathew:group file
+
 
 
 
