@@ -9,4 +9,16 @@ validate --> compile --> test --> package (create artifact)--> verify --> instal
 
 in nodejs 
 
-package.json file will contain dependencies and scripts
+package.json file will contain dependencies and scripts(run test cases, run the app ,..etc)
+index.js - will be front end
+
+npm - package manager for nodejs
+need to install nodejs
+https://nodejs.org/en/download/package-manager
+
+Install Node.js v20.14.0 (LTS) on Linux using nvm
+
+npm install
+npm start 
+
+https://github.com/shackverse/demo_nodejs_webpage
