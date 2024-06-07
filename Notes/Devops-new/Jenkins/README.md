@@ -45,4 +45,7 @@ pipeline
 
 Basic triger - applying on master/main
 Generic webhook trigger - 
+
+go to build triggers --> generic webhhok Trigger 
+
 multibranch scan webhook - whenevere we push 
