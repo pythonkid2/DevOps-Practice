@@ -1,6 +1,8 @@
 
 docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 
+comminty branch - https://hub.docker.com/r/mc1arke/sonarqube-with-community-branch-plugin
+
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/c0ffd9f8-cd13-41c3-a51b-02598e46470e)
 
 Configuration - configuration of sq
@@ -49,7 +51,7 @@ pipeline {
         stage('git') {
             steps {
                 echo 'git checkout'
-                git branch: 'main', url: 'https://github.com/jaiswaladi246/Boardgame.git'
+                git branch: 'main', url: 'https://github.com/pythonkid2/Boardgame.git'
             }
         }
         stage('unit test') {
@@ -77,3 +79,43 @@ pipeline {
 
 ```
 
++++
+
+community branch pluggin -
+
+
+mc1arke/sonarqube-community-branch-plugin
+https://github.com/mc1arke/sonarqube-community-branch-plugin
+
+https://hub.docker.com/r/mc1arke/sonarqube-with-community-branch-plugin
+
+
+## instal jar manually 
+
+1. **Access the SonarQube container:**
+```
+   docker exec -it 2710 /bin/bash
+   ```
+
+2. **Navigate to the `extensions/plugins` directory:**
+   ```
+   cd /opt/sonarqube/extensions/plugins
+   ```
+
+3. **Download the SonarQube Community Branch Plugin:**
+   ```
+   wget https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/1.16.0/sonarqube-community-branch-plugin-1.16.0.jar
+   ```
+exit and restart the container 
+docker restart 
+
+## Sonar trouble shoot
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/2141938d-e9cb-4b99-a08e-d2af5f533721)
+
+
+## Branch change
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/0d0a1301-1e31-4a99-bccf-482ccc0e545f)
+
+
+plugin version matrix - to check the supported versions 
