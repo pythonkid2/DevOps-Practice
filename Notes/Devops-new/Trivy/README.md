@@ -18,7 +18,33 @@ What trivy will solve?
 6. Package Manager Vulnerabilities [Depenedency vuln]
 
 
+## Installation 
+
+https://aquasecurity.github.io/trivy/v0.52/getting-started/installation/
 
 
+```trivy -v 
+```
+### scan repo 
 
+trivy repo https://github.com/pythonkid2/Boardgame.git
+
+![report](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/8e6f2a34-dc1d-405c-927c-4fa5e424e9e4)
+
+generate report in a file to share - 
+```
+trivy repo --format table -o report.txt https://github.com/pythonkid2/Boardgame.git
+```
+
+--format -> format for report 
+-o for to give file name 
+
+### scan file system
+```
+trivy fs . 
+```
+
+trivy fs --format jason -o report.jason .
+
+jason -anither possible format 
 
