@@ -83,6 +83,11 @@ pipeline {
 
 community branch pluggin -
 
+add - 
+```
+-Dsonar.branch.name=branch-name
+```
+
 
 mc1arke/sonarqube-community-branch-plugin
 https://github.com/mc1arke/sonarqube-community-branch-plugin
