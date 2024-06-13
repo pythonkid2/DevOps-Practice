@@ -124,3 +124,25 @@ docker restart
 
 
 plugin version matrix - to check the supported versions 
+
+## Quality gate check 
+
+if quality gate is passed then only it will proceed with pipeline`
+
+Administration --> Configuration --> Webhooks --> Create 
+
+![create webhook](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/3fb68228-41fc-44f0-8447-3dc1629108c8)
+```
+http://18.220.71.120:8080/sonarqube-webhook/
+```
+
+go to jenkins
+
+```
+stage('Quality gate') {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-cred'
+                }
+            }
+```
