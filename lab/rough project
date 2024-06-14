@@ -1,3 +1,5 @@
+accessing docker with all users
+sud0 chmod 666 /var/run/docker.sock
 
 path adding 
 
