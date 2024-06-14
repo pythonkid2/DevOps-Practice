@@ -48,3 +48,6 @@ trivy fs --format jason -o report.jason .
 
 jason -anither possible format 
 
+![other formats](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/810ffeab-9098-45ec-a8c0-19bdf8d75900)
+
+
