@@ -46,8 +46,67 @@ trivy fs .
 
 trivy fs --format jason -o report.jason .
 
-jason -anither possible format 
+### Scan docker images 
 
-![other formats](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/810ffeab-9098-45ec-a8c0-19bdf8d75900)
+trivy image image name:tag
+
+trivy image --format table -o image.txt imagename:tag
 
 
+### another possible format 
+
+["table" "json" "template" "sarif" "cyclonedx" "spdx" "spdx-json" "github" "cosign-vuln"]
+
+### To save the scan result in HTML format
+
+trivy image -f html -o results.html image_name Example:
+trivy image -f html -o results.html my_image:latest
+
+## Trivy in Jenkins
+
+install tivy on jenkins server
+
+```
+pipeline {
+    agent any
+
+    stages {
+        stage('git checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/pythonkid2/Boardgame.git'
+            }
+        }
+        stage('Trivy FS table') {
+            steps {
+                sh 'trivy fs --format table -o trivy-report.txt .'
+            }
+        }
+        stage('Trivy FS Json') {
+            steps {
+                sh 'trivy fs --format json -o trivy-report.json .'
+            }
+        }
+        stage('Trivy FS in severity format') {
+            steps {
+                sh 'trivy fs --format table -o trivy-severity-report.txt --severity HIGH,CRITICAL  .'
+            }
+        }
+    }
+}
+
+```
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/8c273e40-cde8-441d-be4a-71f626ebbb23)
+
+## OWSAP Dependency Check
+
+NVD - national vulnerablity database
+
+plugin --> Owsap dependency check
+
+
+tool  --> 
+
+![tool](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/d53d19e3-58a1-442a-ad05-28a91e3293c7)
+
+
+![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/8f74f964-1400-419f-867f-753142b1cf33)
