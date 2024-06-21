@@ -29,3 +29,8 @@ docker exec -it id /bin/sh
 how to find running container size
 
 docker ps --size
+
+## Writing Dockerfile
+
+
+## ECR
