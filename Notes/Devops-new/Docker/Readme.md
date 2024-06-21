@@ -25,3 +25,7 @@ go inside -
 docker exec -it id /bin/sh
 
 
+# check
+how to find running container size
+
+docker ps --size
