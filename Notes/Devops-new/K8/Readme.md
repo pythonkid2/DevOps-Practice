@@ -61,10 +61,10 @@ Additional Components (for a more comprehensive understanding):
 
 ## services
 
-cluster ip[ Basically using for internal communication ]
-node port [external to internal communication.
-Load Balancer
-Ingress
+cluster ip (Basically using for internal communication)
+node port (external to internal communication)
+Load Balancer (load balancer service accessing directly pod, externally accessing with url, more safe)
+Ingress (sending request to the service)
 
 
 
