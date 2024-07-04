@@ -59,4 +59,12 @@ Additional Components (for a more comprehensive understanding):
 
 ![image](https://github.com/pythonkid2/DevOps-Practice/assets/100591950/7aeb61e3-548f-4c44-ba3b-75759c414ac2)
 
+## services
+
+cluster ip[ Basically using for internal communication ]
+node port [external to internal communication.
+Load Balancer
+Ingress
+
+
 
