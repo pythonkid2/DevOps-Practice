@@ -1,0 +1,44 @@
+
+# Jenkins Installation
+
+### Step 1: Install OpenJDK 17
+
+```bash
+sudo apt install openjdk-17-jre-headless
+```
+
+### Step 2: Add Jenkins Repository Key
+
+```bash
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+```
+
+### Step 3: Update Package Lists
+
+```bash
+sudo apt-get update
+```
+
+### Step 4: Install Jenkins
+
+```bash
+sudo apt-get install jenkins
+```
+### Step 5: Install Plugins
+
+```bash
+
+1. Kubernetes :: Pipeline :: DevOps Steps
+
+2. Kubernetes CLI Plugin
+
+3. Kubernetes Credentials Plugin
+
+4. Kubernetes plugin
+
+```
