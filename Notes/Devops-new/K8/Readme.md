@@ -4,9 +4,9 @@
 
 - [Overview](#Overview)
 - [Architecture](#Architecture)
-- [Components](#Components)
-- [Taints & Tolerations](#Taints&Tolerations)
-- [Section 4](#section-4)
+- [Components of Kubernetes](#ComponentsofKubernetes)
+- [Taints and Tolerations](#TaintsandTolerations)
+- [Liveness and Readiness Probe](#LivenessandReadinessProbe)
 - [Section 5](#section-5)
 - [Conclusion](#conclusion)
 
@@ -76,7 +76,7 @@ node port (external to internal communication)
 Load Balancer (load balancer service accessing directly pod, externally accessing with url, more safe)
 Ingress (sending request to the service)
 
-## Taints & Tolerations
+## Taints and Tolerations
 
 In Kubernetes, taints and tolerations are mechanisms used to control which nodes a pod can be scheduled on. They are important for ensuring that certain pods are only deployed on specific nodes or types of nodes.
 
@@ -86,13 +86,13 @@ A taint is a key-value pair that is applied to a node. It prevents pods from bei
 
 Here's an example of applying a taint to a node:
 
-```bash
+```
 kubectl taint nodes <node-name> key=value:taint-effect
 ```
 
 For example:
 
-```bash
+```
 kubectl taint nodes node1 app=backend:NoSchedule
 ```
 
@@ -104,7 +104,7 @@ A toleration is a part of a pod's specification that allows the pod to be schedu
 
 Here's an example of adding a toleration to a pod:
 
-```yaml
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -180,7 +180,7 @@ spec:
   type: NodePort
 ```
 
-# Liveness & Readiness Probe
+## Liveness and Readiness Probe
 
 Liveness and readiness probes are crucial for Kubernetes to ensure the health and availability of your application. Here's a detailed explanation with examples:
 
