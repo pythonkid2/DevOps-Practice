@@ -4,9 +4,9 @@
 
 - [Overview](#Overview)
 - [Architecture](#Architecture)
-- [Components of Kubernetes](#ComponentsofKubernetes)
-- [Taints and Tolerations](#TaintsandTolerations)
-- [Liveness and Readiness Probe](#LivenessandReadinessProbe)
+- [Components of Kubernetes](#Components-of-Kubernetes)
+- [Taints and Tolerations](#Taints-and-Tolerations)
+- [Liveness and Readiness Probe](#Liveness-and-Readiness-Probe)
 - [Section 5](#section-5)
 - [Conclusion](#conclusion)
 
