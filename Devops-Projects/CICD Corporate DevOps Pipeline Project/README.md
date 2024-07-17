@@ -4,6 +4,8 @@
 ![Project Diagram](https://github.com/user-attachments/assets/0bfd5d90-2f0b-486b-b0d7-d926bed90cd5)
 
 
+(Link to repo)[https://github.com/pythonkid2/Boardgame-2]
+
 #### Task 1: Infrastructure Setup
 **Steps:**
 1. **Creating a Secure Network Environment:**
