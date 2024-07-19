@@ -3,8 +3,18 @@ how you can set up a Jenkins pipeline using Terraform to create an AWS load bala
 - [Q2](#Q2)
 Creating a real-time AWS project to host a website on an EC2 instance using a combination of AWS, Ansible, Terraform, Git, Jenkins, Docker, Kubernetes (K8s), Prometheus, and Grafana
 - [Q3](#Q3)
+What is your Branching Strategies in your current project.!?..
+
+I found the below answer which fit best I guess.
 
 
+All new Story specific branches should be pre-fixed with JIRA ID e.g. ECO-1111-create-api.
+All new Story specific branches should be created under "feature" e.g. feature/ECO-1111-create-api from develop or if it is a hot fix, then the branch will be e.g. hotfix/ECO-1111-prod-fix from master.
+While committing code, the message should prefix with JIRA ID e.g. "ECO-1111 xxx xxx xx".
+Only If the feature branch tested in local workspace properly, a PR should be raised to /develop branch. After approval and merge, a DEV deployment can be done from /develop branch.
+Once DEV server testing is looking good, we can merge code from /develop to next release branch "release/XX_X" and deploy to QA from this.
+Once QA server testing is looking good and signed-off, we prepare release and deploy to PROD from release/XX_X branch.
+After successful PROD release, we merge release/XX_X code into master.
 
 ## Q1
 
