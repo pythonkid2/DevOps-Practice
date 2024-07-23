@@ -1,4 +1,10 @@
 
+# Git Lab
+
+.gitlab-ci.yml is deafult name of ci cd pipeline script
+
+
+
 ![Pipeline](https://github.com/user-attachments/assets/37893915-402e-4f4a-b71f-c5998eaa455d)
 
 
