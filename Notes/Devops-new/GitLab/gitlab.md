@@ -201,3 +201,38 @@ Ensure the following packages are installed on the VM:
 - Docker
 - Trivy
 - Kubectl
+
++++
+install sonarqube as container in vm
+
+docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
+
+login 
+
+From gitlab- 
+configuration name : Boardgame
+Gitlab api url: 
+
+Personal Access Token
+
+for creating token
+
+settings  -access tockens --add new token
+name : sonar
+
+Select a role : reporter
+select scope 
+
+Gitlab project onboarding
+setup --> gitlab --> project key --> others --> create file 
+
+![image](https://github.com/user-attachments/assets/ff6da81f-477b-4174-b17e-4f78ce65b3b2)
+
+add environment variables 
+
+settings cicd variables add variable
+
+we can remove entry point
+
+
+
