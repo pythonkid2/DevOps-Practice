@@ -256,3 +256,49 @@ Create or update your .gitlab-ci.yml file with the given content.
 
 add stage, remove entrypoint
 
+
+## kubenetes
+
+## for eks
+
+Generate Kubeconfig File:
+Use the aws eks update-kubeconfig command to generate or update the kubeconfig file for your EKS cluster.
+```
+aws eks update-kubeconfig --region <region-code> --name <cluster-name>
+```
+
+Set Up GitLab CI/CD:
+To use the kubeconfig file in GitLab CI/CD, follow these steps:
+
+Using GitLab CI/CD Variables
+
+Step 1: Encode the Kubeconfig File
+
+Encode the kubeconfig file to base64.
+```
+base64 ~/.kube/config
+```
+Copy the base64 encoded content.
+
+Step 2: Add CI/CD Variables in GitLab
+
+Go to your GitLab project.
+
+Navigate to Settings > CI/CD > Variables.
+
+Add a new variable named KUBECONFIG_DATA and paste the base64 encoded content as the value.
+
+```
+deploy in k8:
+  stage: Kubernetes
+  script:
+    # Decode the KUBECONFIG_DATA variable and write it to the kubeconfig file
+    - echo $KUBECONFIG_DATA | base64 -d > ~/.kube/config
+    - kubectl get nodes  # Example command to check Kubernetes connectivity
+    - kubectl apply -f deployment-service.yaml
+  tags:
+    - self-hosted
+  only:
+    - main
+
+````
