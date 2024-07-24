@@ -228,11 +228,31 @@ setup --> gitlab --> project key --> others --> create file
 
 ![image](https://github.com/user-attachments/assets/ff6da81f-477b-4174-b17e-4f78ce65b3b2)
 
+
 add environment variables 
 
 settings cicd variables add variable
 
 we can remove entry point
 
+Define the SonarQube Token environment variable.
 
+In GitLab, go to Settings > CI/CD > Variables to add the following variable and make sure it is available for your project:
+In the Key field, enter SONAR_TOKEN 
+In the Value field, enter an existing token, or a newly generated one: Generate a token
+Uncheck the Protect Variable checkbox.
+Check the Mask Variable checkbox.
+
+
+Define the SonarQube URL environment variable.
+
+Still in Settings > CI/CD > Variables add a new variable and make sure it is available for your project:
+In the Key field, enter SONAR_HOST_URL 
+In the Value field, enter http://3.16.38.115:9000 
+Uncheck the Protect Variable checkbox.
+Leave the Mask Variable checkbox unchecked.
+
+Create or update your .gitlab-ci.yml file with the given content.
+
+add stage, remove entrypoint
 
