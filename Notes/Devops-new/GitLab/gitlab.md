@@ -288,17 +288,106 @@ Navigate to Settings > CI/CD > Variables.
 
 Add a new variable named KUBECONFIG_DATA and paste the base64 encoded content as the value.
 
+
+# full pipeline
+
 ```
-deploy in k8:
-  stage: Kubernetes
+d
+stages:          # List of stages for jobs, and their order of execution
+  - install-tools
+  - test
+  - security
+  - Build
+  - Docker
+  - Kubernetes
+
+
+
+install-tools-in-vm:       # This job runs in the install-tools stage, which runs first.
+  stage: install-tools
   script:
-    # Decode the KUBECONFIG_DATA variable and write it to the kubeconfig file
-    - echo $KUBECONFIG_DATA | base64 -d > ~/.kube/config
-    - kubectl get nodes  # Example command to check Kubernetes connectivity
-    - kubectl apply -f deployment-service.yaml
+    - sudo apt install -y openjdk-17-jre-headless maven 
+    - wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+    - echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+    - sudo apt-get update
+    - sudo apt-get install -y  trivy
+    - sudo apt install docker.io -y && sudo chmod 666 /var/run/docker.sock
+    - sudo snap install kubectl --classic
+  tags:
+    - self-hosted
+
+unit_testing:
+  stage: test
+  script:
+    - mvn test
+  tags:
+    - self-hosted
+
+
+trivy-fs-scan:
+  stage: security
+  script:
+    - trivy --version
+    - trivy fs --format table -o fs.html .
+  artifacts:
+   paths:
+    - fs.html
+  tags:
+    - self-hosted
+
+sonarqube-check:
+  stage: security
+  image: 
+    name: sonarsource/sonar-scanner-cli:latest
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script: 
+    - sonar-scanner
+  allow_failure: true
+  only:
+    - main
+
+build-the-app:
+  stage: Build
+  script:
+    - mvn package
   tags:
     - self-hosted
   only:
     - main
 
-````
+docker-build_tag_push:
+  stage: Docker
+  script:
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - mvn package
+    - docker build -t mjcmathew/boardgamegitlab:latest .
+    - docker push mjcmathew/boardgamegitlab:latest
+  tags:
+    - self-hosted
+  only:
+    - main
+  
+deploy-in-k8:
+  stage: Kubernetes
+  variables:
+    KUBECONFIG_PATH: /home/ubuntu/.kube/config
+  before_script:
+    - mkdir -p $(dirname "$KUBECONFIG_PATH")
+    - echo "$KUBECONFIG_DATA" | base64 -d > "$KUBECONFIG_PATH"
+    - export KUBECONFIG="$KUBECONFIG_PATH"
+  script:
+    - kubectl apply -f deployment-service.yaml
+  tags:
+    - self-hosted
+  only:
+    - main
+  
+```
+
+![successfull pipeline pic](https://github.com/user-attachments/assets/4e1dfb66-f5dd-477b-9cf2-4394196bd8cc)
