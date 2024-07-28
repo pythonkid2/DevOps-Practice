@@ -49,6 +49,27 @@ install plugins
 
 sonarqbe scanner
 config file provider
+pipeline maven itegration
+maven integration
+docker
+dockerpipeline
+pipelinbe:stageview
+kubernetes
+kubernetes cli
+
+Tools
+
+Docker installation
+Maven 
+sonarqube 
+scaner name : sonar-scanner
+
+Pipeline
+
+Discard old build , 2
+
+
+
 
 
 
