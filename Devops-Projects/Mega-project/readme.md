@@ -69,6 +69,33 @@ Pipeline
 Discard old build , 2
 
 
+pipeline 
+{
+    agent any
+    tools {
+        maven 'M3'   
+    }
+    stages {
+        stage('git') {
+            steps {
+                echo 'git checkput'
+                git branch: 'main', url: 'https://github.com/jaiswaladi246/Boardgame.git'
+            }
+        }
+        stage('unit test') {
+            steps {
+                echo 'mvn test'
+                sh 'mvn test'
+            }
+        }
+        stage('package') {
+            steps {
+                echo 'mvn package'
+                sh 'mvn package'
+            }
+        }       
+    }
+}
 
 
 
