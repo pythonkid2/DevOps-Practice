@@ -1,4 +1,3 @@
-Certainly! Let's ensure we include all the necessary Jenkins setups, tool configurations, and changes to the `pom.xml` file for Nexus integration.
 
 ## Step 1: Setting Up the Infrastructure Server
 
