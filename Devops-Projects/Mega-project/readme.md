@@ -103,7 +103,7 @@ Install the following plugins in Jenkins:
 ### Jenkins Pipeline Configuration
 In Jenkins, configure the tools and create a pipeline:
 
-```groovy
+```
 pipeline {
     agent any
     tools {
@@ -130,10 +130,9 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Trivy FS Scan') {
+        stage('Package') {
             steps {
-                echo 'Running Trivy FS Scan'
-                sh 'trivy fs --format table -o fs-report.html .'
+                sh 'mvn package'
             }
         }
         stage('SonarQube Analysis') {
@@ -144,6 +143,12 @@ pipeline {
                     -Dsonar.projectName=TaskMaster \
                     -Dsonar.java.binaries=target '''
                 }
+            }
+        }
+        stage('Trivy FS Scan') {
+            steps {
+                echo 'Running Trivy FS Scan'
+                sh 'trivy fs --format table -o fs-report.html .'
             }
         }
         stage('Publish to Nexus') {
@@ -175,12 +180,6 @@ pipeline {
                         sh 'docker push username/taskmaster:latest'
                     }
                 }
-            }
-        }
-        stage('Build Application') {
-            steps {
-                echo 'Building Application'
-                sh 'mvn package'
             }
         }
     }
