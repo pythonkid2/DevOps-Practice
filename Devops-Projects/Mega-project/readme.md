@@ -291,3 +291,195 @@ aws eks --region <region-name> update-kubeconfig --name <cluster-name>
 ```
 
 This setup should give you a comprehensive CI/CD pipeline with Jenkins, SonarQube, Nexus, Docker, and EKS. Make sure to replace placeholders like `<region-name>` and `<cluster-name>` with your actual values.
+
+
+
+# RBAC
+
+## Create Service Account, Role & Assign that role, And create a secret for Service Account and geenrate a Token
+
+### Creating Service Account
+
+kubectl create ns webapps
+
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jenkins
+  namespace: webapps
+```
+
+### Create Role 
+
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: app-role
+  namespace: webapps
+rules:
+  - apiGroups:
+        - ""
+        - apps
+        - autoscaling
+        - batch
+        - extensions
+        - policy
+        - rbac.authorization.k8s.io
+    resources:
+      - pods
+      - componentstatuses
+      - configmaps
+      - daemonsets
+      - deployments
+      - events
+      - endpoints
+      - horizontalpodautoscalers
+      - ingress
+      - jobs
+      - limitranges
+      - namespaces
+      - nodes
+      - secrets
+      - pods
+      - persistentvolumes
+      - persistentvolumeclaims
+      - resourcequotas
+      - replicasets
+      - replicationcontrollers
+      - serviceaccounts
+      - services
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+```
+
+### Bind the role to service account
+
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: app-rolebinding
+  namespace: webapps 
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: app-role 
+subjects:
+- namespace: webapps 
+  kind: ServiceAccount
+  name: jenkins 
+```
+### Create Cluster role & bind to Service Account
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: jenkins-cluster-role
+rules:
+- apiGroups: [""] 
+  resources: ["persistentvolumes"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: jenkins-cluster-role-binding
+subjects:
+- kind: ServiceAccount
+  name: jenkins
+  namespace: webapps
+roleRef:
+  kind: ClusterRole
+  name: jenkins-cluster-role
+  apiGroup: rbac.authorization.k8s.io
+
+```
+### Generate token using service account in the namespace
+
+```
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/service-account-token
+metadata:
+  name: mysecretname
+  annotations:
+    kubernetes.io/service-account.name: jenkins
+```
+```
+kubectl apply -f secret.yml -n webapps
+```
+
+```
+kubectl describe secret mysecretname -n webapps
+```
+
+copy the token 
+
+
+
+stage('Deploy to K8') {
+steps {
+withKubeConfig(
+    caCertificate: 'path/to/ca.crt', // Provide the path to the CA certificate file
+    clusterName: 'devopsshack-cluster',
+    contextName: 'my-context', // Specify a context name
+    credentialsId: 'k8-token', // Provide the correct credentials ID
+    namespace: 'webapps',
+    restrictKubeConfigAccess: false,
+    serverUrl: 'https://6B8E4A35BB5F80D8DODC05A659BE05DF.gr7.ap-south-1.eks.amazonaws.com'
+) {
+
+sh 'kubectl apply -f deployment-service.yml -n webapps'
+sleep 30 
+}
+
+
+
+
+pipeline syntax - 
+withKubeConfig: Configure Kubectl
+
+credentials --> secret text --> k8 token
+
+id - K8-token
+ 
+
+go to aws - eks -cluster 
+
+get api server endpoints 
+cluster name
+namespace -webapps
+ 
+
+[Create Token]([https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#:~:text=To%20create%20a%20non%2Dexpiring,with%20that%20generated%20token%20data.)](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#:~:text=To%20create%20a%20non%2Dexpiring,with%20that%20generated%20token%20data.))
+
+
+
+## verify the deployment 
+
+
+stage('verify') {
+steps {
+withKubeConfig(
+    caCertificate: 'path/to/ca.crt', // Provide the path to the CA certificate file
+    clusterName: 'devopsshack-cluster',
+    contextName: 'my-context', // Specify a context name
+    credentialsId: 'k8-token', // Provide the correct credentials ID
+    namespace: 'webapps',
+    restrictKubeConfigAccess: false,
+    serverUrl: 'https://6B8E4A35BB5F80D8DODC05A659BE05DF.gr7.ap-south-1.eks.amazonaws.com'
+) {
+
+sh 'kubectl get pods -n webapps'
+sh 'kubectl get svc -n webapps'
+
+}
+
+
+install kubectl in jenkins vm 
+
