@@ -446,6 +446,10 @@ Create 4 EC2 instances for the following purposes:
 
 ### Installation with Ansible
 
+ssh-keygen 
+
+to add public key of ansible master to created vms 
+
 ```
 vi inventory
 ```
@@ -720,7 +724,9 @@ pipeline {
 ```
 
 ### Configure Jenkins Tools
+
 In Jenkins, configure the tools used in the pipeline:
+
 1. **Maven Configuration:**
    - Manage Jenkins → Global Tool Configuration → Maven → Add Maven
    - Name: M3
@@ -742,8 +748,10 @@ In Jenkins, configure the tools used in the pipeline:
      ```
 
 ### Configure Nexus in `pom.xml`
+
 Add the following `distributionManagement` configuration to your `pom.xml` file:
-```xml
+
+```
 <distributionManagement>
     <repository>
         <id>maven-releases</id>
@@ -759,6 +767,7 @@ Add the following `distributionManagement` configuration to your `pom.xml` file:
 ```
 
 Configure Jenkins to use the Nexus credentials:
+
 1. **Add Nexus credentials in Jenkins:**
    - Manage Jenkins → Manage Credentials → Global → Add Credentials
    - Kind: Username with password
