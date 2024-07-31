@@ -444,9 +444,163 @@ Create 4 EC2 instances for the following purposes:
 - SonarQube
 - Nexus
 
+### Installation with Ansible
+
+```
+vi inventory
+```
+```
+[servers]
+test-instance-1 ansible_host=3.111.197.52 ansible_user=ubuntu
+test-instance-2 ansible_host=52.66.210.89 ansible_user=ubuntu
+test-instance-3 ansible_host=43.205.118.230 ansible_user=ubuntu
+
+[jenkins]
+test-instance-1
+
+[sonarqube]
+test-instance-2
+
+[nexus]
+test-instance-3
+
+```
+```
+vi install.yml
+```
+```
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+- hosts: jenkins
+  become: yes
+  tasks:
+    - name: Install JDK
+      apt:
+        name: openjdk-17-jre-headless
+        state: present
+
+    - name: Add Jenkins repository key
+      shell: |
+        wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+      register: result
+      until: result.rc == 0
+      retries: 3
+      delay: 5
+
+    - name: Add Jenkins repository
+      shell: |
+        echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | tee /etc/apt/sources.list.d/jenkins.list
+      register: result
+      until: result.rc == 0
+      retries: 3
+      delay: 5
+
+    - name: Update apt cache
+      shell: apt-get update
+      register: result
+      until: result.rc == 0
+      retries: 3
+      delay: 5
+
+    - name: Install Jenkins
+      shell: apt-get install -y jenkins
+      register: result
+      until: result.rc == 0
+      retries: 3
+      delay: 5
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Add current user to Docker group
+      shell: sudo chmod 666 /var/run/docker.sock
+
+    - name: Label Jenkins server IP
+      set_fact:
+        jenkins_ip: "{{ ansible_host }}"
+
+- hosts: sonarqube
+  become: yes
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Add current user to Docker group
+      shell: sudo chmod 666 /var/run/docker.sock
+
+    - name: Run SonarQube container
+      docker_container:
+        name: sonarqube
+        image: sonarqube:lts-community
+        state: started
+        ports:
+          - "9000:9000"
+
+    - name: Label SonarQube server IP
+      set_fact:
+        sonarqube_ip: "{{ ansible_host }}"
+
+- hosts: nexus
+  become: yes
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Add current user to Docker group
+      shell: sudo chmod 666 /var/run/docker.sock
+
+    - name: Run Nexus container
+      docker_container:
+        name: nexus
+        image: sonatype/nexus3
+        state: started
+        ports:
+          - "8081:8081"
+
+    - name: Label Nexus server IP
+      set_fact:
+        nexus_ip: "{{ ansible_host }}"
+
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Gather IPs of all servers
+      set_fact:
+        jenkins_ip: "{{ hostvars['test-instance-1'].jenkins_ip }}"
+        sonarqube_ip: "{{ hostvars['test-instance-2'].sonarqube_ip }}"
+        nexus_ip: "{{ hostvars['test-instance-3'].nexus_ip }}"
+
+    - name: Print Jenkins IP
+      debug:
+        msg: "Jenkins IP: {{ jenkins_ip }}"
+
+    - name: Print SonarQube IP
+      debug:
+        msg: "SonarQube IP: {{ sonarqube_ip }}"
+
+    - name: Print Nexus IP
+      debug:
+        msg: "Nexus IP: {{ nexus_ip }}"
+
+```
+
 ## Step 3: Jenkins Master Setup
 
 ### Install Java
+
 ```
 sudo apt-get update
 sudo apt-get install openjdk-17-jdk -y
@@ -455,6 +609,7 @@ sudo apt-get install openjdk-17-jdk -y
 ### Install Jenkins
 
 debianubuntu
+
 ```
 https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 ```
