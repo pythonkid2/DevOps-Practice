@@ -450,6 +450,11 @@ ssh-keygen
 
 to add public key of ansible master to created vms 
 
+#### Install Ansible
+
+```
+sudo apt install ansible-core
+```
 ```
 vi inventory
 ```
@@ -600,6 +605,13 @@ vi install.yml
         msg: "Nexus IP: {{ nexus_ip }}"
 
 ```
+to run ansible 
+
+```
+ansible-playbook -i inventory install.yml
+```
+
+
 
 ## Step 3: Jenkins Master Setup
 
