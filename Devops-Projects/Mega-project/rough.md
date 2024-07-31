@@ -140,7 +140,7 @@ https://aquasecurity.github.io/trivy/v0.18.3/installation/
 ```
 set sonar environemnt 
 
-pipeline syntax -->    Qubeenv --> 
+pipeline syntax -->  withSonarQubeEnv: Prepare SonarQube Scanner environment --> 
 
 sonarqube server configuration - 
 
