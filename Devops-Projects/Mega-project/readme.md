@@ -278,6 +278,151 @@ terraform plan
 terraform apply --auto-approve
 ```
 
+### For create/update kubeconfig file
+
+aws eks --region us-east-2 update-kubeconfig --name mega_project-cluster
+
+
+
+
+## Step 2: Create EC2 Instances
+
+
+## Create VMs
+```
+vi main.tf
+```
+```
+provider "aws" {
+  region = "us-east-2"
+}
+
+resource "aws_instance" "ec2_instance" {
+  count         = var.number_of_instances
+  ami           = var.ami_id
+  subnet_id     = var.subnet_id
+  instance_type = var.instance_type
+  key_name      = var.ami_key_pair_name
+  security_groups = ["sg-09b752b3641fd65c4"]
+  tags = {
+    Name = "${var.instance_name}-${count.index + 1}"  # Append unique index to instance name
+  }
+
+  root_block_device {
+    volume_size = 20  # Set the storage size to 20 GiB
+  }
+}
+
+resource "null_resource" "disable_strict_host_key_checking" {
+  count = var.number_of_instances
+
+  connection {
+    type        = "ssh"
+    host        = aws_instance.ec2_instance[count.index].public_ip
+    user        = "ubuntu"
+    private_key = file("/home/ubuntu/vm/ohiokey.pem")
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir -p ~/.ssh",
+      "echo 'Host *' >> ~/.ssh/config",
+      "echo '  StrictHostKeyChecking no' >> ~/.ssh/config",
+      "echo '  UserKnownHostsFile=/dev/null' >> ~/.ssh/config",
+      "echo '  LogLevel ERROR' >> ~/.ssh/config" # Suppress warnings
+    ]
+  }
+
+  depends_on = [aws_instance.ec2_instance]
+}
+
+resource "null_resource" "configure_ssh" {
+  count = var.number_of_instances
+
+  connection {
+    type        = "ssh"
+    host        = aws_instance.ec2_instance[count.index].public_ip
+    user        = "ubuntu"
+    private_key = file("/home/ubuntu/vm/ohiokey.pem")
+  }
+
+  provisioner "file" {
+    source      = "/home/ubuntu/.ssh/id_ed25519.pub"
+    destination = "/home/ubuntu/id_ed25519.pub"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir -p ~/.ssh",
+      "cat /home/ubuntu/id_ed25519.pub >> ~/.ssh/authorized_keys",
+      "chmod 700 ~/.ssh",
+      "chmod 600 ~/.ssh/authorized_keys"
+    ]
+  }
+
+  depends_on = [aws_instance.ec2_instance, null_resource.disable_strict_host_key_checking]
+}
+
+output "vm_info" {
+  value = { for idx, instance in aws_instance.ec2_instance : "${instance.tags.Name}" => instance.public_ip }
+}
+
+```
+```
+vi terraform.tfvars
+```
+```
+#terraform.tfvars
+instance_name        = "Test-instance"
+instance_type        = "t2.medium"
+subnet_id            = "subnet-022eea447577344cf"
+ami_id               = "ami-0862be96e41dcbf74"  # Updated AMI ID
+number_of_instances  = 3
+ami_key_pair_name    = "ohiokey"
+```
+
+```
+vi variables.tf
+```
+
+```
+#  variables.tf
+variable "instance_name" {
+  description = "Name of the instance to be created"
+  default     = "Test-instance"
+}
+
+variable "instance_type" {
+  description = "Type of instance to be created"
+  default     = "t2.micro"
+}
+
+variable "subnet_id" {
+  description = "The VPC subnet the instance(s) will be created in"
+  default     = "subnet-022eea447577344cf"
+}
+
+variable "ami_id" {
+  description = "The AMI to use"
+  default     = "ami-0862be96e41dcbf74"
+}
+
+variable "number_of_instances" {
+  description = "Number of instances to be created"
+  default     = 1
+}
+
+variable "ami_key_pair_name" {
+  description = "Key pair name for the instances"
+  default     = "ohiokey"
+}
+
+variable "resource_tags" {
+  description = "Tags for the VM on cloud"
+  default     = "Test-VM"
+}
+```
+
 Generate SSH keys for the instances:
 
 ```
@@ -290,14 +435,9 @@ terraform apply --var-file='terraform.tfvars'
 ```
 
 
-### For create/update kubeconfig file
-
-aws eks --region us-east-2 update-kubeconfig --name mega_project-cluster
 
 
 
-
-## Step 2: Create EC2 Instances
 Create 4 EC2 instances for the following purposes:
 - Jenkins Master
 - Jenkins Slave (t2.medium)
@@ -307,26 +447,21 @@ Create 4 EC2 instances for the following purposes:
 ## Step 3: Jenkins Master Setup
 
 ### Install Java
-```bash
+```
 sudo apt-get update
-sudo apt-get install openjdk-11-jdk -y
+sudo apt-get install openjdk-17-jdk -y
 ```
 
 ### Install Jenkins
-```bash
-wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
-sudo apt-get install jenkins -y
-sudo systemctl start jenkins
-sudo systemctl enable jenkins
+
+debianubuntu
+```
+https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 ```
 
 ### Install Docker
-```bash
-sudo apt-get install docker.io -y
-sudo usermod -aG docker ubuntu
-```
+
+https://docs.docker.com/engine/install/ubuntu/
 
 ### Install Jenkins Plugins
 Install the following plugins in Jenkins:
