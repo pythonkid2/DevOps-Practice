@@ -280,11 +280,12 @@ terraform apply --auto-approve
 ```
 
 ### For create/update kubeconfig file
-
+```
 aws eks --region us-east-2 update-kubeconfig --name mega_project-cluster
-
-
-
+```
+```
+sudo snap install kubectl --classic
+```
 
 ## Step 2: Create EC2 Instances
 
@@ -934,8 +935,12 @@ This setup should give you a comprehensive CI/CD pipeline with Jenkins, SonarQub
 
 ### Creating Service Account
 
+```
 kubectl create ns webapps
-
+```
+```
+vi ServiceAccount.yml
+```
 ```
 apiVersion: v1
 kind: ServiceAccount
@@ -946,7 +951,9 @@ metadata:
 
 ### Create Role 
 
-
+```
+vi role.yml
+```
 ```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -987,10 +994,15 @@ rules:
       - services
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 ```
+```
+kubectl apply -f role.yml
+```
 
 ### Bind the role to service account
 
-
+```
+vi rolebinding.yml
+```
 ```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -1006,8 +1018,9 @@ subjects:
   kind: ServiceAccount
   name: jenkins 
 ```
+
 ### Create Cluster role & bind to Service Account
-```yaml
+```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
