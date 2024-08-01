@@ -287,6 +287,60 @@ aws eks --region us-east-2 update-kubeconfig --name mega_project-cluster
 sudo snap install kubectl --classic
 ```
 
+#### go to RBAC to create token - change names where required(example jenkins)
+
+pipeline syntax --> withKubeConfig: Configure Kubernetes CLI (kubectl)
+
+secret text --> paste secret
+
+add k8-token
+
+Kubernetes server endpoint :go to aws eks copy API server endpoint
+
+cluster name : copy 
+
+### Setup email notification
+
+prereq: port 465
+
+Manage Jenkins --> System --> Extended E-mail Notification --> 
+
+SMTP server 
+```
+smtp.gmail.com
+```
+
+Add credention -mail id and app password created
+
+
+Manage Jenkins --> System --> **E-mail Notification**
+
+SMTP server 
+```
+smtp.gmail.com
+```
+click advanced enable  use ssl
+
+use smtp authentication 
+
+username - 
+
+```
+mjcmathew@gmail.com
+```
+
+password- (create app password)
+
+go to 
+```
+https://myaccount.google.com/apppasswords
+```
+
+smtp port 
+
+465
+
+
 ## Step 2: Create EC2 Instances
 
 
@@ -748,6 +802,8 @@ docker exec -it container id /bin/bash
 cat /nexus-data/admin.password
 ```
 
+in nexus server -- settings -- repositories --> Deployment policy --> Allow redeploy
+
 2. **Configure Maven Settings in Jenkins:**
    - Manage Jenkins → Managed Files → Add a new Config
    - Select `Global Maven settings.xml`
@@ -1066,7 +1122,7 @@ kubectl describe secret mysecretname -n webapps
 ```
 
 copy the token 
-
+install kubectl in jenkins vm 
 
 
 stage('Deploy to K8') {
@@ -1128,5 +1184,6 @@ sh 'kubectl get svc -n webapps'
 }
 
 
-install kubectl in jenkins vm 
 
+
+![image](https://github.com/user-attachments/assets/3c0835b9-e548-4b7a-9535-201caf606d6b)
