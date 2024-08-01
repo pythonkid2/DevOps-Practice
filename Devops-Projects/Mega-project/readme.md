@@ -648,8 +648,22 @@ https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 
 https://docs.docker.com/engine/install/ubuntu/
 
+ssh to jenkins vm 
+
+### Install Trivy
+Follow the [Trivy installation guide](https://aquasecurity.github.io/trivy/v0.18.3/installation/) to install Trivy on your VM.
+
+
+## Jenkins Setup 
+```
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+
+set up the jenkins server 
+
 ### Install Jenkins Plugins
 Install the following plugins in Jenkins:
+
 - SonarQube Scanner
 - Config File Provider
 - Pipeline Maven Integration
@@ -657,6 +671,137 @@ Install the following plugins in Jenkins:
 - Pipeline: Stage View
 - Kubernetes
 - Kubernetes CLI
+
+
+### Configure Jenkins Tools
+
+In Jenkins, configure the tools used in the pipeline:
+
+**Maven:**
+   - Manage Jenkins → Tool → Maven → Add Maven
+   - Name: M3
+   - Install automatically: Yes
+   - Version: 3.9.8
+
+**SonarQube Scanner installations**
+
+Manage Jenkins → Tool → SonarQube Scanner installations
+
+Name : sonar-scanner
+
+
+**credentials** :
+
+
+docker-cred
+Username with password ( docker hub)
+
+
+
+global --> add credentials 
+
+git-cred 
+
+Username with password
+
+in git hub --> Settings --> Developer Settings  -->generate classic token
+
+
+global --> add credentials 
+Secret text
+
+go to sonar server --> Administration --> Security --> Users --> generate 
+
+add as sonar-token
+
+**SonarQube Configuration:**
+   - Manage Jenkins → System → SonarQube Servers
+   - Name: sonar
+   - Server URL: http://<SonarQube-server-IP>:9000
+   - Server authentication token: <generated-token>
+
+. **Docker Configuration:**  - fo r manual 
+   - Install Docker in Jenkins Master:
+     ```bash
+     sudo apt-get install docker.io -y
+     sudo usermod -aG docker jenkins
+     sudo systemctl restart jenkins
+     ```
+
+
+
+
+
+## Nexus config 
+
+Dashboard --> Manage Jenkins --> Managed files --> Add a new Config --> Global Maven settings.xml --> id
+
+ssh to nexus vm 
+```
+sudo docker ps
+```
+```
+docker exec -it container id /bin/bash
+```
+```
+cat /nexus-data/admin.password
+```
+
+2. **Configure Maven Settings in Jenkins:**
+   - Manage Jenkins → Managed Files → Add a new Config
+   - Select `Global Maven settings.xml`
+   - Add the following to `servers` section:
+     ```xml
+     <server>
+         <id>maven-releases</id>
+         <username>${env.NEXUS_USERNAME}</username>
+         <password>${env.NEXUS_PASSWORD}</password>
+     </server>
+     <server>
+         <id>maven-snapshots</id>
+         <username>${env.NEXUS_USERNAME}</username>
+         <password>${env.NEXUS_PASSWORD}</password>
+     </server>
+     
+
+### Configure Nexus in `pom.xml`
+
+Add the following `distributionManagement` configuration to your `pom.xml` file:
+
+```
+<distributionManagement>
+    <repository>
+        <id>maven-releases</id>
+        <name>Release Repository</name>
+        <url>http://<Nexus-server-IP>:8081/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+        <id>maven-snapshots</id>
+        <name>Snapshot Repository</name>
+        <url>http://<Nexus-server-IP>:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
+</distributionManagement>
+```
+
+Configure Jenkins to use the Nexus credentials:
+
+1. **Add Nexus credentials in Jenkins:**
+   - Manage Jenkins → Manage Credentials → Global → Add Credentials
+   - Kind: Username with password
+   - ID: nexus-cred
+   - Username: <Nexus-username>
+   - Password: <Nexus-password>
+
+
+
+3. **Set Nexus environment variables in Jenkins pipeline:**
+   ```groovy
+   environment {
+       NEXUS_USERNAME = credentials('nexus-cred').username
+       NEXUS_PASSWORD = credentials('nexus-cred').password
+   }
+   ```
+
 
 ### Jenkins Pipeline Configuration
 In Jenkins, configure the tools and create a pipeline:
@@ -749,82 +894,7 @@ pipeline {
 }
 ```
 
-### Configure Jenkins Tools
 
-In Jenkins, configure the tools used in the pipeline:
-
-1. **Maven Configuration:**
-   - Manage Jenkins → Global Tool Configuration → Maven → Add Maven
-   - Name: M3
-   - Install automatically: Yes
-   - Version: 3.6.3
-
-2. **SonarQube Configuration:**
-   - Manage Jenkins → Configure System → SonarQube Servers
-   - Name: sonar
-   - Server URL: http://<SonarQube-server-IP>:9000
-   - Server authentication token: <generated-token>
-
-3. **Docker Configuration:**
-   - Install Docker in Jenkins Master:
-     ```bash
-     sudo apt-get install docker.io -y
-     sudo usermod -aG docker jenkins
-     sudo systemctl restart jenkins
-     ```
-
-### Configure Nexus in `pom.xml`
-
-Add the following `distributionManagement` configuration to your `pom.xml` file:
-
-```
-<distributionManagement>
-    <repository>
-        <id>maven-releases</id>
-        <name>Release Repository</name>
-        <url>http://<Nexus-server-IP>:8081/repository/maven-releases/</url>
-    </repository>
-    <snapshotRepository>
-        <id>maven-snapshots</id>
-        <name>Snapshot Repository</name>
-        <url>http://<Nexus-server-IP>:8081/repository/maven-snapshots/</url>
-    </snapshotRepository>
-</distributionManagement>
-```
-
-Configure Jenkins to use the Nexus credentials:
-
-1. **Add Nexus credentials in Jenkins:**
-   - Manage Jenkins → Manage Credentials → Global → Add Credentials
-   - Kind: Username with password
-   - ID: nexus-cred
-   - Username: <Nexus-username>
-   - Password: <Nexus-password>
-
-2. **Configure Maven Settings in Jenkins:**
-   - Manage Jenkins → Managed Files → Add a new Config
-   - Select `Global Maven settings.xml`
-   - Add the following to `servers` section:
-     ```xml
-     <server>
-         <id>maven-releases</id>
-         <username>${env.NEXUS_USERNAME}</username>
-         <password>${env.NEXUS_PASSWORD}</password>
-     </server>
-     <server>
-         <id>maven-snapshots</id>
-         <username>${env.NEXUS_USERNAME}</username>
-         <password>${env.NEXUS_PASSWORD}</password>
-     </server>
-     ```
-
-3. **Set Nexus environment variables in Jenkins pipeline:**
-   ```groovy
-   environment {
-       NEXUS_USERNAME = credentials('nexus-cred').username
-       NEXUS_PASSWORD = credentials('nexus-cred').password
-   }
-   ```
 
 ### Create SonarQube and Nexus Servers
 
