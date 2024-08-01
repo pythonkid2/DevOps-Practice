@@ -36,8 +36,9 @@ Attach this policy to your user as well
 ![Policies To Attach](https://github.com/jaiswaladi246/Microservice/blob/Infra-Steps/Policies.png)
 
 # AWSCLI
+```
 sudo apt install unzip
-
+```
 [Install](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 ### [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
@@ -290,6 +291,10 @@ aws eks --region us-east-2 update-kubeconfig --name mega_project-cluster
 
 ## Create VMs
 ```
+mkdir vm
+cd vm
+```
+```
 vi main.tf
 ```
 ```
@@ -429,6 +434,20 @@ Generate SSH keys for the instances:
 ssh-keygen
 ```
 
+to add public key of ansible master to created vms 
+
+copy pem file to primary server 
+
+```
+scp -i "ohiokey.pem" ohiokey.pem ubuntu@3.16.55.120:/home/ubuntu/vm
+```
+
+```
+terraform init
+```
+```
+terraform plan
+```
 Apply the configuration with variables:
 ```
 terraform apply --var-file='terraform.tfvars'
@@ -445,11 +464,6 @@ Create 4 EC2 instances for the following purposes:
 - Nexus
 
 ### Installation with Ansible
-
-ssh-keygen 
-
-to add public key of ansible master to created vms 
-
 #### Install Ansible
 
 ```
