@@ -1,8 +1,5 @@
 # Azure Zero to Hero Course
 
-
-## If you like the content, Don't forget to give this repository a :star:
-
 ## Day 1: Understanding Cloud Concepts, Vocabulary and Terminology
 - What is cloud ?
 - What is the difference between public, private and hybrid cloud ?
