@@ -59,6 +59,11 @@ cd eks
 Create the following Terraform configuration files:
 
 **main.tf**
+
+```
+vi main.tf
+```
+
 ```
 provider "aws" {
   region = "us-east-2"
@@ -240,14 +245,22 @@ resource "aws_iam_role_policy_attachment" "mega_project_node_group_registry_poli
 
 **variables.tf**
 ```
+vi variables.tf
+```
+```
 variable "ssh_key_name" {
   description = "The name of the SSH key pair to use for instances"
   type        = string
   default     = "ohiokey"
 }
 ```
-
 **output.tf**
+
+
+```
+vi output.tf
+```
+
 ```
 output "cluster_id" {
   value = aws_eks_cluster.mega_project.id
