@@ -17,6 +17,12 @@ go to pipeline and create pipeline
 
 ![image](https://github.com/user-attachments/assets/c8f45d69-ad53-49b8-bdc3-d4f7a930f758)
 
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/3446af04-6339-468a-b0b4-862bb7ce005c">
+sign in with git hub 
+
+![image](https://github.com/user-attachments/assets/a301d3bd-986f-4c5f-8b20-5c5b7fafc000)
+
+
 Set up container registry
 
 go to azure 
