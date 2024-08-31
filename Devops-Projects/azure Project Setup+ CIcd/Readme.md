@@ -13,10 +13,21 @@ Home --> Resource groups
 
 ![image](https://github.com/user-attachments/assets/a2dff650-9543-4664-927a-8376d8ea955c)
 
+## Set up container registry
 
+go to azure and create container registry 
+
+![image](https://github.com/user-attachments/assets/69fa5895-d0eb-40ea-9273-17630641e11b)
+
+![image](https://github.com/user-attachments/assets/ba8c020b-900d-456f-8596-a54b116eecb7)
+
+## Create VM
+
+![image](https://github.com/user-attachments/assets/771c817f-9a51-4ec4-ba84-64e2aae986da)
+
+![image](https://github.com/user-attachments/assets/91d0696a-3fac-4437-808c-200d0cac574f)
 
 ## Create 3 pipelines 
-
 
 ![basic of pipeline](https://github.com/user-attachments/assets/185d028f-4a66-4447-b90a-06ae76a82733)
 In pipe line we have triggers - > when should the pipeline starts 
@@ -40,20 +51,6 @@ sign in with git hub
 
 ![image](https://github.com/user-attachments/assets/a301d3bd-986f-4c5f-8b20-5c5b7fafc000)
 
-
-## Set up container registry
-
-go to azure and create container registry 
-
-![image](https://github.com/user-attachments/assets/69fa5895-d0eb-40ea-9273-17630641e11b)
-
-![image](https://github.com/user-attachments/assets/ba8c020b-900d-456f-8596-a54b116eecb7)
-
-## Create VM
-
-![image](https://github.com/user-attachments/assets/771c817f-9a51-4ec4-ba84-64e2aae986da)
-
-![image](https://github.com/user-attachments/assets/91d0696a-3fac-4437-808c-200d0cac574f)
 
 ### go to azure pipeline doccumentation
 
