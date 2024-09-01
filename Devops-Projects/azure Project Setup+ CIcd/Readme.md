@@ -208,12 +208,61 @@ change to NodePort from Clusterip
 
 ![image](https://github.com/user-attachments/assets/342bdbf7-5290-432f-9012-02acf2c7d296)
 
-
-
-
 ![image](https://github.com/user-attachments/assets/04c8d76b-8d80-40ee-ac0e-72efa63892b6)
 
+## ArgoCD
+
+###### Settings  --> Repositories
+
+Choose your connection method: VIA HTTPS 
+
+CONNECT REPO USING HTTPS
+
+Type : git
+Project: default
+Repository URL : 
+https://mjcmathew@dev.azure.com/mjcmathew/Voting%20Application/_git/Voting%20Application
+
+replace organization name with token created
+
+https://fokskvrdxxzi2f222mdgdgre2aandsrgvshilh5sycbqwkl4w7f4q@dev.azure.com/mjcmathew/Voting%20Application/_git/Voting%20Application
+
+connect 
+
+![image](https://github.com/user-attachments/assets/6504bb3d-104c-4a5a-bed0-00e45eeb9dcf)
+its success full
+
+
+
+Get repo url
+![image](https://github.com/user-attachments/assets/a938c0fa-1766-4192-a9fa-9a017d359e14)
 
 to connect with azure git repo we need a token
+
+###### Applications --> New App
+
+![image](https://github.com/user-attachments/assets/f98e878f-9fff-4340-af03-1f5d90a9d368)
+![image](https://github.com/user-attachments/assets/b026f412-b3e1-4d97-9b35-ce1acfc00554)
+![image](https://github.com/user-attachments/assets/9639d041-be6a-423d-b797-a6858ac10a0d)
+
+![image](https://github.com/user-attachments/assets/538c5ceb-0ecd-4481-a8dc-1a5e7f2ea245)
+
+## Add update script to pipeline
+
+![image](https://github.com/user-attachments/assets/f21ce2c0-6d29-4ff2-9503-0f46dcdbf813)
+
+Azure DevOps --> mjcmathew --> Voting Application --> Pipelines
+
+
+add shell script to azure repo 
+
+![image](https://github.com/user-attachments/assets/8144053b-9d53-474e-a48f-32cbc9807211)
+
+add script to pipeline
+
+![image](https://github.com/user-attachments/assets/6c1d6a15-d85b-493f-b2fb-b5e989432666)
+
+
+
 
 
