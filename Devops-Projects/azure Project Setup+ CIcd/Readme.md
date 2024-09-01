@@ -1,5 +1,6 @@
 # Voting Application
 
+![image](https://github.com/user-attachments/assets/f6c853c6-b58d-4a98-a05e-49922402018d)
 
 Create new azure devops project -
 ![Azure devops project adding page](https://github.com/user-attachments/assets/b1aaa362-6cef-4b96-9a62-f02212a3ce88)
@@ -83,6 +84,79 @@ sudo apt install docker.io -y
 ```
 ![image](https://github.com/user-attachments/assets/4f1b4e08-5c8c-45cc-9539-11fd9bc7962e)
 
+## set up 3 pipelines for 3 services 
+
+![image](https://github.com/user-attachments/assets/0e4dc60c-2b1f-401e-b0ff-c6650956f43a)
+
+```
+trigger:
+  paths:
+    include:
+      - result/*
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '666224ef-8a53-4449-883c-8fe10158a30d'
+  imageRepository: 'resultapp'
+  containerRegistry: 'vottingapllication.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/result/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+# Specify the agent pool
+pool:
+  name: 'azureagent'  # Use your self-hosted agent pool name
+
+stages:
+- stage: Build
+  displayName: Build the docker container stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      name: 'azureagent'  # Self-hosted agent pool
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        containerRegistry: 'vottingApllication'
+        repository: '$(imageRepository)'
+        command: 'build'
+        Dockerfile: '$(dockerfilePath)'
+        tags: '$(tag)'
+
+- stage: Push
+  displayName: Push to Azure Container Registry
+  jobs:
+  - job: Push
+    displayName: Push
+    pool:
+      name: 'azureagent'  # Self-hosted agent pool
+    steps:
+    - task: Docker@2
+      displayName: Push image to container registry
+      inputs:
+        containerRegistry: 'vottingApllication'
+        repository: '$(imageRepository)'
+        command: 'push'
+        tags: '$(tag)'
+
+```
+
+## Continuous Delivery
+
+###### Home > Kubernetes services > Create Kubernetes cluster
+
+![image](https://github.com/user-attachments/assets/e1bd9f53-8f6e-4a9b-9a29-d2e9611f52be)
+![image](https://github.com/user-attachments/assets/d7ea3ce9-2e81-44d3-8a58-f823fb216451)
+
+###### Update node pool
+
+![image](https://github.com/user-attachments/assets/00ce6d25-8e90-4cf1-8e25-65e5f2442e0b)
+
+![image](https://github.com/user-attachments/assets/99a65db4-5f93-4a9a-ad1a-5765dbe931cc)
 
 
 
