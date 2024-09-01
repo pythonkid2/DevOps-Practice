@@ -159,6 +159,61 @@ stages:
 ![image](https://github.com/user-attachments/assets/99a65db4-5f93-4a9a-ad1a-5765dbe931cc)
 
 
+![image](https://github.com/user-attachments/assets/7c36e1fb-3320-4dc5-aed1-7ac0027dcd00)
 
+Created 
+
+connect to the k8
+
+```
+az aks get-credentials --name azuredevops --overwrite-existing --resource-group votting-app
+```
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+### Configure Argocd
+
+![image](https://github.com/user-attachments/assets/ccf920cc-d7ca-4980-aea9-79492c0cb02e)
+
+```
+ .\kubectl.exe get secrets  -n argocd
+```
+![image](https://github.com/user-attachments/assets/0b831959-2c9a-42ad-81f0-bea83f82faf5)
+
+ .\kubectl.exe edit secrets argocd-initial-admin-secret  -n argocd
+
+echo "paste the secret" | base64 --decode
+
+
+echo clFsN0l0anJmNGlYOWJHYQ== | base64 --decode
+
+
+for power shell
+
+```
+$base64String = "clFsN0l0anJmNGlYOWJHYfs=="
+$decodedBytes = [System.Convert]::FromBase64String($base64String)
+$decodedString = [System.Text.Encoding]::UTF8.GetString($decodedBytes)
+$decodedString
+```
+```
+.\kubectl.exe get svc  -n argocd
+```
+.\kubectl.exe edit svc argocd-server  -n argocd
+
+change to NodePort from Clusterip
+### Open the port
+![image](https://github.com/user-attachments/assets/8af44594-8346-409b-ae42-d565c1349094)
+
+![image](https://github.com/user-attachments/assets/342bdbf7-5290-432f-9012-02acf2c7d296)
+
+
+
+
+![image](https://github.com/user-attachments/assets/04c8d76b-8d80-40ee-ac0e-72efa63892b6)
+
+
+to connect with azure git repo we need a token
 
 
