@@ -165,6 +165,76 @@ Once the AKS cluster is created, you can manage your cluster and deploy workload
 
 ![cluster deployed](https://github.com/user-attachments/assets/4dee3b82-0456-4377-8d96-392eb50f40c5)
 
-step 3 : create k8 manifests from docker images 
+---
 
+## Connecting to the VM and Working with the AKS Cluster
 
+To set up and connect to the VM for interacting with the AKS cluster, follow these steps:
+
+### Step 1: SSH into the VM
+Use the following command to establish an SSH connection to the VM from the local terminal:
+
+```
+ssh <username>@<VM_IP_Address>
+```
+
+Replace `<username>` with the VM's username and `<VM_IP_Address>` with the public IP of the VM.
+
+### Step 2: Install Azure CLI
+If the Azure CLI is not already installed, use the command below to install it on the VM:
+
+```
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+### Step 3: Login to Azure
+Once the installation is complete, log in to Azure:
+
+- **For Windows:**
+  ```
+  az login
+  ```
+- **For Linux:**
+  ```
+  az login --use-device-code
+  ```
+
+This will generate a code and link for authentication. Follow the instructions to complete the login process.
+
+![Azure Login](https://github.com/user-attachments/assets/cbccb265-f76f-4e49-8661-e486c1a06c96)
+<img width="800" alt="Azure Login Success" src="https://github.com/user-attachments/assets/3b75f1f2-ae85-4e08-8200-f46f02befda2">
+
+### Step 4: Get Credentials for the AKS Cluster
+After logging in, retrieve the credentials for the AKS cluster with the following command:
+
+```
+az aks get-credentials --resource-group aks-ecommerce-store --name <AKS_Cluster_Name>
+```
+
+Replace `<AKS_Cluster_Name>` with the name of the AKS cluster. For example:
+
+```
+az aks get-credentials --resource-group aks-ecommerce-store --name three-tier
+```
+
+### Step 5: Install `kubectl`
+Install `kubectl` to manage the Kubernetes cluster:
+
+```
+sudo snap install kubectl --classic
+```
+
+![Install kubectl](https://github.com/user-attachments/assets/98741588-bc65-4a04-8466-f7fc9acffd52)
+
+### Step 6: Verify the Connection to the Cluster
+Check the connection to the AKS cluster by listing the nodes in the cluster:
+
+```
+kubectl get nodes
+```
+
+If successful, this will display a list of the nodes in the cluster, confirming the connection.
+
+![kubectl get nodes](https://github.com/user-attachments/assets/51bd99a9-4da5-472c-96bb-e6b799ddba4d)
+
+--- 
