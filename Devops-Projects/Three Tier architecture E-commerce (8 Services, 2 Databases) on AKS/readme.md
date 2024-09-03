@@ -60,6 +60,44 @@ Repo link: https://github.com/pythonkid2/three-tier-architecture-project
 ### Deployment Strategy:
 - Each microservice is containerized and independently deployable. The goal is to ensure that each service can be updated, scaled, or replaced without affecting the other services, enhancing the flexibility, maintainability, and reliability of the system.
 
+## **Dockerfile Notes for Microservices**
+
+1. **Cart Application (Node.js)**:
+   - **Base Image**: Start with a Node.js base image.
+   - **Environment Variables**: Ignore non-essential fields like `INSTANA_AGENT_KEY` if not relevant to the project (e.g., monitoring tools like Instana).
+   - **Working Directory**: Set a working directory where the subsequent operations will take place.
+   - **Dependencies**: Copy `package.json` (Node.js equivalent of `requirements.txt` in Python or `pom.xml` in Java) to the working directory and run `npm install` to install dependencies.
+   - **Source Code**: Copy `server.js` (the main source code file) to the working directory.
+   - **CMD**: Use `node server.js` to run the application.
+
+2. **Python Microservice**:
+   - **Base Image**: Start with a Python base image.
+   - **Working Directory**: Set the working directory.
+   - **Dependencies**: Copy `requirements.txt` and run `pip install` to install Python dependencies.
+   - **Source Code**: Copy application files (e.g., `app.py`).
+   - **CMD**: Use `python app.py` to run the application.
+
+3. **Go Microservice**:
+   - **Base Image**: Start with a Go base image.
+   - **Working Directory**: Set the working directory.
+   - **Dependencies**: Copy `go.mod` and run `go install` to build the Go binary.
+   - **Source Code**: Copy the source code and run the binary directly.
+
+4. **Java Microservice (Multi-Stage Docker Build)**:
+   - **Stage 1 (Build Stage)**: 
+     - Use a heavy image (e.g., Debian) and install necessary build tools like Maven.
+     - Build the `.jar` or `.war` file and store it.
+   - **Stage 2 (Runtime Stage)**:
+     - Use a lightweight image (e.g., OpenJDK).
+     - Copy the built `.jar` file from the build stage to this lightweight image.
+     - **CMD**: Run the `.jar` file using `java -jar <file>.jar`.
+
+5. **Best Practices**:
+   - **Multi-Stage Builds**: Reduce the final image size by separating the build environment from the runtime environment (e.g., building in a Debian image and running in a smaller OpenJDK image).
+   - **Avoid Root User**: Avoid running the container as the root user to enhance security.
+   - **Consistency**: Dockerfiles across languages (Node.js, Python, Go, Java) share a similar structure (setting the base image, working directory, copying dependencies, installing them, and running the application).
+
+
 ---
 
 ### **Project Overview**
@@ -124,5 +162,9 @@ Repo link: https://github.com/pythonkid2/three-tier-architecture-project
 
 
 Once the AKS cluster is created, you can manage your cluster and deploy workloads using Azure Kubernetes Service.
+
+![cluster deployed](https://github.com/user-attachments/assets/4dee3b82-0456-4377-8d96-392eb50f40c5)
+
+step 3 : create k8 manifests from docker images 
 
 
