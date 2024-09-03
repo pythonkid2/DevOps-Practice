@@ -237,4 +237,59 @@ If successful, this will display a list of the nodes in the cluster, confirming 
 
 ![kubectl get nodes](https://github.com/user-attachments/assets/51bd99a9-4da5-472c-96bb-e6b799ddba4d)
 
+ubuntu@controller:~$ kubectl config current-context
+three-tier
+
+
 --- 
+
+## Deploying the Helm Chart to AKS
+
+### Step 1: Clone the Repository
+Clone the project repository from GitHub:
+
+```
+git clone https://github.com/pythonkid2/three-tier-architecture-project.git
+```
+
+Navigate into the project directory:
+
+```
+cd three-tier-architecture-project/
+```
+
+### Step 2: Navigate to the Helm Directory
+Move to the directory containing the Helm chart:
+
+```
+cd AKS/
+cd helm/
+```
+
+### Step 3: Create a Kubernetes Namespace
+Create the `robot-shop` namespace in the Kubernetes cluster:
+
+```
+kubectl create ns robot-shop
+```
+
+### Step 4: Install Helm (if not already installed)
+Install Helm using Snap:
+
+```
+sudo snap install helm --classic
+```
+
+### Step 5: Deploy the Helm Chart
+Deploy the Helm chart to the `robot-shop` namespace:
+
+```
+helm install robot-shop --namespace robot-shop .
+```
+
+![image](https://github.com/user-attachments/assets/fd76ee23-dd54-4d1f-97fc-b334f71cdcbd)
+
+![image](https://github.com/user-attachments/assets/e9a4529a-c35c-48a8-8a67-69994bd44ea0)
+
+---
+
