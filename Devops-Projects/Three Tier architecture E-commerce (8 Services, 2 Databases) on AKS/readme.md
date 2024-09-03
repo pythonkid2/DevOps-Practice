@@ -293,3 +293,18 @@ helm install robot-shop --namespace robot-shop .
 
 ---
 
+need to move to cluster and enable ingress config
+
+three-tier > settings>  Networking
+
+
+![image](https://github.com/user-attachments/assets/41377759-d098-4336-8407-528e8a88a410)
+
+![image](https://github.com/user-attachments/assets/da0aec35-69b9-4f94-a47d-9bcf738cab80)
+
+![image](https://github.com/user-attachments/assets/133c262b-5617-4759-abd0-df0c93f35ac3)
+
+![image](https://github.com/user-attachments/assets/06e17a2f-b1fe-49f9-9a8b-4dd9a71cc0b8)
+
+![image](https://github.com/user-attachments/assets/96fdc95f-a6fa-4704-b2cf-9da63a88914f)
+
