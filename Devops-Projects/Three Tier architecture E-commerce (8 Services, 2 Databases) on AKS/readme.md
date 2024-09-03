@@ -60,7 +60,69 @@ Repo link: https://github.com/pythonkid2/three-tier-architecture-project
 ### Deployment Strategy:
 - Each microservice is containerized and independently deployable. The goal is to ensure that each service can be updated, scaled, or replaced without affecting the other services, enhancing the flexibility, maintainability, and reliability of the system.
 
+---
 
-27
+### **Project Overview**
+
+- **Subscription**: Free Trial  
+- **Resource Group**: aks-ecommerce-store  
+- **Region**: West US 2
+
+---
+
+### **Step 1: Create Resource Group**
+
+1. **Log in to Azure Portal**: [Azure Portal](https://portal.azure.com)
+2. **Navigate to Resource Groups**:
+   - In the left-hand menu, select **Resource Groups**.
+3. **Create a Resource Group**:
+   - Click on the **+ Create** button at the top.
+   - In the **Basics** tab, fill in the following details:
+     - **Subscription**: Select **Free Trial**.
+     - **Resource Group Name**: `aks-ecommerce-store`.
+     - **Region**: Select **West US 2** from the dropdown.
+4. **Review + Create**:
+   - Review the details and click **Create** to provision the resource group.
+
+---
+
+### **Step 2: Create AKS Cluster**
+
+1. **Navigate to Kubernetes Services**:
+   - In the left-hand menu, search for and select **Kubernetes services**.
+2. **Create a Kubernetes Cluster**:
+   - Click on the **+ Create** button at the top.
+3. **Basics Tab**:
+   - **Subscription**: Select **Free Trial**.
+   - **Resource Group**: Choose `aks-ecommerce-store`.
+   - **Kubernetes Cluster Name**: Choose a unique name for your cluster.
+   - **Region**: Select **West US 2**.
+   - **Kubernetes Version**: Choose the version you want (latest stable version recommended).
+   - **Node Size**: Choose a node size based on your workload requirements (e.g., `Standard_DS2_v2`).
+   - **Node Count**: Start with a default node count (e.g., 3).
+
+   ![image](https://github.com/user-attachments/assets/2ec5a886-95f7-40bc-abf2-6c5eaacf8a00)
+
+4. **Node Pools Tab**:
+   - Configure your node pools based on workload requirements.
+   - Add additional node pools if required.
+
+   ![image](https://github.com/user-attachments/assets/822a03b8-d405-4145-8313-a9a3177984b1)
+
+5. **Networking Tab**:
+   - Choose between Azure CNI or Kubenet based on your network requirements.
+   - Enable other advanced settings as required (e.g., network policies, load balancer options, etc.).
+
+   ![image](https://github.com/user-attachments/assets/413bf2c4-b9e1-49f2-9636-f9fa7a79b283)
+
+6. **Integrations Tab** (Optional):
+   - Enable any required integrations such as monitoring, logging, or Azure Active Directory.
+
+7. **Review + Create**:
+   - Review the configurations across all tabs.
+   - Click **Create** to deploy the AKS cluster.
+
+
+Once the AKS cluster is created, you can manage your cluster and deploy workloads using Azure Kubernetes Service.
 
 
