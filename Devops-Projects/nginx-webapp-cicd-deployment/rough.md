@@ -14,6 +14,119 @@ Here is a comprehensive guide to set up a CI/CD pipeline using AWS, Jenkins, and
 
 ---
 
+
+Here are the detailed steps to set up AWS CodeDeploy and IAM roles for your EC2 instances and Jenkins:
+
+---
+
+### **Step 1: Set Up AWS CodeDeploy**
+
+#### 1.1 Create a CodeDeploy Application
+1. Log in to the [AWS Management Console](https://aws.amazon.com/).
+2. Navigate to **CodeDeploy** by searching for "CodeDeploy" in the Services tab.
+3. Click on **Create application**.
+4. Under **Application name**, enter a name for your application (e.g., `nginx-webapp-deployment`).
+5. Choose the **Compute platform** as **EC2/On-premises**.
+6. Click **Create application**.
+
+#### 1.2 Create a Deployment Group
+1. After creating the application, click on the application name you just created.
+2. Click on **Create deployment group**.
+3. Give the **Deployment group name** (e.g., `nginx-deployment-group`).
+4. Under **Service Role**, select **Create a new role** or use an existing role (we’ll cover how to configure this role below).
+5. Under **Deployment settings**, choose **CodeDeployDefault.AllAtOnce** or another deployment strategy as per your preference.
+6. Choose the **Environment configuration**:
+   - **Amazon EC2 Auto Scaling group** or manually specify the EC2 instances you want to use.
+7. For **Deployment type**, choose **In-place** or **Blue/Green** (In-place is fine for this case).
+
+8. Optionally, configure **Load balancer** for handling traffic across your Auto Scaling instances.
+
+9. Click **Create deployment group**.
+
+---
+
+### **Step 2: Set Up IAM Roles for EC2 Instances and Jenkins**
+
+#### 2.1 Create an IAM Role for CodeDeploy (for EC2 Instances)
+1. Go to the **IAM Management Console**.
+2. Click **Roles** in the left sidebar and then **Create role**.
+3. Under **Trusted entity type**, choose **AWS Service**.
+4. Choose the **Use case** as **EC2**.
+5. Click **Next** to attach policies.
+6. Attach the **AmazonEC2RoleforAWSCodeDeploy** policy. This policy allows EC2 instances to interact with CodeDeploy.
+7. Click **Next** and give this role a name (e.g., `CodeDeploy-EC2-Role`).
+8. Click **Create role**.
+
+#### 2.2 Attach the Role to EC2 Instances
+1. Navigate to the **EC2 Console**.
+2. Choose the EC2 instances you plan to use with CodeDeploy.
+3. Select **Actions** > **Security** > **Modify IAM Role**.
+4. Attach the `CodeDeploy-EC2-Role` to your instances.
+
+#### 2.3 Create an IAM Role for Jenkins (for Access to S3 and CodeDeploy)
+1. Go to the **IAM Management Console**.
+2. Click **Roles** in the left sidebar and then **Create role**.
+3. Under **Trusted entity type**, choose **AWS Service**.
+4. Choose the **Use case** as **EC2** or **Elastic Beanstalk** (if your Jenkins is running on EC2).
+5. Click **Next** to attach policies.
+6. Attach the following policies:
+   - **AmazonS3FullAccess**: Allows access to S3 (for Jenkins to upload deployment packages).
+   - **AWSCodeDeployFullAccess**: Allows Jenkins to trigger deployments.
+7. Click **Next**, name the role (e.g., `Jenkins-CodeDeploy-Role`), and click **Create role**.
+
+#### 2.4 Attach the Role to Jenkins Server
+1. Navigate to the **EC2 Console**.
+2. Select your Jenkins instance.
+3. Select **Actions** > **Security** > **Modify IAM Role**.
+4. Attach the `Jenkins-CodeDeploy-Role` to your Jenkins server.
+
+---
+
+### **Step 3: Configure CodeDeploy Agent on EC2 Instances**
+
+1. Ensure that the CodeDeploy agent is installed on your EC2 instances:
+   - **For Amazon Linux 2**:
+     ```bash
+     sudo yum update -y
+     sudo yum install ruby wget -y
+     cd /home/ec2-user
+     wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+     chmod +x ./install
+     sudo ./install auto
+     sudo service codedeploy-agent start
+     ```
+   - **For Ubuntu**:
+     ```bash
+     sudo apt-get update -y
+     sudo apt-get install ruby wget -y
+     cd /home/ubuntu
+     wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+     chmod +x ./install
+     sudo ./install auto
+     sudo service codedeploy-agent start
+     ```
+
+2. Verify the CodeDeploy agent is running:
+   ```bash
+   sudo service codedeploy-agent status
+   ```
+
+---
+
+### **Step 4: Grant Permissions to Jenkins (Optional)**
+
+If your Jenkins is running on a non-EC2 instance, you might need to set up access keys and secrets for AWS:
+
+1. Create an **IAM User** with programmatic access and attach the **AmazonS3FullAccess** and **AWSCodeDeployFullAccess** policies.
+2. In Jenkins, under **Manage Jenkins** > **Configure System**, add AWS credentials to use in your pipeline (these will be the access and secret keys of the IAM user).
+
+---
+
+By following these steps, CodeDeploy and IAM roles will be properly configured, enabling your EC2 instances to receive deployment instructions and Jenkins to manage the entire CI/CD process securely.
+
+
+
+
 ### **2. Web Application Setup**
 
 #### Step 1: Set Up the Simple Web Application
