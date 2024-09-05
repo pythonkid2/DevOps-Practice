@@ -1,232 +1,211 @@
-# Automated CI/CD Pipeline for Scalable NGINX Web Application Deployment using AWS, Jenkins, and CodeDeploy
-
-Here is a comprehensive guide to set up a CI/CD pipeline using AWS, Jenkins, and CodeDeploy to deploy a simple NGINX web application, ensuring scalability through Auto Scaling. This guide will address each requirement in the problem statement:
+To create a clear, structured guide for your task—setting up a scalable CI/CD pipeline using AWS, Jenkins, and CodeDeploy—I've reorganized and refined the steps to ensure a logical progression. Here is the revised version:
 
 ---
 
-### **1. Prerequisites**
+## **Automated CI/CD Pipeline for Scalable NGINX Web Application Deployment**
 
-- **AWS Account**: Ensure you have an AWS account with appropriate permissions.
-- **Jenkins Server**: Jenkins installed on a separate EC2 instance.
-- **GitHub/Bitbucket**: A Git repository to host your code (HTML and deployment scripts).
-- **CodeDeploy**: Set up on AWS with a properly configured service role.
-- **IAM Roles**: Ensure you have IAM roles for EC2 instances (CodeDeploy permissions) and Jenkins to access S3 and CodeDeploy.
+This guide will take you through the complete process of setting up a CI/CD pipeline using AWS, Jenkins, and CodeDeploy to deploy an NGINX web application. The solution is scalable through Auto Scaling, and new code pushes automatically trigger deployments.
 
 ---
 
+### **Prerequisites**
 
-Here are the detailed steps to set up AWS CodeDeploy and IAM roles for your EC2 instances and Jenkins:
-
----
-
-### **Step 1: Set Up AWS CodeDeploy**
-
-#### 1.1 Create a CodeDeploy Application
-1. Log in to the [AWS Management Console](https://aws.amazon.com/).
-2. Navigate to **CodeDeploy** by searching for "CodeDeploy" in the Services tab.
-3. Click on **Create application**.
-4. Under **Application name**, enter a name for your application (e.g., `nginx-webapp-deployment`).
-5. Choose the **Compute platform** as **EC2/On-premises**.
-6. Click **Create application**.
-
-#### 1.2 Create a Deployment Group
-1. After creating the application, click on the application name you just created.
-2. Click on **Create deployment group**.
-3. Give the **Deployment group name** (e.g., `nginx-deployment-group`).
-4. Under **Service Role**, select **Create a new role** or use an existing role (we’ll cover how to configure this role below).
-5. Under **Deployment settings**, choose **CodeDeployDefault.AllAtOnce** or another deployment strategy as per your preference.
-6. Choose the **Environment configuration**:
-   - **Amazon EC2 Auto Scaling group** or manually specify the EC2 instances you want to use.
-7. For **Deployment type**, choose **In-place** or **Blue/Green** (In-place is fine for this case).
-
-8. Optionally, configure **Load balancer** for handling traffic across your Auto Scaling instances.
-
-9. Click **Create deployment group**.
+Before starting, ensure the following resources are ready:
+- **AWS Account** with full access permissions.
+- **Jenkins Server** running on an EC2 instance or other host.
+- **Git Repository** (GitHub or Bitbucket) to host the web application code.
+- **AWS CodeDeploy** with a configured deployment group and IAM roles.
 
 ---
 
-### **Step 2: Set Up IAM Roles for EC2 Instances and Jenkins**
-
-#### 2.1 Create an IAM Role for CodeDeploy (for EC2 Instances)
-1. Go to the **IAM Management Console**.
-2. Click **Roles** in the left sidebar and then **Create role**.
-3. Under **Trusted entity type**, choose **AWS Service**.
-4. Choose the **Use case** as **EC2**.
-5. Click **Next** to attach policies.
-6. Attach the **AmazonEC2RoleforAWSCodeDeploy** policy. This policy allows EC2 instances to interact with CodeDeploy.
-7. Click **Next** and give this role a name (e.g., `CodeDeploy-EC2-Role`).
-8. Click **Create role**.
-
-#### 2.2 Attach the Role to EC2 Instances
-1. Navigate to the **EC2 Console**.
-2. Choose the EC2 instances you plan to use with CodeDeploy.
-3. Select **Actions** > **Security** > **Modify IAM Role**.
-4. Attach the `CodeDeploy-EC2-Role` to your instances.
-
-#### 2.3 Create an IAM Role for Jenkins (for Access to S3 and CodeDeploy)
-1. Go to the **IAM Management Console**.
-2. Click **Roles** in the left sidebar and then **Create role**.
-3. Under **Trusted entity type**, choose **AWS Service**.
-4. Choose the **Use case** as **EC2** or **Elastic Beanstalk** (if your Jenkins is running on EC2).
-5. Click **Next** to attach policies.
-6. Attach the following policies:
-   - **AmazonS3FullAccess**: Allows access to S3 (for Jenkins to upload deployment packages).
-   - **AWSCodeDeployFullAccess**: Allows Jenkins to trigger deployments.
-7. Click **Next**, name the role (e.g., `Jenkins-CodeDeploy-Role`), and click **Create role**.
-
-#### 2.4 Attach the Role to Jenkins Server
-1. Navigate to the **EC2 Console**.
-2. Select your Jenkins instance.
-3. Select **Actions** > **Security** > **Modify IAM Role**.
-4. Attach the `Jenkins-CodeDeploy-Role` to your Jenkins server.
+## **Step-by-Step Implementation**
 
 ---
 
-### **Step 3: Configure CodeDeploy Agent on EC2 Instances**
+### **Step 1: Set Up the Web Application**
 
-1. Ensure that the CodeDeploy agent is installed on your EC2 instances:
-   - **For Amazon Linux 2**:
+1. Create a basic NGINX web server application locally:
+   ```bash
+   mkdir nginx-app
+   cd nginx-app
+   mkdir scripts
+   touch index.html
+   ```
+
+2. Add a simple HTML page in `index.html`:
+   ```html
+   <!DOCTYPE html>
+   <html>
+   <head>
+       <title>Welcome to NGINX!</title>
+   </head>
+   <body>
+       <h1>Deployed via CodeDeploy!</h1>
+   </body>
+   </html>
+   ```
+
+3. Create deployment scripts:
+   - **scripts/install_nginx.sh** (installs NGINX):
      ```bash
-     sudo yum update -y
-     sudo yum install ruby wget -y
-     cd /home/ec2-user
+     #!/bin/bash
+     sudo apt update -y
+     sudo apt install nginx -y
+     ```
+
+   - **scripts/start_nginx.sh** (starts NGINX service):
+     ```bash
+     #!/bin/bash
+     sudo systemctl start nginx
+     ```
+
+   - **scripts/deploy.sh** (deploys the web page):
+     ```bash
+     #!/bin/bash
+     sudo cp /home/ubuntu/nginx-app/index.html /var/www/html/index.html
+     sudo systemctl restart nginx
+     ```
+
+4. Push this code to your Git repository (GitHub/Bitbucket).
+
+---
+
+### **Step 2: Create AWS Infrastructure**
+
+#### 2.1 Launch EC2 Instances for Auto Scaling
+
+1. In the AWS Console, go to **EC2** and create a **Launch Template**:
+   - Use a **Linux AMI** (Amazon Linux 2 or Ubuntu).
+   - Add **User Data** to automatically install the CodeDeploy agent:
+     ```bash
+     #!/bin/bash
+     sudo apt update -y
+     sudo apt install ruby wget -y
      wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
      chmod +x ./install
      sudo ./install auto
-     sudo service codedeploy-agent start
-     ```
-   - **For Ubuntu**:
-     ```bash
-     sudo apt-get update -y
-     sudo apt-get install ruby wget -y
-     cd /home/ubuntu
-     wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
-     chmod +x ./install
-     sudo ./install auto
-     sudo service codedeploy-agent start
      ```
 
-2. Verify the CodeDeploy agent is running:
+2. Create an **Auto Scaling Group**:
+   - Use the **Launch Template** you created.
+   - Optionally, attach the Auto Scaling group to a **Load Balancer** for better scaling.
+
+#### 2.2 Create S3 Bucket for Deployment Artifacts
+
+1. Go to **S3** in AWS.
+2. Create a new bucket (e.g., `nginx-deployments-bucket`) to store deployment artifacts.
+
+---
+
+### **Step 3: Set Up AWS CodeDeploy**
+
+#### 3.1 Create CodeDeploy Application
+
+1. In AWS, navigate to **CodeDeploy**.
+2. Create an application (e.g., `nginx-webapp-deployment`).
+3. Create a **Deployment Group** using either an **Auto Scaling Group** or specific EC2 instances.
+4. Attach an **IAM Role** to the deployment group that has the following permissions:
+   - **AWSCodeDeployRole**
+   - **AmazonEC2RoleforAWSCodeDeploy**
+
+#### 3.2 Configure the AppSpec File for Deployment
+
+1. In your project root directory, create an `appspec.yml`:
+   ```yaml
+   version: 0.0
+   os: linux
+   files:
+     - source: /
+       destination: /home/ubuntu/nginx-app
+   hooks:
+     BeforeInstall:
+       - location: scripts/install_nginx.sh
+         timeout: 300
+         runas: root
+     AfterInstall:
+       - location: scripts/deploy.sh
+         timeout: 300
+         runas: root
+     ApplicationStart:
+       - location: scripts/start_nginx.sh
+         timeout: 300
+         runas: root
+   ```
+
+---
+
+### **Step 4: Set Up IAM Roles**
+
+#### 4.1 Create IAM Role for EC2 Instances
+
+1. In the **IAM Management Console**, create a new role for EC2 instances.
+2. Attach the **AmazonEC2RoleforAWSCodeDeploy** policy to the role.
+3. Attach this role to the EC2 instances.
+
+#### 4.2 Create IAM Role for Jenkins
+
+1. Create a new IAM role for Jenkins with the following policies:
+   - **AmazonS3FullAccess**
+   - **AWSCodeDeployFullAccess**
+2. Attach this role to the EC2 instance running Jenkins.
+
+---
+
+### **Step 5: Install CodeDeploy Agent on EC2 Instances**
+
+#### 5.1 Install CodeDeploy Agent
+
+1. **For Amazon Linux 2**:
+   ```bash
+   sudo yum update -y
+   sudo yum install ruby wget -y
+   wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+   chmod +x ./install
+   sudo ./install auto
+   sudo service codedeploy-agent start
+   ```
+
+2. **For Ubuntu**:
+   ```bash
+   sudo apt-get update -y
+   sudo apt-get install ruby wget -y
+   wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+   chmod +x ./install
+   sudo ./install auto
+   sudo service codedeploy-agent start
+   ```
+
+3. Verify the installation:
    ```bash
    sudo service codedeploy-agent status
    ```
 
 ---
 
-### **Step 4: Grant Permissions to Jenkins (Optional)**
+### **Step 6: Set Up Jenkins**
 
-If your Jenkins is running on a non-EC2 instance, you might need to set up access keys and secrets for AWS:
+#### 6.1 Install Jenkins on EC2
 
-1. Create an **IAM User** with programmatic access and attach the **AmazonS3FullAccess** and **AWSCodeDeployFullAccess** policies.
-2. In Jenkins, under **Manage Jenkins** > **Configure System**, add AWS credentials to use in your pipeline (these will be the access and secret keys of the IAM user).
+1. Launch an **EC2 Instance** for Jenkins.
+2. Install Jenkins following the official instructions.
+3. Ensure Jenkins is accessible on port 8080.
 
----
+#### 6.2 Install Jenkins Plugins
 
-By following these steps, CodeDeploy and IAM roles will be properly configured, enabling your EC2 instances to receive deployment instructions and Jenkins to manage the entire CI/CD process securely.
-
-
-
-
-### **2. Web Application Setup**
-
-#### Step 1: Set Up the Simple Web Application
-We will deploy an NGINX web server with a basic HTML page.
-
-- Create a directory structure in your local machine:
-  ```bash
-  mkdir nginx-app
-  cd nginx-app
-  mkdir scripts
-  touch index.html
-  ```
-
-- Add the following simple HTML content in `index.html`:
-  ```html
-  <!DOCTYPE html>
-  <html>
-  <head>
-      <title>Welcome to NGINX!</title>
-  </head>
-  <body>
-      <h1>Deployed via CodeDeploy!</h1>
-  </body>
-  </html>
-  ```
-
-- **scripts/install_nginx.sh**:
-  This script will install NGINX on the EC2 instance during deployment.
-  ```bash
-  #!/bin/bash
-  sudo apt update -y
-  sudo apt install nginx -y
-  ```
-
-- **scripts/start_nginx.sh**:
-  This script will start the NGINX service after installation.
-  ```bash
-  #!/bin/bash
-  sudo systemctl start nginx
-  ```
-
-- **scripts/deploy.sh**:
-  This script will copy the HTML file to the appropriate directory and restart NGINX.
-  ```bash
-  #!/bin/bash
-  sudo cp /home/ubuntu/nginx-app/index.html /var/www/html/index.html
-  sudo systemctl restart nginx
-  ```
+1. Go to **Manage Jenkins** > **Manage Plugins**.
+2. Install the following plugins:
+   - **AWS CodeDeploy Plugin**
+   - **Git Plugin**
+   - **Pipeline Plugin**
 
 ---
 
-### **3. CodeDeploy Setup**
+### **Step 7: Configure Jenkins Pipeline**
 
-#### Step 2: Create an S3 Bucket for Deployment Artifacts
-- Log into AWS Console.
-- Navigate to **S3** and create a new bucket (e.g., `nginx-deployments-bucket`).
-  
-#### Step 3: Create a CodeDeploy Application
-1. Go to **AWS CodeDeploy**.
-2. Create an application (e.g., `nginx-webapp-deployment`).
-3. Create a deployment group and choose EC2/On-Premises.
-4. Attach the appropriate IAM role to the deployment group (ensure it has access to EC2, S3, and CodeDeploy).
+#### 7.1 Create a Jenkins Pipeline
 
-#### Step 4: AppSpec File for CodeDeploy
-- Create an `appspec.yml` in the root of your project directory.
-  ```yaml
-  version: 0.0
-  os: linux
-  files:
-    - source: /
-      destination: /home/ubuntu/nginx-app
-  hooks:
-    BeforeInstall:
-      - location: scripts/install_nginx.sh
-        timeout: 300
-        runas: root
-    AfterInstall:
-      - location: scripts/deploy.sh
-        timeout: 300
-        runas: root
-    ApplicationStart:
-      - location: scripts/start_nginx.sh
-        timeout: 300
-        runas: root
-  ```
-
----
-
-### **4. Jenkins Setup**
-
-#### Step 5: Set Up Jenkins on a Separate EC2 Instance
-1. Launch a new EC2 instance and install Jenkins.
-2. Ensure security groups allow traffic on port 8080.
-3. Install necessary plugins:
-   - **AWS CodeDeploy Plugin**: Integrate Jenkins with CodeDeploy.
-   - **Git Plugin**: For repository integration.
-
-#### Step 6: Create Jenkins Pipeline
-1. Set up a new pipeline in Jenkins.
-2. Define the Jenkinsfile in your project repository. For example:
+1. In Jenkins, create a **New Item** and select **Pipeline**.
+2. Add a **Jenkinsfile** to your project repository:
    ```groovy
    pipeline {
        agent any
@@ -258,8 +237,6 @@ We will deploy an NGINX web server with a basic HTML page.
                          s3bucket: 'nginx-deployments-bucket',
                          s3prefix: '',
                          excludes: '',
-                         awsAccessKey: '',
-                         awsSecretKey: '',
                          awsRegion: 'us-east-1'])
                }
            }
@@ -267,65 +244,26 @@ We will deploy an NGINX web server with a basic HTML page.
    }
    ```
 
-3. This pipeline performs the following:
-   - Clones the repository.
-   - Zips the project.
-   - Uploads the artifact to S3.
-   - Triggers the CodeDeploy deployment.
+#### 7.2 Add Credentials to Jenkins
+
+1. Go to **Manage Jenkins** > **Configure System**.
+2. Add AWS credentials (IAM User with CodeDeploy and S3 access).
 
 ---
 
-### **5. EC2 and Auto Scaling Setup**
+### **Step 8: Testing and Deployment**
 
-#### Step 7: Launch EC2 Instances for Auto Scaling Group
-1. Create a launch template with the following configuration:
-   - **AMI**: Use a Linux AMI.
-   - **User Data**: Add a script to install the CodeDeploy agent.
-     ```bash
-     #!/bin/bash
-     sudo apt update -y
-     sudo apt install -y ruby wget
-     cd /home/ubuntu
-     wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
-     chmod +x ./install
-     sudo ./install auto
-     ```
-
-2. Create an Auto Scaling Group:
-   - Use the launch template created.
-   - Attach it to a load balancer (optional but recommended for scaling).
-
-#### Step 8: Configure Auto Scaling Policies
-1. Set up scaling based on CPU utilization or HTTP request load on the load balancer.
-2. Ensure that new instances are automatically updated with the latest deployment using CodeDeploy.
+1. **Push Code Changes**: Make any changes to the code and push to the Git repository.
+2. **Jenkins Pipeline**: Ensure Jenkins picks up the changes, runs the pipeline, uploads the artifact to S3, and triggers CodeDeploy.
+3. **Access the Web Application**: Once the deployment is complete, access the web application via the public IP of the EC2 instances or the load balancer's DNS name.
 
 ---
 
-### **6. Testing and Validation**
+### **Step 9: Configure Auto Scaling**
 
-#### Step 9: Push Code to Repository
-- Make any changes to the HTML or scripts and push them to the GitHub/Bitbucket repository.
-- This should automatically trigger the Jenkins pipeline, upload the new artifact to S3, and deploy it to the EC2 instances via CodeDeploy.
-
-#### Step 10: Access the Web Application
-- Access the web application by hitting the public IP of your EC2 instance or through the load balancer’s DNS name in a browser.
+1. Set up scaling policies based on metrics like CPU utilization or request load.
+2. Ensure that new EC2 instances in the Auto Scaling group automatically receive the latest CodeDeploy deployment.
 
 ---
 
-### **7. Troubleshooting**
-
-#### Common Issues:
-- **CodeDeploy Agent Installation**: Ensure the agent is correctly installed on all EC2 instances.
-- **IAM Role Permissions**: Ensure that the EC2 instance roles have the correct permissions to interact with CodeDeploy and S3.
-- **Pipeline Failures**: Review Jenkins logs and ensure all AWS credentials are configured correctly.
-
----
-
-### **Why CodeDeploy?**
-- **Automated Deployments**: CodeDeploy automates the deployment process, minimizing manual intervention.
-- **Scalability**: It works seamlessly with Auto Scaling groups, ensuring new instances automatically receive the latest deployment.
-- **Rollback**: It provides built-in rollback capabilities, which are essential for handling failed deployments.
-
----
-
-This setup ensures a complete CI/CD pipeline with AWS, Jenkins, CodeDeploy, and scaling through Auto Scaling groups.
+This complete step-by-step guide will enable you to deploy a scalable web application using AWS, Jenkins, and CodeDeploy with a fully automated CI/CD pipeline.
