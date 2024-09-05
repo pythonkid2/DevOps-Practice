@@ -9,7 +9,7 @@ This guide will take you through the complete process of setting up a CI/CD pipe
 ---
 
 ### **Prerequisites**
-
+ 
 Before starting, ensure the following resources are ready:
 - **AWS Account** with full access permissions.
 - **Jenkins Server** running on an EC2 instance or other host.
