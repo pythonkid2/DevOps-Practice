@@ -68,6 +68,74 @@ Before starting, ensure the following resources are ready:
 
 4. Push this code to your Git repository (GitHub/Bitbucket).
 
+
+To push your code to your GitHub repository, follow these steps:
+
+### **1. Create a GitHub Repository**
+
+If you don't already have a repository, you'll need to create one:
+
+1. **Log in to GitHub**:
+   - Go to [GitHub](https://github.com/) and log in with your credentials.
+
+2. **Create a New Repository**:
+   - Click on the **+** icon in the top-right corner and select **New repository**.
+   - Fill in the repository details:
+     - **Repository name**: e.g., `nginx-webapp-deployment`
+     - **Description**: (Optional) Describe your repository.
+     - **Public/Private**: Choose based on your preference.
+   - Click **Create repository**.
+
+### **2. Prepare Your Local Project**
+
+Make sure your local project directory is set up correctly:
+
+1. **Navigate to Your Project Directory**:
+   ```bash
+   cd /path/to/your/nginx-app
+   ```
+
+2. **Initialize Git**:
+   If your project is not already a Git repository, initialize it:
+   ```bash
+   git init
+   ```
+
+3. **Add Your Files**:
+   Add all the files in your project to the Git staging area:
+   ```bash
+   git add .
+   ```
+
+4. **Commit Your Changes**:
+   Commit the files with a descriptive message:
+   ```bash
+   git commit -m "Initial commit of NGINX web application and deployment scripts"
+   ```
+
+### **3. Add Your GitHub Repository as a Remote**
+
+1. **Copy the Repository URL**:
+   - Go to your GitHub repository page.
+   - Click on the **Code** button and copy the HTTPS URL (e.g., `https://github.com/pythonkid2/nginx-webapp-deployment.git`).
+
+2. **Add Remote Origin**:
+   ```bash
+   git remote add origin https://github.com/pythonkid2/nginx-webapp-deployment.git
+   ```
+
+### **4. Push Your Code to GitHub**
+
+1. **Push to the Remote Repository**:
+   ```bash
+   git push -u origin main
+   ```
+   - If you're using a different branch name (e.g., `master`), replace `main` with your branch name.
+
+2. **Verify Your Push**:
+   - Go to your GitHub repository page.
+   - Refresh the page to ensure that your files have been pushed and are visible in the repository.
+
 ---
 
 ### **Step 2: Create AWS Infrastructure**
