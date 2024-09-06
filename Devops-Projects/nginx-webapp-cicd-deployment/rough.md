@@ -33,7 +33,7 @@ Before starting, ensure the following resources are ready:
    ```
 
 2. Add a simple HTML page in `index.html`:
-   ```html
+   ```
    <!DOCTYPE html>
    <html>
    <head>
@@ -103,7 +103,7 @@ Make sure your local project directory is set up correctly:
 
 3. **Add Your Files**:
    Add all the files in your project to the Git staging area:
-   ```bash
+   ```
    git add .
    ```
 
