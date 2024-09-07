@@ -25,7 +25,7 @@ Before starting, ensure the following resources are ready:
 ### **Step 1: Set Up the Web Application**
 
 1. Create a basic NGINX web server application locally:
-   ```bash
+   ```
    mkdir nginx-app
    cd nginx-app
    mkdir scripts
@@ -47,20 +47,20 @@ Before starting, ensure the following resources are ready:
 
 3. Create deployment scripts:
    - **scripts/install_nginx.sh** (installs NGINX):
-     ```bash
+     ```
      #!/bin/bash
      sudo apt update -y
      sudo apt install nginx -y
      ```
 
    - **scripts/start_nginx.sh** (starts NGINX service):
-     ```bash
+     ```
      #!/bin/bash
      sudo systemctl start nginx
      ```
 
    - **scripts/deploy.sh** (deploys the web page):
-     ```bash
+     ```
      #!/bin/bash
      sudo cp /home/ubuntu/nginx-app/index.html /var/www/html/index.html
      sudo systemctl restart nginx
@@ -91,13 +91,13 @@ If you don't already have a repository, you'll need to create one:
 Make sure your local project directory is set up correctly:
 
 1. **Navigate to Your Project Directory**:
-   ```bash
+   ```
    cd /path/to/your/nginx-app
    ```
 
 2. **Initialize Git**:
    If your project is not already a Git repository, initialize it:
-   ```bash
+   ```
    git init
    ```
 
@@ -109,7 +109,7 @@ Make sure your local project directory is set up correctly:
 
 4. **Commit Your Changes**:
    Commit the files with a descriptive message:
-   ```bash
+   ```
    git commit -m "Initial commit of NGINX web application and deployment scripts"
    ```
 
@@ -120,14 +120,14 @@ Make sure your local project directory is set up correctly:
    - Click on the **Code** button and copy the HTTPS URL (e.g., `https://github.com/pythonkid2/nginx-webapp-deployment.git`).
 
 2. **Add Remote Origin**:
-   ```bash
+   ```
    git remote add origin https://github.com/pythonkid2/nginx-webapp-deployment.git
    ```
 
 ### **4. Push Your Code to GitHub**
 
 1. **Push to the Remote Repository**:
-   ```bash
+   ```
    git push -u origin main
    ```
    - If you're using a different branch name (e.g., `master`), replace `main` with your branch name.
@@ -145,11 +145,11 @@ Make sure your local project directory is set up correctly:
 1. In the AWS Console, go to **EC2** and create a **Launch Template**:
    - Use a **Linux AMI** (Amazon Linux 2 or Ubuntu).
    - Add **User Data** to automatically install the CodeDeploy agent:
-     ```bash
+     ```
      #!/bin/bash
      sudo apt update -y
      sudo apt install ruby wget -y
-     wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+     https://aws-codedeploy-us-east-2.s3.us-east-2.amazonaws.com/latest/install
      chmod +x ./install
      sudo ./install auto
      ```
@@ -224,7 +224,7 @@ Make sure your local project directory is set up correctly:
 #### 5.1 Install CodeDeploy Agent
 
 1. **For Amazon Linux 2**:
-   ```bash
+   ```
    sudo yum update -y
    sudo yum install ruby wget -y
    wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
@@ -234,7 +234,7 @@ Make sure your local project directory is set up correctly:
    ```
 
 2. **For Ubuntu**:
-   ```bash
+   ```
    sudo apt-get update -y
    sudo apt-get install ruby wget -y
    wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
@@ -244,7 +244,7 @@ Make sure your local project directory is set up correctly:
    ```
 
 3. Verify the installation:
-   ```bash
+   ```
    sudo service codedeploy-agent status
    ```
 
