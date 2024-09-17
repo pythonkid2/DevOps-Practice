@@ -1072,6 +1072,65 @@ Better Visualization and Error Handling: Pipelines offer better visualization of
  </tr>
 </table>
 
+### Pipeline example
+
+```
+pipeline {
+    agent any
+    
+    environment {
+        // Set environment variables, like AWS credentials if needed
+        AWS_REGION = 'us-west-2'
+    }
+    
+    stages {
+        stage('Checkout Code') {
+            steps {
+                // Checkout code from the repository
+                git branch: 'main', url: 'https://github.com/your-repo/your-project.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // For example, compile code or build the application
+                echo 'Building the application...'
+                sh './build.sh'  // Replace with your build command
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run tests
+                echo 'Running tests...'
+                sh './test.sh'  // Replace with your test command
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Deploy the application
+                echo 'Deploying the application...'
+                sh 'scp -i ~/.ssh/key.pem ./build/output user@your-server:/var/www/html/'  // Replace with your deployment command
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up actions, like sending notifications
+            echo 'Pipeline complete!'
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
+```
+
 - [Table of Contents](#Table-of-Contents)
 
 ## Maven
