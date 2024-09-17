@@ -1266,6 +1266,29 @@ In Selenium, the term "driver" refers to the software component that facilitates
 
 ## Kubernetes
 
+### Kubernetes Architecture
+
+![image](https://github.com/user-attachments/assets/200fbaf1-5278-446f-bbda-13aa0608db89)
+
+**1. Control Plane:**
+   - **kube-apiserver:** Exposes the Kubernetes API.
+   - **etcd:** Consistent key-value store for all cluster data.
+   - **kube-scheduler:** Assigns Pods to nodes.
+   - **kube-controller-manager:** Runs controllers managing the cluster state.
+   - **cloud-controller-manager (optional):** Integrates with cloud providers for cloud-specific resources.
+
+**2. Node Components:**
+   - **kubelet:** Ensures containers in Pods are running and healthy.
+   - **kube-proxy (optional):** Manages network rules for Pods and Services.
+
+**3. Container Runtime:**
+   - Manages container execution (e.g., containerd, CRI-O).
+
+**4. Nodes:**
+   - Host Pods and run the kubelet and kube-proxy.
+
+**Note:** The control plane can be distributed across multiple machines for high availability, while nodes host the Pods running application workloads.
+
 ### Services in Kubernetes
 
 **Q: What are the different types of services in Kubernetes?**
