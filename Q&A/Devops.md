@@ -657,6 +657,45 @@ The lock file is important because it ensures that everyone who is working on a 
 
 You should use the lock.hcl file whenever possible, especially if you are collaborating with other people on a Terraform configuration. The lock file will help to ensure that everyone is on the same page and that your configuration is consistent and reproducible.
 
+
+Here are small, concise Terraform code examples for AWS:
+
+### Example 1: Launch a Simple EC2 Instance
+```hcl
+provider "aws" {
+  region = "us-west-2"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0c55b159cbfafe1f0"  # Amazon Linux 2
+  instance_type = "t2.micro"
+}
+```
+
+### Example 2: Create a Simple S3 Bucket
+```hcl
+provider "aws" {
+  region = "us-west-2"
+}
+
+resource "aws_s3_bucket" "example" {
+  bucket = "my-small-bucket"
+  acl    = "private"
+}
+```
+
+### Example 3: Create a Simple VPC
+```hcl
+provider "aws" {
+  region = "us-west-2"
+}
+
+resource "aws_vpc" "example_vpc" {
+  cidr_block = "10.0.0.0/16"
+}
+```
+
+
 - [Table of Contents](#Table-of-Contents)
 
 ## Git
