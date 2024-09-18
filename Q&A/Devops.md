@@ -2625,6 +2625,186 @@ tail -n 2 filename
 lsblk
 
 
+### **File and Directory Management:**
+1. **`ls`** – List files and directories:
+   ```bash
+   ls -l      # Long listing format
+   ls -a      # List all files including hidden files
+   ```
+   
+2. **`cd`** – Change directory:
+   ```bash
+   cd /path/to/directory    # Move to specified directory
+   cd ~                     # Move to the home directory
+   cd ..                    # Move one level up
+   ```
+
+3. **`mkdir`** – Create a new directory:
+   ```bash
+   mkdir new_folder     # Create a single directory
+   mkdir -p dir1/dir2   # Create nested directories
+   ```
+
+4. **`rm`** – Remove files or directories:
+   ```bash
+   rm filename               # Remove a file
+   rm -r foldername          # Remove a directory and its contents recursively
+   rm -rf /path/to/dir       # Forcefully remove directory and contents without prompting
+   ```
+
+5. **`cp`** – Copy files or directories:
+   ```bash
+   cp file1 file2               # Copy a file
+   cp -r dir1 dir2              # Copy a directory recursively
+   ```
+
+6. **`mv`** – Move or rename files and directories:
+   ```bash
+   mv oldname newname          # Rename a file or directory
+   mv /path/to/file /newpath/   # Move file to a new location
+   ```
+
+### **File Viewing and Editing:**
+1. **`cat`** – View contents of a file:
+   ```bash
+   cat file.txt              # Display the file content
+   ```
+
+2. **`more`** / **`less`** – View large files page by page:
+   ```bash
+   less file.txt             # View file with scroll capability
+   ```
+
+3. **`head`** / **`tail`** – View the first or last few lines of a file:
+   ```bash
+   head -n 10 file.txt       # Display first 10 lines of the file
+   tail -n 10 file.txt       # Display last 10 lines of the file
+   tail -f logfile.log       # Follow the file in real time (for logs)
+   ```
+
+4. **`nano`** / **`vi`** – Edit a file:
+   ```bash
+   nano file.txt             # Open the file in nano text editor
+   vi file.txt               # Open the file in vi/vim text editor
+   ```
+
+### **File Permissions and Ownership:**
+1. **`chmod`** – Change file permissions:
+   ```bash
+   chmod 755 file.sh         # Give read, write, execute permissions to the owner, and read/execute permissions to others
+   chmod u+x file.sh         # Add execute permission for the owner (user)
+   ```
+
+2. **`chown`** – Change file ownership:
+   ```bash
+   chown user:group file.txt   # Change owner and group of a file
+   chown -R user:group dir/    # Change ownership recursively for all files in a directory
+   ```
+
+### **Process Management:**
+1. **`ps`** – View running processes:
+   ```bash
+   ps aux                   # Display all processes in detailed format
+   ```
+
+2. **`top`** / **`htop`** – Monitor system processes and resource usage:
+   ```bash
+   top                      # Display system processes and resource usage
+   htop                     # Enhanced version of top with more user-friendly output
+   ```
+
+3. **`kill`** – Terminate a process:
+   ```bash
+   kill PID                 # Kill a process using its Process ID (PID)
+   kill -9 PID              # Forcefully terminate a process
+   ```
+
+4. **`bg`** / **`fg`** – Manage background and foreground processes:
+   ```bash
+   bg                       # List background jobs
+   fg                       # Bring background job to the foreground
+   ```
+
+### **Network Commands:**
+1. **`ping`** – Check network connectivity:
+   ```bash
+   ping google.com           # Test connection to Google
+   ```
+
+2. **`ifconfig`** / **`ip`** – Display or configure network interfaces:
+   ```bash
+   ifconfig                 # Display network interface information
+   ip addr show             # Show IP addresses and network interface details
+   ```
+
+3. **`netstat`** – View network connections and listening ports:
+   ```bash
+   netstat -tuln            # List listening ports (TCP/UDP)
+   ```
+
+4. **`curl`** – Transfer data from or to a server:
+   ```bash
+   curl http://example.com   # Fetch the web page content
+   curl -O http://example.com/file.zip  # Download a file
+   ```
+
+### **Disk Usage and Management:**
+1. **`df`** – Show disk space usage:
+   ```bash
+   df -h                     # Show disk usage in human-readable format
+   ```
+
+2. **`du`** – Show disk usage of files and directories:
+   ```bash
+   du -sh /path/to/dir       # Show size of a directory in a human-readable format
+   ```
+
+3. **`fdisk`** / **`lsblk`** – Partition and manage disks:
+   ```bash
+   fdisk -l                  # List all disk partitions
+   lsblk                     # List information about block devices
+   ```
+
+### **System Information:**
+1. **`uname`** – Show system information:
+   ```bash
+   uname -a                  # Display all system information
+   ```
+
+2. **`uptime`** – Show system uptime:
+   ```bash
+   uptime                    # Display how long the system has been running
+   ```
+
+3. **`free`** – Show memory usage:
+   ```bash
+   free -h                   # Display memory usage in human-readable format
+   ```
+
+4. **`history`** – Show command history:
+   ```bash
+   history                   # Display list of previously run commands
+   ```
+
+### **Searching and Finding Files:**
+1. **`grep`** – Search for text within files:
+   ```bash
+   grep "pattern" file.txt     # Search for a pattern in a file
+   grep -r "pattern" /dir      # Recursively search in directory
+   ```
+
+2. **`find`** – Search for files based on name, size, type, etc.:
+   ```bash
+   find /path -name "filename"   # Find files by name
+   find /path -type d            # Find directories
+   ```
+
+3. **`locate`** – Quickly find files by name:
+   ```bash
+   locate file.txt               # Find the location of a file
+   ```
+
+
 - [Table of Contents](#Table-of-Contents)
 
 ## Azure
