@@ -2077,6 +2077,7 @@ In the context of AWS DevOps, CloudWatch and CloudTrail play critical roles in m
 Integrating CloudWatch and CloudTrail in an AWS DevOps setup allows for comprehensive monitoring, logging, and analysis of AWS resources and services. This, in turn, facilitates proactive management, security enforcement, and the smooth operation of AWS-based applications and infrastructure.
 
 ***
+![image](https://github.com/user-attachments/assets/01ebbef0-ee86-4455-af80-dc6b23980a0a)
 
 #### Security Group in AWS Cloud
 - Acts as a virtual firewall, controlling inbound and outbound traffic for EC2 instances.
