@@ -55,3 +55,41 @@ if we not mentioning shebang we can execute it as -
   Uses `#` as the delimiter instead of `/`, which can be useful when replacing strings that contain `/`.
 
 These commands enhance flexibility and efficiency when using search and replace in `vim`.
+
+
+
+
+
+
+practice-
+
+---
+
+Update the script to use 2 command line variables $1 and $2 for country and capital respectively. When the script is executed it should now print the country and its 
+capital using the values passed in as command line arguments.
+
+
+eg: ./print-capital.sh Nigeria Abuja should print Capital city of Nigeria is Abuja
+
+
+echo "Capital city of $1 is $2"
+
+---
+
+/home/bob/backup-file.sh to create a backup of any given file. Update the script to use command line argument $1 for the filename to be backed up instead of the hard-coded filename.
+
+
+eg: ./backup-file.sh create-and-launch-rocket should backup create-and-launch-rocket to create-and-launch-rocket_bkp
+
+```
+# This script creates a backup of a given file by creating a copy as bkp
+# For example some-file is backed up as some-file_bkp
+set -e
+
+file_name=$1
+
+cp $file_name ${file_name}_bkp
+
+echo "Done"
+```
+             
