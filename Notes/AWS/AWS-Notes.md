@@ -4,7 +4,7 @@
 - [Section 1](#section-1)
 - [VPC Peering](#VPC-Peering)
 - [AWS Transit Gateway](#AWS-Transit-Gateway)
-- [Section 4](#section-4)
+- [NAT Gateway](#NAT-Gateway)
 - [Section 5](#section-5)
 - [Conclusion](#conclusion)
 
@@ -48,8 +48,27 @@ Key Points:
 
 In essence, Transit Gateway simplifies managing and scaling large, interconnected networks across AWS and on-premises environments.
 
-## Section 4
-This is section 4. You can provide detailed content related to this section here.
+## NAT Gateway 
+
+![image](https://github.com/user-attachments/assets/965a6841-8c79-44c4-9067-82746dca9819)
+### AWS NAT Gateway
+
+A **NAT Gateway** is a service that enables instances in private subnets to access external services (e.g., the internet or other VPCs), while blocking incoming connections from external sources.
+
+Key Types:
+- **Public NAT Gateway**: 
+  - Allows instances in private subnets to connect to the internet.
+  - Requires an **Elastic IP** and is placed in a public subnet.
+  - Routes traffic through an **Internet Gateway** for internet access.
+  
+- **Private NAT Gateway**: 
+  - Connects instances in private subnets to other VPCs or on-premises networks.
+  - No Elastic IP; traffic routed through **Transit Gateway** or **Virtual Private Gateway**.
+  - Cannot directly connect to the internet.
+
+**Key Point**: NAT Gateways are for **IPv4** traffic only. For IPv6, use an **egress-only internet gateway**. 
+
+NAT Gateways handle network address translation, mapping private IP addresses to the NAT gateway's private or public IP, allowing for secure outbound connections without accepting inbound traffic.
 
 ## Section 5
 This is section 5. You can provide detailed content related to this section here.
