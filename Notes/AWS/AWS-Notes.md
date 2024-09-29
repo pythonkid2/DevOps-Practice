@@ -3,7 +3,7 @@
 - [Introduction](#introduction)
 - [Section 1](#section-1)
 - [VPC Peering](#VPC-Peering)
-- [Section 3](#section-3)
+- [AWS Transit Gateway](#AWS-Transit-Gateway)
 - [Section 4](#section-4)
 - [Section 5](#section-5)
 - [Conclusion](#conclusion)
@@ -29,8 +29,24 @@ Key Points:
 VPC Peering simplifies resource sharing and geographic redundancy between VPCs without relying on external infrastructure.
 
 
-## Section 3
-This is section 3. You can provide detailed content related to this section here.
+## AWS Transit Gateway
+
+![image](https://github.com/user-attachments/assets/68d54bab-0a50-4bcc-9508-d4d0f99234c5)
+
+![image](https://github.com/user-attachments/assets/7abf5edd-c0dd-42f1-8992-747fcedc2536)
+
+### Amazon VPC Transit Gateway
+
+**Amazon VPC Transit Gateway** is a network hub that connects multiple VPCs and on-premises networks, allowing you to simplify and scale your cloud infrastructure. It helps manage network traffic across VPCs, regions, and your on-premises systems using AWS's global network.
+
+Key Points:
+- **Attachments**: Connects VPCs, Direct Connect, VPNs, or third-party SD-WANs.
+- **Inter-Region Peering**: Allows communication across AWS regions with automatic encryption.
+- **Route Tables**: Manages dynamic and static routes to control traffic flow.
+- **MTU**: Supports up to 8500 bytes for most connections, 1500 bytes for VPN.
+- **Route Propagation**: Automatically shares routes between attachments.
+
+In essence, Transit Gateway simplifies managing and scaling large, interconnected networks across AWS and on-premises environments.
 
 ## Section 4
 This is section 4. You can provide detailed content related to this section here.
