@@ -1,0 +1,42 @@
+# Table of Contents
+
+- [Introduction](#introduction)
+- [Section 1](#section-1)
+- [VPC Peering](#VPC-Peering)
+- [Section 3](#section-3)
+- [Section 4](#section-4)
+- [Section 5](#section-5)
+- [Conclusion](#conclusion)
+
+## Introduction
+This is the introduction section. You can provide a brief overview of what the document will cover here.
+
+## Section 1
+This is section 1. You can provide detailed content related to this section here.
+
+## VPC Peering
+
+![image](https://github.com/user-attachments/assets/56112426-6382-4a32-975c-500987bc9cbe)
+
+A **VPC Peering** connection enables communication between two Virtual Private Clouds (VPCs) using private IP addresses, whether within the same AWS account or across different accounts. It works seamlessly across regions, allowing resources like EC2 instances and Lambda functions in separate VPCs to communicate securely without the need for VPNs or gateways.
+
+Key Points:
+- **Private Communication**: VPCs can communicate as if they were in the same network.
+- **Inter-Region Support**: Allows VPC peering between different AWS regions.
+- **Secure and Efficient**: Traffic stays on the AWS global backbone, avoiding the public internet and reducing security risks.
+- **Cost**: Free within the same Availability Zone; charges apply for cross-AZ or cross-region data transfers. 
+
+VPC Peering simplifies resource sharing and geographic redundancy between VPCs without relying on external infrastructure.
+
+
+## Section 3
+This is section 3. You can provide detailed content related to this section here.
+
+## Section 4
+This is section 4. You can provide detailed content related to this section here.
+
+## Section 5
+This is section 5. You can provide detailed content related to this section here.
+
+## Conclusion
+This is the conclusion section. You can summarize the key points of the document and provide any final thoughts or recommendations here.
