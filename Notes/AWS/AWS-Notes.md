@@ -5,6 +5,7 @@
 - [VPC Peering](#VPC-Peering)
 - [AWS Transit Gateway](#AWS-Transit-Gateway)
 - [NAT Gateway](#NAT-Gateway)
+- [AWS Route 53](#AWS-Route-53)
 - [Section 5](#section-5)
 - [Conclusion](#conclusion)
 
@@ -69,6 +70,10 @@ Key Types:
 **Key Point**: NAT Gateways are for **IPv4** traffic only. For IPv6, use an **egress-only internet gateway**. 
 
 NAT Gateways handle network address translation, mapping private IP addresses to the NAT gateway's private or public IP, allowing for secure outbound connections without accepting inbound traffic.
+
+## AWS Route 53
+
+
 
 ## Section 5
 This is section 5. You can provide detailed content related to this section here.
