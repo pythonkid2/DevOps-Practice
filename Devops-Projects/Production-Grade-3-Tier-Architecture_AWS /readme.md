@@ -66,3 +66,94 @@ This architecture is designed for **high availability**, **scalability**, and **
   - **CloudWatch Alarms**: Trigger scaling actions within the auto-scaling groups based on demand.
 
 - **Cost Efficiency**: By scaling out during peak periods and scaling in during low traffic periods, the system maintains cost efficiency while ensuring consistent performance.
+
+# Configuring Route 53
+
+To configure **Amazon Route 53** for the three-tier architecture project, follow the steps below. This process will ensure your domain routes traffic correctly to the **presentation tier** via the **Application Load Balancer (ALB)** and supports secure connections with **SSL**.
+
+---
+
+#### 1. **Navigate to Route 53**
+- Go to **Route 53** in the AWS Management Console and select **Hosted Zones**.
+
+![image](https://github.com/user-attachments/assets/4c7d2db0-516c-43a2-97da-3d2a309b2803)
+
+---
+
+#### 2. **Create a Hosted Zone**
+- Click **Create Hosted Zone**.
+- Enter your **domain name** (e.g., `example.com`) and choose **Public Hosted Zone**.
+
+  ![image](https://github.com/user-attachments/assets/31d111fa-dc74-4aec-a2b7-865ec7ac0333)
+
+---
+
+#### 3. **Update Domain Name Server (NS) Records**
+- After the hosted zone is created, Route 53 generates a set of **name servers (NS)**. Copy these NS records.
+- Go to your domain registrar (e.g., GoDaddy, Namecheap) and update the **NS records** to use the ones from Route 53.
+
+  ![image](https://github.com/user-attachments/assets/63ad9e5c-75c0-45ce-b5d0-ad70a631421a)
+
+---
+
+#### 4. **Create DNS Record Sets**
+- Inside the hosted zone, create **A Records** to point to your **Application Load Balancer (ALB)**.
+  - **Type**: A (IPv4 Address).
+  - **Alias**: Yes.
+  - **Alias Target**: Select your **Internet-Facing ALB**.
+  - This will route traffic from your domain (e.g., `example.com`) to your presentation tier.
+
+  ![image](https://github.com/user-attachments/assets/9704db38-d53b-4c3b-a115-43af5d6ce208)
+
+---
+
+# Requesting a Public SSL Certificate from AWS Certificate Manager (ACM)
+
+Follow these steps to request and validate an **SSL certificate** for your domain to enable secure HTTPS communication for your application.
+
+---
+
+#### 1. **Navigate to AWS Certificate Manager (ACM)**
+- In the AWS Management Console, search for **AWS Certificate Manager (ACM)** and open it.
+
+![image](https://github.com/user-attachments/assets/2df8f4b6-e239-401f-b57b-3a48b023056f)
+
+---
+
+#### 2. **Request a Public Certificate**
+- Click on **Request a Certificate**.
+- Select **Request a public certificate**.
+
+![image](https://github.com/user-attachments/assets/8481b897-b083-4c47-ae62-9bb0e10add12)
+
+---
+
+#### 3. **Enter Domain Name**
+- Enter the **domain name** for which you need the SSL certificate (e.g., `example.com`).
+- Add any necessary **subdomains** (e.g., `www.example.com`).
+
+![image](https://github.com/user-attachments/assets/0c14db0a-8874-448d-8f71-861b995a4902)
+
+---
+
+#### 4. **Choose Validation Method**
+- Select **DNS Validation** to prove ownership of the domain. This method will require you to add specific DNS records to your **Route 53 hosted zone**.
+
+![image](https://github.com/user-attachments/assets/fa4df33a-5ea3-4e61-9046-58418d809b89)
+
+---
+
+#### 5. **Add DNS Records to Route 53**
+- After requesting the certificate, ACM provides a **CNAME record** that needs to be added to your **Route 53 Hosted Zone** to validate domain ownership.
+- Go to **Route 53**, open your hosted zone, and create a new **CNAME record** using the details provided by ACM.
+
+---
+
+#### 6. **Certificate Issuance**
+- Once AWS verifies the DNS record, the certificate will be issued.
+- You can now attach the SSL certificate to your **CloudFront distribution** or **Application Load Balancer (ALB)** to enable secure HTTPS communication.
+
+---
+
+
+
