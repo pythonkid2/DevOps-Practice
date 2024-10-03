@@ -155,5 +155,5 @@ Follow these steps to request and validate an **SSL certificate** for your domai
 
 ---
 
-
+# Creating a Virtual Private Cloud (VPC) and Subnets 
 
