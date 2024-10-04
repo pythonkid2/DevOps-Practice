@@ -155,5 +155,53 @@ Follow these steps to request and validate an **SSL certificate** for your domai
 
 ---
 
-# Creating a Virtual Private Cloud (VPC) and Subnets 
+# Setting Up a Secure and Isolated VPC Environment
+
+To establish a secure and isolated environment for the application, a **Virtual Private Cloud (VPC)** is essential. This configuration involves creating multiple subnets across two **Availability Zones** (AZs) for high availability, fault tolerance, and isolation between tiers.
+
+---
+
+#### 1. **VPC Architecture**
+- Create a **Virtual Private Cloud (VPC)** to isolate the network for the application.
+- Use **two Availability Zones (AZs)** to increase fault tolerance and availability.
+- Each AZ will contain:
+  - **One public subnet** for the **Presentation Tier** (Nginx/React.js).
+  - **Two private subnets** for the **Application Tier** (Node.js) and **Data Tier** (RDS).
+
+![image](https://github.com/user-attachments/assets/2f380498-23c5-42c5-a069-0b18807553d3)
+
+---
+
+#### 2. **NAT Gateway for Internet Access**
+- Instances in **private subnets** need internet access to download updates and patches.
+- Deploy a **NAT Gateway** in one of the public subnets to provide internet access to instances in the private subnets.
+- This gateway allows outbound internet traffic while keeping the private instances inaccessible from outside.
+
+---
+
+#### 3. **Public Subnet for the Presentation Tier**
+- The **public subnets** will host **EC2 instances** running the web server (**Nginx**) for the Presentation Tier.
+- These instances need **public IP addresses** to receive traffic from the internet. Ensure that public IP assignment is enabled for instances launched in these subnets.
+
+![image](https://github.com/user-attachments/assets/e61ff4a5-f1a1-42a9-8f47-effca1571300)
+
+---
+
+#### 4. **Private Subnets for Application and Data Tiers**
+- **Private subnets** will host the **Application Tier** (Node.js on EC2) and **Data Tier** (RDS) to ensure they are not directly accessible from the internet.
+  - The **Application Tier** instances will communicate with the **Presentation Tier** and handle the business logic.
+  - The **Data Tier** will host the **RDS** database with replication across AZs for fault tolerance.
+
+![image](https://github.com/user-attachments/assets/bbd8458e-6271-44c6-85ce-cef0b2eba02c)
+
+---
+
+#### 5. **Simplified IP Address Management**
+- To simplify the management of the environment, enable **automatic assignment of public IP addresses** for EC2 instances in the **public subnets**. This ensures that instances in the public subnets can easily be reached from the internet.
+
+![image](https://github.com/user-attachments/assets/6582dcef-42a0-4186-84fd-c9cae98d22ea)
+
+---
+
+This VPC setup ensures a **secure**, **scalable**, and **fault-tolerant** environment by isolating each tier in the appropriate subnet and enabling controlled internet access through the **NAT Gateway**.
 
