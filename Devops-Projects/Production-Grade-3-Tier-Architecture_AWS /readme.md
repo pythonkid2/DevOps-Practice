@@ -266,3 +266,34 @@ To establish proper network security and manage traffic flow within the VPC, **S
 
 By carefully configuring the security groups for each component, this setup ensures a robust security posture while maintaining efficient communication between tiers in the architecture.
 
+# launching the Bastion host
+---
+
+### 1. **Naming and Basic Configuration**
+   - Name the instance as **Bastion Host** for clear identification within your environment.
+   - Choose **basic free-tier eligible settings** to minimize costs.
+
+   ![image](https://github.com/user-attachments/assets/f0f77694-a03f-40f9-b988-15689b6befb3)
+
+---
+
+### 2. **Key Pair Setup**
+   - **Key Pair**: Select an existing key pair or create a new one if needed. This will allow secure SSH access to the Bastion Host.
+   
+   ![image](https://github.com/user-attachments/assets/e79b3e00-7ab0-4648-a483-35ccda8db389)
+
+---
+
+### 3. **VPC and Subnet Assignment**
+   - Choose the appropriate **VPC** and the **public subnet** where the Bastion Host will be deployed.
+   - This ensures the host is in the correct network zone for accessing your private resources.
+
+   ![image](https://github.com/user-attachments/assets/f200482d-259b-404b-a8a7-286859106669)
+
+---
+
+### 4. **Security Group Association**
+   - Assign the **Bastion Host** to the security group you created earlier. This controls what traffic can access the host, ensuring secure communication.
+
+---
+
