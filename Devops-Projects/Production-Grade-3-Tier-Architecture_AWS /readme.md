@@ -205,3 +205,64 @@ To establish a secure and isolated environment for the application, a **Virtual 
 
 This VPC setup ensures a **secure**, **scalable**, and **fault-tolerant** environment by isolating each tier in the appropriate subnet and enabling controlled internet access through the **NAT Gateway**.
 
+### Setting Up Security Groups for the Three-Tier Application
+
+To establish proper network security and manage traffic flow within the VPC, **Security Groups** will be configured for different components of the infrastructure. These security groups define the inbound and outbound rules, ensuring secure and organized communication between tiers.
+
+---
+
+#### 1. **Bastion Host Security Group**
+- **Purpose**: Acts as a gateway to private resources in the VPC.
+- **Inbound Rules**: Allow **SSH (port 22)** from any IP (for demo). In production, restrict to a specific IP range for security.
+
+![bastion-host](https://github.com/user-attachments/assets/9b95ba5e-10a3-4d2a-9a35-635801cd223f)
+
+---
+
+#### 2. **Presentation Tier Load Balancer (ALB) Security Group**
+- **Purpose**: Handle incoming traffic from the internet to the frontend.
+- **Inbound Rules**: Allow **HTTP (port 80)** from any IP. HTTPS traffic is handled by CloudFront for security.
+
+![presentation-tier-alb](https://github.com/user-attachments/assets/cd0ebd8c-d1ba-4a43-9613-952e1a5966e3)
+
+---
+
+#### 3. **Presentation Tier EC2 Instances Security Group**
+- **Purpose**: Manage frontend instances (React/Nginx).
+- **Inbound Rules**:
+  - Allow **SSH (port 22)** from the **Bastion Host** for secure connections.
+  - Allow **HTTP (port 80)** from the **Load Balancer** to forward web traffic.
+
+![presentation-tier-EC2](https://github.com/user-attachments/assets/ccfb266d-aa76-432c-ab2c-28496d64a859)
+
+---
+
+#### 4. **Application Tier Load Balancer (ALB) Security Group**
+- **Purpose**: Manage traffic from the frontend to the backend.
+- **Inbound Rules**: Allow **HTTP (port 80)** from the **Presentation Tier EC2 Instances** for seamless frontend-backend communication.
+
+![application-tier-alb](https://github.com/user-attachments/assets/0e2330c9-3bc4-412f-b122-ff2075a8a2f9)
+
+---
+
+#### 5. **Application Tier EC2 Instances Security Group**
+- **Purpose**: Manage backend instances (Node.js).
+- **Inbound Rules**:
+  - Allow **SSH (port 22)** from the **Bastion Host** for secure access.
+  - Allow **TCP (port 3200)** from the **Application Tier Load Balancer** for backend traffic routing.
+
+![application-tier-ec2](https://github.com/user-attachments/assets/ce1e464c-fbbb-4a94-8f8c-0ab1eeebf8b8)
+
+---
+
+#### 6. **Data Tier Security Group**
+- **Purpose**: Secure access to the database (RDS).
+- **Inbound Rules**:
+  - Allow **MySQL (port 3306)** from the **Bastion Host** and **Application Tier EC2 Instances** for database access and application queries.
+
+![data-tier](https://github.com/user-attachments/assets/6dda7d84-627f-4432-a2ae-d643d630b1aa)
+
+---
+
+By carefully configuring the security groups for each component, this setup ensures a robust security posture while maintaining efficient communication between tiers in the architecture.
+
