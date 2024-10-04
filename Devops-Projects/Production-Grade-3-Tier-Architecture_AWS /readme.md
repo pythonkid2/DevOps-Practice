@@ -297,3 +297,44 @@ By carefully configuring the security groups for each component, this setup ensu
 
 ---
 
+# Setting up Data Tier with RDS MySQL Instance
+Create DB subnet group
+![image](https://github.com/user-attachments/assets/1d0980cc-5d9b-4217-a51c-bd14173e6eeb)
+![image](https://github.com/user-attachments/assets/f9fb7322-f3c3-4724-8ebe-83223fe785a7)
+
+
+Create database 
+![image](https://github.com/user-attachments/assets/f65141a0-2c26-4576-864b-35d163325a88)
+![image](https://github.com/user-attachments/assets/979a749a-1725-4e87-80c1-824d72738d3e)
+![image](https://github.com/user-attachments/assets/5af9d51d-2df0-40da-b16e-ce4b975650ef)
+![image](https://github.com/user-attachments/assets/5a35f029-d256-493b-8055-ce202d20a3a6)
+![image](https://github.com/user-attachments/assets/54dcddaf-92ab-47fb-8809-1171d6bea84e)
+![image](https://github.com/user-attachments/assets/57ce0306-2b7f-45bb-9f66-18870363de1b)
+
+
+Install MySQL
+To download MySQL repository package:
+wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+To verify the package download:
+ls -lrt 
+To install MySQL repository package:
+sudo dnf install -y mysql80-community-release-el9-1.noarch.rpm 
+![image](https://github.com/user-attachments/assets/d1494f96-6c11-452c-a3a2-12643e060aba)
+
+To import GPG key:
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023 
+To update package index:
+sudo dnf update –y 
+To install MySQL server:
+sudo dnf install -y mysql-community-server  
+![image](https://github.com/user-attachments/assets/3707e7ae-fbc9-4376-a0a4-14f7e56ddd6a)
+
+To start the mysql service:
+sudo systemctl start mysqld
+To enable mysql to start on boot:
+sudo systemctl enable mysqld 
+To secure the mysql installation:
+sudo grep 'temporary password' /var/log/mysqld.log 
+
+sudo mysql_secure_installation 
+To create database and restore data, please refer SQL scripts on db.sql file.
