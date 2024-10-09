@@ -3,4 +3,12 @@
 # Archetecture Diagram 
 ![image](https://github.com/user-attachments/assets/446518e4-7763-47b0-8fc1-c73e31909204)
 
+# VPC 
+![image](https://github.com/user-attachments/assets/545801fa-cebc-4cf8-a42a-3e58c6e28d13)
+
 ![image](https://github.com/user-attachments/assets/20a8f0ca-a952-4ad8-a767-8bb39fe79aad)
+
+# SG
+
+![image](https://github.com/user-attachments/assets/10f9538e-70d1-4a81-94b5-1975a7a07589)
+![image](https://github.com/user-attachments/assets/aa2f9b77-44ed-4583-9efa-3332afa1fd0a)
