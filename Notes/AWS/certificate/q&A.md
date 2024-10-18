@@ -105,18 +105,50 @@ D. Internet gateway
 **Explanation:**  
 An **Application Load Balancer** is designed to distribute incoming application traffic across multiple targets, such as EC2 instances, in different Availability Zones. It provides a single point of contact for clients, improving availability and fault tolerance for web applications.
 
+**Question:**  
+A company stores data in an Amazon S3 bucket. Which task is the responsibility of AWS?
+
+A. Configure an S3 Lifecycle policy  
+B. Activate S3 Versioning  
+C. Configure S3 bucket policies  
+D. Protect the infrastructure that supports S3 storage
+
+**Answer:**  
+**D. Protect the infrastructure that supports S3 storage**
+
+In the shared responsibility model, AWS is responsible for protecting the infrastructure that runs all services, including Amazon S3. The other options (A, B, and C) are responsibilities of the customer.
 
 
 
+**Question:**  
+A company wants to transfer a virtual Windows Server 2022 that is currently running in its own data center to AWS. The company wants to automatically convert the existing server to run directly on AWS infrastructure instead of virtualized hardware.  
+Which AWS service will meet these requirements?
+
+A. AWS DataSync  / used for tranfer data
+B. AWS Database Migration Service (AWS DMS)   / database migration
+C. AWS Application Discovery Service  /used for identifying dependencies 
+D. AWS Application Migration Service
+
+**Answer:**  
+**D. AWS Application Migration Service**
+
+AWS Application Migration Service (AWS MGN) allows companies to migrate applications from on-premises to AWS infrastructure with minimal changes. It converts servers to run natively on AWS infrastructure, enabling a smooth lift-and-shift migration.
 
 
+**Question:**  
+Which AWS service is a fully managed NoSQL database service?
 
+A. Amazon RDS  
+B. Amazon Redshift  
+C. Amazon DynamoDB  
+D. Amazon Aurora
 
+**Answer:**  
+**C. Amazon DynamoDB**
 
+Amazon DynamoDB is a fully managed NoSQL database service that provides fast and flexible database performance for any scale. It is specifically designed for applications that require low-latency data access for a wide range of use cases.
 
-
-
-
+https://youtu.be/o49CpjPKXug?si=Zj9ODFgxWNx63GuP&t=3086
 
 
 
