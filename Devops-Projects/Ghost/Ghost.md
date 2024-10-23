@@ -2,14 +2,17 @@ This sequence of commands sets up a new user, installs necessary packages, confi
 
 
 # Update package lists
+```
 sudo apt update 
-
+```
 # Add a new user
+```
 sudo adduser peerxp
-
+```
 # Add user to the superuser group to unlock admin privileges
+```
 sudo usermod -aG sudo peerxp
-
+```
 # Log in as the new user
 su - peerxp
 
