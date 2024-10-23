@@ -98,3 +98,23 @@ cd /var/www/peerxp
 ```
 ghost install
 ```
+
+
+# Add .gitlab-ci.yml config below.
+#
+stages:
+  - download
+
+download_website:
+  stage: download
+  image: alpine
+  script:
+    - apk add --no-cache curl  # Install curl
+    - curl http://43.205.118.193 > ghost-homepage.html  # Download the webpage
+  artifacts:
+    name: "ghost-homepage"
+    expire_in: 1 hour
+    paths:
+      - ghost-homepage.html
+
+![image](https://github.com/user-attachments/assets/e4fa5e3e-7475-4f92-8a24-033dc276a225)
