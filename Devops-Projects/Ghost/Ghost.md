@@ -118,3 +118,5 @@ download_website:
       - ghost-homepage.html
 
 ![image](https://github.com/user-attachments/assets/e4fa5e3e-7475-4f92-8a24-033dc276a225)
+
+Message: You are recommended to have at least 150 MB of memory available for smooth operation. It looks like you have ~139.8828125 MB available.
