@@ -21,61 +21,78 @@ su - peerxp
 ```sudo apt-get update
 ```
 # Install NGINX
-```sudo apt-get install nginx -y
+```
+sudo apt-get install nginx -y
 ```
 # Install MySQL
-```sudo apt-get install mysql-server -y
+```
+sudo apt-get install mysql-server -y
 ```
 # Enter MySQL
-```sudo mysql
+```
+sudo mysql
 ```
 # Update permissions for root user
-```ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'Password';
+```
+ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'Password';
 ```
 # Reread permissions
-```FLUSH PRIVILEGES;
+```
+FLUSH PRIVILEGES;
 ```
 # Exit MySQL
-```exit
+```
+exit
 ```
 # Test MySQL login
 ```mysql -u root -p
 ```
 # Exit MySQL
-```exit
+```
+exit
 ```
 # Download and import the Nodesource GPG key
-```sudo apt-get update
+```
+sudo apt-get update
 sudo apt-get install -y ca-certificates curl gnupg
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 ```
 # Create deb repository
-```NODE_MAJOR=18 # Use a supported version
+```
+NODE_MAJOR=18 # Use a supported version
 echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 ```
 # Run update and install Node.js
-```sudo apt-get update
+```
+sudo apt-get update
 sudo apt-get install nodejs -y
 ```
 # Install Ghost-CLI
-```sudo npm install ghost-cli@latest -g
+```
+sudo npm install ghost-cli@latest -g
 ```
 # Check Ghost-CLI version
-```ghost --version
+```
+ghost --version
 ```
 # Create directory for Ghost installation
+```
 sudo mkdir -p /var/www/peerxp
-
+```
 # Set directory owner (replace <user> with your user name)
-```sudo chown peerxp:peerxp /var/www/peerxp
+```
+sudo chown peerxp:peerxp /var/www/peerxp
 ```
 # Set the correct permissions
-```sudo chmod 775 /var/www/peerxp
+```
+sudo chmod 775 /var/www/peerxp
 ```
 # Navigate into the directory
-```cd /var/www/peerxp
+```
+cd /var/www/peerxp
 ```
 # Install Ghost
-```ghost install
+```
+ghost install
 ```
