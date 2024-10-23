@@ -14,6 +14,7 @@ sudo adduser peerxp
 sudo usermod -aG sudo peerxp
 ```
 # Log in as the new user
+
 su - peerxp
 
 # Update package lists again
