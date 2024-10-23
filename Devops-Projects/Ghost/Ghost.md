@@ -18,7 +18,8 @@ sudo usermod -aG sudo peerxp
 su - peerxp
 ```
 # Update package lists again
-```sudo apt-get update
+```
+sudo apt-get update
 ```
 # Install NGINX
 ```
@@ -45,7 +46,8 @@ FLUSH PRIVILEGES;
 exit
 ```
 # Test MySQL login
-```mysql -u root -p
+```
+mysql -u root -p
 ```
 # Exit MySQL
 ```
