@@ -99,6 +99,7 @@ cd /var/www/peerxp
 ghost install
 ```
 
+http://65.0.73.24
 
 # Add .gitlab-ci.yml config below.
 #
