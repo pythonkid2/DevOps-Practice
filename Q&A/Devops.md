@@ -161,8 +161,48 @@ It's the practice of automatically deploying code changes to production or a sta
 - [Table of Contents](#Table-of-Contents)
 
 ## Docker
-
 Docker is a platform designed to make it easier to create , deploy and run application using container
+
+### create a new container from an existing running container's image. 
+
+#### 1. **Commit the Running Container to Create an Image**
+You can "snapshot" a running container’s current state by committing it as a new image. This is useful if you’ve made changes inside the container (e.g., installed software or modified files) and want to preserve them.
+
+```
+docker commit <container_id_or_name> <new_image_name>:<tag>
+```
+
+Example:
+```
+docker commit my-running-container my-new-image:v1
+```
+
+This will create a new image called `my-new-image:v1` based on the state of `my-running-container`. You can then use this image to create new containers.
+
+### 2. **Start a New Container from the Committed Image**
+After committing the container, you can start a new container from this new image:
+
+```
+docker run -d <new_image_name>:<tag>
+```
+
+### 3. **Export and Import the Container’s Filesystem (Alternative)**
+Alternatively, you can export the container’s filesystem as a tar archive, which can then be imported as an image. This method only exports the filesystem (not the metadata or history) and is more commonly used for moving containers between environments.
+
+Export the container:
+```bash
+docker export <container_id_or_name> > my-container.tar
+```
+
+Then import the tar archive as an image:
+```
+docker import my-container.tar my-imported-image
+```
+
+You can now run new containers from `my-imported-image`. 
+
+Using these methods, you can effectively create a new image from a running container, which can then be used to launch other containers.
+
 
 Q, Difference between expose & Publish
 
