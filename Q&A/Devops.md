@@ -2513,6 +2513,58 @@ These lifecycle rules help you optimize storage costs, automate data management 
 
 ## Linux
 
+### To see all installed packages on a Linux system
+
+command depends on the package manager
+
+To see all installed packages on a Linux system, the command depends on the package manager your Linux distribution uses. Here are the common commands for different package managers:
+
+### 1. **Debian/Ubuntu (APT)**
+```bash
+dpkg -l
+```
+
+Or, if you want a more concise list:
+```
+apt list --installed
+```
+
+### 2. **Red Hat/CentOS/Fedora (YUM or DNF)**
+Using **YUM**:
+```
+yum list installed
+```
+
+Using **DNF** (newer Fedora, CentOS, RHEL versions):
+```
+dnf list installed
+```
+
+### 3. **Arch Linux (Pacman)**
+```
+pacman -Q
+```
+
+### 4. **OpenSUSE (Zypper)**
+```
+zypper se --installed-only
+```
+
+### 5. **Flatpak**
+If you use Flatpak for managing applications:
+```
+flatpak list
+```
+
+### 6. **Snap**
+For packages installed via Snap:
+```
+snap list
+```
+
+These commands will display all installed packages along with their versions. You may also pipe the output to tools like `grep` to filter for specific packages.
+
+
 ### Q1 Find, grep & diff
 
 Here's a breakdown of the key differences between `find`, `grep`, and `diff` in Linux:
