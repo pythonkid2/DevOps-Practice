@@ -2097,7 +2097,10 @@ Node Exporter and cAdvisor are both essential tools for monitoring your infrastr
 
 ## AWS
 
-In the context of AWS DevOps, CloudWatch and CloudTrail play critical roles in monitoring and logging AWS resources, enabling better management, security, and troubleshooting capabilities. Here's a brief overview of each:
+Q: What happens to my Spot Instance if the current Spot price exceeds my bid price?
+
+A: If the Spot price exceeds your bid price, your Spot Instance will be terminated by AWS. You will receive a two-minute warning before termination. Any data stored on ephemeral storage will be lost, so it's advisable to use Amazon EBS or S3 for important data.
+
 
 1. **AWS CloudWatch**:
    
