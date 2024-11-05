@@ -2553,6 +2553,27 @@ These lifecycle rules help you optimize storage costs, automate data management 
 
 ## Linux
 
+### change the SSH port by editing the SSH configuration file.
+
+1. **Edit the SSH Config File**:
+   ```
+   sudo nano /etc/ssh/sshd_config
+   ```
+   Change `#Port 22` to `Port <new_port_number>` (e.g., `Port 2222`).
+
+ **Restart SSH Service**:
+   ```
+   sudo systemctl restart sshd
+   ```
+**Connect Using the New Port**:
+   ```
+   ssh -p <new_port_number> username@hostname_or_ip
+   ```
+
+### Important
+Always keep another session open while testing to avoid locking yourself out.
+
+
 ### To see all installed packages on a Linux system
 
 command depends on the package manager
