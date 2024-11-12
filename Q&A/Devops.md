@@ -602,6 +602,12 @@ In this example, the `package` module is used to ensure that Apache is installed
 
 ## Terraform
 
+### What is Terraform and How it works?
+
+Terraform is an IaC tool that lets you write code to define and manage your infrastructure.
+
+You describe your desired infrastructure in configuration files, Terraform figures out what needs to be done to achieve that state, and then it makes it happen by interacting with cloud providers or other infrastructure platforms.
+
 The key differences between Ansible and Terraform lie in their primary focus and approach to infrastructure management:
 
 | Feature                 | Ansible                                         | Terraform                                              |
