@@ -99,3 +99,12 @@ grep -R term /etc/*
 
 reader like cat, can use up and down arrow, search
 :q quite 
+
+# more
+percentage +less
+
+# head 
+head -2 file
+
+
+
