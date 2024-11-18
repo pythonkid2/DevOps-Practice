@@ -84,6 +84,9 @@ Change ownership
 sudo chown mathew:group file
 
 
+# grep
 
+grep -i term file.txt 
 
+grep -i term < file.txt   giving input
 
