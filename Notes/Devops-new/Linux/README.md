@@ -90,3 +90,12 @@ grep -i term file.txt
 
 grep -i term < file.txt   giving input
 
+grep -i term *   looks for all files in current directory 
+grep -iR   will look into directory too
+grep -R term /etc/*
+
+
+# less
+
+reader like cat, can use up and down arrow, search
+:q quite 
