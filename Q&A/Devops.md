@@ -1426,19 +1426,32 @@ These are just some of the core concepts and functionalities of Kubernetes. Its 
 
 ## Persistent Volumes (PV) and Persistent Volume Claims (PVC) in Kubernetes
 
-In Kubernetes, a Persistent Volume (PV) is a piece of storage in the cluster that has been provisioned by an administrator. Persistent Volume Claims (PVCs) are used by pods to request a specific amount of storage from a PV. The relationship between PVs and PVCs is one-to-one, meaning a single PVC can only be bound to one PV, and vice versa. This ensures data consistency and prevents conflicting access from multiple pods.
+A PersistentVolume (PV) is a cluster-wide pool of storage resources configured by an administrator, available for use by users to deploy applications in the cluster. Users can request storage from this pool by creating a PersistentVolumeClaim (PVC), which binds to a specific PV based on the claim's requirements.
 
-### Understanding PVs and PVCs
+The relationship between PVs and PVCs is one-to-one, meaning a single PVC can only be bound to one PV, and vice versa. This ensures data consistency and prevents conflicting access from multiple pods.
 
-**Persistent Volumes (PVs)** and **Persistent Volume Claims (PVCs)** are crucial components in Kubernetes for managing storage of containerized applications. While both deal with persistent storage, they play distinct roles:
+**PersistentVolumes (PVs)** support the following **Access Modes** that define how the volume can be mounted by Pods:
 
-**Persistent Volume (PV):**
+1. **ReadWriteOnce (RWO)**  
+   - The volume can be mounted as read-write by a **single node**.  
+   - Commonly used for scenarios where only one Pod on one node needs to write to the volume.
 
-* **Definition:** A PV represents a **physical storage unit** (e.g., disk, host directory, cloud storage) that can be provisioned (created) by a cluster administrator. It exists independently of any particular Pod and embodies the actual storage resource.
-* **Characteristics:**
-    - Defined by a YAML or JSON manifest file, specifying details like capacity, access modes (read-only, read/write once, read/write many), and storage class (optional).
-    - Can be provisioned manually by the administrator or dynamically using storage classes.
-    - Can be bound to multiple PVCs at different times, but only one PVC can access it at a time (exclusive access).
+2. **ReadOnlyMany (ROX)**  
+   - The volume can be mounted as **read-only by multiple nodes**.  
+   - Useful for sharing data that does not need to be modified, such as configuration files or static content.
+
+3. **ReadWriteMany (RWX)**  
+   - The volume can be mounted as **read-write by multiple nodes**.  
+   - Useful for distributed applications where multiple Pods need to write to the same volume simultaneously, such as shared logs or data.
+
+4. **ReadWriteOncePod (RWOP)** _(Introduced in Kubernetes 1.22)_  
+   - The volume can be mounted as **read-write by a single Pod** only, even if multiple Pods are running on the same node.  
+   - Ensures exclusive use of the volume by one Pod.  
+
+**Note**: The availability of access modes depends on the storage provisioner being used (e.g., AWS EBS only supports `RWO`, while NFS or CephFS supports `RWX`).
+
+    - pv Can be bound to multiple PVCs at different times, but only one PVC can access it at a time (exclusive access).
+
 * **Responsibility:** Managed by the administrator, who creates and configures PVs to provide different storage types and capacities.
 
 **Persistent Volume Claim (PVC):**
@@ -1449,25 +1462,6 @@ In Kubernetes, a Persistent Volume (PV) is a piece of storage in the cluster tha
     - Acts as a Pod's request for a PV that meets its specifications.
     - Can bind to a single PV at a time, forming a relationship between the Pod and the allocated storage resource.
 * **Responsibility:** Used by application developers or users who specify the storage needs of their Pods through PVCs.
-
-### Key Differences
-
-| Feature        | Persistent Volume (PV)       | Persistent Volume Claim (PVC)      |
-|----------------|----------------------------|-----------------------------------|
-| **Role**         | Provides storage resources.   | Requests storage resources.        |
-| **Created by**  | Cluster administrator.         | Application developer/user.       |
-| **Specificity**  | Defines the actual storage.   | Defines the storage requirements.   |
-| **Binding**     | Binds to multiple PVCs (at different times). | Binds to a single PV at a time.   |
-| **Responsibility**| Admin manages provision and configuration. | User/developer specifies storage needs. |
-
-### Use Cases
-
-* **PVs:** Suitable for defining various storage types (e.g., local disks, cloud storage) with different access modes and capacity for different application needs.
-* **PVCs:** Ideal for requesting the required storage resources for Pods, allowing developers to focus on application logic without worrying about managing the underlying storage details.
-
-### Summary
-
-PVs and PVCs work together to provide a flexible and manageable approach to persistent storage in Kubernetes deployments. PVs represent the physical storage resources, while PVCs act as the Pods' requests for those resources, facilitating a clear separation of concerns between storage management and application development.
 
 ### Can we use a Deployment for a stateful application?
 
