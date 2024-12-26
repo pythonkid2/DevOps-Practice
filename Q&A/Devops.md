@@ -1391,23 +1391,6 @@ A: Both are crucial for exposing services in Kubernetes, but they serve differen
 
 ### Kubelet and Control Plane
 
-**Q: What are Kubelet and the Control Plane in Kubernetes?**
-
-A: **Kubelet:**
-
-- Runs on each node in the cluster, acting as an agent.
-- Manages the lifecycle of containers within Pods, ensuring they run as specified in pod definitions.
-- Monitors container health and restarts failed containers.
-
-**Control Plane:**
-
-- Manages the overall state of the cluster.
-- Schedules containers on nodes, performs rolling updates and rollbacks, and handles service discovery.
-- Comprises several components:
-    - API Server: Exposes the REST API for interacting with the cluster.
-    - Scheduler: Assigns pods to nodes based on defined scheduling policies.
-    - Controller Manager: Manages various cluster resources like deployments, replicasets, and services.
-    - etcd: Stores cluster state data reliably using a distributed key-value store.
 
 ### Advantages of Using Kubernetes
 
@@ -1426,7 +1409,9 @@ These are just some of the core concepts and functionalities of Kubernetes. Its 
 
 ## Persistent Volumes (PV) and Persistent Volume Claims (PVC) in Kubernetes
 
-A PersistentVolume (PV) is a cluster-wide pool of storage resources configured by an administrator, available for use by users to deploy applications in the cluster. Users can request storage from this pool by creating a PersistentVolumeClaim (PVC), which binds to a specific PV based on the claim's requirements.
+A PersistentVolume (PV) is a cluster-wide pool of storage resources configured by an administrator, available for use by users to deploy applications in the cluster. 
+
+Users can request storage from this pool by creating a PersistentVolumeClaim (PVC), which binds to a specific PV based on the claim's requirements.
 
 The relationship between PVs and PVCs is one-to-one, meaning a single PVC can only be bound to one PV, and vice versa. This ensures data consistency and prevents conflicting access from multiple pods.
 
@@ -1478,6 +1463,59 @@ No, you cannot use a Deployment for a stateful application that requires persist
     * Guarantees predictable scaling and rolling updates, ensuring Pods are created and terminated in a specific order.
     * Works with PersistentVolumes to provide persistent storage for stateful data.
     * Well-suited for databases, message queues, or any service where application state needs to be preserved across Pod restarts.
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: nginx
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  selector:
+    matchLabels:
+      app: nginx # has to match .spec.template.metadata.labels
+  serviceName: "nginx"
+  replicas: 3 # by default is 1
+  minReadySeconds: 10 # by default is 0
+  template:
+    metadata:
+      labels:
+        app: nginx # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: nginx
+        image: registry.k8s.io/nginx-slim:0.24
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "my-storage-class"
+      resources:
+        requests:
+          storage: 1Gi
+```
+
 
 **Here's an analogy:**
 
