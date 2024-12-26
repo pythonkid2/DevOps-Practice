@@ -1982,6 +1982,11 @@ Static pods are useful for running system-level services or critical components 
    - **Ingress**: In Kubernetes, an Ingress is an API object that manages external access to services within a cluster. It allows you to define rules for routing HTTP and HTTPS traffic from outside the cluster to services within the cluster based on hostnames, paths, or other criteria. Ingress typically works with an external load balancer or reverse proxy to route traffic to the appropriate services.
    - **Egress**: Egress in Kubernetes refers to outbound network traffic from pods to destinations outside the cluster. Egress rules can be defined to control and secure outgoing connections from pods, such as restricting access to specific IP ranges or enforcing network policies.
 
+## check for apiVersion
+
+Run the command: You can check for apiVersion of replicaset by command *kubectl api-resources | grep replicaset*
+
+
 - [Table of Contents](#Table-of-Contents)
   
 ## Prometheus and Grafana
