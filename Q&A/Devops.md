@@ -1178,6 +1178,29 @@ pipeline {
 }
 ```
 
+### How do you backup Jenkins?
+
+To backup Jenkins, copy the Jenkins home directory. This includes all job configurations, plugins, and build history. You can automate this with a script. 
+
+```
+cp -r /var/lib/jenkins /backup/jenkins
+```
+### How do you handle build dependencies in Jenkins?
+
+use the Build other projects option in the job configuration or use a pipeline to chain jobs.
+
+![image](https://github.com/user-attachments/assets/ba95346a-5ac1-47ef-b659-0cc6ba0bb200)
+
+### How do you integrate Jenkins with Kubernetes?
+
+You can integrate Jenkins with Kubernetes to run build agents in Kubernetes pods.
+
+Install the Kubernetes plugin.
+Configure Kubernetes in Manage Jenkins > Configure System.
+Use a Kubernetes agent in your pipeline.
+
+![image](https://github.com/user-attachments/assets/6b1b95c4-fcc3-4b68-aab0-5604bbb484cb)
+
 - [Table of Contents](#Table-of-Contents)
 
 ## Maven
