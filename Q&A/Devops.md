@@ -1201,6 +1201,20 @@ Use a Kubernetes agent in your pipeline.
 
 ![image](https://github.com/user-attachments/assets/6b1b95c4-fcc3-4b68-aab0-5604bbb484cb)
 
+
+### Parameter in Jenkins
+string, boolean, choice
+
+![image](https://github.com/user-attachments/assets/39d075ef-4e35-4365-a530-b2df8422ca46)
+
+FRON SECOND TINE BUILD WITH PARAMETERS
+![image](https://github.com/user-attachments/assets/44b0edce-d8c7-4404-9070-69e49118a10c)
+
+
+![image](https://github.com/user-attachments/assets/4c07b338-06f7-400d-b453-2bef57db82f5)
+![image](https://github.com/user-attachments/assets/75964dee-2fc0-4466-b7ed-2a7e78477776)
+
+
 - [Table of Contents](#Table-of-Contents)
 
 ## Maven
