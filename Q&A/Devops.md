@@ -2023,6 +2023,136 @@ Static pods are useful for running system-level services or critical components 
 
 Run the command: You can check for apiVersion of replicaset by command *kubectl api-resources | grep replicaset*
 
+## Horizontal and vertical pod auto scaling
+
+set up matric server to collet resourse utlilization 
+
+if it exeeds hpa will create replicas
+
+Horizontal and vertical pod autoscaling are two important features in Kubernetes that help in managing the resource utilization and scaling of applications efficiently. Here’s a detailed explanation:
+
+---
+
+## **Horizontal Pod Autoscaling (HPA)**
+
+**Purpose**: Automatically adjusts the number of pods in a deployment, replica set, or stateful set based on observed metrics such as CPU, memory, or custom metrics.
+
+### **Key Features**:
+1. **Scale Based on Metrics**:
+   - Uses metrics like CPU/memory utilization or custom application metrics (via Prometheus or other monitoring tools).
+2. **Improves Fault Tolerance**:
+   - Ensures there are enough pods to handle traffic spikes.
+3. **Efficient Resource Usage**:
+   - Scales down pods during low usage to save resources and costs.
+
+### **How It Works**:
+- Kubernetes checks the resource utilization of pods using the **Metrics Server**.
+- If the resource usage exceeds the specified threshold (e.g., CPU > 80%), HPA increases the pod count.
+- If usage drops below the threshold, HPA reduces the pod count.
+
+### **Example YAML for HPA**:
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: example-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-deployment
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 75
+```
+
+### **Commands to Enable HPA**:
+1. **Install Metrics Server**:
+   ```bash
+   kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+   ```
+2. **Create HPA**:
+   ```bash
+   kubectl autoscale deployment my-deployment --cpu-percent=75 --min=2 --max=10
+   ```
+3. **View HPA Status**:
+   ```bash
+   kubectl get hpa
+   ```
+
+---
+
+## **Vertical Pod Autoscaling (VPA)**
+
+**Purpose**: Dynamically adjusts the CPU and memory requests/limits for containers in pods, ensuring they have optimal resources to handle workloads.
+
+### **Key Features**:
+1. **Adjusts Resource Requests**:
+   - Modifies pod resource requests and limits without manual intervention.
+2. **Reduces Over-Provisioning**:
+   - Ensures containers are not over-provisioned, saving costs.
+3. **Avoids Resource Starvation**:
+   - Prevents under-provisioning by allocating enough resources.
+
+### **How It Works**:
+- The VPA **Recommender** analyzes historical usage data.
+- Based on usage, it adjusts the CPU/memory requests.
+- Pods are restarted with the new resource settings (requires downtime).
+
+### **Example YAML for VPA**:
+```yaml
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: example-vpa
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-deployment
+  updatePolicy:
+    updateMode: "Auto"
+```
+
+### **Commands to Enable VPA**:
+1. **Install VPA**:
+   ```bash
+   kubectl apply -f https://github.com/kubernetes/autoscaler/releases/latest/download/vertical-pod-autoscaler.yaml
+   ```
+2. **Create VPA**:
+   ```bash
+   kubectl apply -f vpa.yaml
+   ```
+3. **View Recommendations**:
+   ```bash
+   kubectl describe vpa example-vpa
+   ```
+
+---
+
+## **When to Use HPA vs VPA**
+| **Feature**           | **Horizontal Pod Autoscaler (HPA)**        | **Vertical Pod Autoscaler (VPA)**          |
+|------------------------|--------------------------------------------|--------------------------------------------|
+| **Scaling Focus**      | Number of pods                            | Resources (CPU/Memory) per pod             |
+| **Response to Load**   | Traffic spikes, workload changes          | Inefficient resource allocation            |
+| **Usage Scenario**     | High traffic services, unpredictable loads| Long-running services, predictable loads   |
+| **Downtime**           | No pod restarts during scaling            | Pods are restarted to apply changes        |
+
+---
+
+## **Using HPA and VPA Together**
+Both can be used together to achieve **optimal scaling**:
+- HPA manages **scale-out/in**.
+- VPA optimizes the resource requests for each pod.
+
+However, care should be taken to ensure they do not conflict. Kubernetes does not directly support HPA and VPA on the same deployment yet, but custom configurations (like limiting VPA's scope) can make this possible.
+
 
 - [Table of Contents](#Table-of-Contents)
   
