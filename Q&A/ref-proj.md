@@ -1,52 +1,96 @@
-for seccurity we need to make sure nothing is exposed (passwords, api,..etc)
+### **DevOps Project Workflow**  
 
-checkout --> creating a local copy of appn source code inside the jenkins or any other cicd tool
-
-compile --> Basically helping to find any syntax errors 
-
-unit test cases --> finding out appn sourse code is woking fine as expected 
-
-sonarqube --> 1, code quality check ( bugs, vulnerabilities, codesmell,..etc)
-              2, code coverage (how much code is covered, is the test cases able to test all lines of code)
-
-Trivy --> scan file system (config files vulnerabilities, checking any exposed pw or token
-
-Build the app - we are getting app
-      --> trivy scan artifact & dependencies (
-       
-publish artifact to repo
-
-build docker image bfr pushing scan docker image with trivy 
-       --> scan image(image will have artifact, base image& dependencies that will get scanned)
-
-deploy to k8- (manifest files already scanned with trivy 
-
-setup credentials ( create a seperate service acount with minimum privilage and creating credentila that can use in jenkins)
-
-pen testing --> app is running on xyz.com
-manually attacking that site with diff tools , and finding vulnerabilities 
-
-monitor
+#### **1. Development Workflow**  
+- **Main Branch**: Contains production-ready code that is thoroughly tested and reviewed.  
+- **Pre-Main/PPOD Branch**:  
+  - Developers write and test code on their local machines.  
+  - Once local testing is complete, code is pushed to the pre-main branch.  
+  - Developers raise **pull/merge requests** for their changes.  
+  - The architecture team reviews and verifies the code before merging it into the main branch.  
+- **Webhooks**: DevOps team configures webhooks to trigger the CI/CD pipeline whenever changes are pushed to the repository.  
 
 ---
 
-1  - Development
+#### **2. CI/CD Pipeline**  
+**Stages in the Pipeline**:  
 
-main branch - production ready code 
+1. **Checkout**:  
+   - Creates a local copy of the application's source code inside Jenkins or any other CI/CD tool.  
 
-ppod/pre-main ()
+2. **Compile**:  
+   - Identifies syntax errors during the compilation of the source code.  
 
-developers initially writing code to their local lap ->implimenting locally--> push to pre main branch
+3. **Unit Testing**:  
+   - Validates the application’s source code to ensure it functions as expected.  
+   - Reports any failing test cases to developers.  
 
-raising pull r/merge request  then archetect verifying the code and accepting the request
+4. **SonarQube**:  
+   - **Code Quality Check**: Detects bugs, vulnerabilities, and code smells.  
+   - **Code Coverage**: Analyzes how much of the code is tested by the unit tests to ensure comprehensive test coverage.  
 
-devops team creating a webhook 
+5. **Trivy (Security Scanning)**:  
+   - Scans the file system, including configuration files, for vulnerabilities.  
+   - Detects exposed passwords, tokens, or any sensitive information.  
 
+6. **Build the Application**:  
+   - Generates the build artifact (e.g., `.jar`, `.war`, or binary).  
 
-2- Cicd 
+7. **Trivy Artifact Scan**:  
+   - Scans the generated artifact and its dependencies for vulnerabilities.  
 
-checkpout-->complile-->unite test --> sonar--> trivy --> build --> nexus --> docker --> trivy -->docker hub ..> k8
+8. **Publish Artifact**:  
+   - Publishes the artifact to a repository (e.g., Nexus, Artifactory).  
 
+9. **Build Docker Image**:  
+   - Creates a Docker image containing the application artifact.  
 
-3- monitoring 
-grafana , prometheus 
+10. **Docker Image Security Scan**:  
+    - Scans the Docker image (including the base image, application artifact, and dependencies) using **Trivy** to detect vulnerabilities.  
+
+11. **Push Docker Image**:  
+    - Pushes the scanned Docker image to a container registry (e.g., Docker Hub, Amazon ECR).  
+
+12. **Deploy to Kubernetes**:  
+    - Deploys the application to a Kubernetes cluster using pre-scanned manifest files.  
+
+13. **Penetration Testing**:  
+    - After deployment, manually test the application using penetration testing tools to identify vulnerabilities (e.g., OWASP ZAP, Burp Suite).  
+
+---
+
+#### **3. Monitoring**  
+- **Prometheus**: Collects application and infrastructure metrics.  
+- **Grafana**: Visualizes metrics and sets up alerts for real-time monitoring.  
+
+---
+
+### **Security Best Practices**  
+- **Credentials Management**:  
+  - Use a separate service account with **minimum privileges**.  
+  - Create and securely store credentials (e.g., in Jenkins, AWS Secrets Manager, or HashiCorp Vault).  
+- **Vulnerability Scanning**:  
+  - Use tools like **Trivy** to scan artifacts, Docker images, and configuration files.  
+- **Secure Secrets**: Ensure no passwords, API keys, or sensitive information are exposed in the codebase.  
+- **Code Reviews**: Enforce thorough peer reviews before merging code into the main branch.  
+- **Static Analysis**: Implement automated tools like SonarQube for static code analysis to detect issues early.  
+
+---
+
+### **Summary of Tools Used**  
+
+#### **Development Tools**  
+- Git, GitHub (Branching strategy: Main and Pre-Main branches).  
+
+#### **CI/CD Tools**  
+- **Jenkins**: Pipeline automation.  
+- **SonarQube**: Code quality and coverage checks.  
+- **Trivy**: Security scans for files, artifacts, Docker images, and manifests.  
+- **Nexus**: Artifact repository.  
+- **Docker**: Containerization.  
+- **Kubernetes**: Orchestration and deployment.  
+
+#### **Monitoring Tools**  
+- **Prometheus**: Metrics collection.  
+- **Grafana**: Visualization and alerting.  
+
+---
