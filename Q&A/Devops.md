@@ -296,6 +296,10 @@ Docker provides several types of networks to facilitate communication between co
 6. **Custom Networks**: Docker allows the creation of custom networks with specific configurations, providing flexibility and control over the networking environment for containers.
 7. **IPvlan**: This Docker network driver creates multiple virtual network interfaces within a parent interface, enabling containers to have unique MAC and IP addresses while sharing the underlying physical network. It ensures network isolation and efficient resource utilization among containers.
 
+### Basic Docker CLIs
+
+![image](https://github.com/user-attachments/assets/14182bab-38ac-4a0b-b2c2-f35502326d8f)
+
 ### **what does docker buid command do & build vs run command**
 
 The docker build command is used to build Docker images from a Dockerfile. This process involves executing each instruction in the Dockerfile and creating a new layer for each instruction, ultimately producing a final image. The resulting image can be tagged and used to create containers.
