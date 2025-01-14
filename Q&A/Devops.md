@@ -2143,6 +2143,53 @@ Both can be used together to achieve **optimal scaling**:
 However, care should be taken to ensure they do not conflict. Kubernetes does not directly support HPA and VPA on the same deployment yet, but custom configurations (like limiting VPA's scope) can make this possible.
 
 
+
+### **Q: Is the resource quota applied to a cluster or a namespace?**
+**A:** Resource quotas are applied at the **namespace** level in Kubernetes.
+
+---
+
+### **Q: What is the purpose of a resource quota in Kubernetes?**
+**A:** Resource quotas limit resource consumption (CPU, memory, storage, number of pods) within a namespace to ensure fair distribution and prevent resource exhaustion.
+
+---
+
+### **Q: Can multiple namespaces have different resource quotas?**
+**A:** Yes, each namespace can have its own resource quota with different limits.
+
+---
+
+### **Q: How do resource quotas help in managing resources?**
+**A:** They allocate resources fairly across namespaces, preventing one namespace from using all available resources.
+
+---
+
+### **Q: Can you provide an example of a resource quota?**
+**A:** Example:
+
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resource-quota-example
+  namespace: my-namespace
+spec:
+  hard:
+    requests.cpu: "10"
+    requests.memory: "20Gi"
+    pods: "10"
+```
+
+This restricts `my-namespace` to 10 pods, 10 CPU cores, and 20 GiB of memory.
+
+---
+
+### **Q: Why are resource quotas set at the namespace level?**
+**A:** Setting quotas at the namespace level ensures **isolation**, **scalability**, and **fine-grained control** over resource allocation for different teams or projects within the same cluster.
+
+---
+
+
 - [Table of Contents](#Table-of-Contents)
   
 ## Prometheus and Grafana
