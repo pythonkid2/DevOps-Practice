@@ -1640,14 +1640,11 @@ By understanding the characteristics and considerations of stateful and stateles
 
 https://cloud.google.com/kubernetes-engine/docs/concepts/service
 
-#### Types of Services in Kubernetes
-- **ClusterIP:** The default service type, which exposes the service internally within the cluster.
-- **NodePort:** Exposes the service on each node's IP at a static port.
-- **LoadBalancer:**  service that helps distribute incoming network traffic across multiple backend services or pods. 
-- **ExternalName:** Maps the service to a pre-defined external DNS name.
 
-The cluster IP port number in Kubernetes is a port number that is assigned to a Service.
+### The cluster IP port number in Kubernetes is a port number that is assigned to a Service.
 
+
+### Node port range
 **Node port** range - (default 30000-32767).
 
 To print **running pods** in Kubernetes, 
@@ -1658,44 +1655,6 @@ number of running pods
 ```
 kubectl get pods -l status=Running | wc -l
 ```
-
-A **NodePort service** in Kubernetes exposes the Service on each Node's IP at a static port. This means that the service will be accessible by the IP of any node on that particular port. NodePort service is the most straightforward way to expose a service from the Kubernetes cluster to the outside world.
-
-**etcd**
-
-**etcd** is an open-source distributed key-value store that provides a reliable way to store data across a cluster of machines. It's often used in distributed systems for shared configuration and service discovery. Originally developed by CoreOS, etcd is now a Cloud Native Computing Foundation (CNCF) project, and it is widely used in modern cloud-native environments and container orchestration systems like Kubernetes.
-
-Key features of etcd include:
-
-1. **Simple**: etcd has a simple HTTP API with JSON-formatted requests and responses. It is easy to use and integrate into applications.
-
-2. **Secure**: etcd supports client-to-server and server-to-server communication over SSL/TLS. It also provides authentication and access control through role-based access control (RBAC).
-
-3. **Reliable**: etcd ensures data reliability through a distributed consensus algorithm. It uses the Raft consensus algorithm to manage a highly available replicated log.
-
-4. **Fast**: etcd is built with performance in mind. It is designed to handle a high volume of requests with low latency.
-
-5. **Backed by a Strong Community**: As an open-source project maintained by the CNCF, etcd benefits from a strong community of developers and users who contribute to its development and support.
-
-**kubectl**
-
-kubectl is a command-line interface (CLI) tool for running commands against Kubernetes clusters.
-
-#### Difference between Kubeproxy and Ingress
-
-- **Kube Proxy:** A Kubernetes daemon that runs on each node and manages network rules for services.
-- **Ingress:** A Kubernetes resource that allows you to expose HTTP and HTTPS traffic from outside the cluster to services within the cluster.
-
-#### Kubelet
-- Agent that runs on each node in the cluster, ensuring that containers are running in a Pod.
-
-#### Control Plane
-- Manages the Kubernetes cluster, including scheduling, scaling, and deploying containers. The control plane includes the API server, scheduler, controller manager, and etcd.
-
-#### API Server
-- The Kubernetes API server is the front-end interface to the Kubernetes control plane. It exposes a REST API that clients can use to manage the cluster and its resources.
-
-In Kubernetes, an Ingress acts as an entry point for HTTP and HTTPS traffic targeting services within your cluster. It provides a single point of configuration for routing external traffic to the appropriate backend services based on rules you define. Here's a breakdown of what Ingress is and how to use it:
 
 **What is Ingress?**
 
@@ -1715,7 +1674,7 @@ In Kubernetes, an Ingress acts as an entry point for HTTP and HTTPS traffic targ
 
 2. **Create an Ingress Resource:**  Define your routing rules in a YAML file using the `Ingress` resource. Here's a basic example:
 
-```yaml
+```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -1747,22 +1706,13 @@ spec:
 By using Ingress, you can manage external traffic routing for your Kubernetes applications in a centralized and efficient way. It simplifies configuration and improves the maintainability of your deployments.
 
 
-#### Advantages of Kubernetes
 
-- Scalability, automated rollouts and rollbacks, self-healing, easy management, and efficient resource utilization.
-  
-- **Scalability**: Kubernetes makes it easy to scale applications up or down by adding or removing containers as needed. This can help to improve performance and reduce costs.
-- **High availability**: Kubernetes automatically load balances traffic between containers and reschedules containers if a node fails. This helps to ensure that applications are always available, even if there are problems with the underlying infrastructure.
-- **Improved resource utilization**: Kubernetes automatically allocates resources to containers based on their needs. This helps to improve resource utilization and reduce waste.
-- **Easy deployment and updates**: Kubernetes makes it easy to deploy and update applications without downtime. This can help to improve productivity and reduce risk.
-- **Portability**: Kubernetes applications can be deployed on a variety of cloud providers and on-premises. This gives you the flexibility to choose the right platform for your needs.
-- **Community support**: Kubernetes has a large and active community of users and contributors. This means that there is a wealth of information and
-support available to help you get started with Kubernetes and to troubleshoot problems.
-
-_Here are some specific examples of how Kubernetes can be used to improve the performance, reliability, and cost-effectiveness of your applications:
+##### how Kubernetes can be used to improve the performance, reliability, and cost-effectiveness of your applications:
 
 Scale your applications up or down based on demand. If your application experiences a sudden increase in traffic, you can easily scale it up by adding more containers. Kubernetes will automatically distribute the traffic between the containers, so that your application remains responsive. When the traffic subsides, you can scale the application back down to save costs.
+
 Improve the reliability of your applications. Kubernetes automatically detects and replaces failed containers. This means that your applications can continue to run even if there are problems with the underlying infrastructure.
+
 Reduce the cost of running your applications. Kubernetes can help you to reduce the cost of running your applications by optimizing resource utilization. Kubernetes will automatically allocate resources to containers based on their needs. This means that you are not wasting resources on idle containers.
 
 ### namespace in K8
