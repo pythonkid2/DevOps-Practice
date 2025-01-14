@@ -213,14 +213,7 @@ Using these methods, you can effectively create a new image from a running conta
 <img width="866" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/28e4b2d0-46f1-4c67-8ed0-80d4cbaf67a7">
 <img width="861" alt="image" src="https://github.com/pythonkid2/DevOps-Practice/assets/100591950/48e7ff22-c3a1-4771-9cae-810539af8140">
 
-### CMD vs ENTRYPOINT
-
-In a Dockerfile, the **CMD** instruction is used to specify the command that should be executed when the Docker container starts. It defines the default command for the container, which can be overridden by providing a command at the end of the `docker run` command.
-
-The **ENTRYPOINT** instruction, on the other hand, is used to set the main command that is always executed when the container starts. Unlike `CMD`, the parameters are not ignored when providing a command to the `docker run` command.
-
 ### Other important commands in a Dockerfile include:
-
 - **FROM**: Specifies the base image for subsequent instructions. It is usually the first instruction in a Dockerfile.
 - **RUN**: Executes commands in a new layer and creates a new image. This is used to install packages, run scripts, or perform any other actions during the build process.
 - **COPY**: Copies files or directories from the build context into the container's own filesystem at a specified location.
@@ -253,10 +246,10 @@ ENTRYPOINT ["catalina.sh", "run"]  # Start Tomcat on container startup
 # Use an official Node.js image as the base image
 FROM node:14
 
-# Set the working directory in the container
+# set the working directory to /usr/src/app in the container.
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+# copy package.json and package-lock.json to the working directory 
 COPY package*.json ./
 
 # Install dependencies
@@ -273,15 +266,6 @@ CMD ["node", "app.js"]
 
 ```
 
-In this example:
-
-We use the official Node.js 14 image as the base image.
-We set the working directory to /usr/src/app in the container.
-We copy package.json and package-lock.json to the working directory and install dependencies.
-We copy the rest of the application code to the working directory.
-We expose port 3000 (you can adjust this based on your application).
-We define the command to run the Node.js application (node app.js).
-
 ### What is the Difference between **container** and **image**
 
 **Image**:
@@ -295,6 +279,8 @@ Images are **read-only templates** used to create Docker containers. They can be
 A container is a **runtime instance of an image**—basically, a running process **isolated** from the host and other containers. Containers are lightweight, portable, and self-sufficient, allowing applications to be easily deployed and run consistently in various environments. Each container is created from a specific image and represents a running instance of that application, providing an isolated environment for running the application. 
 
 In summary, **images are the blueprints used to create containers**, while **containers are the actual runtime instances of those images**. Containers provide a consistent environment for running applications, and images provide a way to package and distribute software with all its dependencies.
+
+![image](https://github.com/user-attachments/assets/1f5c08d7-e063-4990-95f6-18aea037bfb2)
 
 ### **Types of Docker Networks**
 
