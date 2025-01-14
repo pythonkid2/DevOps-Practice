@@ -1743,6 +1743,8 @@ Once you have created a namespace, you can specify it when creating resources li
 
 ### taints and tolerations
 
+![image](https://github.com/user-attachments/assets/d18d9974-9844-45da-b1dc-06353af3b4a8)
+
 In Kubernetes, taints and tolerations are mechanisms used to control pod scheduling on specific nodes. They provide a way to enforce certain requirements or restrictions on where pods can be deployed.
 
 **Taints:**
