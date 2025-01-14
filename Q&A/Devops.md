@@ -15,7 +15,7 @@
 - [Linux](#Linux)
 - [Azure](#Azure)
 - [GitLab](#GitLab)
-
+- [IP](#IP)
 ## Basics
 
 ### Monolithic vs. Microservices architectures different?
@@ -3512,3 +3512,116 @@ trigger_job:
 ---
 
 - [Table of Contents](#Table-of-Contents)
+
+## IP
+---
+
+### **Q1: What is an IP address and what is its purpose?**
+**A1:**  
+An **IP address** (Internet Protocol address) is used to uniquely identify a device (like a computer, smartphone, or server) on a network. It allows devices to communicate with each other over the internet or within a local network.
+
+---
+
+### **Q2: What is the structure of an IPv4 address?**
+**A2:**  
+An **IPv4 address** is a 32-bit address, typically written in **dotted decimal format** as:
+
+```
+xxx.xxx.xxx.xxx
+```
+
+Each of the four sections (octets) is an 8-bit number, ranging from **0 to 255**. This makes up a total of **32 bits (4 bytes)**.
+
+---
+
+### **Q3: What does "byte" and "bit" mean in the context of IP addressing?**
+**A3:**  
+- A **bit** (binary digit) is the smallest unit of data and can either be **0** or **1**.
+- A **byte** consists of 8 bits and is often used to represent a number in IP addresses.
+
+For IPv4, each octet is **1 byte (8 bits)**, and there are **4 bytes** (32 bits) in total for an IPv4 address.
+
+---
+
+### **Q4: What is subnetting, and why is it used?**
+**A4:**  
+**Subnetting** is the process of dividing a larger network into smaller, manageable sub-networks (subnets). It helps in:
+- **Improving privacy and security**: By isolating network traffic within subnets.
+- **Efficient use of IP addresses**: Prevents wastage of IP addresses by allocating a more suitable range.
+- **Network isolation**: Prevents unnecessary access between devices in different subnets, reducing exposure to potential threats.
+
+---
+
+### **Q5: What is the difference between private and public subnets?**
+**A5:**  
+- A **public subnet** is a subnet that is **connected to the internet** via an internet gateway and can directly access external services.
+- A **private subnet** is isolated from the internet, usually with no direct access to it. Devices in a private subnet communicate with the outside world through **NAT (Network Address Translation)**.
+
+---
+
+### **Q6: What is CIDR, and how does it relate to IP addresses and subnets?**
+**A6:**  
+**CIDR (Classless Inter-Domain Routing)** is a notation used to define the size of the subnet and how many IP addresses are available within a network. It specifies the number of bits used for the **network portion** of the address.
+
+The format is:
+```
+IP_address/Prefix_length
+```
+
+- The **IP address** is the network address.
+- The **Prefix length** (after the slash) indicates how many bits are allocated for the network, and the remaining bits represent hosts.
+
+For example:
+- **/8** (Class A): 8 bits for the network, providing **16,777,216 IP addresses**.
+- **/16** (Class B): 16 bits for the network, providing **65,536 IP addresses**.
+- **/24** (Class C): 24 bits for the network, providing **256 IP addresses**.
+
+---
+
+### **Q7: What is the purpose of the route table and internet gateway in a subnet?**
+**A7:**  
+- A **route table** defines the routes for traffic to flow within a VPC (Virtual Private Cloud). It specifies where the traffic should be directed (e.g., to other subnets or the internet).
+- An **Internet Gateway (IGW)** is used to allow traffic from a **public subnet** to access the internet. When a device in a public subnet needs to communicate with an external service, the route table directs the traffic to the IGW for internet access.
+
+---
+
+### **Q8: What are the different IP address classes in IPv4?**
+**A8:**  
+IPv4 addresses are categorized into **5 classes** (A, B, C, D, and E) based on their first octet:
+
+1. **Class A**:  
+   - Range: **1.0.0.0 to 127.255.255.255**  
+   - Default Subnet Mask: **/8**  
+   - Private Range: **10.0.0.0 to 10.255.255.255**
+   
+2. **Class B**:  
+   - Range: **128.0.0.0 to 191.255.255.255**  
+   - Default Subnet Mask: **/16**  
+   - Private Range: **172.16.0.0 to 172.31.255.255**
+   
+3. **Class C**:  
+   - Range: **192.0.0.0 to 223.255.255.255**  
+   - Default Subnet Mask: **/24**  
+   - Private Range: **192.168.0.0 to 192.168.255.255**
+   
+4. **Class D (Multicast)**:  
+   - Range: **224.0.0.0 to 239.255.255.255**  
+   - Used for **multicast** communication (one-to-many transmission).
+
+5. **Class E (Reserved for Experimental Use)**:  
+   - Range: **240.0.0.0 to 255.255.255.255**  
+   - Reserved for **experimental use** and not commonly used in practice.
+
+---
+
+### **Q9: What does the `/8`, `/16`, and `/24` mean in terms of IP address allocation?**
+**A9:**  
+These numbers represent the number of bits in the **network portion** of the IP address. The higher the number, the more bits are used for the network, and the fewer are left for hosts.
+
+- **/8** (Class A): Allocates **8 bits** for the network and leaves **24 bits** for hosts, providing **16,777,216 addresses**.
+- **/16** (Class B): Allocates **16 bits** for the network and leaves **16 bits** for hosts, providing **65,536 addresses**.
+- **/24** (Class C): Allocates **24 bits** for the network and leaves **8 bits** for hosts, providing **256 addresses**.
+
+
+
+[Table of Contents](#Table-of-Contents)
