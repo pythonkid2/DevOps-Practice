@@ -2703,6 +2703,10 @@ These lifecycle rules help you optimize storage costs, automate data management 
 
 ## Linux
 
+### To check the operating system on a Linux
+```
+cat /etc/os-release
+```
 ### change the SSH port by editing the SSH configuration file.
 
 1. **Edit the SSH Config File**:
