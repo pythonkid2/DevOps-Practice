@@ -1208,6 +1208,16 @@ FRON SECOND TINE BUILD WITH PARAMETERS
 
 ## Maven
 
+![image](https://github.com/user-attachments/assets/691853c0-48fc-4200-a0a9-750b5373e8b3)
+
+Validate Phase: Check the project configuration and validate if all information required is present.
+Compile Phase: Compile the source code of the project.
+Test Phase: Execute unit tests using a testing framework.
+Package Phase: Bundle the compiled code into a JAR/WAR file.
+Verify Phase: Perform checks on the packaged code.
+Install Phase: Install the package to the local repository for use as a dependency in other projects locally.
+Deploy Phase: Deploy the package to a remote repository for sharing with other developers.
+
 Advantages of Maven:
 
 - Simplified dependency management
