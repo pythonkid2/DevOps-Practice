@@ -1,1 +1,3 @@
-tets
+
+
+Stages --> Stage --> Jobs --> job -- steps -- script
