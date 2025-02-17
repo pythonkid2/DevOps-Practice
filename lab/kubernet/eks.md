@@ -17,13 +17,18 @@ eksctl version
 ## Install and Set Up kubectl on Linux
 
 **[Click here](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)**
-
+```
+sudo snap install kubectl --classic
+```
 ```
 kubectl version --client
 ```
 ## Install or update to the latest version of the AWS CLI
 
 **[Click here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)**
+```
+sudo snap install aws-cli --classic
+```
 ```
 aws configure
 ```
