@@ -17,6 +17,10 @@ kubectl logs web -f
 kubectl logs web -f --previous 
 
 
+K CONFIG SET-CONTEXT --CURRENT --NAMESPACE=ALPHA
+
+
+
 check dependedent service and pod 
 
 
