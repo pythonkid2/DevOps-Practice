@@ -1,18 +1,14 @@
-
-
-````markdown
-# 🛠️ `sed` Command in Linux – Stream Editor
+  # 🛠️ `sed` Command in Linux – Stream Editor
 
 `sed` stands for **Stream EDitor**, a powerful Linux utility used to:
 - Filter and transform text
 - Perform basic text transformations on an input stream (files or input from a pipeline)
 - Make substitutions, insertions, deletions, and more using **regular expressions**
 
----
 
 ## 🔹 Basic Syntax
 
-```bash
+```
 sed [options] 'command' file_name
 ````
 
@@ -46,13 +42,13 @@ sed [options] 'command' file_name
 
 ### 🔁 Substitution (s)
 
-```bash
+```
 sed 's/apple/orange/' file.txt
 ```
 
 Replaces the **first** occurrence of “apple” with “orange” in each line.
 
-```bash
+```
 sed 's/apple/orange/g' file.txt
 ```
 
@@ -60,7 +56,7 @@ Replaces **all** occurrences of “apple” in each line.
 
 ### ✍️ In-place Edit
 
-```bash
+```
 sed -i 's/foo/bar/g' file.txt
 ```
 
@@ -68,13 +64,13 @@ Replaces “foo” with “bar” in-place (edits the actual file).
 
 ### 🚫 Deleting Lines
 
-```bash
+```
 sed '2d' file.txt
 ```
 
 Deletes line 2.
 
-```bash
+```
 sed '/error/d' file.txt
 ```
 
@@ -82,13 +78,13 @@ Deletes all lines that contain “error”.
 
 ### 📌 Printing Specific Lines
 
-```bash
+```
 sed -n '3p' file.txt
 ```
 
 Prints only the 3rd line.
 
-```bash
+```
 sed -n '/server/p' file.txt
 ```
 
@@ -96,13 +92,13 @@ Prints lines that contain “server”.
 
 ### ➕ Inserting and Appending Text
 
-```bash
+```
 sed '2i\This is a new line' file.txt
 ```
 
 Inserts a line **before** line 2.
 
-```bash
+```
 sed '2a\This is an appended line' file.txt
 ```
 
@@ -110,7 +106,7 @@ Appends a line **after** line 2.
 
 ### 🔄 Replace Entire Line
 
-```bash
+```
 sed '3c\This is the new content' file.txt
 ```
 
@@ -118,7 +114,7 @@ Changes line 3 to the given content.
 
 ### 🧾 Line Numbering
 
-```bash
+```
 sed '=' file.txt
 ```
 
@@ -128,13 +124,13 @@ Displays line numbers along with content.
 
 ## 🔹 Range of Lines
 
-```bash
+```
 sed '1,3d' file.txt
 ```
 
 Deletes lines 1 through 3.
 
-```bash
+```
 sed '/start/,/end/d' file.txt
 ```
 
@@ -146,13 +142,13 @@ Deletes lines between the lines containing “start” and “end”.
 
 ### Using `-e`:
 
-```bash
+```
 sed -e 's/foo/bar/' -e 's/baz/qux/' file.txt
 ```
 
 ### Using `{}`:
 
-```bash
+```
 sed '{
 s/foo/bar/
 s/baz/qux/
@@ -163,11 +159,11 @@ s/baz/qux/
 
 ## 🔹 Using Sed with Pipelines
 
-```bash
+```
 cat file.txt | sed 's/error/ERROR/g'
 ```
 
-```bash
+```
 grep "http" access.log | sed 's/200/OK/g'
 ```
 
@@ -179,13 +175,13 @@ Some characters like `/`, `&`, and `\` need to be escaped.
 
 ### Example:
 
-```bash
+```
 sed 's/\/usr\/local/\/usr\/bin/' file.txt
 ```
 
 Or use a different delimiter:
 
-```bash
+```
 sed 's|/usr/local|/usr/bin|' file.txt
 ```
 
@@ -193,7 +189,7 @@ sed 's|/usr/local|/usr/bin|' file.txt
 
 ## 🔹 Save Changes to a New File
 
-```bash
+```
 sed 's/foo/bar/g' file.txt > new_file.txt
 ```
 
@@ -201,7 +197,7 @@ sed 's/foo/bar/g' file.txt > new_file.txt
 
 ## 🔹 Advanced: Using Regular Expressions
 
-```bash
+```
 sed -n '/^a.*z$/p' file.txt
 ```
 
