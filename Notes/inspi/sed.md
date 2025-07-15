@@ -232,3 +232,188 @@ Always test `sed` commands **without** `-i` first to avoid accidental data loss.
 | In-place edit    | `sed -i 's/x/y/' file`   |
 
 ```
+
+
+Here is the complete **`sed` practice test with questions and answers** in **Markdown format**.
+
+---
+
+### ✅ `sed` Practice Test with Answers (Markdown)
+
+````markdown
+# 🛠️ `sed` Practice Test – Full Coverage
+
+## 📄 Sample Input File: `sample.txt`
+
+```txt
+apple is tasty
+banana is yellow
+foo is replaced
+this is a test line
+another foo test
+user123 logged in
+line with error
+INFO: system boot
+INFO: config loaded
+start block
+line inside block
+end block
+/home/user/docs
+/home/user/photos
+
+````
+
+---
+
+## ❓ Questions
+
+### 🟦 Basic Substitution
+
+1. Replace the **first occurrence** of `foo` with `bar` in each line.
+2. Replace **all occurrences** of `is` with `was`.
+3. Replace `user123` with `admin` only on **line 6**.
+
+---
+
+### 🟨 Line Deletion and Filtering
+
+4. Delete the **third line**.
+5. Delete all lines that contain the word `error`.
+6. Delete **blank lines** from the file.
+
+---
+
+### 🟩 Selective Printing
+
+7. Print **only line 4**.
+8. Print all lines that contain `INFO`.
+9. Print all lines between `start block` and `end block`.
+
+---
+
+### 🟪 Insertion and Appending
+
+10. Insert the line `FRUIT HEADER` before every line that contains `apple` or `banana`.
+11. Append the line `FOOTER` after every line containing `test`.
+
+---
+
+### 🟥 Change and Replace Lines
+
+12. Replace line 2 entirely with `BANANA LINE`.
+13. Change lines 10 to 12 to `BLOCK REMOVED`.
+
+---
+
+### 🟫 Advanced: Multiple Commands and Escaping
+
+14. Use `sed` to replace both:
+
+    * `apple` with `mango`
+    * `banana` with `grapes`
+
+15. Replace `/home/user` with `/mnt/data` using a different delimiter.
+
+---
+
+## ✅ Answers
+
+### 1.
+
+```
+sed 's/foo/bar/' sample.txt
+```
+
+### 2.
+
+```
+sed 's/is/was/g' sample.txt
+```
+
+### 3.
+
+```
+sed '6s/user123/admin/' sample.txt
+```
+
+### 4.
+
+```
+sed '3d' sample.txt
+```
+
+### 5.
+
+```
+sed '/error/d' sample.txt
+```
+
+### 6.
+
+```
+sed '/^$/d' sample.txt
+```
+
+### 7.
+
+```
+sed -n '4p' sample.txt
+```
+
+### 8.
+
+```
+sed -n '/INFO/p' sample.txt
+```
+
+### 9.
+
+```
+sed -n '/start block/,/end block/p' sample.txt
+```
+
+### 10.
+
+```
+sed '/apple\|banana/i\FRUIT HEADER' sample.txt
+```
+
+### 11.
+
+```
+sed '/test/a\FOOTER' sample.txt
+```
+
+### 12.
+
+```
+sed '2c\BANANA LINE' sample.txt
+```
+
+### 13.
+
+```
+sed '10,12c\BLOCK REMOVED' sample.txt
+```
+
+### 14.
+
+```
+sed -e 's/apple/mango/g' -e 's/banana/grapes/g' sample.txt
+```
+
+### 15.
+
+```
+sed 's|/home/user|/mnt/data|g' sample.txt
+```
+
+---
+
+## 🎯 Bonus: Multi-command One-Liner
+
+```
+sed -e '/^$/d' -e '/error/d' -e 's/^start.*/&\n#END/' -e 's/INFO/NOTICE/g' sample.txt
+```
+
+---
