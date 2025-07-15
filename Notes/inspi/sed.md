@@ -234,18 +234,13 @@ Always test `sed` commands **without** `-i` first to avoid accidental data loss.
 ```
 
 
-Here is the complete **`sed` practice test with questions and answers** in **Markdown format**.
 
----
-
-### ✅ `sed` Practice Test with Answers (Markdown)
-
-````markdown
+````
 # 🛠️ `sed` Practice Test – Full Coverage
 
 ## 📄 Sample Input File: `sample.txt`
 
-```txt
+```
 apple is tasty
 banana is yellow
 foo is replaced
