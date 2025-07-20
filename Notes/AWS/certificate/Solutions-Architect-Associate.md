@@ -3,11 +3,14 @@
 - [Elastic Beanstalk](#ElasticBeanstalk)
 - [Trusted Advisor](#Trusted-Advisor)
 - [AWS Cost Explorer](#AWS-Cost-Explorer)
+- [IAM](#IAM)
+- [Section 4](#section-4)
+- [Section 5](#section-5)
+- [Conclusion](#conclusion)
 - [Section 3](#section-3)
 - [Section 4](#section-4)
 - [Section 5](#section-5)
 - [Conclusion](#conclusion)
-
 ## ElasticBeanstalk
 
 ## ✅ **Elastic Beanstalk (EB)**
@@ -197,9 +200,65 @@ You can also:
   * **Budgets** – for alerting
   * **Trusted Advisor** – for recommendations
 
+## IAM
+---
+
+## ✅ **AWS Identity and Access Management (IAM)**
+
+### 1. **What**
+
+> IAM is a **global AWS service** that allows you to **securely manage access** to AWS services and resources for users, groups, and applications.
+> It provides **fine-grained permissions** to control who can do what in your AWS account.
+
+---
+
+### 2. **Why (Use Cases)**
+
+* Create and manage **users, groups, and roles**.
+* **Control access** to AWS services (e.g., S3, EC2) via **policies**.
+* Enable **temporary access** using IAM roles for EC2, Lambda, etc.
+* Enforce **MFA** and strong authentication.
+* Enable **cross-account access** securely.
+
+---
+
+### 3. **How (Configuration)**
+
+* Create **IAM users** for individuals who need AWS console or API access.
+* Group users and assign **policies** to groups (e.g., AdminGroup).
+* Create **IAM roles**:
+
+  * For EC2, Lambda, etc., to securely call other AWS services.
+  * For **cross-account access** or AWS services like CodeBuild, ECS tasks.
+* Attach **inline or managed policies** (JSON-based).
+* Use **IAM policy simulator** to test permissions.
+
+---
+
+### 4. **Common Pitfalls / Limits**
+
+* IAM is **not region-specific** – it's global.
+* By default, **new users have no permissions** until policies are attached.
+* **Overly permissive policies** (e.g., `"Action": "*"` and `"Resource": "*"`) are risky.
+* Avoid **using root user** except for account setup.
+* **Roles are preferred** over long-term access keys for services.
+
+---
+
+### 5. **Exam Tips / Keywords**
+
+* “**Control access to AWS resources**” → IAM
+* “**Assign permissions using policies**” → IAM
+* “**Temporary access to AWS resources**” → IAM Roles
+* “**Cross-account access**” → IAM Roles + Trust Policy
+* IAM is **free** (no extra cost)
+* **MFA + IAM best practice** questions are common
+
+## Section 4
+This is section 4. You can provide detailed content related to this section here.
+
 ## Section 3
 This is section 3. You can provide detailed content related to this section here.
 
 ## Section 4
 This is section 4. You can provide detailed content related to this section here.
-
