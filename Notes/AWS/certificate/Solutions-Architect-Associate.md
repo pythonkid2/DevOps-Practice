@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [Elastic Beanstalk](#ElasticBeanstalk)
-- [Section 1](#section-1)
+- [Trusted Advisor](#Trusted-Advisor)
 - [Section 2](#section-2)
 - [Section 3](#section-3)
 - [Section 4](#section-4)
@@ -73,8 +73,72 @@
   * **CodeDeploy** (custom deployments)
 * “Fully managed service for deployment” → EB
 
-## Section 1
-This is section 1. You can provide detailed content related to this section here.
+## Trusted Advisor
+
+## ✅ **AWS Trusted Advisor**
+
+### 1. **What**
+
+> AWS Trusted Advisor is an **online tool** that provides **real-time guidance** to help you **follow AWS best practices** in the areas of **cost optimization, performance, security, fault tolerance**, and **service limits**.
+
+---
+
+### 2. **Why (Use Cases)**
+
+* **Optimize AWS costs** (e.g., detect idle EC2s, underutilized RIs).
+* Improve **security posture** (e.g., check for open ports, MFA usage).
+* Ensure **service limits** aren’t exceeded (e.g., EC2 instance limits).
+* Improve **performance** and **availability** by identifying risks.
+* Get proactive recommendations across your AWS resources.
+
+---
+
+### 3. **How (Configuration)**
+
+* Go to **AWS Management Console** → Trusted Advisor.
+* By default, **Core checks** are available to **all accounts**:
+
+  * Service Limits
+  * IAM Use
+  * MFA on Root
+  * Billing
+* To access **full checks**, you need a support plan:
+
+  * **Business or Enterprise support**
+* Categories of checks:
+
+  * **Cost Optimization**
+  * **Performance**
+  * **Security**
+  * **Fault Tolerance**
+  * **Service Limits**
+
+You can also:
+
+* **Export results to CSV**
+* Use **AWS CLI** or **SDKs** to get check statuses
+* Set up **notifications via CloudWatch + SNS**
+
+---
+
+### 4. **Common Pitfalls / Limits**
+
+* Full Trusted Advisor checks require **Business or Enterprise support**.
+* Recommendations are **guidance only**, not enforced actions.
+* Some checks **do not update in real time** (may be daily/weekly).
+* Trusted Advisor **does not fix issues automatically**—you must act.
+
+---
+
+### 5. **Exam Tips / Keywords**
+
+* “**Best practices guidance**” → Trusted Advisor
+* “**Cost savings, security, fault tolerance**” → Trusted Advisor
+* Only **Core checks available with Basic/Developer support**
+* “**Which AWS tool checks for unused resources and security gaps**” → Trusted Advisor
+* **NOT** to be confused with **Config (compliance tracking)** or **Inspector (vulnerability scanning)**
+
+---
 
 ## Section 2
 This is section 2. You can provide detailed content related to this section here.
