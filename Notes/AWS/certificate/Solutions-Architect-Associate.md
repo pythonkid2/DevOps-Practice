@@ -2,7 +2,7 @@
 
 - [Elastic Beanstalk](#ElasticBeanstalk)
 - [Trusted Advisor](#Trusted-Advisor)
-- [Section 2](#section-2)
+- [AWS Cost Explorer](#AWS-Cost-Explorer)
 - [Section 3](#section-3)
 - [Section 4](#section-4)
 - [Section 5](#section-5)
@@ -140,8 +140,62 @@ You can also:
 
 ---
 
-## Section 2
-This is section 2. You can provide detailed content related to this section here.
+## AWS Cost Explorer
+
+## ✅ **AWS Cost Explorer**
+
+### 1. **What**
+
+> AWS Cost Explorer is a **visualization tool** that allows you to **analyze, track, and forecast your AWS spending and usage** over time. It helps you understand where your costs are coming from and how they evolve.
+
+---
+
+### 2. **Why (Use Cases)**
+
+* Monitor and **analyze your AWS costs** by service, linked account, region, or usage type.
+* Identify **cost trends** and **spending spikes**.
+* Track the impact of **Reserved Instances (RIs)** or **Savings Plans**.
+* Forecast future spend based on historical usage.
+* Share and **create reports** for budgeting or internal cost management.
+
+---
+
+### 3. **How (Configuration)**
+
+* Go to **AWS Management Console** → Billing → **Cost Explorer**.
+* Enable Cost Explorer (one-time setup; takes a few hours to populate data).
+* Create custom reports:
+
+  * Filter by **service**, **region**, **linked account**, **usage type**, etc.
+  * Group by **resource tags**, **instance types**, or **linked accounts**.
+* View:
+
+  * **Daily, monthly, or custom time ranges**
+  * **Forecasting** for future costs
+* Export to **CSV**, schedule reports, or access programmatically via **AWS Cost Explorer API**.
+
+---
+
+### 4. **Common Pitfalls / Limits**
+
+* Cost Explorer does **not show real-time billing** (data is usually delayed by 24 hours).
+* **Forecasting is only an estimate** based on past trends (not guaranteed).
+* Cannot break down cost by **individual EC2 instance ID** unless detailed billing and tags are properly set up.
+* **Tag-based filtering** only works if cost allocation tags are enabled.
+* Not available in the **GovCloud** region.
+
+---
+
+### 5. **Exam Tips / Keywords**
+
+* “**Visualize and track AWS costs over time**” → Cost Explorer
+* “**Forecast AWS spending**” → Cost Explorer
+* “**Which tool helps you analyze spending trends**” → Cost Explorer
+* Not to be confused with:
+
+  * **Billing Dashboard** – shows raw bills
+  * **Budgets** – for alerting
+  * **Trusted Advisor** – for recommendations
 
 ## Section 3
 This is section 3. You can provide detailed content related to this section here.
