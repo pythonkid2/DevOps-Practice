@@ -6,7 +6,7 @@
 - [IAM](#IAM)
 - [Auto Scaling Groups](#Auto-Scaling-Groups)
 - [Section 5](#section-5)
-- [Conclusion](#conclusion)
+- [AWS Global Accelerator](#AWS-Global-Accelerator)
 - [Section 3](#section-3)
 - [Section 4](#section-4)
 - [Section 5](#section-5)
@@ -892,8 +892,82 @@ I mixed **single-correct** and **multi-correct** questions (1–3 correct answer
 
 
 
-## Section 3
-This is section 3. You can provide detailed content related to this section here.
+## AWS Global Accelerator
+
+Here’s a **crisp AWS Global Accelerator exam-notes sheet** 📒 (for **Solutions Architect exam perspective**).
+
+---
+
+# 📝 AWS Global Accelerator — Exam Notes
+
+### 🔹 What it is
+
+* A **global networking service** that uses the **AWS global edge network** to improve **availability** and **performance** of applications.
+* Provides **two static anycast IPs** that never change.
+* Routes users to the **nearest AWS edge location**, then over the AWS backbone to the closest healthy regional endpoint.
+
+---
+
+### 🔹 Key Features & Keywords (exam triggers)
+
+* **Anycast IPs** → single global entry point.
+* **Regional endpoint failover** → automatic, near real-time health checks.
+* **Improved latency** → traffic rides the AWS backbone, not the public internet.
+* **Cross-Region Load Balancing** → unlike ALB (regional only).
+* **Global failover within seconds**.
+* Supports **TCP and UDP traffic**.
+* Can front **ALB, NLB, EC2, Elastic IPs**.
+
+---
+
+### 🔹 Use Cases
+
+1. **Multi-continent / multi-region apps** (media streaming, gaming, SaaS).
+2. **Latency-sensitive apps** where users should hit nearest healthy endpoint.
+3. **Disaster recovery** → if one region fails, traffic shifts globally.
+4. **Static IP for multi-region** architecture (instead of DNS-based).
+
+---
+
+### 🔹 Difference vs Route 53 (Important Exam Area)
+
+| Feature             | **Global Accelerator**  | **Route 53**                          |
+| ------------------- | ----------------------- | ------------------------------------- |
+| Type                | Network layer (TCP/UDP) | DNS-based                             |
+| Latency improvement | Yes (uses AWS backbone) | No (DNS only resolves closest region) |
+| Health checks       | Yes, fast (seconds)     | Yes, slower (minutes)                 |
+| Failover            | Almost instant          | DNS TTL dependent                     |
+| Static IP           | Yes (2 anycast IPs)     | No                                    |
+| Cost                | Extra                   | Cheaper                               |
+
+👉 **Exam keyword:** If the scenario mentions **static IPs**, **faster failover**, **multi-region acceleration**, the answer is **Global Accelerator**, not Route 53.
+
+---
+
+### 🔹 Limitations / Gotchas
+
+* More expensive than Route 53.
+* Not for HTTP header-based routing (→ use ALB instead).
+* Still needs **regional resources** (ALB/NLB/EC2) behind it.
+
+---
+
+### 🔹 Sample Exam Traps
+
+* *Q: A gaming app needs sub-50ms latency worldwide with regional failover in seconds.*
+  ✅ **Global Accelerator**.
+
+* *Q: A website wants DNS-based redirection to nearest region.*
+  ✅ **Route 53 latency-based routing**.
+
+* *Q: Company wants 2 fixed IPs for a multi-region API.*
+  ✅ **Global Accelerator**.
+
+---
+
+⚡ **One-liner to remember for exam:**
+👉 **Global Accelerator = static IPs + AWS backbone acceleration + instant failover**.
+👉 **Route 53 = DNS-based latency routing, slower failover, no acceleration**.
 
 ## Section 4
 This is section 4. You can provide detailed content related to this section here.
