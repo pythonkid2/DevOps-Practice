@@ -4,7 +4,7 @@
 - [Trusted Advisor](#Trusted-Advisor)
 - [AWS Cost Explorer](#AWS-Cost-Explorer)
 - [IAM](#IAM)
-- [Section 4](#Auto-Scaling-Groups)
+- [Auto Scaling Groups](#Auto-Scaling-Groups)
 - [Section 5](#section-5)
 - [Conclusion](#conclusion)
 - [Section 3](#section-3)
