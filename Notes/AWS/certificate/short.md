@@ -255,6 +255,11 @@ AWS **DataSync** = **Online data transfer service** for moving large amounts of 
 
 ---
 
+VPC Gateway Endpoint for S3 = creates a private route from your VPC to S3 over the AWS network (no NAT required, no public IPs required, no extra data processing charges)
+
+App Runner → “I just want my container to run, scale, and serve traffic — no cluster headaches.”
+EKS → “I need full control, multiple microservices, custom networking, CI/CD integration, service mesh, and Kubernetes portability.”
+
 
 
 
