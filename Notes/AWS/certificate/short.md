@@ -259,7 +259,40 @@ VPC Gateway Endpoint for S3 = creates a private route from your VPC to S3 over t
 
 App Runner → “I just want my container to run, scale, and serve traffic — no cluster headaches.”
 EKS → “I need full control, multiple microservices, custom networking, CI/CD integration, service mesh, and Kubernetes portability.”
++++++++++
+Inbound endpoint = allows on-prem DNS servers to send queries into Route 53 Resolver (so VPC names can be resolved by on-prem resolvers by forwarding queries to the inbound endpoint).
+
+Outbound endpoint = lets Route 53 Resolver forward queries out to your on-prem DNS servers (so resources in the VPC can resolve on-prem names by conditional forwarding through the outbound endpoint).
+++
+
+**CloudFormation StackSets** -extends the functionality of stacks by enabling you to create, update, or delete stacks across multiple accounts and regions with a single operation.
+
+<img width="739" height="414" alt="image" src="https://github.com/user-attachments/assets/a91f1edf-bf47-4186-afc6-3e661a77a05f" />
+
+**AWS CloudFormation template** - JSON or YAML-format, text-based file that describes all the AWS resources you need to deploy to run your application.
+
+- blueprint for a stack
+
+ **CloudFormation stacks** stack is a set of AWS resources that are created and managed as a single unit when AWS CloudFormation instantiates a template
+    -  A stack cannot be used to deploy the same template across AWS accounts and regions
+
+**AWS Resource Access Manager (AWS RAM)** AWS Resource Access Manager (AWS RAM) is a service that enables you to easily and securely share AWS resources with any AWS account or within your AWS Organization.
 
 
+ **Amazon Machine Image (AMI)**
 
+ provides the information required to launch an instance.
+
+contains - One or more Amazon EBS snapshots, or, for instance-store-backed AMIs, a template for the root volume of the instance.
+
+You can copy an AMI within or across AWS Regions using the AWS Management Console, the AWS Command Line Interface or SDKs, or the Amazon EC2 API, all of which support the CopyImage action. You can copy both Amazon EBS-backed AMIs and instance-store-backed AMIs. You can copy AMIs with encrypted snapshots and also change encryption status during the copy process.
+
+
+<img width="1428" height="928" alt="image" src="https://github.com/user-attachments/assets/44ae91f4-1a23-4780-b5d1-7a343577ff2b" />
+
+Think resource performance monitoring, events, and alerts; think **Amazon CloudWatch**.
+
+Think account-specific activity and audit; think **AWS CloudTrail**.
+
+Think resource-specific history, audit, and compliance; think **AWS Config**.
 
