@@ -296,3 +296,11 @@ Think account-specific activity and audit; think **AWS CloudTrail**.
 
 Think resource-specific history, audit, and compliance; think **AWS Config**.
 
+Global users + low-latency + UDP/TCP traffic = **AWS Global Accelerator**
+
+Single-region + UDP/TCP traffic = **NLB**
+
+HTTP/HTTPS traffic with Layer 7 features = **ALB**
+
+
+**Amazon API Gateway HTTP APIs support native JWT authorizers**
