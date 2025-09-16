@@ -304,3 +304,49 @@ HTTP/HTTPS traffic with Layer 7 features = **ALB**
 
 
 **Amazon API Gateway HTTP APIs support native JWT authorizers**
+
+Here’s a **crisp, exam-focused note** for **AWS Storage Gateway** that’s easy to remember:
+
+---
+
+# 📝 **AWS Storage Gateway – Exam Notes**
+
+## ✅ **What It Is**
+
+* **Hybrid storage service** → connects **on-premises apps** to **AWS cloud storage**
+* Provides **low-latency local cache** + **virtually unlimited storage in S3**
+
+---
+
+## 🛠 **Types of Gateways (Key for Exam)**
+
+| **Gateway Type**   | **Use Case**                                     | **Key Points**                                                                                                                                                                   |
+| ------------------ | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **File Gateway**   | Store & access **files** as objects in S3        | NFS/SMB access, integrates with S3 bucket                                                                                                                                        |
+| **Volume Gateway** | Store **block storage volumes** in AWS           | Two modes: <br>🔹 **Cached Volumes:** Store primary data in S3, cache frequently accessed data locally <br>🔹 **Stored Volumes:** Store primary data locally, async backup to S3 |
+| **Tape Gateway**   | Replace physical tape backups with virtual tapes | VTL interface, backups stored in S3/Glacier                                                                                                                                      |
+
+---
+
+## 🧠 **Exam Triggers**
+
+* **Low-latency access + on-prem + cloud storage** → Storage Gateway
+* **Backup tapes to cloud** → Tape Gateway
+* **Extend local file server to S3** → File Gateway
+* **Block storage replication to S3** → Volume Gateway (Cached/Stored)
+
+---
+
+## 📌 **Memory Hook**
+
+**FVT → File, Volume, Tape**
+
+* **F = Files to S3**
+* **V = Volumes (Cached/Stored)**
+* **T = Tape backup to S3/Glacier**
+
+---
+
+
+<img width="1116" height="663" alt="image" src="https://github.com/user-attachments/assets/ae5707cb-5b9f-49f4-9c70-05094ef0437e" />
+
