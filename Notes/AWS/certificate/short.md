@@ -350,3 +350,5 @@ Here’s a **crisp, exam-focused note** for **AWS Storage Gateway** that’s eas
 
 <img width="1116" height="663" alt="image" src="https://github.com/user-attachments/assets/ae5707cb-5b9f-49f4-9c70-05094ef0437e" />
 
+
+<img width="1798" height="346" alt="image" src="https://github.com/user-attachments/assets/4b69a1ed-57c0-45bb-8b4f-432ea1f48322" />
