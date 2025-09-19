@@ -355,3 +355,50 @@ Here’s a **crisp, exam-focused note** for **AWS Storage Gateway** that’s eas
 
 <img width="1191" height="631" alt="image" src="https://github.com/user-attachments/assets/a87f7b23-de58-4296-bfdc-6d2b217fa60b" />
 
+Got it ✅ — you want a **clear, exam-friendly breakdown** of **when to use which Amazon S3 storage class** — with short, memorable tips.
+
+Here’s the full guide:
+
+---
+
+# 📌 **Amazon S3 Storage Classes – Exam Cheat Sheet**
+
+| **S3 Class**                                         | **When to Use (Ideal Scenario)**                                                                    | **Key Points / Keywords**                                                               |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **S3 Standard**                                      | 🔹 Frequently accessed data 🔹 Mission-critical workloads 🔹 Dynamic websites, content distribution | 🌟 **High durability (11 9s)**, low latency, multi-AZ, default choice                   |
+| **S3 Standard-IA** (Infrequent Access)               | 🔹 Data accessed **< once per month** 🔹 Long-term backups, DR 🔹 Not mission critical              | ✅ Cheaper storage, **retrieval fee applies**, multi-AZ durability                       |
+| **S3 One Zone-IA**                                   | 🔹 Data you can easily **recreate** 🔹 Secondary backups 🔹 Logs, temp data                         | 💰 \~20% cheaper than Standard-IA, **single AZ** (lower availability)                   |
+| **S3 Intelligent-Tiering**                           | 🔹 **Unknown / unpredictable access patterns** 🔹 AI/ML datasets 🔹 Data lakes                      | 🤖 Auto-moves data between tiers (Frequent, Infrequent, Archive), no performance impact |
+| **S3 Glacier Instant Retrieval**                     | 🔹 Archival data that must be accessed **within ms** 🔹 Medical images, media assets                | 💸 Cheaper than IA, instant retrieval                                                   |
+| **S3 Glacier Flexible Retrieval** (formerly Glacier) | 🔹 Data rarely accessed 🔹 Backup/Archive 🔹 Retrieval within minutes–hours                         | 🕒 Bulk, Standard, Expedited retrieval options                                          |
+| **S3 Glacier Deep Archive**                          | 🔹 Long-term archive 🔹 Regulatory compliance 🔹 Retain for 7-10+ years                             | 🕒 Lowest cost storage, retrieval in **hours**                                          |
+| **S3 Reduced Redundancy (Deprecated)**               | ❌ Do **not** use unless for very specific legacy cases                                              | AWS recommends Standard instead                                                         |
+
+---
+
+## 🧠 **Exam Tips & Keywords**
+
+* **"Frequently accessed, low latency" → S3 Standard**
+* **"Infrequent but important, multi-AZ" → S3 Standard-IA**
+* **"Infrequent, can be lost or recreated, cost-sensitive" → S3 One Zone-IA**
+* **"Unknown access pattern, want automation" → S3 Intelligent-Tiering**
+* **"Archival but quick restore needed" → Glacier Instant Retrieval**
+* **"Archival, can wait minutes/hours" → Glacier Flexible Retrieval**
+* **"Cheapest, long-term compliance storage" → Glacier Deep Archive**
+
+---
+
+## 📝 **Memory Hook**
+
+🔑 **Hot → Warm → Cold → Frozen**
+(Standard → IA → Glacier → Deep Archive)
+
+Or use this mnemonic:
+**"Some Important Objects Only Go Deep"**
+(Standard, Intelligent-Tiering, One-Zone IA, Glacier, Deep Archive)
+
+---
+
+
+<img width="2538" height="1528" alt="image" src="https://github.com/user-attachments/assets/c7d7c8f5-514c-4fc0-8d7b-c0a1fde48dd9" />
+
