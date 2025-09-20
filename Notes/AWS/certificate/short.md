@@ -402,3 +402,143 @@ Or use this mnemonic:
 
 <img width="2538" height="1528" alt="image" src="https://github.com/user-attachments/assets/c7d7c8f5-514c-4fc0-8d7b-c0a1fde48dd9" />
 
+You can't directly copy data from AWS Snowball Edge devices into Amazon S3 Glacier.
+
+<img width="1058" height="413" alt="image" src="https://github.com/user-attachments/assets/3659ce58-d8f8-4bbf-8eea-2f2e7eea2023" />
+
+<img width="2132" height="1200" alt="image" src="https://github.com/user-attachments/assets/92494fd6-5a8f-4c6c-bf05-5ca71d5a9adc" />
+
+Perfect ✅ — this is another exam favorite. Let’s break down **Amazon EBS (Elastic Block Store) volume types**, their use cases, and when to choose each one.
+
+---
+
+# 📌 **Amazon EBS Volume Types – Exam Cheat Sheet**
+
+EBS volumes are **block storage** for EC2 — persistent, resizable, and AZ-specific.
+
+---
+
+## 1️⃣ **General Purpose SSD (gp2 / gp3)**
+
+* **gp2** – legacy, performance scales with size
+* **gp3** – latest generation, performance configurable independent of size
+* **Performance:**
+
+  * gp3 baseline: **3,000 IOPS + 125 MB/s throughput** (configurable up to 16,000 IOPS & 1,000 MB/s)
+  * gp2: 3 IOPS per GB (max 16,000 IOPS)
+* **Use When:**
+
+  * ✅ Boot volumes
+  * ✅ Small to medium DBs
+  * ✅ Dev/Test environments
+  * ✅ General-purpose workloads
+
+**Exam Keyword:** "Most workloads" → **gp3 (preferred)**
+
+---
+
+## 2️⃣ **Provisioned IOPS SSD (io1 / io2)**
+
+* **Performance:**
+
+  * io1/io2: Up to **64,000 IOPS** per volume
+  * io2: Higher durability (99.999%)
+* **Supports Multi-Attach** (attach to multiple EC2 instances at once, same AZ)
+* **Use When:**
+
+  * ✅ Mission-critical databases (Oracle, SQL, SAP HANA, etc.)
+  * ✅ High-transaction, low-latency workloads
+  * ✅ Need predictable performance regardless of size
+
+**Exam Keyword:** "High-performance DB" → **io2**
+**Exam Keyword:** "Multi-Attach required" → **io1/io2 only**
+
+---
+
+## 3️⃣ **Throughput Optimized HDD (st1)**
+
+* **Performance:**
+
+  * Throughput-based (not IOPS)
+  * Max throughput: \~500 MB/s
+* **Use When:**
+
+  * ✅ Big data analytics
+  * ✅ Streaming workloads
+  * ✅ Log processing
+  * ✅ Large sequential workloads
+
+**Exam Keyword:** "Big data, large sequential I/O" → **st1**
+
+---
+
+## 4️⃣ **Cold HDD (sc1)**
+
+* **Performance:**
+
+  * Lowest cost
+  * Max throughput: \~250 MB/s
+* **Use When:**
+
+  * ✅ Infrequently accessed data
+  * ✅ Lowest-cost storage needed
+  * ✅ Archive data you still want online
+
+**Exam Keyword:** "Lowest cost magnetic, rarely accessed" → **sc1**
+
+---
+
+## 🧠 **Memory Hook**
+
+Think of **EBS Volumes as Ladders of Performance vs Cost:**
+
+🔼 **Cost ↑, Performance ↑**
+`sc1 (cold) → st1 (throughput) → gp3 (general) → io2 (high IOPS)`
+
+---
+
+## ⚠️ **Common Pitfalls / Exam Gotchas**
+
+* ❌ **gp2 performance scales with size** → gp3 allows you to decouple size and performance.
+* ❌ HDD volumes (st1, sc1) **cannot be boot volumes**.
+* ❌ Multi-Attach is **only supported for io1/io2**, not gp3.
+* ❌ Choose io2 for **business-critical DBs** (better durability than io1).
+
+---
+
+Here’s a **clear, exam-ready comparison table** for all EBS volume types ✅
+
+---
+
+# 📌 **Amazon EBS Volume Types – Comparison Table**
+
+| **Type**                             | **IOPS (Max)**                       | **Throughput (Max)** | **Cost**           | **Boot Volume?** | **Best Use Case**                                            | **Exam Keyword**                    |
+| ------------------------------------ | ------------------------------------ | -------------------- | ------------------ | ---------------- | ------------------------------------------------------------ | ----------------------------------- |
+| **gp3 (General Purpose SSD)**        | 16,000                               | 1,000 MB/s           | 💲💲 (balanced)    | ✅ Yes            | General workloads, boot volumes, dev/test, small DBs         | "Default choice", "General-purpose" |
+| **gp2 (Legacy)**                     | 16,000 (scales with size: 3 IOPS/GB) | 250 MB/s             | 💲💲               | ✅ Yes            | Same as gp3 (but gp3 preferred now)                          | "Older generation"                  |
+| **io1 / io2 (Provisioned IOPS SSD)** | 64,000 (single volume)               | 1,000 MB/s           | 💲💲💲💲 (highest) | ✅ Yes            | Mission-critical DBs, OLTP apps, latency-sensitive workloads | "High IOPS", "Multi-Attach"         |
+| **st1 (Throughput Optimized HDD)**   | \~500 IOPS (burst)                   | 500 MB/s             | 💲 (low)           | ❌ No             | Big data, streaming, logs, large sequential I/O              | "Big data analytics", "Streaming"   |
+| **sc1 (Cold HDD)**                   | \~250 IOPS (burst)                   | 250 MB/s             | 💲 (lowest)        | ❌ No             | Archival, rarely accessed data, lowest cost storage          | "Lowest cost magnetic storage"      |
+
+---
+
+## 🧠 **Memory Hook**
+
+* **gp3 = Go-to volume (Default)**
+* **io2 = IOPS King (Databases)**
+* **st1 = Streaming / Sequential**
+* **sc1 = Cold Storage**
+
+---
+
+## 📝 **Exam Quick Hits**
+
+* ❌ **HDD volumes (st1, sc1) cannot be boot volumes.**
+* ✅ **io1/io2 only** support Multi-Attach.
+* ✅ Use **gp3** unless you have a clear need for higher IOPS/throughput or lower cost for sequential data.
+* ✅ Choose **io2** for **critical DBs** because of its higher durability (99.999%).
+
+---
+
+
+
