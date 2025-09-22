@@ -546,3 +546,8 @@ Here’s a **clear, exam-ready comparison table** for all EBS volume types ✅
 
 <img width="2658" height="1948" alt="image" src="https://github.com/user-attachments/assets/6265c1f5-8d02-4f69-8d3e-60fc601142a6" />
 
+**AWS EBS Volume Types**
+
+<img width="1972" height="1194" alt="image" src="https://github.com/user-attachments/assets/5ccaca49-0042-4f00-b069-d6e19004789c" />
+
+
