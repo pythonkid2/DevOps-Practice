@@ -542,3 +542,7 @@ Here’s a **clear, exam-ready comparison table** for all EBS volume types ✅
 
 
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/ddfc88f9-4b3a-471b-bc89-7721d73250e2" />
+
+<img width="2658" height="1948" alt="image" src="https://github.com/user-attachments/assets/6265c1f5-8d02-4f69-8d3e-60fc601142a6" />
+
