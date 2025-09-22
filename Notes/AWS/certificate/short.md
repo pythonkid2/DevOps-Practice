@@ -551,3 +551,42 @@ Here’s a **clear, exam-ready comparison table** for all EBS volume types ✅
 <img width="1972" height="1194" alt="image" src="https://github.com/user-attachments/assets/5ccaca49-0042-4f00-b069-d6e19004789c" />
 
 
+Ah, good catch! 💡
+Let’s add **“When to Use”** so you know which scenario fits which routing policy — this is VERY common in exams.
+
+---
+
+# 📑 **Route 53 Routing Policies – When to Use**
+
+| **Policy**          | **When to Use (Scenario)**                                                                                           | **Key Notes / Exam Keywords**                            |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **Failover** 🛑     | When you need **Active-Passive High Availability**. Route to secondary only if primary fails.                        | 📌 *Primary-Secondary*, Health Check required, **DR/HA** |
+| **Simple** 🔑       | When you have **a single resource** (no special routing) or just want to return multiple values randomly.            | 📌 *Default*, No health check by default                 |
+| **Weighted** ⚖️     | When you want to **split traffic by percentage** — A/B testing, gradual migration, canary deployment.                | 📌 *Traffic Split, Controlled Migration*                 |
+| **Latency-based** ⚡ | When you want users to connect to **lowest latency endpoint** (multi-region setups).                                 | 📌 *Low Latency, Geo-Spread Workload*                    |
+| **Geolocation** 🌍  | When you want to route based on **user’s country/continent** for compliance, language, or pricing reasons.           | 📌 *Country-Based Routing*                               |
+| **Geoproximity** 📍 | When you want to route based on **geographic location AND bias traffic toward a specific region** (shift % traffic). | 📌 *Traffic Bias, Gradual Shift*                         |
+| **Multi-Value** ✅   | When you want **DNS-based load balancing** — return multiple healthy records (simple + health checks).               | 📌 *DNS Load Balancing, Health Check*                    |
+
+---
+
+# 🎯 **Failover – When to Use**
+
+* ✅ **Critical application** where downtime is not acceptable
+* ✅ You have a **primary active site** and a **backup DR site** (warm/cold standby)
+* ✅ You want **automatic switch** to backup on health check failure
+
+---
+
+# 📝 **Exam Quick Tip**
+
+> ❗ **Remember:**
+>
+> * *Failover → Active/Passive HA*
+> * *Weighted → % Traffic Split (Testing)*
+> * *Latency → Performance*
+> * *Geo/Geoproximity → Location-based control*
+> * *Multi-Value → DNS-level LB + Health Check*
+
+---
+
