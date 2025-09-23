@@ -590,3 +590,113 @@ Let’s add **“When to Use”** so you know which scenario fits which routing 
 
 ---
 
+Great question! 👌
+If you need to connect **on-premises network ↔ AWS**, Site-to-Site VPN is just **one option**.
+Here’s a **complete list of connectivity options** with **when to use which** — very important for exam questions.
+
+---
+
+# 🌐 **AWS On-Prem to VPC Connectivity Options**
+
+| **Option**                           | **What It Is**                                                              | **When to Use (Best Fit)**                                                                                   | **Pros**                                           | **Cons**                                                               |
+| ------------------------------------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- | ---------------------------------------------------------------------- |
+| **Site-to-Site VPN** 🔑              | IPSec VPN over the internet (VGW + CGW).                                    | Quick, low-cost, encrypted connection between on-prem and AWS. Good for small/medium workloads, testing, DR. | Fast to deploy, 2 tunnels for HA, managed by AWS.  | Internet-dependent (latency + jitter), bandwidth not guaranteed.       |
+| **AWS Direct Connect (DX)** ⚡        | Dedicated physical fiber connection to AWS (1 Gbps / 10 Gbps link).         | High-throughput, low-latency workloads (e.g. financial apps, large data transfer).                           | Consistent network, private, reliable, SLAs.       | Setup time (weeks), higher cost.                                       |
+| **Direct Connect + VPN (Hybrid)** 🔀 | DX for primary traffic + VPN as backup (failover).                          | Mission-critical workloads needing redundancy + compliance.                                                  | Combines reliability of DX with HA of VPN.         | Higher cost + more configuration.                                      |
+| **Transit Gateway + VPN/DX** 🛜      | Hub-and-spoke network connecting multiple VPCs + on-prem sites.             | Large-scale multi-VPC + hybrid cloud architecture.                                                           | Centralized routing, scales to thousands of VPCs.  | More expensive than a single VGW.                                      |
+| **VPC Peering** 🔗                   | Private connection between two VPCs (same/different accounts/regions).      | Connect VPCs when only a few are needed, no transitive routing needed.                                       | Simple, no bandwidth bottleneck, no VPN.           | No transitive routing (must peer each pair), no central mgmt.          |
+| **AWS PrivateLink** 🔒               | Private connectivity to AWS services or third-party SaaS over AWS backbone. | Secure access to services without exposing them to the internet.                                             | No public IP, highly secure.                       | Only works for NLBs / interface endpoints (not full VPC connectivity). |
+| **Client VPN** 👤                    | OpenVPN-based solution for individual users (not whole site).               | Secure access for remote workforce (laptops, WFH).                                                           | Managed, scales automatically, no hardware needed. | Not for site-to-site; per-user cost model.                             |
+
+---
+
+# 🎯 **When to Choose What (Exam Perspective)**
+
+* ✅ **Low-cost, quick setup → Site-to-Site VPN**
+* ✅ **Guaranteed bandwidth, low latency → Direct Connect**
+* ✅ **Mission-critical HA → Direct Connect + VPN failover**
+* ✅ **Multi-VPC hybrid architecture → Transit Gateway + VPN/DX**
+* ✅ **Just connecting 2 VPCs → VPC Peering**
+* ✅ **Access to specific service privately → PrivateLink**
+* ✅ **Remote developers → Client VPN**
+
+---
+
+📌 **Exam Keyword Associations**
+
+* **VPN → IPSec, quick setup, internet-based**
+* **DX → Consistent, high bandwidth**
+* **DX + VPN → Redundancy**
+* **Transit Gateway → Scales, hub-and-spoke**
+* **Peering → Simple 1:1 VPC connectivity**
+* **PrivateLink → Interface endpoint, no peering**
+* **Client VPN → Remote user access**
+
+---
+
+Would you like me to make a **side-by-side decision matrix** (flowchart style) that says "If you need X → use Y" for all these options (super helpful for last-minute exam revision)?
+
+
+Got it ✅ — let's make a **clear, exam-focused short note** for **AWS Site-to-Site VPN** (with What / Why / How / Pitfalls / Exam Tips).
+
+---
+
+# 🧾 **AWS Site-to-Site VPN – Exam Notes**
+
+## 1️⃣ **What**
+
+AWS **Site-to-Site VPN** creates a **secure, encrypted IPsec tunnel** between your **on-premises network** (or another cloud) and your **Amazon VPC**.
+It allows your on-prem servers to communicate privately with AWS resources as if they were in the same network.
+
+---
+
+## 2️⃣ **Why (Use Cases)**
+
+✅ Extend your data center or office network securely into AWS
+✅ Hybrid cloud architecture (on-prem + VPC)
+✅ Backup/DR connectivity (with or without Direct Connect)
+✅ Low-cost, quick setup compared to Direct Connect
+✅ Temporary secure connection for migration
+
+---
+
+## 3️⃣ **How (Setup)**
+
+1. **Create a Virtual Private Gateway (VGW)**
+
+   * Attach it to your VPC (acts as AWS end of VPN).
+2. **Create a Customer Gateway (CGW)**
+
+   * Represents your on-prem router / firewall (public IP + ASN if BGP).
+3. **Create the Site-to-Site VPN connection**
+
+   * Select VGW + CGW, enable **static routing** or **BGP (dynamic routing)**.
+4. **Download configuration**
+
+   * Apply to your on-prem router/firewall (supports most vendors: Cisco, Juniper, Fortinet).
+5. **Test connectivity**
+
+   * Optionally create a **VPN CloudWatch alarm** for tunnel status.
+
+---
+
+## 4️⃣ **Common Pitfalls / Limits**
+
+⚠️ **Single VGW limit** per VPC (use Transit Gateway for many VPNs).
+⚠️ **2 VPN tunnels per connection** (for redundancy, always configure both).
+⚠️ Bandwidth limited by internet and VPN encryption overhead (\~1.25 Gbps per tunnel, not guaranteed).
+⚠️ Latency depends on public internet — not suitable for low-latency workloads.
+⚠️ Customer router must support IPsec & IKEv1/IKEv2.
+
+---
+
+## 5️⃣ **Exam Tips / Keywords**
+
+📌 **VGW** = AWS side endpoint
+📌 **CGW** = On-prem side endpoint
+📌 **BGP** = Recommended (dynamic routes, failover handled automatically)
+📌 **2 tunnels** = HA by default
+📌 **Transit Gateway + VPN** = Scale to many VPCs
+📌 Often paired with **Direct Connect** for hybrid cloud redundancy (DX + VPN → **AWS Direct Connect + VPN failover** pattern)
+
+---
