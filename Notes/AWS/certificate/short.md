@@ -700,3 +700,10 @@ It allows your on-prem servers to communicate privately with AWS resources as if
 📌 Often paired with **Direct Connect** for hybrid cloud redundancy (DX + VPN → **AWS Direct Connect + VPN failover** pattern)
 
 ---
+<img width="1506" height="1270" alt="image" src="https://github.com/user-attachments/assets/d69d5d3c-4ba9-4904-baa0-f29b76ba69db" />
+
+<img width="1200" height="661" alt="image" src="https://github.com/user-attachments/assets/c6756b91-a3be-43ff-a2d6-683fc2997ade" />
+
+<img width="1087" height="411" alt="image" src="https://github.com/user-attachments/assets/58683d09-a6f0-4cbe-9b31-53ded81e6abd" />
+
+
