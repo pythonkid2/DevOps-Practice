@@ -375,6 +375,8 @@ Here’s the full guide:
 | **S3 Reduced Redundancy (Deprecated)**               | ❌ Do **not** use unless for very specific legacy cases                                              | AWS recommends Standard instead                                                         |
 
 ---
+<img width="2294" height="1108" alt="image" src="https://github.com/user-attachments/assets/fda6cd02-3b3c-4df3-840a-eebfab5386ec" />
+
 
 ## 🧠 **Exam Tips & Keywords**
 
@@ -609,6 +611,9 @@ Here’s a **complete list of connectivity options** with **when to use which** 
 | **Client VPN** 👤                    | OpenVPN-based solution for individual users (not whole site).               | Secure access for remote workforce (laptops, WFH).                                                           | Managed, scales automatically, no hardware needed. | Not for site-to-site; per-user cost model.                             |
 
 ---
+
+<img width="2182" height="1720" alt="image" src="https://github.com/user-attachments/assets/1d9aec35-2dd5-4941-88aa-d28ee520ae78" />
+
 
 # 🎯 **When to Choose What (Exam Perspective)**
 
@@ -866,3 +871,4 @@ So when your AWS app queries `db.legacy.local`:
 
 ---
 
+<img width="1366" height="930" alt="image" src="https://github.com/user-attachments/assets/03fd545a-4c59-4f41-8f72-d6826080bfaa" />
