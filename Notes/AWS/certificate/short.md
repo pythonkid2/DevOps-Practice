@@ -706,4 +706,163 @@ It allows your on-prem servers to communicate privately with AWS resources as if
 
 <img width="1087" height="411" alt="image" src="https://github.com/user-attachments/assets/58683d09-a6f0-4cbe-9b31-53ded81e6abd" />
 
+Good question 👌 let’s clear this up from an **exam perspective**.
+
+---
+
+# 📦 **Amazon S3 Storage Classes – Minimum Retention Periods**
+
+Not all S3 classes have a minimum retention/charge duration. Here’s the breakdown:
+
+---
+
+### ✅ **No Minimum Retention Period**
+
+* **S3 Standard**
+* **S3 Intelligent-Tiering (frequent access tier)**
+* **S3 Glacier Instant Retrieval**
+  👉 You pay only for what you use, no penalties for deleting objects early.
+
+---
+
+### ⏱️ **Minimum Retention / Charge Period Applies**
+
+* **S3 Standard-IA (Infrequent Access)** → **30 days**
+* **S3 One Zone-IA** → **30 days**
+* **S3 Intelligent-Tiering (infrequent + archive tiers)** → **30 days**
+* **S3 Glacier Flexible Retrieval** → **90 days**
+* **S3 Glacier Deep Archive** → **180 days**
+
+---
+
+### 📌 **Exam Tip**
+
+* If you see **"delete object before X days → still charged"**, that’s **IA or Glacier classes**.
+* **S3 Standard has *no* minimum retention period.**
+
+---
+
+✅ So, to your question:
+**No, S3 Standard does not have a minimum retention period.**
+
+---
+Perfect 👍 here’s your **exam-focused S3 Storage Classes Cheat Sheet** – with **retention, retrieval, and when to use what**.
+
+---
+
+# 📦 **Amazon S3 Storage Classes – Exam Summary**
+
+| **Storage Class**                                       | **Min Retention / Charge** | **Retrieval Time**                                  | **Use Case**                                  | **Exam Keywords**                                 |
+| ------------------------------------------------------- | -------------------------- | --------------------------------------------------- | --------------------------------------------- | ------------------------------------------------- |
+| **S3 Standard**                                         | ❌ None                     | Immediate                                           | Hot data, frequently accessed                 | “Mission-critical, low latency”                   |
+| **S3 Intelligent-Tiering (Frequent)**                   | ❌ None                     | Immediate                                           | Data with unknown/variable access             | “Unknown access patterns”                         |
+| **S3 Intelligent-Tiering (Infrequent + Archive Tiers)** | ✅ 30 days                  | Immediate (IA), minutes to hours (Archive)          | Optimized cost + auto tiering                 | “Automatic cost savings, unpredictable workloads” |
+| **S3 Standard-IA**                                      | ✅ 30 days                  | Immediate                                           | Long-lived, infrequently accessed, resilient  | “Lower cost, but resilient across AZs”            |
+| **S3 One Zone-IA**                                      | ✅ 30 days                  | Immediate                                           | Infrequent access, re-creatable, non-critical | “Single AZ, 20% cheaper than Standard-IA”         |
+| **S3 Glacier Instant Retrieval**                        | ❌ None                     | Milliseconds                                        | Rarely accessed, needs ms retrieval           | “Archive but instant access”                      |
+| **S3 Glacier Flexible Retrieval**                       | ✅ 90 days                  | Expedited: 1–5 min; Standard: 3–5 hr; Bulk: 5–12 hr | Archive, occasionally accessed                | “Formerly Glacier, cheap, flexible retrieval”     |
+| **S3 Glacier Deep Archive**                             | ✅ 180 days                 | Standard: 12 hr; Bulk: 48 hr                        | Regulatory/long-term archival (7–10 years)    | “Cheapest storage, compliance, long-term backup”  |
+
+---
+
+# 📝 **Exam Shortcuts**
+
+* **No min retention** → Standard, Intelligent-Tiering (frequent), Glacier Instant.
+* **30-day min** → Standard-IA, One Zone-IA, Intelligent-Tiering (IA tiers).
+* **90-day min** → Glacier Flexible Retrieval.
+* **180-day min** → Glacier Deep Archive.
+* **Single AZ storage** → One Zone-IA (NOT Standard).
+* **Lowest latency archive** → Glacier Instant Retrieval.
+* **Cheapest archival** → Glacier Deep Archive.
+
+---
+
+✅ This is the **exact pattern AWS exam questions use**:
+
+* “Object deleted after 10 days but still charged” → IA (30 days).
+* “Cheapest, long-term compliance storage” → Deep Archive (180 days).
+* “Archive but need milliseconds retrieval” → Glacier Instant Retrieval.
+
+---
+
+
+<img width="1870" height="1266" alt="image" src="https://github.com/user-attachments/assets/4c5e2dac-9855-47b2-93e0-200e7df752f3" />
+ - There are no S3 data transfer charges when data is transferred in from the internet. Also with S3TA, you pay only for transfers that are accelerated.
+
+Great question 👌 This one trips up many people in **AWS Solution Architect exams**. Let’s carefully break it down.
+
+---
+
+## **The Scenario**
+
+* You have an **AWS VPC** (with your web portal).
+* You have **on-premises legacy systems** connected via **Site-to-Site VPN**.
+* You want **apps inside the VPC** to resolve **private DNS names** hosted **on-premises**.
+* You are using **Amazon Route 53 as DNS**.
+
+---
+
+## **How DNS Normally Works**
+
+* In AWS, **EC2 instances in a VPC** by default use the **AmazonProvidedDNS** resolver (inside VPC).
+* But that resolver **only knows about AWS-hosted domains** (public + Route 53 Private Hosted Zones).
+* It **cannot resolve on-premises DNS records** (like `db.legacy.local`).
+
+So we need a way to forward DNS queries from AWS → On-premises DNS servers.
+
+---
+
+## **Route 53 Resolver**
+
+Think of it as a **DNS bridge** between AWS and on-prem DNS.
+It has two types of endpoints:
+
+1. **Outbound Endpoint**
+
+   * Allows **DNS queries from VPC → On-prem DNS servers**.
+   * You set **forwarding rules**:
+
+     * Example: “If domain ends with `.corp.local`, send query to on-prem DNS server (IP 10.0.0.5)”.
+   * This is what we need in your case.
+
+2. **Inbound Endpoint**
+
+   * Allows **on-premises servers → Resolve AWS private DNS zones**.
+   * Used if your on-prem clients need to resolve AWS-hosted records.
+
+---
+
+## **Correct Answer Explanation**
+
+> **Create a Route 53 Resolver outbound endpoint. Define a forwarding rule that routes DNS queries for on-premises domains to the on-premises DNS server. Associate the rule with the VPC.**
+
+* Outbound endpoint = lets AWS VPC send queries **out** to on-prem.
+* Forwarding rule = tells AWS resolver *which domains* should go to on-prem DNS.
+* Association = attach the rule to your VPC so EC2s in that VPC benefit.
+
+So when your AWS app queries `db.legacy.local`:
+
+1. EC2 asks the VPC DNS.
+2. Rule matches → forwards to outbound endpoint → sends to on-prem DNS via VPN.
+3. On-prem DNS replies → back through the VPN → outbound endpoint → to your EC2.
+
+✅ Secure (because it goes through VPN).
+✅ Correct way to integrate AWS + on-prem DNS.
+
+---
+
+## **Why Other Options Are Wrong**
+
+* **Inbound endpoint**: used when *on-prem* needs to resolve AWS, not the other way around.
+* **Hybrid connectivity gateway**: not an AWS service for DNS.
+* **Private hosted zone**: would require duplicating your on-prem DNS records in AWS → not scalable and not authoritative.
+
+---
+
+📌 **Exam Tip**:
+
+* If **VPC → On-prem DNS** → **Outbound Endpoint**.
+* If **On-prem → VPC DNS** → **Inbound Endpoint**.
+
+---
 
