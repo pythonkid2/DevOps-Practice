@@ -991,4 +991,10 @@ Short answer: **No—DataSync isn’t only for NFS→EFS.** It’s the **managed
 
 <img width="800" height="658" alt="image" src="https://github.com/user-attachments/assets/920d676d-db31-4d70-b4f0-17d63affd220" />
 
+<img width="2058" height="1462" alt="image" src="https://github.com/user-attachments/assets/d6655f66-e35a-4fa5-88aa-b953836aa826" />
+Control tower
+<img width="2370" height="1316" alt="image" src="https://github.com/user-attachments/assets/0630eb55-ad6d-4b4a-91b4-c75d2ecc6f26" />
+
+
+
 
