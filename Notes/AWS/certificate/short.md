@@ -1,4 +1,69 @@
 
+---
+
+## 🧭 AWS Solutions Architect – Quick Revision Notes (Short Notes)
+
+| **Topic**                             | **What it is**                             | **Why it’s used**                              | **Exam Keywords / Triggers**                                                      | **Related / Compare With**               |
+| ------------------------------------- | ------------------------------------------ | ---------------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------- |
+| **VPC (Virtual Private Cloud)**       | Logical isolation of AWS network           | To control networking (CIDR, routing, subnets) | “isolation”, “private/public subnets”, “CIDR overlap”, “NACL vs SG”               | Subnets, Route Tables, NACL, SG, Peering |
+| **Subnet Types**                      | Public (IGW route), Private (NAT route)    | To separate traffic & control access           | “public-facing”, “NAT”, “IGW”, “private backend”                                  | NAT Gateway, IGW                         |
+| **Route Table**                       | Routing logic for subnet traffic           | To direct traffic to destinations              | “destination CIDR”, “target”, “local route”, “blackhole”                          | VPC Peering, TGW, IGW                    |
+| **NACL (Network ACL)**                | Stateless layer for subnet                 | Control inbound/outbound rules                 | “stateless”, “rule order”, “deny by default”                                      | Security Group                           |
+| **Security Group**                    | Stateful firewall at ENI level             | Allow specific inbound/outbound                | “stateful”, “instance level”, “default deny inbound”                              | NACL                                     |
+| **VPC Peering**                       | Connect 2 VPCs privately                   | Cross-VPC communication                        | “non-transitive”, “CIDR overlap issue”, “same/diff region”                        | TGW, VPN                                 |
+| **Transit Gateway (TGW)**             | Central hub for VPCs, VPNs                 | Scalable multi-VPC routing                     | “hub-and-spoke”, “transitive routing”, “cross-account”                            | Peering, PrivateLink                     |
+| **PrivateLink / VPC Endpoint**        | Access AWS services privately              | Avoid IGW/public internet                      | “Interface endpoint”, “Gateway endpoint”, “S3, DynamoDB”, “no route table change” | NAT Gateway, TGW                         |
+| **NAT Gateway / NAT Instance**        | Outbound internet for private subnets      | Allow updates/downloads                        | “EIP”, “one-way traffic”, “no inbound”                                            | IGW, PrivateLink                         |
+| **S3**                                | Object storage                             | Backup, static websites, data lake             | “Durability 11 9s”, “region-level”, “versioning”, “lifecycle”                     | EBS, EFS, Glacier                        |
+| **S3 Storage Classes**                | Standard, IA, 1Z-IA, Glacier, Deep Archive | Cost optimization                              | “access frequency”, “retrieval time”, “min duration”                              | Lifecycle rules                          |
+| **S3 Versioning**                     | Keep old versions                          | Data protection                                | “delete marker”, “MFA delete”                                                     | Lifecycle, Replication                   |
+| **S3 Replication**                    | Cross-region or same region copy           | DR / Compliance                                | “CRR”, “SRR”, “versioning required”                                               | EventBridge, Lambda                      |
+| **S3 Object Lock**                    | WORM (Write Once Read Many)                | Compliance (SOC, HIPAA)                        | “Governance mode”, “Compliance mode”, “Legal hold”                                | Glacier Vault Lock                       |
+| **S3 Transfer Acceleration**          | Upload via edge locations                  | Faster uploads globally                        | “edge-optimized”, “CloudFront backbone”                                           | Direct Connect, DataSync                 |
+| **AWS Snow Family**                   | Physical data transfer devices             | Offline large data migration                   | “Snowcone (TBs)”, “Snowball (100TBs)”, “Snowmobile (Exabytes)”                    | DataSync, Transfer Acceleration          |
+| **AWS DataSync**                      | Online sync from on-prem to AWS            | Automated transfer                             | “NFS/SMB”, “over internet/VPN”, “schedule sync”                                   | Snowball, DMS                            |
+| **CloudFront**                        | CDN for global caching                     | Reduce latency                                 | “edge locations”, “TTL”, “origin access control”, “signed URL”                    | Global Accelerator                       |
+| **Global Accelerator**                | TCP/UDP accelerator using Anycast          | Improve global performance                     | “static IP”, “Anycast”, “health checks”, “multi-region”                           | CloudFront                               |
+| **ELB (Elastic Load Balancer)**       | Distribute traffic                         | High availability                              | “ALB (Layer 7)”, “NLB (Layer 4)”, “CLB (legacy)”                                  | Route 53, ASG                            |
+| **Auto Scaling Group (ASG)**          | Scale EC2s automatically                   | Elasticity, fault tolerance                    | “desired capacity”, “cooldown”, “lifecycle hooks”                                 | ECS, Lambda concurrency                  |
+| **EC2 Launch Template**               | EC2 configuration template                 | Version control, automation                    | “mixed instances policy”, “spot + on-demand”                                      | ASG                                      |
+| **EBS (Elastic Block Store)**         | Block-level storage for EC2                | Persistent disks                               | “gp3”, “io1/io2”, “snapshot”, “AZ-bound”                                          | EFS, S3                                  |
+| **EFS (Elastic File System)**         | Shared file storage                        | Multi-AZ, scalable                             | “POSIX”, “mount targets”, “NFSv4”, “burstable throughput”                         | FSx, S3                                  |
+| **FSx**                               | Managed file systems                       | SMB/NFS for Windows/Lustre                     | “Windows FSx”, “Lustre for HPC”                                                   | EFS                                      |
+| **RDS (Relational DB Service)**       | Managed SQL DB                             | Multi-AZ failover                              | “backup retention”, “read replica”, “storage autoscaling”                         | Aurora, DynamoDB                         |
+| **Aurora**                            | Cloud-native RDS                           | High perf, 6-way storage                       | “Cluster endpoint”, “Reader endpoint”, “serverless v2”                            | RDS MySQL/PostgreSQL                     |
+| **DynamoDB**                          | NoSQL key-value DB                         | Low-latency at scale                           | “RCU/WCU”, “DAX”, “streams”, “TTL”, “on-demand vs provisioned”                    | Aurora, S3                               |
+| **Elasticache**                       | In-memory cache                            | Speed up reads                                 | “Redis vs Memcached”, “cluster mode”                                              | DAX, CloudFront                          |
+| **Lambda**                            | Serverless compute                         | Event-driven workloads                         | “event source”, “timeout”, “cold start”, “concurrency limit”                      | ECS Fargate                              |
+| **ECS (Elastic Container Service)**   | Container orchestration                    | Run containers easily                          | “EC2 or Fargate”, “task definition”, “service autoscaling”                        | EKS, Lambda                              |
+| **EKS (Elastic Kubernetes Service)**  | Managed Kubernetes                         | Port existing workloads                        | “control plane managed”, “IAM roles for SA”                                       | ECS                                      |
+| **SNS (Simple Notification Service)** | Pub/Sub messaging                          | Event-driven alerts                            | “topic”, “subscription”, “fan-out”, “SQS integration”                             | SQS, EventBridge                         |
+| **SQS (Simple Queue Service)**        | Message queue                              | Decouple components                            | “visibility timeout”, “DLQ”, “FIFO ordering”                                      | SNS, Kinesis                             |
+| **EventBridge**                       | Event bus for AWS services                 | Rule-based routing                             | “schema registry”, “cross-account bus”                                            | SNS, Step Functions                      |
+| **Step Functions**                    | Workflow orchestration                     | Coordinate microservices                       | “state machine”, “retry policy”, “wait”, “parallel”                               | SWF, Lambda                              |
+| **CloudWatch**                        | Monitoring & logs                          | Observability                                  | “metrics”, “alarms”, “logs insight”, “dashboard”                                  | X-Ray, CloudTrail                        |
+| **CloudTrail**                        | API call logging                           | Governance/audit                               | “who did what”, “event history”, “management vs data events”                      | Config                                   |
+| **Config**                            | Resource compliance                        | Detect drift                                   | “rules”, “recorders”, “conformance packs”                                         | CloudTrail                               |
+| **IAM**                               | Access control                             | Secure AWS resources                           | “least privilege”, “policy evaluation logic”, “STS”, “assume role”                | Organizations, SCP                       |
+| **Organizations & SCP**               | Multi-account mgmt                         | Central governance                             | “SCPs”, “OU”, “consolidated billing”                                              | IAM                                      |
+| **KMS**                               | Encryption key mgmt                        | Data security                                  | “CMK”, “AWS managed vs customer managed”, “envelope encryption”                   | S3 SSE, Secrets Manager                  |
+| **Secrets Manager**                   | Manage secrets rotation                    | Secure app secrets                             | “rotation lambda”, “cross-account”                                                | SSM Parameter Store                      |
+| **Parameter Store**                   | Config mgmt                                | App settings storage                           | “Standard/Advanced”, “no auto rotation”                                           | Secrets Manager                          |
+| **CloudFormation**                    | IaC (Infrastructure as Code)               | Repeatable provisioning                        | “stack”, “change set”, “drift detection”                                          | Terraform, CDK                           |
+| **Elastic Beanstalk**                 | PaaS for web apps                          | Simplified deployment                          | “environment”, “blue/green”, “managed scaling”                                    | ECS Fargate                              |
+| **Direct Connect**                    | Dedicated line to AWS                      | Low latency, private                           | “virtual interface”, “hybrid setup”                                               | VPN                                      |
+| **VPN (Site-to-Site)**                | Encrypted tunnel                           | Hybrid connectivity                            | “IPSec”, “VGW”, “customer gateway”                                                | DX, TGW                                  |
+| **Storage Gateway**                   | Hybrid storage (File, Volume, Tape)        | Integrate on-prem to AWS                       | “cached vs stored”, “tape gateway”                                                | DataSync                                 |
+| **WAF**                               | Web Application Firewall                   | Protect against L7 attacks                     | “OWASP”, “SQLi/XSS”, “rate-based rules”                                           | Shield, GuardDuty                        |
+| **Shield (Standard / Advanced)**      | DDoS protection                            | Protect ALB/CloudFront                         | “DDoS mitigation”, “24x7 support”                                                 | WAF                                      |
+| **GuardDuty**                         | Threat detection                           | ML-based alerts                                | “malicious IPs”, “findings”, “cross-account enable”                               | Inspector, Macie                         |
+| **Inspector**                         | Vulnerability scanning                     | EC2/ECR/Lambda CVEs                            | “CVE scan”, “CIS benchmark”                                                       | GuardDuty                                |
+| **Macie**                             | Sensitive data discovery                   | PII detection                                  | “S3 data classification”, “GDPR”                                                  | GuardDuty, KMS                           |
+
+---
+
+
+
 ## Amazon Guard duty 
 
 **GuardDuty = Continuous Threat Detection**
@@ -872,3 +937,11 @@ So when your AWS app queries `db.legacy.local`:
 ---
 
 <img width="1366" height="930" alt="image" src="https://github.com/user-attachments/assets/03fd545a-4c59-4f41-8f72-d6826080bfaa" />
+
+
+Differences between Dedicated Hosts and Dedicated Instances: 
+
+
+
+<img width="2182" height="1748" alt="image" src="https://github.com/user-attachments/assets/0a91f1db-da46-4601-88e7-f969ed47c4f3" />
+
