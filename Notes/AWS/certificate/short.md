@@ -998,3 +998,5 @@ Control tower
 
 
 
+Create and use a custom endpoint that targets the three high-capacity replicas: This is correct because Aurora custom endpoints allow you to define a subset of replicas for specific workloads. By creating a custom endpoint, the reporting queries can be automatically distributed across the three high-capacity replicas without involving the rest of the cluster.
+
