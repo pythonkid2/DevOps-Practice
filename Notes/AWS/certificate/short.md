@@ -945,3 +945,50 @@ Differences between Dedicated Hosts and Dedicated Instances:
 
 <img width="2182" height="1748" alt="image" src="https://github.com/user-attachments/assets/0a91f1db-da46-4601-88e7-f969ed47c4f3" />
 
+
+Short answer: **No—DataSync isn’t only for NFS→EFS.** It’s the **managed way to move/sync files at scale** between on-prem and AWS, and also **within AWS**.
+
+# DataSync — 60-sec Cheat Sheet
+
+**What it moves (sources/dests):**
+
+* **On-prem:** NFS, **SMB**, **HDFS**, S3-compatible object storage
+* **AWS:** **S3**, **EFS**, **FSx** (Windows/SMB, Lustre, OpenZFS, NetApp ONTAP)
+
+**Where it runs / network:**
+
+* Agent runs on-prem VM/host (or EC2); transfers **over Internet, VPN, or Direct Connect**; can use **VPC endpoints/PrivateLink** to keep traffic private.
+
+**Top use cases (beyond NFS→EFS):**
+
+* **NFS/SMB → S3** (backups, analytics landing zone)
+* **S3 ↔ FSx for Lustre** (HPC pipelines)
+* **SMB ↔ FSx for Windows** (lift-and-shift Windows shares)
+* **EFS ↔ EFS** (inter-Region/project migrations)
+* **S3 ↔ S3** (cross-account/Region bulk copy with verification)
+* **HDFS → S3** (off Hadoop → data lake)
+
+**Why choose it (exam keywords):**
+
+* **Managed, parallel, incremental**, **verification (checksum)**
+* **Schedules**, include/exclude filters, **bandwidth throttle**
+* Preserves file **metadata/permissions** (POSIX/SMB)
+* **CloudWatch metrics** + **task reports**; retries & resumable
+
+**When NOT to pick DataSync (pick these instead):**
+
+* **Databases** → **AWS DMS**
+* **Continuous low-latency hybrid access** → **Storage Gateway (File/Volume/Tape)**
+* **End-user SFTP/FTPS/FTP** → **AWS Transfer Family**
+* **S3→S3 ongoing object replication** → **S3 Replication**
+* **Streaming events/logs** → **Kinesis / MSK**
+* **Huge offline bulk (no network)** → **Snowball/Snowmobile**
+
+**Memory hook:** **“M3V-S”** → **M**igrate **M**illions of files, **M**anaged, **V**erified, **V**PC-private, **S**cheduled.
+
+<img width="2046" height="1480" alt="image" src="https://github.com/user-attachments/assets/bdc09d11-776d-4a41-bd70-b192a0973c36" />
+
+
+<img width="800" height="658" alt="image" src="https://github.com/user-attachments/assets/920d676d-db31-4d70-b4f0-17d63affd220" />
+
+
