@@ -428,6 +428,10 @@ Here’s the full guide:
 
 # 📌 **Amazon S3 Storage Classes – Exam Cheat Sheet**
 
+<img width="1399" height="572" alt="image" src="https://github.com/user-attachments/assets/259bc99c-a4e0-4fbe-a7f0-1eb7d15884c4" />
+
+
+
 | **S3 Class**                                         | **When to Use (Ideal Scenario)**                                                                    | **Key Points / Keywords**                                                               |
 | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **S3 Standard**                                      | 🔹 Frequently accessed data 🔹 Mission-critical workloads 🔹 Dynamic websites, content distribution | 🌟 **High durability (11 9s)**, low latency, multi-AZ, default choice                   |
