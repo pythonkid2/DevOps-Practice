@@ -1004,3 +1004,79 @@ Control tower
 
 Create and use a custom endpoint that targets the three high-capacity replicas: This is correct because Aurora custom endpoints allow you to define a subset of replicas for specific workloads. By creating a custom endpoint, the reporting queries can be automatically distributed across the three high-capacity replicas without involving the rest of the cluster.
 
+
+Here are the main **serverless** choices on AWS for web apps, with a clear comparison and “when to use what.”
+
+# Quick comparison
+
+| Service                                      | What it is                                                                                                   | Deploy from                                            | Scaling & cold start                                                                             | Pricing model (high-level)                                                     | Best for                                                                                             | Not ideal when                                                                      |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **AWS App Runner**                           | Fully managed **containers** for HTTP apps (no servers, no cluster)                                          | Source (Git) or container image (ECR/Docker Hub)       | Auto-scales by requests; optional **min instances** to avoid cold starts                         | vCPU/GB-RAM **per active instance-second** + requests + optional build minutes | Containerized web apps/APIs where you want “push and go” simplicity                                  | Non-HTTP protocols, complex daemon/background workers, or lots of custom networking |
+| **AWS Lambda + Amazon API Gateway (or ALB)** | Event-driven **functions** behind a managed HTTP endpoint                                                    | Zip/container image; infra as code is common (SAM/CDK) | Scales to **zero** and up fast; **cold starts** possible (mitigate with provisioned concurrency) | **Per request + GB-seconds** compute                                           | Spiky/low traffic APIs, microservices, webhooks, backend jobs ≤15 min                                | Long-lived connections, heavy CPU/memory, workflows >15 min, large binaries         |
+| **Amazon ECS on Fargate**                    | Serverless **container** runtime (no EC2). You still define tasks/services, LB, etc.                         | Container image (ECR)                                  | Scale by task count; startup in minutes; no “cold start,” but you pay while tasks run            | vCPU/GB-RAM **per running task-second** + LB/data transfer                     | More control: sidecars, custom networking, private subnets, non-HTTP protocols, queue workers        | If you want maximum simplicity and don’t want to think about tasks/services/LB      |
+| **AWS Amplify Hosting**                      | Git-connected hosting with CI/CD for **front-ends** (SPA/SSR/ISR). Integrates with Amplify backend           | Repo (GitHub/GitLab/CodeCommit)                        | Global at edge (CloudFront); static has no cold start; SSR runs on demand                        | Build minutes + storage + data transfer + SSR/ISR invocations                  | Front-end teams shipping React/Next/Vue sites quickly; “full-stack” when paired with Amplify backend | Generic containerized backends or custom protocols                                  |
+| **Amazon S3 + CloudFront**                   | Static site hosting at the edge (HTML/CSS/JS); optional **Lambda@Edge/CloudFront Functions** for light logic | Static assets build                                    | Instantly scalable; no cold start for static                                                     | S3 storage + CloudFront requests/transfer                                      | Pure static sites & SPAs (API lives elsewhere), marketing docs, docs portals                         | Server-side rendering, dynamic server logic (beyond light edge transforms)          |
+| **AWS AppSync (GraphQL)**                    | Managed **GraphQL** API (subscriptions, caching); integrates with Lambda/DynamoDB                            | Schema-first; resolvers to data sources                | Scales automatically                                                                             | Requests + features (caching, real-time)                                       | GraphQL backends, real-time apps, mobile/web clients needing efficient data fetch                    | Traditional REST or containerized web servers                                       |
+
+> Note: **Elastic Beanstalk** and **Lightsail** are *not* serverless—helpful abstractions, but you still pay for provisioned instances. You asked for serverless, so I’ve left them out of the main picks.
+
+---
+
+# When to use what (practical guide)
+
+* **“I have a containerized web API and want zero infra management.”**
+  → **AWS App Runner.** Easiest route for HTTP apps in a container, autoscaling + simple pricing.
+
+* **“My traffic is spiky/low and my endpoints are short-lived logic.”**
+  → **Lambda + API Gateway.** Cheapest at low volume, instant scale to zero, minimal ops.
+
+* **“I need containers + custom networking/sidecars/queues or non-HTTP protocols.”**
+  → **ECS on Fargate.** Still serverless compute, but with full container control.
+
+* **“I’m deploying a React/Next/Vue front-end from Git with previews and CI built-in.”**
+  → **Amplify Hosting.** Superb DX for front-end teams; pair with Amplify backend or your APIs.
+
+* **“It’s a static SPA or marketing site; I just need it crazy fast worldwide.”**
+  → **S3 + CloudFront** (optionally **CloudFront Functions/Lambda@Edge** for headers/rewrites/AB tests).
+
+* **“Clients want GraphQL with real-time updates.”**
+  → **AppSync** (+ Lambda/DynamoDB) to stay fully serverless end-to-end.
+
+---
+
+# A simple decision path
+
+1. **Is it static only?**
+   → **Yes** → **S3 + CloudFront** (or **Amplify Hosting** if you want Git-based CI/preview).
+   → **No** (needs server runtime) → continue.
+
+2. **Do you already have a container image / want a web server feel?**
+   → **Yes** → Start with **App Runner** (simplest).
+   → Need non-HTTP protocols, sidecars, or deep VPC control? → **ECS on Fargate**.
+   → **No** → continue.
+
+3. **Is your logic short-lived/stateless and fits in ≤15 minutes per request?**
+   → **Yes** → **Lambda + API Gateway** (use provisioned concurrency if latency sensitive).
+   → **No** → Prefer **App Runner** (containers), or **Fargate** for advanced needs.
+
+---
+
+# Cost and performance gotchas (quick tips)
+
+* **Cold starts**: Lambda has them; mitigate with **provisioned concurrency**. App Runner avoids them with **min instance** set > 0 (you pay for that baseline).
+* **Throughput**: Lambda scales fastest per-request; App Runner/Fargate scale by instances/tasks (warm-up matters).
+* **Networking**: Private VPC access is easier with App Runner and Fargate. Lambda VPC is fine but can add init overhead if not tuned.
+* **Binary/large deps**: Big runtimes and heavy ML libs are usually smoother in **containers** (App Runner/Fargate) than in Lambda.
+* **Background/queue workers**: Prefer **Fargate** (long-running consumers) or **Lambda** (event-driven, short jobs). App Runner is best for HTTP services, not queue daemons.
+
+---
+
+## TL;DR recommendations
+
+* **Most web apps/APIs, minimal ops** → **AWS App Runner**
+* **Ultra-cheap, spiky traffic, function-style endpoints** → **Lambda + API Gateway**
+* **Container control/custom networking/sidecars** → **ECS on Fargate**
+* **Front-end–centric teams** → **Amplify Hosting** (with your API of choice)
+* **Pure static** → **S3 + CloudFront**
+
+
