@@ -1080,3 +1080,4 @@ Here are the main **serverless** choices on AWS for web apps, with a clear compa
 * **Pure static** → **S3 + CloudFront**
 
 
+<img width="1873" height="941" alt="image" src="https://github.com/user-attachments/assets/9d049d3e-4c63-4e93-9305-754c11d05117" />
