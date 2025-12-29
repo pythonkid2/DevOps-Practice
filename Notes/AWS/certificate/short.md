@@ -1081,3 +1081,12 @@ Here are the main **serverless** choices on AWS for web apps, with a clear compa
 
 
 <img width="1873" height="941" alt="image" src="https://github.com/user-attachments/assets/9d049d3e-4c63-4e93-9305-754c11d05117" />
+
+
+AWS CloudHSM offers hardware security modules for cryptographic key management, meeting regulatory requirements for hardware-based key storage.
+
+AWS Identity Center (formerly AWS Single Sign-On) allows employees to sign in to a central portal using existing corporate credentials, simplifying account management.
+
+
+
+
