@@ -1079,6 +1079,262 @@ AWS CloudHSM offers hardware security modules for cryptographic key management, 
 
 AWS Identity Center (formerly AWS Single Sign-On) allows employees to sign in to a central portal using existing corporate credentials, simplifying account management.
 
+```
 
 
+**When to choose Amazon DynamoDB and when to choose Amazon Aurora.**
+
+Here is the **cleanest, fastest, exam-ready decision guide**.
+
+---
+
+# 🔥 **DynamoDB vs Aurora — Visual Memory (VERY IMPORTANT)**
+
+![Image](https://miro.medium.com/v2/resize%3Afit%3A1400/1%2AgrD89zaAjSpi-Yl8ZPK5fA.png)
+
+![Image](https://static.abhishek-tiwari.com/old-ghost/images/Amazon-Aurora-Architecture.png)
+
+---
+
+# 🔥 **WHEN TO USE DYNAMODB (NoSQL)**
+
+### ✔ Use Amazon DynamoDB when:
+
+1️⃣ **Massive scale** (millions of requests/sec)
+2️⃣ **Unpredictable traffic** (spikes → On-Demand mode)
+3️⃣ **Single-digit millisecond latency**
+4️⃣ **Key-value or document model**
+5️⃣ **Serverless, no maintenance**
+6️⃣ **Global tables** for multi-region active-active
+7️⃣ **High availability built-in**
+8️⃣ **When you need horizontal scaling without effort**
+9️⃣ **Microservices**
+🔟 **Event-driven architecture**
+
+---
+
+## ⚡ Exam Triggers for DynamoDB:
+
+* “Unpredictable traffic”
+* “Scale to millions of requests”
+* “Serverless”
+* “No schema”
+* “Key-value access”
+* “Single-digit millisecond latency”
+* “Performance at any scale”
+* “Global multi-region writes”
+* “High-write throughput”
+
+---
+
+# 🔥 **WHEN TO USE AURORA (SQL Relational Database)**
+
+### ✔ Use Amazon Aurora when:
+
+1️⃣ **You need SQL** (MySQL or PostgreSQL)
+2️⃣ **Complex JOINs, relational models**
+3️⃣ **Transactions (ACID)**
+4️⃣ **Strong consistency**
+5️⃣ **High write performance**
+6️⃣ **Scaling reads using read replicas**
+7️⃣ **Multi-region disaster recovery** with Aurora Global DB
+8️⃣ **Application already uses MySQL/PostgreSQL**
+
+Aurora is best when you need a **traditional database**, but faster and more scalable.
+
+---
+
+## ⚡ Exam Triggers for Aurora:
+
+* “Relational”
+* “SQL queries”
+* “ACID transactions”
+* “Foreign keys”
+* “Complex queries”
+* “Low-latency read replicas”
+* “Writer/write scaling needed” → **Aurora Serverless v2**
+* “Multi-region DR with RPO < 1s”
+* “Compatible with MySQL/PostgreSQL”
+
+---
+
+# 🔥 **SUPER QUICK DECISION (MEMORIZE THIS)**
+
+## ✔ If you need **SQL** → **AURORA**
+
+## ✔ If you need **NoSQL** → **DYNAMODB**
+
+---
+
+# 🧠 **Difference Table (Exam Version)**
+
+| Category    | DynamoDB                      | Aurora                          |
+| ----------- | ----------------------------- | ------------------------------- |
+| Model       | NoSQL                         | SQL                             |
+| Schema      | Schema-less                   | Structured schema               |
+| Scaling     | Automatic, infinite           | Reader replicas + Serverless v2 |
+| Performance | Single-digit ms               | High performance SQL            |
+| Writes      | Massive scale                 | Strong ACID transactions        |
+| Global      | Global Tables (active-active) | Aurora Global DB (DR)           |
+| Operations  | Fully serverless              | Managed DB (more ops)           |
+| Cost        | Pay per request               | Pay per instance/storage        |
+
+---
+
+# 🧩 **Which to choose in common scenarios?**
+
+### **Scenario 1 — E-commerce shopping cart**
+
+👉 **DynamoDB** (key-value, high concurrency)
+
+### **Scenario 2 — Banking transactions**
+
+👉 **Aurora** (ACID required)
+
+### **Scenario 3 — IoT millions of events**
+
+👉 **DynamoDB** (massive write scale)
+
+### **Scenario 4 — Analytics app with complex joins**
+
+👉 **Aurora**
+
+### **Scenario 5 — Multi-region global writes**
+
+👉 **DynamoDB Global Tables**
+
+### **Scenario 6 — Multi-region DR with low RPO (<1s)**
+
+👉 **Aurora Global Database**
+
+---
+
+# 🧠 **Golden Rule for Exam**
+
+If the question mentions:
+
+✔ **ACID**
+✔ **JOINS**
+✔ **Transactions**
+✔ **SQL**
+
+→ **AURORA**
+
+If the question mentions:
+
+✔ **Massive scale**
+✔ **Key-value**
+✔ **Serverless**
+✔ **Millions of writes/reads**
+✔ **High performance at scale**
+
+→ **DYNAMODB**
+
+
+
+# 🔥 **1. Choosing the Right FSx — Protocol & Workload Cheat Sheet**
+
+![Image](https://kodekloud.com/kk-media/image/upload/v1752865994/notes-assets/images/AWS-Solutions-Architect-Associate-Certification-FSx-for-WindowsLustreNetAppOpenZFS/fsx-services-comparison-table.jpg)
+
+![Image](https://d2908q01vomqb2.cloudfront.net/e1822db470e60d090affd0956d743cb0e7cdf113/2025/02/12/FigureTwo_Ref_Arch_after_scalable_metadata.png)
+
+AWS has **four** FSx types:
+
+## ✔ **1. Amazon FSx for Windows File Server**
+
+### **Use when you need:**
+
+* **SMB (Server Message Block)** protocol
+* **Windows applications**
+* **Active Directory integration**
+* NTFS ACLs
+* SQL Server, IIS, .NET apps needing Windows FS
+
+### **Key exam triggers:**
+
+* “SMB”
+* “Windows-based workloads”
+* “Active Directory”
+* “NTFS permissions”
+
+---
+
+## ✔ **2. Amazon FSx for Lustre**
+
+### **Use when you need:**
+
+* **Extreme performance**
+* **High Throughput + Low Latency**
+* **POSIX**
+* Machine Learning (SageMaker)
+* HPC workloads
+* Media rendering
+* Genomics
+
+### **Key exam triggers:**
+
+* “HPC”
+* “ML training”
+* “High throughput”
+* “POSIX file system”
+* “Backed by S3”
+
+FSx for Lustre can link to S3 → automatically imports metadata.
+
+---
+
+## ✔ **3. Amazon FSx for NetApp ONTAP**
+
+### **Use when you need:**
+
+* **NFS + SMB + iSCSI** (multi-protocol)
+* Snapshots / Clone
+* Enterprise NAS replacement
+* Hybrid workloads
+* Storage efficiency (dedupe, compression)
+
+### **Key exam triggers:**
+
+* “Multiprotocol (SMB + NFS)”
+* “Enterprise NAS”
+* “iSCSI block storage”
+* “ONTAP features like snapshots, cloning”
+
+This is the most powerful multiprotocol FS.
+
+---
+
+## ✔ **4. Amazon FSx for OpenZFS**
+
+### **Use when you need:**
+
+* **NFS only**
+* Low-latency Unix/Linux apps
+* ZFS features (snapshots, clones, compression)
+* Lift-and-shift freeBSD/ZFS workloads
+
+### **Key exam triggers:**
+
+* “ZFS”
+* “NFS-only requirement”
+* “Low latency file storage”
+* “Unix/Linux POSIX workloads”
+
+---
+
+# 🧠 **FSx Quick Decision Table (MEMORIZE FOR EXAM)**
+
+| FSx Type        | Protocol              | Use Case                                          |
+| --------------- | --------------------- | ------------------------------------------------- |
+| FSx for Windows | **SMB**               | AD, Windows apps, NTFS                            |
+| FSx for Lustre  | **POSIX (Linux)**     | HPC, ML, Rendering, S3 integration                |
+| FSx for ONTAP   | **NFS + SMB + iSCSI** | Enterprise NAS, multiprotocol, cloning, snapshots |
+| FSx for OpenZFS | **NFS**               | Linux/Unix apps needing ZFS speed                 |
+
+If you see **Windows / SMB** → FSx for Windows.
+If you see **HPC / ML / S3-backed** → FSx for Lustre.
+If you see **NFS+SMB+iSCSI** → FSx for ONTAP.
+If you see **ZFS / NFS-only** → FSx for OpenZFS.
+
+---
 
