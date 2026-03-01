@@ -707,12 +707,6 @@ Here’s a **complete list of connectivity options** with **when to use which** 
 * **Client VPN → Remote user access**
 
 ---
-
-Would you like me to make a **side-by-side decision matrix** (flowchart style) that says "If you need X → use Y" for all these options (super helpful for last-minute exam revision)?
-
-
-Got it ✅ — let's make a **clear, exam-focused short note** for **AWS Site-to-Site VPN** (with What / Why / How / Pitfalls / Exam Tips).
-
 ---
 
 # 🧾 **AWS Site-to-Site VPN – Exam Notes**
@@ -779,8 +773,6 @@ It allows your on-prem servers to communicate privately with AWS resources as if
 <img width="1200" height="661" alt="image" src="https://github.com/user-attachments/assets/c6756b91-a3be-43ff-a2d6-683fc2997ade" />
 
 <img width="1087" height="411" alt="image" src="https://github.com/user-attachments/assets/58683d09-a6f0-4cbe-9b31-53ded81e6abd" />
-
-Good question 👌 let’s clear this up from an **exam perspective**.
 
 ---
 
