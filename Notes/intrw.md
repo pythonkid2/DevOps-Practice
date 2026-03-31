@@ -98,6 +98,81 @@ Below is a line-by-line walkthrough you can use in an interview when asked “wh
 
 ---
 
+### `setup.sh` deep dive for lines 35–56 (exact snippet)
+
+This is the container block inside the Deployment spec. You can explain it line by line like this:
+
+- **Line 35**: `containers:`  
+  Starts the list of containers for the pod template.
+
+- **Line 36**: `- name: memory-hog`  
+  Container name. Used later by grader and patch logic to target the right container.
+
+- **Line 37**: `image: python:3.11-slim`  
+  Lightweight Python runtime image. Needed because the workload script is Python.
+
+- **Line 38**: `command: ["python", "-c"]`  
+  Tells container to execute inline Python code from args.
+
+- **Line 39**: `args:`  
+  Starts argument list for the command.
+
+- **Line 40**: `- |`  
+  YAML multiline block starts. Everything below is passed as one Python script string.
+
+- **Line 41**: `import time`  
+  Imports `time` module for sleep calls.
+
+- **Line 42**: `data = []`  
+  Initializes a list to hold allocated strings and keep memory referenced.
+
+- **Line 43**: `# Allocate ~200Mi over time to exceed the low limit (64Mi)`  
+  Comment describing intent: force OOM under low memory limit.
+
+- **Line 44**: `for _ in range(20):`  
+  Loop 20 iterations to allocate memory chunks.
+
+- **Line 45**: `data.append("x" * 10_000_000)`  
+  Appends ~10MB string each loop; roughly ~200MB total across iterations in CPython object usage context.
+
+- **Line 46**: `time.sleep(0.1)`  
+  Small delay so allocation is progressive and observable in pod lifecycle/events.
+
+- **Line 47**: `# After initial spike, stay alive without growing further`  
+  Explains why the script can become stable after limits are increased.
+
+- **Line 48**: `while True:`  
+  Infinite loop keeps the process alive once initial allocation is done.
+
+- **Line 49**: `time.sleep(10)`  
+  Long sleep avoids further memory growth and high CPU usage.
+
+- **Line 50**: `resources:`  
+  Starts Kubernetes resource requests/limits block for this container.
+
+- **Line 51**: `requests:`  
+  Requested resources for scheduler placement.
+
+- **Line 52**: `cpu: "50m"`  
+  Requests 0.05 CPU core.
+
+- **Line 53**: `memory: "32Mi"`  
+  Requests 32Mi memory (scheduling hint, not hard cap).
+
+- **Line 54**: `limits:`  
+  Hard maximum resource limits enforced by kubelet/container runtime.
+
+- **Line 55**: `cpu: "100m"`  
+  CPU hard limit at 0.1 core.
+
+- **Line 56**: `memory: "64Mi"`  
+  Hard memory cap set intentionally too low; this is the root cause of OOM/restarts.
+
+Interview one-liner for this block:
+This block intentionally creates a deterministic memory-pressure workload and sets a low memory hard limit so the pod crashes before fix, then stays stable after raising limits.
+
+---
+
 ### `solution.sh`
 
 | Line(s) | What it does | Logic / why |
@@ -307,4 +382,88 @@ I would encode these rules in `task.yaml` and reinforce with grader anti-gaming 
 I designed this as a realistic Kubernetes troubleshooting lab: a Deployment crashes from low memory limits while HPA is intentionally tied to a non-existent custom metric.  
 Setup reproducibly creates the broken state, solution applies the minimum safe patch to memory resources, and grader enforces correctness plus anti-gaming constraints.  
 So we prove diagnosis, fix, and validation end-to-end with deterministic pass/fail behavior.
+
+---
+
+## 12) Quick troubleshooting playbook (what to do if demo fails live)
+
+Use this if an interviewer asks you to debug in real time:
+
+1. Check cluster and namespace:
+   - `kubectl get ns`
+   - `kubectl get all -n autoscale-demo`
+2. Verify pod failure reason:
+   - `kubectl get pods -n autoscale-demo`
+   - `kubectl describe pod <pod> -n autoscale-demo`
+3. Validate deployment resources:
+   - `kubectl get deploy memory-hog-deployment -n autoscale-demo -o yaml`
+4. Verify HPA status:
+   - `kubectl get hpa memory-hog-hpa -n autoscale-demo`
+   - Explain `<unknown>/100` as missing custom metric value.
+5. Re-apply deterministic flow:
+   - `/tmp/setup.sh`
+   - `/tmp/solution.sh`
+   - `python3 /tmp/grader.py`
+
+---
+
+## 13) Design decisions and why they are good
+
+- **Why Deployment instead of Pod**
+  - Requirement explicitly asks pod to be part of Deployment.
+  - Lets interviewer test controller behavior (replace failed/deleted pods).
+
+- **Why custom metric in HPA**
+  - Matches task requirement: misconfigured custom metric (`AverageValue`) not exported.
+  - Produces realistic `TARGETS <unknown>/100`.
+
+- **Why finite memory spike in setup workload**
+  - Before fix: low limit causes deterministic OOM/restarts.
+  - After fix: pod can stabilize instead of eventually crashing forever.
+
+- **Why JSON patch in solution**
+  - Touches only `resources` and avoids accidental replacement of required fields like `image`.
+  - Keeps fix minimal and production-safe.
+
+- **Why anti-gaming checks in grader**
+  - Prevents fake fixes (remove limits, delete HPA, delete workload).
+  - Ensures the root cause is actually addressed.
+
+---
+
+## 14) Common mistakes to avoid (say these proactively)
+
+1. Do not delete HPA to hide `<unknown>` metric target.
+2. Do not remove resource limits from Deployment (grader fails).
+3. Do not patch whole container spec with merge patch unless all required fields are included.
+4. Do not trust a single `Running` check; verify restartCount and waiting reason.
+5. Do not skip `wait_for_k3s.sh`; setup can fail due to startup race conditions.
+
+---
+
+## 15) Rapid-fire command cheat sheet
+
+```bash
+# Cluster readiness
+/tmp/wait_for_k3s.sh
+
+# Broken state
+/tmp/setup.sh
+kubectl get pods -n autoscale-demo
+kubectl get hpa -n autoscale-demo
+
+# Root-cause inspection
+kubectl describe pod -n autoscale-demo -l app=memory-hog
+kubectl get deploy memory-hog-deployment -n autoscale-demo -o yaml
+
+# Apply fix + validate
+/tmp/solution.sh
+python3 /tmp/grader.py
+```
+
+---
+
+## 16) Final 15-second answer if interviewer asks “Why should we trust your solution?”
+
+Because it is deterministic, minimal, and testable: setup always reproduces the same crash pattern, solution only adjusts memory resources without breaking constraints, and grader enforces root-cause correction with anti-gaming checks, yielding binary pass/fail.
 
