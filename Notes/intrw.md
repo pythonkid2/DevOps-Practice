@@ -260,6 +260,80 @@ Rollout status tells us the Deployment accepted the new spec, but the pod can st
 
 ---
 
+### `grader.py` — deep explanation (no coding background needed)
+
+**What this file is (one sentence):**  
+It is a small Python program that runs **`kubectl` commands for you**, reads the answers Kubernetes returns, and decides **pass (1.0) or fail (0.0)** using a fixed checklist.
+
+**Why Python + `kubectl`?**  
+You could grade by hand with `kubectl get`, but a script makes grading **automatic, repeatable, and fair** for CI or batch runs.
+
+**Flow in plain English:**
+
+1. Start the script (`python3 /tmp/grader.py`).
+2. Run **four checks in order** (deployment exists → limits OK → pod healthy → HPA OK).
+3. Print `PASS` or `FAIL` for each check with a short reason.
+4. If **any** check fails → final score **`0.0`** and exit code **`1`** (failure).
+5. If **all** checks pass → final score **`1.0`** and exit code **`0`** (success).
+
+**Pieces of the code (what each part means):**
+
+- **`GradingResult` (lines 10–12)**  
+  A simple “result object”: a number `score` (0.0 or 1.0) and optional text `feedback`. Think of it like a form: “score + comment”.
+
+- **`run_cmd` (lines 15–20)**  
+  Runs a shell command (here, always `kubectl …`) and captures:
+  - printed output (stdout),
+  - errors (stderr),
+  - success/failure code (return code).  
+  Has a **30 second timeout** so a stuck command does not hang forever.
+
+- **`get_resource` (lines 23–33)**  
+  Asks Kubernetes: “give me this object as JSON” (`kubectl get deployment … -o json`).  
+  If the object does not exist or command fails, it returns “nothing” (`None`).  
+  JSON is just a structured text format; Python turns it into a dictionary so we can read fields like memory limits.
+
+- **Check 1 — `check_deployment_exists` (lines 36–40)**  
+  Question: Does `memory-hog-deployment` exist in `autoscale-demo`?  
+  If someone deleted the Deployment to cheat, this fails.
+
+- **Check 2 — `check_deployment_limits_present_and_high_enough` (lines 43–76)**  
+  Questions:
+  - Does the container named `memory-hog` have **`limits.memory`** set?  
+    (If limits are removed, that is an invalid “fix”.)
+  - Is the limit at least **128Mi**?  
+    This matches the assignment idea: memory must be raised to a **reasonable** value, not left as the broken low limit.  
+  Small helper `to_mebibytes` converts strings like `512Mi` or `1Gi` into a number for comparison.
+
+- **Check 3 — `check_pod_running_and_not_crashing` (lines 79–114)**  
+  Questions:
+  - Is there a pod with label `app=memory-hog`?
+  - Is pod phase **`Running`**?
+  - Is **restart count** not too high (≤ 3)?
+  - Is it **not** stuck in **`CrashLoopBackOff`**?  
+  This checks “real health”, not only that YAML exists.
+
+- **Check 4 — `check_hpa_exists_and_uses_custom_metric` (lines 117–135)**  
+  Questions:
+  - Does HPA `memory-hog-hpa` still exist? (Cannot delete HPA to pass.)
+  - Does it still use the **Pods** metric named **`custom-metric`** with **`AverageValue`**?  
+  So the “misconfigured HPA” part of the task stays intact; you fix memory, not by deleting the HPA.
+
+- **`grade` (lines 138–157)**  
+  Runs the four checks in a list. Collects names of failed checks.  
+  Returns **0.0** if any failed, **1.0** if none failed.
+
+- **`if __name__ == "__main__"` (lines 160–166)**  
+  “When you run this file directly…”  
+  Calls `grade()`, prints score and feedback, and sets **process exit code**:  
+  - `0` = pass (automation tools treat as success)  
+  - `1` = fail  
+
+**What to say in an interview (30 seconds):**  
+The grader automates kubectl inspection: it verifies the Deployment still exists with proper memory limits, the pod is actually running and stable, and the HPA was not removed or “fixed away”. Scoring is binary so the outcome is unambiguous for pipelines.
+
+---
+
 ### `task.yaml`
 
 | Line(s) | What it does | Logic / why |
