@@ -189,6 +189,59 @@ This block intentionally creates a deterministic memory-pressure workload and se
 
 ---
 
+### `solution.sh` deep dive for lines 26–60 (rollout wait + health loop)
+
+**Big picture:** After the memory patch, Kubernetes creates a **new** ReplicaSet and replaces pods. This block waits for that rollout, then **polls** the pod until it looks “good enough” without hanging forever like `kubectl wait --for=condition=Ready` can when the pod keeps crashing.
+
+**Line by line:**
+
+- **26–27** `kubectl rollout status … || true`  
+  Waits until the Deployment reports the new revision is applied. `|| true` means: if `rollout status` returns non-zero (timeout, transient API glitch), the script **still continues** to the health loop instead of exiting immediately. You still get a final pass/fail from the loop below.
+
+- **29** `echo "Waiting for a healthy pod..."`  
+  Log line for humans and demos.
+
+- **30–31** `ATTEMPTS=30` and `SLEEP_SECONDS=5`  
+  Bounded polling: up to **30 × 5s ≈ 150 seconds** max wait. Prevents infinite hang.
+
+- **33** `for i in $(seq 1 "$ATTEMPTS"); do`  
+  Repeat up to 30 times.
+
+- **34** `POD_JSON=…`  
+  Fetches full pod list JSON (optional for debugging; not strictly required for logic).
+
+- **35** `POD_NAME=… jsonpath='{.items[0].metadata.name}'`  
+  Picks the **first** pod matching label `app=memory-hog`. During rollout you might briefly see zero pods or a terminating pod; this line gets whatever exists now.
+
+- **36–40** `if [ -z "$POD_NAME" ]; then … continue`  
+  If no pod exists yet (scheduler delay), sleep and retry. Avoids failing on empty selection.
+
+- **42–44** Read `PHASE`, `RESTARTS`, `WAITING_REASON`  
+  - `PHASE`: Kubernetes pod lifecycle phase (`Pending`, `Running`, etc.).  
+  - `RESTARTS`: container restart counter (OOM/crash evidence).  
+  - `WAITING_REASON`: if container is in `waiting` state, reason like `CrashLoopBackOff`.
+
+- **46** Echo one line summary  
+  Makes live debugging easy during interview.
+
+- **48–51** Health condition + `break`  
+  Success if:
+  - `PHASE` is **`Running`**, and  
+  - `RESTARTS` **≤ 3** (not stuck in endless crash loop), and  
+  - `WAITING_REASON` is **not** `CrashLoopBackOff`  
+  Then print “Pod is healthy.” and exit the `for` loop.
+
+- **53** `sleep` between attempts  
+  Avoid hammering API server; gives kubelet time to stabilize pod.
+
+- **56–60** Final validation after loop  
+  If after all attempts the last seen state is still bad (`PHASE` not `Running`, or too many restarts, or `CrashLoopBackOff`), print pods and **`exit 1`**. This makes automation deterministic: script fails loudly instead of hanging.
+
+**Interview explanation (one paragraph):**  
+Rollout status tells us the Deployment accepted the new spec, but the pod can still be crashing. So we use a bounded polling loop that inspects actual pod phase, restart count, and waiting reason—this is more reliable than a single `kubectl wait` when workloads were previously unhealthy.
+
+---
+
 ### `grader.py`
 
 | Line(s) | What it does | Logic / why |
