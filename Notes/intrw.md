@@ -1,6 +1,5 @@
-# Interview Prep - `matthew-hpa-memory-test`
 
-## 1) 60-second task summary (say this first)
+## 1) 60-second task summary 
 
 I created a k3s troubleshooting scenario where a Deployment pod crashes due to low memory limits, and an HPA is intentionally misconfigured to use a custom metric that is not exported.  
 `setup.sh` creates the broken state, `solution.sh` applies a minimal fix by increasing memory limits, and `grader.py` validates root-cause correctness with anti-gaming checks (for example, limits must still exist and HPA must not be deleted).  
