@@ -1,8 +1,4 @@
 # Azure Networking — Complete Visual Guide
-
-> A practical reference covering Azure VPN connectivity options (the topic in your question) plus the related networking building blocks you should know alongside them.
-> Diagrams use Mermaid — they render automatically on GitHub, GitLab, VS Code (with the Mermaid extension), Obsidian, Notion, etc.
-
 ---
 
 ## Table of Contents
