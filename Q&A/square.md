@@ -329,4 +329,552 @@ But test application compatibility first.
 Combined savings can reach 70–85%.
 
 ---
+````md id="5bzk90"
+# Kubernetes / EKS Scenario-Based Interview Questions & Answers
+
+---
+
+# 1. A production pod is stuck in CrashLoopBackOff. How would you troubleshoot it step by step?
+
+## Answer
+
+First, I would identify the reason for the crash.
+
+### Step 1 — Check Pod Status
+
+```bash
+kubectl get pods
+kubectl describe pod <pod-name>
+```
+
+Check:
+- Events
+- Last terminated reason
+- Exit codes
+
+---
+
+### Step 2 — Check Logs
+
+```bash
+kubectl logs <pod-name>
+kubectl logs <pod-name> --previous
+```
+
+`--previous` helps if container already restarted.
+
+---
+
+### Step 3 — Verify Common Issues
+
+Check for:
+- application startup failure
+- wrong environment variables
+- DB connectivity issues
+- missing secrets/configmaps
+- port conflicts
+- insufficient memory causing OOMKilled
+
+---
+
+### Step 4 — Check Health Probes
+
+Misconfigured:
+- livenessProbe
+- readinessProbe
+
+can continuously restart containers.
+
+---
+
+### Step 5 — Verify Resources
+
+Check:
+```bash
+kubectl top pod
+```
+
+Possible issues:
+- CPU throttling
+- memory exhaustion
+
+---
+
+### Step 6 — Node-Level Investigation
+
+Check:
+- node health
+- disk pressure
+- kubelet issues
+
+---
+
+# 2. A deployment has 5 replicas, but only 2 are running and others are Pending. How would you investigate?
+
+## Answer
+
+Pending means scheduler cannot place the pods.
+
+### Step 1 — Describe Pod
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+Check Events section carefully.
+
+---
+
+### Common Reasons
+
+#### Insufficient Resources
+
+- CPU shortage
+- memory shortage
+
+---
+
+#### Node Selector / Taints
+
+Pods may require:
+- specific labels
+- tolerations
+
+---
+
+#### PVC Issues
+
+Pods waiting for:
+- Persistent Volume
+- storage class
+
+---
+
+#### Cluster Autoscaler Issues
+
+New nodes may not be getting created.
+
+---
+
+### Step 2 — Check Nodes
+
+```bash
+kubectl get nodes
+kubectl describe node <node-name>
+```
+
+Check:
+- allocatable resources
+- taints
+- node conditions
+
+---
+
+### Step 3 — Check Autoscaler
+
+In EKS:
+- verify ASG scaling
+- cluster autoscaler logs
+
+---
+
+# 3. A service is unable to connect to another service inside the cluster. How would you troubleshoot networking?
+
+## Answer
+
+### Step 1 — Verify Service
+
+```bash
+kubectl get svc
+kubectl describe svc <service-name>
+```
+
+Check:
+- selector labels
+- endpoints
+
+---
+
+### Step 2 — Verify Endpoints
+
+```bash
+kubectl get endpoints
+```
+
+If endpoints are empty:
+- labels may not match
+
+---
+
+### Step 3 — Test DNS Resolution
+
+```bash
+nslookup service-name
+curl service-name
+```
+
+---
+
+### Step 4 — Verify Network Policies
+
+Check if traffic is blocked by:
+- NetworkPolicy
+
+---
+
+### Step 5 — Check Pod Connectivity
+
+Exec into pod:
+
+```bash
+kubectl exec -it <pod> -- sh
+```
+
+Test:
+- ping
+- curl
+- telnet
+
+---
+
+### Step 6 — Check CNI Plugin
+
+In EKS:
+- aws-node
+- CoreDNS
+- kube-proxy
+
+must be healthy.
+
+---
+
+# 4. How will you upgrade Kubernetes version & how would you reduce downtime during EKS node upgrades?
+
+## Answer
+
+### EKS Upgrade Order
+
+1. Upgrade EKS control plane
+2. Upgrade managed node groups
+3. Upgrade add-ons:
+   - CoreDNS
+   - kube-proxy
+   - VPC CNI
+
+---
+
+### Reduce Downtime Strategy
+
+#### Use Multiple Nodes
+
+Applications should run:
+- multiple replicas
+- across multiple AZs
+
+---
+
+#### Configure PodDisruptionBudget
+
+Ensures minimum pods remain available.
+
+Example:
+
+```yaml
+minAvailable: 2
+```
+
+---
+
+#### Rolling Node Upgrade
+
+During upgrade:
+- cordon node
+- drain node
+- move workloads safely
+
+Commands:
+
+```bash
+kubectl cordon <node>
+kubectl drain <node> --ignore-daemonsets
+```
+
+---
+
+#### Use Readiness Probes
+
+Traffic only goes to healthy pods.
+
+---
+
+#### Use Cluster Autoscaler
+
+New nodes should become ready before old nodes terminate.
+
+---
+
+# 5. You need to deploy a stateful application like PostgreSQL or MongoDB on Kubernetes. What considerations are important?
+
+## Answer
+
+Stateful applications need persistent storage and stable identity.
+
+### Important Considerations
+
+#### Use StatefulSet
+
+Provides:
+- stable pod names
+- ordered deployment
+- stable storage
+
+---
+
+#### Persistent Volumes
+
+Use:
+- EBS
+- EFS
+
+with PersistentVolumeClaims.
+
+---
+
+#### Backup Strategy
+
+Implement:
+- automated backups
+- snapshot strategy
+
+---
+
+#### High Availability
+
+For MongoDB/PostgreSQL:
+- replication
+- multi-node setup
+
+---
+
+#### Resource Planning
+
+Stateful apps require:
+- guaranteed storage
+- proper memory sizing
+- CPU allocation
+
+---
+
+#### Anti-Affinity
+
+Distribute replicas across nodes/AZs.
+
+---
+
+# 6. How would you securely expose a Kubernetes application to the internet?
+
+## Answer
+
+### Recommended Architecture
+
+```text
+Internet
+   ↓
+CloudFront + WAF
+   ↓
+ALB Ingress Controller
+   ↓
+Ingress
+   ↓
+Service
+   ↓
+Pods
+```
+
+---
+
+### Security Best Practices
+
+#### Use Ingress Instead of NodePort
+
+Ingress gives:
+- centralized routing
+- TLS termination
+- better security
+
+---
+
+#### Enable HTTPS
+
+Use:
+- ACM certificates
+- TLS termination at ALB
+
+---
+
+#### Use WAF
+
+Protect against:
+- SQL injection
+- XSS
+- malicious requests
+
+---
+
+#### Restrict Security Groups
+
+Only expose:
+- ALB publicly
+
+Nodes should remain private.
+
+---
+
+#### Use Network Policies
+
+Restrict pod-to-pod communication.
+
+---
+
+# 7. How would you securely allow pods in EKS to access AWS services like S3 or DynamoDB?
+
+## Answer
+
+Best practice is using IAM Roles for Service Accounts (IRSA).
+
+### Why IRSA?
+
+Avoids:
+- hardcoded AWS keys
+- shared node IAM roles
+
+---
+
+### Flow
+
+1. Create IAM policy
+2. Create IAM role
+3. Map role to Kubernetes service account
+4. Attach service account to pod
+
+Then pod gets temporary AWS credentials securely.
+
+---
+
+### Benefits
+
+- least privilege access
+- temporary credentials
+- better auditing
+
+---
+
+# 8. Your EKS worker nodes are in private subnets. How do the nodes pull Docker images and communicate with AWS APIs?
+
+## Answer
+
+Private nodes do not have direct internet access.
+
+### Common Solution
+
+Use:
+- NAT Gateway
+
+for outbound internet access.
+
+This allows:
+- image pull from ECR
+- AWS API communication
+
+---
+
+### Better Optimization
+
+Use VPC Endpoints for:
+- ECR API
+- ECR DKR
+- S3
+- STS
+
+This reduces:
+- internet dependency
+- NAT cost
+
+---
+
+### Recommended Architecture
+
+```text
+Private Nodes
+   ↓
+VPC Endpoints / NAT Gateway
+   ↓
+AWS Services
+```
+
+---
+
+# 9. You are running multiple workloads in EKS and one noisy application is affecting others. How would you isolate workloads?
+
+## Answer
+
+This usually happens due to resource contention.
+
+### Step 1 — Define Resource Requests & Limits
+
+Example:
+
+```yaml
+resources:
+  requests:
+    cpu: "500m"
+    memory: "1Gi"
+  limits:
+    cpu: "1"
+    memory: "2Gi"
+```
+
+This prevents one app from consuming everything.
+
+---
+
+### Step 2 — Use Separate Node Groups
+
+Critical workloads can run on:
+- dedicated nodes
+
+using:
+- taints
+- tolerations
+- node selectors
+
+---
+
+### Step 3 — Use Namespaces & Quotas
+
+Apply:
+- ResourceQuota
+- LimitRange
+
+to control namespace resource usage.
+
+---
+
+### Step 4 — Priority Classes
+
+Critical workloads get higher scheduling priority.
+
+---
+
+### Step 5 — Monitoring
+
+Use:
+- Prometheus
+- Grafana
+- CloudWatch
+
+to identify noisy neighbors early.
+````
+
+
 
