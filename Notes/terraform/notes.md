@@ -211,6 +211,22 @@ Quiz
 
 <img width="608" height="242" alt="image" src="https://github.com/user-attachments/assets/29e73a07-5a5e-48df-8868-89b958ca44d0" />
 
+CLI
+<img width="724" height="344" alt="image" src="https://github.com/user-attachments/assets/45674b31-67a7-4f83-b151-fcda1910c020" />
+<img width="730" height="363" alt="image" src="https://github.com/user-attachments/assets/ec3ee949-559b-4f53-a7c2-b5e9d21a8b75" />
+<img width="630" height="236" alt="image" src="https://github.com/user-attachments/assets/dad9c7ab-b5fc-4849-8e7f-dbc6297a0a5d" />
+<img width="574" height="224" alt="image" src="https://github.com/user-attachments/assets/92cd612e-68fc-4913-90ad-18555bce9224" />
+When you run terraform fmt, which files does it format by default? <img width="198" height="24" alt="image" src="https://github.com/user-attachments/assets/b2ef5b26-591f-4adb-94c1-41dbfac2c6fe" />
+<img width="575" height="244" alt="image" src="https://github.com/user-attachments/assets/8a6b5ce7-93a1-4a71-b886-234534793f75" />
+<img width="563" height="98" alt="image" src="https://github.com/user-attachments/assets/8b2214db-3991-4d22-bfb7-8967e755a7af" />
+
+# Terraform File Structure and Organization
+
+<img width="739" height="386" alt="image" src="https://github.com/user-attachments/assets/0cecc015-a2d9-4436-a215-7c3cf1c20fe2" />
+<img width="504" height="373" alt="image" src="https://github.com/user-attachments/assets/dc2c71fa-1cfe-43bc-9759-ece78d751185" />
+<img width="737" height="361" alt="image" src="https://github.com/user-attachments/assets/75d33c72-fc2e-4359-9d44-6e05f454503f" />
+
+
 
 Architecture Diagram
 <img width="1920" height="826" alt="image" src="https://github.com/user-attachments/assets/b7a6cc06-9364-477b-b128-022b7369f558" />
