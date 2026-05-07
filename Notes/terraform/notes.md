@@ -168,13 +168,48 @@ By following these guidelines and understanding the fundamental concepts outline
 <img width="614" height="333" alt="image" src="https://github.com/user-attachments/assets/2b23a323-3ba9-4bdb-8e75-b499795c75a6" />
 
 
-Terraform INIT
+# Terraform INIT
 
 <img width="644" height="317" alt="image" src="https://github.com/user-attachments/assets/db116d6d-281f-49fb-a61e-db48481b288d" />
 <img width="605" height="266" alt="image" src="https://github.com/user-attachments/assets/2b10ffc6-21b3-483b-9280-d7a8fd929440" />
 <img width="650" height="305" alt="image" src="https://github.com/user-attachments/assets/3891c865-03ef-4981-b2b9-1e056a53d9c9" />
+Terraform Directory 
+<img width="698" height="351" alt="image" src="https://github.com/user-attachments/assets/17c93896-25ff-4e3e-9863-bde6b2699b4a" />
 
+# terraform plan 
 
+<img width="742" height="368" alt="image" src="https://github.com/user-attachments/assets/c7b8aefe-0328-4b65-a025-dbe2e93ca218" />
+<img width="538" height="310" alt="image" src="https://github.com/user-attachments/assets/9c4c0d11-e36d-4c3a-8d97-620a6720a783" />
+<img width="757" height="413" alt="image" src="https://github.com/user-attachments/assets/21649735-5a05-4360-bc9e-c50e8537a48d" />
+
+# Resource graph
+
+<img width="743" height="302" alt="image" src="https://github.com/user-attachments/assets/026e1cb4-e78b-4791-8e9f-dd6e8cd3917c" />
+<img width="737" height="342" alt="image" src="https://github.com/user-attachments/assets/2202d6ab-d2a6-414c-aa93-483e3d240813" />
+<img width="1444" height="732" alt="image" src="https://github.com/user-attachments/assets/c511deb0-28ef-464f-b777-c4bdc39472d3" />
+
+# Terraform apply 
+
+<img width="724" height="379" alt="image" src="https://github.com/user-attachments/assets/172cbe4e-0f24-4a4d-9c16-6a42f3e117c7" />
+<img width="748" height="398" alt="image" src="https://github.com/user-attachments/assets/4ac316ed-4fe0-426d-9c7d-2112d51a2d1c" />
+<img width="701" height="396" alt="image" src="https://github.com/user-attachments/assets/c76cd8a1-022f-49eb-8871-ef3841206e99" />
+<img width="401" height="388" alt="image" src="https://github.com/user-attachments/assets/044a37e5-41c2-432b-872e-aab35e5af213" />
+
+# terraform destroy 
+
+<img width="737" height="371" alt="image" src="https://github.com/user-attachments/assets/c5a7a966-32b9-4ea0-ad14-35719b8d9931" />
+<img width="513" height="237" alt="image" src="https://github.com/user-attachments/assets/44bad72f-6e30-48a3-9cda-150da8e6ea7f" />
+<img width="745" height="337" alt="image" src="https://github.com/user-attachments/assets/1f6a0341-a9a4-4e13-b128-af62e30a7308" />
+
+# Terraform validate 
+
+<img width="674" height="350" alt="image" src="https://github.com/user-attachments/assets/23437c96-aadd-425c-b971-75e0c069034b" />
+<img width="683" height="279" alt="image" src="https://github.com/user-attachments/assets/6e2fd307-dbe8-4a0c-ac5f-62e3cdc96cc3" />
+<img width="748" height="362" alt="image" src="https://github.com/user-attachments/assets/dbf330d2-6d8b-4f43-a268-b527938e1073" />
+
+Quiz
+
+<img width="608" height="242" alt="image" src="https://github.com/user-attachments/assets/29e73a07-5a5e-48df-8868-89b958ca44d0" />
 
 
 Architecture Diagram
