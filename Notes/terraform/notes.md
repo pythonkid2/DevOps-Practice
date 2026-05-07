@@ -154,6 +154,29 @@ Format and Validate Your Code: Regularly use terraform fmt to format your code a
 Document Your Configurations: Comment your code and document variables and outputs for clarity.
 By following these guidelines and understanding the fundamental concepts outlined in this guide, you'll be well on your way to writing effective Terraform configurations. Whether you're managing a small project or a large infrastructure, Terraform, coupled with best practices, can help you achieve your goals with efficiency and control.
 
+<img width="655" height="340" alt="image" src="https://github.com/user-attachments/assets/a69e1280-f2d6-466a-a9b8-65834d5f8e34" />
+<img width="937" height="484" alt="image" src="https://github.com/user-attachments/assets/cef7b995-a101-485a-8036-ba1495a435c6" />
+<img width="653" height="340" alt="image" src="https://github.com/user-attachments/assets/f8aca49e-5f19-40cd-8fe0-0dd85d766ca7" />
+<img width="629" height="329" alt="image" src="https://github.com/user-attachments/assets/9b06abc2-e0b8-4f92-bf81-055b8dfd2c3d" />
+<img width="676" height="374" alt="image" src="https://github.com/user-attachments/assets/27abec9b-ca05-4e56-bd17-0f8951119bc7" />
+<img width="643" height="325" alt="image" src="https://github.com/user-attachments/assets/20c71dce-d370-4332-b14d-95bb2201301b" />
+<img width="650" height="478" alt="image" src="https://github.com/user-attachments/assets/0c01263a-fe14-4e49-99df-3aa702b1d2eb" />
+<img width="596" height="293" alt="image" src="https://github.com/user-attachments/assets/b65d79b9-429d-4f68-8a93-4124200ea376" />
+<img width="638" height="283" alt="image" src="https://github.com/user-attachments/assets/8729279f-bea8-42a7-b269-cb93132ccda3" />
+<img width="572" height="283" alt="image" src="https://github.com/user-attachments/assets/6208c671-db70-44fb-b86d-0cc1c0ae0b40" />
+<img width="623" height="322" alt="image" src="https://github.com/user-attachments/assets/425672d6-4ccd-450f-8829-2ab95c084511" />
+<img width="614" height="333" alt="image" src="https://github.com/user-attachments/assets/2b23a323-3ba9-4bdb-8e75-b499795c75a6" />
+
+
+Terraform INIT
+
+<img width="644" height="317" alt="image" src="https://github.com/user-attachments/assets/db116d6d-281f-49fb-a61e-db48481b288d" />
+<img width="605" height="266" alt="image" src="https://github.com/user-attachments/assets/2b10ffc6-21b3-483b-9280-d7a8fd929440" />
+<img width="650" height="305" alt="image" src="https://github.com/user-attachments/assets/3891c865-03ef-4981-b2b9-1e056a53d9c9" />
+
+
+
+
 Architecture Diagram
 <img width="1920" height="826" alt="image" src="https://github.com/user-attachments/assets/b7a6cc06-9364-477b-b128-022b7369f558" />
 
@@ -165,8 +188,10 @@ Architecture Diagram
 <img width="1280" height="691" alt="image" src="https://github.com/user-attachments/assets/6c4e3a4e-5b5d-49b1-b3f4-a5a59c433055" />
 <img width="1517" height="781" alt="image" src="https://github.com/user-attachments/assets/4affe144-e42f-445f-8a2b-a8ee803ea53f" />
 <img width="1459" height="822" alt="image" src="https://github.com/user-attachments/assets/1d80b707-32a4-404d-bcad-e0188a5e3b43" />
+<img width="558" height="305" alt="image" src="https://github.com/user-attachments/assets/65b6179d-a457-4899-8921-f66641ec194f" />
 
-
+<img width="848" height="473" alt="image" src="https://github.com/user-attachments/assets/576445ab-4cba-4ffe-a1df-6cd91a20f9c0" />
+<img width="890" height="479" alt="image" src="https://github.com/user-attachments/assets/834ebc0b-0284-4b11-bf66-8ef6b422d073" />
 
 
 
