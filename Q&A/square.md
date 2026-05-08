@@ -1802,6 +1802,171 @@ Implement:
 - cost dashboards
 
 
+## Interview Question
+
+What are Node Affinity, Pod Affinity, and Taints & Tolerations in Kubernetes? Explain the difference and when you would use each.
+
+---
+
+## Sample Answer
+
+These are Kubernetes scheduling mechanisms used to control where pods are placed inside the cluster.
+
+---
+
+# 1. Node Affinity
+
+Node Affinity is used to schedule pods on specific nodes based on node labels.
+
+Example:
+
+* GPU workloads should run only on GPU nodes.
+* Production workloads should run only on prod-labeled nodes.
+
+Example label:
+
+```bash id="xjlwm7"
+kubectl label nodes node1 env=prod
+```
+
+Example:
+
+```yaml id="tr8m0n"
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: env
+          operator: In
+          values:
+          - prod
+```
+
+### Use Case
+
+* Dedicated nodes
+* GPU workloads
+* Environment isolation
+
+---
+
+# 2. Pod Affinity
+
+Pod Affinity places pods close to other pods.
+
+Example:
+
+* Application pod should run in the same zone as Redis for lower latency.
+
+Example:
+
+```yaml id="jlwmn2"
+podAffinity:
+  requiredDuringSchedulingIgnoredDuringExecution:
+  - labelSelector:
+      matchExpressions:
+      - key: app
+        operator: In
+        values:
+        - redis
+    topologyKey: topology.kubernetes.io/zone
+```
+
+### Use Case
+
+* Reduce network latency
+* Keep related services together
+
+---
+
+# 3. Pod Anti-Affinity
+
+Opposite of pod affinity.
+
+Ensures pods are NOT scheduled together.
+
+Example:
+
+* Multiple replicas of same app should run on different nodes.
+
+### Use Case
+
+* High availability
+* Fault tolerance
+
+---
+
+# 4. Taints and Tolerations
+
+Taints prevent pods from being scheduled on nodes unless the pod has matching toleration.
+
+### Taint Node
+
+```bash id="qm7q5j"
+kubectl taint nodes node1 dedicated=prod:NoSchedule
+```
+
+### Pod Toleration
+
+```yaml id="1j5o2v"
+tolerations:
+- key: "dedicated"
+  operator: "Equal"
+  value: "prod"
+  effect: "NoSchedule"
+```
+
+### Use Case
+
+* Dedicated nodes
+* Prevent general workloads from using special nodes
+* GPU nodes
+* Monitoring/logging dedicated nodes
+
+---
+
+# Key Difference
+
+| Feature           | Purpose                       |
+| ----------------- | ----------------------------- |
+| Node Affinity     | Pod chooses node              |
+| Pod Affinity      | Pod chooses other pods        |
+| Pod Anti-Affinity | Pod avoids other pods         |
+| Taints            | Node repels pods              |
+| Tolerations       | Pod allowed onto tainted node |
+
+---
+
+# Simple Memory Trick
+
+```text id="v1gnzz"
+Affinity     -> Attraction
+AntiAffinity -> Separation
+Taints       -> Restriction
+Tolerations  -> Permission
+```
+
+---
+
+# Real Production Scenario
+
+Example:
+
+* GPU nodes are tainted.
+* Only ML workloads have toleration.
+* Backend and Redis use pod affinity for low latency.
+* Multiple replicas use anti-affinity for HA.
+
+This combination improves:
+
+* resource isolation
+* performance
+* reliability
+* cost optimization.
+
+
+
 # 1. Terraform State File Corruption / Missing State
 
 ## Question
