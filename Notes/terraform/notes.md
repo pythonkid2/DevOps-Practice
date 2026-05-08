@@ -238,6 +238,21 @@ When you run terraform fmt, which files does it format by default? <img width="1
 <img width="634" height="286" alt="image" src="https://github.com/user-attachments/assets/1b85a072-181b-4e11-bc70-04a21e1dfa45" />
 <img width="617" height="248" alt="image" src="https://github.com/user-attachments/assets/c1e449d7-2cd2-4318-9ad5-1393f0d34a02" />
 
+<img width="362" height="260" alt="image" src="https://github.com/user-attachments/assets/29f471ab-2713-4dfb-a48e-25af98eed5d9" />
+<img width="641" height="335" alt="image" src="https://github.com/user-attachments/assets/126cf4e7-1594-487d-b249-792caaed698a" />
+<img width="283" height="283" alt="image" src="https://github.com/user-attachments/assets/a037a2c8-1e82-4b5a-adc1-a9bb8e47705f" />
+
+Resource 
+
+<img width="633" height="255" alt="image" src="https://github.com/user-attachments/assets/b1a3be03-98c1-48ef-b3db-a7d5e421520c" />
+<img width="651" height="337" alt="image" src="https://github.com/user-attachments/assets/67e1ea83-8445-4377-a47f-45df5998808f" />
+<img width="944" height="489" alt="image" src="https://github.com/user-attachments/assets/07a34141-e461-4286-b753-b564f31a272d" />
+<img width="608" height="293" alt="image" src="https://github.com/user-attachments/assets/0b54be1d-e4fd-4b3a-91af-4e5a507accbe" />
+<img width="664" height="329" alt="image" src="https://github.com/user-attachments/assets/f17e1bd0-8a5e-4981-b519-0f75e8f471fb" />
+<img width="400" height="112" alt="image" src="https://github.com/user-attachments/assets/ea5e9dfe-eb05-400a-9412-3fd42127c807" />
+
+
+
 
 
 Architecture Diagram
