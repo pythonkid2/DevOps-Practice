@@ -535,7 +535,6 @@ Test:
 - curl
 - telnet
 
----
 
 ### Step 6 — Check CNI Plugin
 
@@ -546,7 +545,37 @@ In EKS:
 
 must be healthy.
 
----
+## Interview Question
+
+What is the difference between Cluster Autoscaler and Karpenter in EKS, and why would you choose one over the other?
+
+## Sample Answer
+
+Cluster Autoscaler and Karpenter are both used to automatically scale worker nodes in Kubernetes clusters, but they work differently.
+
+Cluster Autoscaler works by scaling existing Auto Scaling Groups or EKS Managed Node Groups. If pods are pending, it increases the desired capacity of the node group. It depends on preconfigured instance types and node groups.
+
+Karpenter is a newer Kubernetes-native autoscaler from AWS. Instead of scaling predefined node groups, it directly provisions EC2 instances based on pod requirements like CPU, memory, and pricing. It dynamically selects the most suitable instance type.
+
+### Key Differences
+
+* Cluster Autoscaler scales node groups.
+* Karpenter dynamically provisions nodes.
+* Karpenter provides faster scaling and better cost optimization.
+* Karpenter supports better spot instance handling and bin packing.
+* Cluster Autoscaler requires predefined ASGs, while Karpenter does not.
+
+### When to Choose
+
+* Use Cluster Autoscaler in simpler or legacy setups already using managed node groups.
+* Use Karpenter for modern EKS environments where:
+
+  * faster scaling is needed
+  * spot optimization is important
+  * workloads are dynamic
+  * cost optimization matters
+
+In most modern AWS EKS setups, Karpenter is generally preferred.
 
 # 4. How will you upgrade Kubernetes version & how would you reduce downtime during EKS node upgrades?
 
