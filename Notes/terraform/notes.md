@@ -226,6 +226,18 @@ When you run terraform fmt, which files does it format by default? <img width="1
 <img width="504" height="373" alt="image" src="https://github.com/user-attachments/assets/dc2c71fa-1cfe-43bc-9759-ece78d751185" />
 <img width="737" height="361" alt="image" src="https://github.com/user-attachments/assets/75d33c72-fc2e-4359-9d44-6e05f454503f" />
 
+# HCL
+<img width="593" height="335" alt="image" src="https://github.com/user-attachments/assets/437f3662-86c8-494b-9734-c63369c67ea3" />
+<img width="635" height="290" alt="image" src="https://github.com/user-attachments/assets/24f48b47-1353-4ec6-b7fe-c05caa62fb3d" />
+<img width="919" height="455" alt="image" src="https://github.com/user-attachments/assets/158a047f-9873-465e-8eb0-ab6372584616" />
+<img width="647" height="331" alt="image" src="https://github.com/user-attachments/assets/5b620cc6-6f71-44f3-b33a-650e294c35c1" />
+
+# Provider 
+
+<img width="623" height="308" alt="image" src="https://github.com/user-attachments/assets/d83a76e7-493e-487d-bea9-31c8e7553d4a" />
+<img width="634" height="286" alt="image" src="https://github.com/user-attachments/assets/1b85a072-181b-4e11-bc70-04a21e1dfa45" />
+<img width="617" height="248" alt="image" src="https://github.com/user-attachments/assets/c1e449d7-2cd2-4318-9ad5-1393f0d34a02" />
+
 
 
 Architecture Diagram
