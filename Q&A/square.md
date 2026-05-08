@@ -1771,3 +1771,194 @@ Implement:
 - billing alerts
 - tagging strategy
 - cost dashboards
+
+
+# 1. Terraform State File Corruption / Missing State
+
+## Question
+
+A Terraform-managed EC2 instance is running in AWS, but the `terraform.tfstate` file was accidentally deleted. What happens now, and how would you recover?
+
+## Expected Answer
+
+* Terraform no longer knows the infrastructure exists.
+* Next `terraform plan` may try to recreate resources.
+* Recovery options:
+
+  * Restore state from backup/S3 backend versioning
+  * Use `terraform import` to bring existing resources back into state
+* If remote backend is used:
+
+  * recover from S3 versioning
+  * DynamoDB lock table remains unaffected
+
+Example:
+
+```bash id="ikbq59"
+terraform import aws_instance.web i-1234567890abcdef
+```
+
+---
+
+# 2. Terraform Drift Detection
+
+## Question
+
+A developer manually changed the EC2 instance type in AWS from `t2.micro` to `t3.medium`, but Terraform code still says `t2.micro`. What happens during `terraform plan`?
+
+## Expected Answer
+
+Terraform detects infrastructure drift.
+
+`terraform plan` will show:
+
+```text id="i6lxsz"
+~ instance_type = "t3.medium" -> "t2.micro"
+```
+
+Terraform will try to bring infra back to desired state defined in code.
+
+Key concepts:
+
+* Drift detection
+* Desired state management
+* Refresh during plan/apply
+
+---
+
+# 3. Multi-Environment Deployment Using Terraform
+
+## Question
+
+Your company has:
+
+* Dev in `us-east-1`
+* Prod in `us-west-1`
+
+How would you manage this in Terraform without duplicating code?
+
+## Expected Answer
+
+Possible approaches:
+
+* Terraform modules
+* Workspaces
+* Separate variable files
+* Provider aliases
+
+Example:
+
+```hcl id="ryb74z"
+provider "aws" {
+  alias  = "dev"
+  region = "us-east-1"
+}
+
+provider "aws" {
+  alias  = "prod"
+  region = "us-west-1"
+}
+```
+
+Use:
+
+```hcl id="1o0ps0"
+provider = aws.prod
+```
+
+inside resources/modules.
+
+---
+
+# 4. Terraform State Locking Scenario
+
+## Question
+
+Two engineers ran `terraform apply` simultaneously on the same infrastructure. What problem can occur, and how is it prevented?
+
+## Expected Answer
+
+Possible issues:
+
+* State corruption
+* Resource conflicts
+* Inconsistent infrastructure
+
+Terraform prevents this using state locking.
+
+Common setup:
+
+* S3 backend for state storage
+* DynamoDB table for locking
+
+Example:
+
+```hcl id="u2w9tv"
+backend "s3" {
+  bucket         = "terraform-state"
+  key            = "prod/terraform.tfstate"
+  region         = "us-east-1"
+  dynamodb_table = "terraform-lock"
+}
+```
+
+---
+
+# 5. Terraform Module Reusability
+
+## Question
+
+Your team is repeatedly creating:
+
+* VPCs
+* Subnets
+* Security Groups
+
+across multiple projects. How would you avoid code duplication?
+
+## Expected Answer
+
+Use Terraform modules.
+
+Benefits:
+
+* Reusability
+* Standardization
+* Easier maintenance
+* Environment consistency
+
+Structure:
+
+```text id="5j6txy"
+modules/
+  vpc/
+    main.tf
+    variables.tf
+    outputs.tf
+```
+
+Call module:
+
+```hcl id="jlwmqs"
+module "vpc" {
+  source     = "./modules/vpc"
+  cidr_block = "10.0.0.0/16"
+}
+```
+
+---
+
+# Strong Interview Topics Covered
+
+These scenarios evaluate:
+
+* State management
+* Drift detection
+* Remote backend
+* Locking
+* Modules
+* Multi-region architecture
+* Real production troubleshooting
+* Infrastructure lifecycle understanding
+
+
