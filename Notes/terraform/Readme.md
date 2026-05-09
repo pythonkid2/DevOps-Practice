@@ -119,9 +119,17 @@ Resource
 <img width="741" height="236" alt="image" src="https://github.com/user-attachments/assets/c66bbab3-0bde-44ca-80b9-fac42d5b3262" />
 <img width="716" height="293" alt="image" src="https://github.com/user-attachments/assets/3aac69b3-f386-418c-b699-a40db5c5fe55" />
 
+# Assigning Variable Values and Understanding Precedence
+
+<img width="683" height="214" alt="image" src="https://github.com/user-attachments/assets/f9a222f1-0c5e-49a3-a8ff-73b0c03bbb13" />
+<img width="748" height="357" alt="image" src="https://github.com/user-attachments/assets/a9a4677c-7814-4010-9cfc-7937dcdd440d" />
+.tfvars
+<img width="742" height="362" alt="image" src="https://github.com/user-attachments/assets/68217867-9b94-4c08-ad2b-35b64243f2fd" />
+command line flag
+<img width="725" height="362" alt="image" src="https://github.com/user-attachments/assets/d7928f73-a987-47f0-927a-202efc3efd11" />
+
 # Resource referencing 
 <img width="726" height="295" alt="image" src="https://github.com/user-attachments/assets/2ca34f00-5f67-407a-8ec4-3a87f8d46d99" />
-
 
 # Order of Precedence
 <img width="744" height="352" alt="image" src="https://github.com/user-attachments/assets/fdd15b21-c37f-41fc-93a5-c20f31d4be11" />
@@ -131,8 +139,6 @@ Resource
 <img width="746" height="356" alt="image" src="https://github.com/user-attachments/assets/b4abb7b2-b4b7-4a14-ae1a-2be8f24a672c" />
 <img width="712" height="371" alt="image" src="https://github.com/user-attachments/assets/7c54d3be-ae27-4fa8-a38d-821cae61f78b" />
 <img width="464" height="292" alt="image" src="https://github.com/user-attachments/assets/f0ae7a8f-f564-4be3-8333-635399c2e9f9" />
-
-
 
 
 # Terraform Block 
@@ -149,17 +155,18 @@ Resource
 <img width="623" height="156" alt="image" src="https://github.com/user-attachments/assets/7839dc44-5da1-48ff-8f32-daf29b86afee" />
 
 # Terraform State
+<img width="410" height="307" alt="image" src="https://github.com/user-attachments/assets/24a14655-9960-4b4f-afdb-ac3617ca9413" />
+<img width="740" height="368" alt="image" src="https://github.com/user-attachments/assets/a3dc899d-ff3d-4228-b1e5-56ffbe8113d9" />
+<img width="743" height="356" alt="image" src="https://github.com/user-attachments/assets/f61921f4-b621-486e-a63c-0cf428f436a1" />
+<img width="729" height="374" alt="image" src="https://github.com/user-attachments/assets/1d9d3818-733e-4a49-bf73-aca98ab1e8d3" />
+<img width="725" height="362" alt="image" src="https://github.com/user-attachments/assets/2efa727d-44e4-40df-b1f6-09c25d5ace14" />
 
+## Remote State configs 
+<img width="715" height="381" alt="image" src="https://github.com/user-attachments/assets/aa161527-846c-4cfd-9ede-31d27f0053ff" />
+<img width="733" height="378" alt="image" src="https://github.com/user-attachments/assets/2c3c86be-d4db-4a59-afff-2862e48b02d4" />
+<img width="742" height="381" alt="image" src="https://github.com/user-attachments/assets/35e3eb2b-a820-4d97-a229-5d5a42c0bad1" />
+<img width="716" height="385" alt="image" src="https://github.com/user-attachments/assets/a26a2c60-4b42-4544-98b4-9d008743776c" />
 
-
-# Assigning Variable Values and Understanding Precedence
-
-<img width="683" height="214" alt="image" src="https://github.com/user-attachments/assets/f9a222f1-0c5e-49a3-a8ff-73b0c03bbb13" />
-<img width="748" height="357" alt="image" src="https://github.com/user-attachments/assets/a9a4677c-7814-4010-9cfc-7937dcdd440d" />
-.tfvars
-<img width="742" height="362" alt="image" src="https://github.com/user-attachments/assets/68217867-9b94-4c08-ad2b-35b64243f2fd" />
-command line flag
-<img width="725" height="362" alt="image" src="https://github.com/user-attachments/assets/d7928f73-a987-47f0-927a-202efc3efd11" />
 
 
 
