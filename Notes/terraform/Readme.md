@@ -258,6 +258,15 @@ Resource
 <img width="746" height="376" alt="image" src="https://github.com/user-attachments/assets/d71b20c1-c3fe-4dda-b556-900bece3819c" />
 <img width="733" height="392" alt="image" src="https://github.com/user-attachments/assets/3f5e2f3d-1ee5-4949-be6a-1636535df44e" />
 <img width="742" height="391" alt="image" src="https://github.com/user-attachments/assets/c55f52c0-f638-43c2-879a-63f7dc37fa7c" />
+<img width="761" height="381" alt="image" src="https://github.com/user-attachments/assets/7f68ce01-7926-4c69-b103-bc46aea8e51d" />
+
+# Variable Block
+
+<img width="474" height="283" alt="image" src="https://github.com/user-attachments/assets/d92885e2-fd72-456d-8388-807bee70d35f" />
+<img width="907" height="440" alt="image" src="https://github.com/user-attachments/assets/6f38099c-ccd6-464c-84c4-c94be7db2223" />
+<img width="929" height="475" alt="image" src="https://github.com/user-attachments/assets/ab379ba7-f5e0-4f7e-bd77-46d6f0331a20" />
+
+
 
 
 
