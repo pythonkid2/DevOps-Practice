@@ -266,6 +266,42 @@ Resource
 <img width="907" height="440" alt="image" src="https://github.com/user-attachments/assets/6f38099c-ccd6-464c-84c4-c94be7db2223" />
 <img width="929" height="475" alt="image" src="https://github.com/user-attachments/assets/ab379ba7-f5e0-4f7e-bd77-46d6f0331a20" />
 
+# Types of variable
+
+<img width="932" height="480" alt="image" src="https://github.com/user-attachments/assets/dc1c0986-3157-4d8c-bcb9-b6e8f08edeb2" />
+<img width="724" height="364" alt="image" src="https://github.com/user-attachments/assets/daa66da5-1227-4eb3-9727-428df91a7123" />
+<img width="741" height="236" alt="image" src="https://github.com/user-attachments/assets/c66bbab3-0bde-44ca-80b9-fac42d5b3262" />
+<img width="716" height="293" alt="image" src="https://github.com/user-attachments/assets/3aac69b3-f386-418c-b699-a40db5c5fe55" />
+
+# Resource referencing 
+<img width="726" height="295" alt="image" src="https://github.com/user-attachments/assets/2ca34f00-5f67-407a-8ec4-3a87f8d46d99" />
+
+
+# Order of Precedence
+<img width="744" height="352" alt="image" src="https://github.com/user-attachments/assets/fdd15b21-c37f-41fc-93a5-c20f31d4be11" />
+
+# Output Block
+<img width="364" height="239" alt="image" src="https://github.com/user-attachments/assets/da63f7a9-9562-4ade-a0c1-46f86915fd6a" />
+<img width="746" height="356" alt="image" src="https://github.com/user-attachments/assets/b4abb7b2-b4b7-4a14-ae1a-2be8f24a672c" />
+<img width="712" height="371" alt="image" src="https://github.com/user-attachments/assets/7c54d3be-ae27-4fa8-a38d-821cae61f78b" />
+<img width="464" height="292" alt="image" src="https://github.com/user-attachments/assets/f0ae7a8f-f564-4be3-8333-635399c2e9f9" />
+
+
+
+
+
+
+# Assigning Variable Values and Understanding Precedence
+
+<img width="683" height="214" alt="image" src="https://github.com/user-attachments/assets/f9a222f1-0c5e-49a3-a8ff-73b0c03bbb13" />
+<img width="748" height="357" alt="image" src="https://github.com/user-attachments/assets/a9a4677c-7814-4010-9cfc-7937dcdd440d" />
+.tfvars
+<img width="742" height="362" alt="image" src="https://github.com/user-attachments/assets/68217867-9b94-4c08-ad2b-35b64243f2fd" />
+command line flag
+<img width="725" height="362" alt="image" src="https://github.com/user-attachments/assets/d7928f73-a987-47f0-927a-202efc3efd11" />
+
+
+
 
 
 
