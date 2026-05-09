@@ -166,6 +166,26 @@ command line flag
 <img width="733" height="378" alt="image" src="https://github.com/user-attachments/assets/2c3c86be-d4db-4a59-afff-2862e48b02d4" />
 <img width="742" height="381" alt="image" src="https://github.com/user-attachments/assets/35e3eb2b-a820-4d97-a229-5d5a42c0bad1" />
 <img width="716" height="385" alt="image" src="https://github.com/user-attachments/assets/a26a2c60-4b42-4544-98b4-9d008743776c" />
+<img width="761" height="337" alt="image" src="https://github.com/user-attachments/assets/b49b860e-4831-4c4d-8fcc-cb3f68e390ac" />
+
+<img width="662" height="160" alt="image" src="https://github.com/user-attachments/assets/c8d9be2d-f120-4778-908d-c29bc2e85e85" />
+
+## Inspecting Terraform State
+
+<img width="729" height="378" alt="image" src="https://github.com/user-attachments/assets/7c38d3d5-5b76-4974-96e6-2dd5d39947ef" />
+<img width="723" height="362" alt="image" src="https://github.com/user-attachments/assets/10434916-9871-49bf-ab01-b2f10bd906d1" />
+<img width="736" height="381" alt="image" src="https://github.com/user-attachments/assets/c2d69a67-6f97-48b2-b3c6-e5b6d6ddd589" />
+<img width="715" height="374" alt="image" src="https://github.com/user-attachments/assets/afb14305-1b7c-45b8-a9fc-a369373354dc" />
+<img width="748" height="365" alt="image" src="https://github.com/user-attachments/assets/97f60e65-6b4e-4f07-b7a9-ab7134deb97d" />
+
+<img width="413" height="283" alt="image" src="https://github.com/user-attachments/assets/24dd757e-b581-4257-aebc-aef87361149b" />
+<img width="431" height="361" alt="image" src="https://github.com/user-attachments/assets/53a7f9be-9c56-4623-8b8c-620a9981b012" />
+
+<img width="431" height="361" alt="image" src="https://github.com/user-attachments/assets/f281c599-70c6-4b27-8cab-2a0547f3ef6c" />
+
+## Detecting State Drift with Refresh-Only Mode
+
+<img width="701" height="343" alt="image" src="https://github.com/user-attachments/assets/e08e3633-26fd-4853-a01b-c09a2e0d0c37" />
 
 
 
