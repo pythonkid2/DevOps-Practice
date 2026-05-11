@@ -194,6 +194,20 @@ command line flag
 <img width="733" height="362" alt="image" src="https://github.com/user-attachments/assets/38727acc-fba4-4a9c-b0ff-0cd9b4227a19" />
 
 
+# Terraform workspace 
+
+<img width="686" height="394" alt="image" src="https://github.com/user-attachments/assets/2fe1731d-119c-45de-baa3-0b47688a4773" />
+<img width="532" height="322" alt="image" src="https://github.com/user-attachments/assets/488dde08-2b9c-4e47-ad5e-1277ec2f6d80" />
+<img width="725" height="287" alt="image" src="https://github.com/user-attachments/assets/96334e07-f458-4f05-b5c5-5402cd303d17" />
+<img width="737" height="376" alt="image" src="https://github.com/user-attachments/assets/7e1ce782-14e0-489a-9b49-a141ba04942f" />
+
+<img width="740" height="392" alt="image" src="https://github.com/user-attachments/assets/59cc5939-b850-4e0a-a544-d9efd3818397" />
+<img width="730" height="368" alt="image" src="https://github.com/user-attachments/assets/392337bc-ca70-41a4-990d-8ebf48e45807" />
+
++++++++++
+Quiz
+
+<img width="351" height="221" alt="image" src="https://github.com/user-attachments/assets/8b963696-4584-47c4-a5c6-e474e0047c76" />
 
 
 +===================
