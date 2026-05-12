@@ -209,6 +209,26 @@ Quiz
 
 <img width="351" height="221" alt="image" src="https://github.com/user-attachments/assets/8b963696-4584-47c4-a5c6-e474e0047c76" />
 
+# Using Built-In Functions to Standardize Code
+
+<img width="734" height="352" alt="image" src="https://github.com/user-attachments/assets/f220ae67-cb3d-4c53-8a9f-a000c55d7a9a" />
+<img width="729" height="381" alt="image" src="https://github.com/user-attachments/assets/d4fa9a57-c8ad-405e-8a08-5100014e3ec7" />
+<img width="574" height="234" alt="image" src="https://github.com/user-attachments/assets/f4d89987-3953-41c6-a643-884ecdbdc711" />
+<img width="733" height="271" alt="image" src="https://github.com/user-attachments/assets/ef3803de-9da9-41e7-a02e-826ae9ae9670" />
+<img width="725" height="378" alt="image" src="https://github.com/user-attachments/assets/57fff5e6-beeb-4a96-aafc-5e26cb3fbb29" />
+<img width="651" height="388" alt="image" src="https://github.com/user-attachments/assets/c29a2a21-c7d7-4229-9e48-c472b961e397" />
+<img width="725" height="383" alt="image" src="https://github.com/user-attachments/assets/9731bae9-7a53-4a74-8af6-abb06a9d076a" />
+<img width="721" height="371" alt="image" src="https://github.com/user-attachments/assets/9959ae58-7b5a-47cb-a6e7-0ddfa19dd793" />
+<img width="726" height="369" alt="image" src="https://github.com/user-attachments/assets/d442686b-9aee-4e49-b063-72b4abc638b5" />
+<img width="724" height="370" alt="image" src="https://github.com/user-attachments/assets/06ab09d9-37e7-4495-9256-f2e4385664d3" />
+
+# Enhancing Code with Dynamic Values
+
+<img width="743" height="389" alt="image" src="https://github.com/user-attachments/assets/ec74bd0d-76ea-4d3e-b2bd-9b46015d26e7" />
+<img width="740" height="343" alt="image" src="https://github.com/user-attachments/assets/75c51cb4-9ddb-40c9-83ec-3d225731527c" />
+<img width="656" height="386" alt="image" src="https://github.com/user-attachments/assets/ab8dff2f-9d74-40ce-9f58-78f9f71cb203" />
+
+
 
 +===================
 
