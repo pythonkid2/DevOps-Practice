@@ -227,6 +227,8 @@ Quiz
 <img width="743" height="389" alt="image" src="https://github.com/user-attachments/assets/ec74bd0d-76ea-4d3e-b2bd-9b46015d26e7" />
 <img width="740" height="343" alt="image" src="https://github.com/user-attachments/assets/75c51cb4-9ddb-40c9-83ec-3d225731527c" />
 <img width="656" height="386" alt="image" src="https://github.com/user-attachments/assets/ab8dff2f-9d74-40ce-9f58-78f9f71cb203" />
+<img width="683" height="382" alt="image" src="https://github.com/user-attachments/assets/5eafe0c7-59ef-489d-be8f-73407d1ebabf" />
+<img width="701" height="358" alt="image" src="https://github.com/user-attachments/assets/73431a0f-b571-4132-86bb-b964e71a1290" />
 
 
 
