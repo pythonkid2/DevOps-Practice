@@ -20,4 +20,16 @@ print("your band name is " + username + " " + petname)
 # Day 2
 ++++++++++++++++++++++++
 
+Data Types 
+
+- Strings 
+- integer
+-  float
+-  boolean
+
+Subscripting 
+
+print("hello"[0])
+h
+
 
