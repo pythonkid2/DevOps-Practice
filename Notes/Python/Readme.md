@@ -1,5 +1,3 @@
-Here's a cleaner and structured version of your Python learning notes that you can keep updating daily.
-
 # Python Learning Notes
 
 ## Day 1 - Basics
