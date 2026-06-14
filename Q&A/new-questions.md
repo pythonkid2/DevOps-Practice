@@ -270,3 +270,175 @@
 
 ---
 
+Good attempt, but you've mixed **Blue-Green** and **Canary**.
+
+### Score: 6.5/10
+
+---
+
+## Mistake
+
+You said:
+
+> Blue-Green sends 10% traffic to Green and gradually increases.
+
+That is actually **Canary Deployment**.
+
+---
+
+# Correct Definitions
+
+## 1. Rolling Update (Default Kubernetes Strategy)
+
+```text
+Version 1 Pods
+      ↓
+Gradually Replace
+      ↓
+Version 2 Pods
+```
+
+Example:
+
+```text
+10 Pods v1
+```
+
+Update:
+
+```text
+9 v1 + 1 v2
+8 v1 + 2 v2
+...
+0 v1 + 10 v2
+```
+
+Advantages:
+
+✅ No extra environment
+
+✅ Default in Kubernetes
+
+Disadvantages:
+
+❌ Rollback is slower
+
+❌ Both versions coexist temporarily
+
+---
+
+## 2. Blue-Green Deployment
+
+Two complete environments:
+
+```text
+Blue = Production
+Green = New Version
+```
+
+Before switch:
+
+```text
+100% → Blue
+0%   → Green
+```
+
+After testing:
+
+```text
+0%   → Blue
+100% → Green
+```
+
+Traffic switch is usually immediate.
+
+Advantages:
+
+✅ Very fast rollback
+
+✅ Safe testing
+
+Disadvantages:
+
+❌ Double infrastructure cost
+
+---
+
+## 3. Canary Deployment
+
+Gradual traffic shifting.
+
+Example:
+
+```text
+90% → v1
+10% → v2
+```
+
+Then:
+
+```text
+75% → v1
+25% → v2
+```
+
+Then:
+
+```text
+50% → v1
+50% → v2
+```
+
+Eventually:
+
+```text
+100% → v2
+```
+
+Advantages:
+
+✅ Lower risk
+
+✅ Real-user validation
+
+Disadvantages:
+
+❌ More complex routing
+
+❌ Requires ingress/service mesh support
+
+---
+
+# Interview Answer
+
+> Kubernetes supports multiple deployment strategies.
+>
+> Rolling Update is the default deployment strategy where old pods are gradually replaced with new pods while maintaining application availability.
+>
+> Blue-Green Deployment uses two identical environments. One environment serves production traffic while the other receives the new version. After validation, traffic is switched completely to the new environment, providing fast rollback capability.
+>
+> Canary Deployment gradually shifts a small percentage of production traffic to the new version. If the application behaves correctly, traffic is increased incrementally until the new version receives all traffic.
+>
+> Rolling Updates are simple and commonly used, Blue-Green provides the fastest rollback, and Canary offers the safest production validation.
+
+---
+
+# Interview Follow-Up
+
+### Which one would you choose for a banking application?
+
+Good answer:
+
+> For critical banking or payment applications, I would prefer Canary Deployment because it allows gradual exposure of the new version to a small percentage of users while continuously monitoring errors and performance before a full rollout.
+
+---
+
+Once the scheduler assigns the pod to a worker node, the kubelet running on that node detects the assignment and reads the PodSpec.
+
+Kubelet instructs containerd to pull the required image from ACR, ECR, or another registry if it is not already present on the node.
+
+Containerd creates and starts the containers. Once the application starts, Kubernetes executes the readiness probe. If the readiness probe succeeds, the pod is added to the Service endpoints and starts receiving traffic.
+
+Kube-proxy updates networking rules so that traffic reaching the Service can be forwarded to the healthy pod.
+
+
