@@ -1,11 +1,9 @@
 # Azure & DevOps Interview Preparation Guide
-## Mathew Joseph | Target: **Senior (8–9 Year) Interview** | Real hands-on: ~6 years
 
 ---
 
 ## 🎯 SENIOR INTERVIEW MODE (Read Before Every Session)
 
-You are preparing for a **senior Azure/DevOps role (8–9 years expected depth)**. Your real experience is ~6 years — that is enough **if you demonstrate senior-level thinking**: architecture, security, trade-offs, failure scenarios, and cross-team ownership.
 
 ### How Senior Answers Differ from Junior
 
